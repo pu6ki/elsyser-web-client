@@ -3,7 +3,7 @@ import { templates } from '../../utils/templates.js';
 import { validator } from '../../utils/validator.js';
 import { formHandler } from '../../utils/formHandler.js';
 
-const newsUrl = `http://127.0.0.1:8000/api/news/`;
+const newsUrl = `https://elsyser.herokuapp.com/api/news/`;
 
 export function EditNewsController(id) {
     let selectedNewsUrl = newsUrl + id + '/',

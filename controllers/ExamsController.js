@@ -2,7 +2,7 @@ import { requester } from '../utils/requster.js';
 import { templates } from '../utils/templates.js';
 
 export function ExamsController() {
-    let examsUrl = 'http://127.0.0.1:8000/api/exams/',
+    let examsUrl = 'https://elsyser.herokuapp.com/api/exams/',
         getData = requester.getJSON(examsUrl),
         getTemplate = templates.get('exams');
 

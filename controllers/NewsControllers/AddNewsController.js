@@ -44,7 +44,7 @@ function getDataFromTemplate() {
 }
 
 function addNews() {
-    let newsUrl = 'http://127.0.0.1:8000/api/news/';
+    let newsUrl = 'https://elsyser.herokuapp.com/api/news/';
     let data = getDataFromTemplate();
     if (data) {
         requester.postJSON(newsUrl, data)

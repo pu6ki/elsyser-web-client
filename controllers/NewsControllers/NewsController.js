@@ -1,7 +1,7 @@
 import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
 
-const newsUrl = 'http://127.0.0.1:8000/api/news/';
+const newsUrl = 'https://elsyser.herokuapp.com/api/news/';
 
 export function NewsController() {
     let dataFromApi,

@@ -1,6 +1,6 @@
 import { requester } from '../../utils/requster.js';
 
-const newsUrl = 'http://127.0.0.1:8000/api/news/';
+const newsUrl = 'https://elsyser.herokuapp.com/api/news/';
 
 export function DeleteNewsController(id) {
     let deleteNewsUrl = newsUrl + id + '/';

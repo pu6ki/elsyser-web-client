@@ -76,7 +76,7 @@ function getDataFromTemplate() {
 }
 
 function register() {
-    let registerUrl = 'http://127.0.0.1:8000/api/register/';
+    let registerUrl = 'https://elsyser.herokuapp.com/api/register/';
     let data = getDataFromTemplate();
     if (data) {
         requester.postJSON(registerUrl, data)

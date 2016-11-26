@@ -2,7 +2,7 @@ import { requester } from '../utils/requster.js';
 import { templates } from '../utils/templates.js';
 
 export function ProfileController() {
-    let profileUrl = 'http://127.0.0.1:8000/api/profile/',
+    let profileUrl = 'https://elsyser.herokuapp.com/api/profile/',
         getData = requester.getJSON(profileUrl),
         getTemplate = templates.get('profile');
 

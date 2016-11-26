@@ -3,7 +3,7 @@ import { templates } from '../utils/templates.js';
 import { LogoutController } from '../controllers/AuthControllers/LogoutController.js';
 
 export function HeaderController() {
-    const profileUrl = 'http://127.0.0.1:8000/api/profile/';
+    const profileUrl = 'https://elsyser.herokuapp.com/api/profile/';
     const authHeader = 'authorized-header';
     const unauthHeader = 'unauthorized-header';
     let userData = {

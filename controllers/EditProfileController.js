@@ -2,7 +2,7 @@ import { requester } from '../utils/requster.js';
 import { templates } from '../utils/templates.js';
 import { validator } from '../utils/validator.js';
 
-const profileUrl = 'http://127.0.0.1:8000/api/profile/';
+const profileUrl = 'https://elsyser.herokuapp.com/api/profile/';
 
 export function EditProfileController() {
     let getData = requester.getJSON(profileUrl),

@@ -33,7 +33,7 @@ function getDataFromTemplate() {
 }
 
 function login() {
-    let loginUrl = 'http://127.0.0.1:8000/api/login/';
+    let loginUrl = 'https://elsyser.herokuapp.com/api/login/';
     requester.postJSON(loginUrl, getDataFromTemplate())
         .then((result) => {
             if (result.token) {

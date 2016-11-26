@@ -7,7 +7,7 @@ import { DetailedNewsController } from './DetailedNewsController.js';
 let commentToEditUrl;
 
 export function EditCommentController(newsId, commentId) {
-    commentToEditUrl = `http://127.0.0.1:8000/api/news/${newsId}/comments/${commentId}/`;
+    commentToEditUrl = `https://elsyser.herokuapp.com/api/news/${newsId}/comments/${commentId}/`;
     let getData = requester.getJSON(commentToEditUrl),
         getTemplate = templates.get('edit-comment');
 
