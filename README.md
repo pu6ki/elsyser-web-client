@@ -52,7 +52,7 @@ How to copy this project to your local machine and run it:
 ## Tutorial
 
 1. `$ live-server`
-2. Visit http://localhost:8080/
+2. Visit http://127.0.0.1:8080/
 3. Click "Register" to create your school account.
     ![Register page](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/register-page.png)
 4. Then log in with your credentials.
