@@ -54,11 +54,11 @@ How to copy this project to your local machine and run it:
 1. `$ live-server`
 2. Visit https://elsyser.aerobatic.io/
 3. Click "Register" to create your school account.
-    ![Register page](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/register-page.png)
+    - ![Register page](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/register-page.png)
 4. Then log in with your credentials.
-    ![Login page](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/login-page.png)
+    - ![Login page](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/login-page.png)
 5. Everything about you and your class is one click away!
-    ![Navigation bar](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/navigation.png)
+    - ![Navigation bar](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/navigation.png)
     - Upcoming exams
     - Latest news with live comments
     - Assigned homeworks with materials for them
