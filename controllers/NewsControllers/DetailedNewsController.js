@@ -31,19 +31,20 @@ export function DetailedNewsController(id) {
 
             dataFromAPI.comment_set.reverse();
 
+            console.log(dataFromAPI.comment_set);
+
             dataFromAPI.comment_set.forEach((el) => {
                 if (el.posted_by.user === currentUsername) {
                     el.editableComment = true;
                 }
             });
 
-
             let template = hbTemplate(dataFromAPI);
             $('#content').html(template);
 
             dataFromAPI.comment_set.forEach((el) => {
                 let commentId = el.id;
-                attachEditAndDelete(newsId, commentId);
+                attachEditAndDeleteToComments(newsId, commentId);
             })
 
             $(`#news-${newsId}-edit`).on('click', () => {
@@ -110,12 +111,12 @@ export function loadComments(newsId) {
             }
             let template = hbTemplate(commentsToLoad[i]);
             $('#comments').prepend(template);
-            attachEditAndDelete(newsId, commentsToLoad[i].id);
+            attachEditAndDeleteToComments(newsId, commentsToLoad[i].id);
         }
     });
 }
 
-function attachEditAndDelete(newsId, commentId) {
+function attachEditAndDeleteToComments(newsId, commentId) {
     $(`#news-${newsId}-edit-comment-${commentId}`).on('click', () => {
         EditCommentController(newsId, commentId);
     })

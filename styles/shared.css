@@ -7,3 +7,179 @@ body {
 .submit {
     margin-top: 5px;
 }
+
+#info-image {
+    width: 60px;
+    display: inline;
+}
+
+#footer {
+    text-align: center;
+}
+
+#profile-picture {
+    width: 28px;
+    height: 28px;
+    margin-right: 5px;
+}
+
+#log-out {
+    color: #666666;
+    font-size: 16px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.img-container>img {
+    width: 40px;
+    height: 40px;
+}
+
+.img-container {
+	width: 50px;
+	margin-left: 7px;
+	margin-right: 5px;
+}
+.panel {
+	position:relative;
+}
+.panel>.panel-heading:after,.panel>.panel-heading:before{
+	position:absolute;
+	top:11px;left:-16px;
+	right:100%;
+	width:0;
+	height:0;
+	display:block;
+	content:" ";
+	border-color:transparent;
+	border-style:solid solid outset;
+	pointer-events:none;
+}
+.panel>.panel-heading:after{
+	border-width:7px;
+	border-right-color:#f7f7f7;
+	margin-top:1px;
+	margin-left:2px;
+}
+.panel>.panel-heading:before{
+	border-right-color:#ddd;
+	border-width:8px;
+}
+
+.panel-heading {
+	font-size: 16px;
+}
+
+#comment-content {
+	height: 35px;
+	margin: 5px;
+}
+
+#add-comment-button {
+	margin-top: 5px;
+}
+
+#loadMore {
+    padding: 10px;
+    text-align: center;
+	text-decoration: none;
+    background-color: #33739E;
+    color: #fff;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+    border-color: #fff;
+    box-shadow: 0 1px 1px #ccc;
+    transition: all 600ms ease-in-out;
+    -webkit-transition: all 600ms ease-in-out;
+    -moz-transition: all 600ms ease-in-out;
+    -o-transition: all 600ms ease-in-out;
+}
+
+#loadMore:hover {
+    background-color: #fff;
+    color: #33739E;
+}
+
+.comment {
+	display: none;
+}
+
+.new-comment {
+	display: block;
+}
+
+.edit-comments span {
+	color: #33739E;
+	cursor: pointer;
+}
+
+#materials:link {
+    text-decoration:none;
+    color: #1096F3;
+}
+
+.btn-circle.btn-lg{
+  width: 60px;
+  height: 60px;
+  padding: 10px 16px;
+  font-size: 20px;
+  line-height: 1.33;
+  border-radius: 50%;
+  border: none;
+  position: fixed;
+  bottom: 2em;
+  right: 0.5em;
+}
+
+.btn-md {
+  width: 40px;
+  height: 40px;
+  padding: 8px 14px;
+  font-size: 15px;
+}
+
+.heading-anchor {
+  text-decoration: none;
+  color: white;
+}
+
+.heading-anchor:hover {
+  text-decoration: none;
+  color: white;
+}
+
+a {
+  font-size: 16px;
+  color: white;
+}
+
+input {
+  color: #666666
+}
+
+.edit, .delete {
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+}
+
+.panel-body{
+  position: relative;
+}
+
+#info-button {
+  position: absolute;
+  right: 6px;
+  bottom: 3px;  
+}
+
+#profile-image {
+    max-height: 300px;
+    max-width: 300px;
+    border-radius: 10%;
+    margin: 10px;
+}
+
+#profile-info {
+    margin: 10px;
+}

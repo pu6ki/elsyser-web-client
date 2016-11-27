@@ -1,5 +1,3 @@
-/* globals $ Promise */
-
 let requester = {
     get(url) {
         let promise = new Promise((resolve, reject) => {

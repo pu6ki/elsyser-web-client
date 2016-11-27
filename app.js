@@ -18,7 +18,6 @@ import { DetailedNewsController, loadComments } from './controllers/NewsControll
 import { DetailedHomeworkController } from './controllers/HomeworksControllers/DetailedHomeworkController.js';
 import { HomeworksController } from './controllers/HomeworksControllers/HomeworksController.js';
 
-
 var handlebars = Handlebars || handlebars;
 HandlebarsIntl.registerWith(Handlebars);
 
@@ -27,7 +26,6 @@ var router = new Navigo(null, true);
 window.onbeforeunload = HeaderController();
 
 router
-    .on('/', () => { router.navigate('/home') })
     .on('/', () => { router.navigate('/home') })
     .on('/about', () => {
         AboutController();
