@@ -40,7 +40,7 @@ function login() {
                 localStorage.setItem('token', result.token);
                 setUsernameToLocalSorage();
                 toastr.success('Logged-in successfully!');
-                window.location.href = '#/home';
+                window.location.href = '/';
             }
         }).catch(() => {
             toastr.error('Couldn\'t log-in with the provided credentials!');
