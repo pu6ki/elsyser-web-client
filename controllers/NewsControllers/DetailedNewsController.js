@@ -31,8 +31,6 @@ export function DetailedNewsController(id) {
 
             dataFromAPI.comment_set.reverse();
 
-            console.log(dataFromAPI.comment_set);
-
             dataFromAPI.comment_set.forEach((el) => {
                 if (el.posted_by.user === currentUsername) {
                     el.editableComment = true;
@@ -78,6 +76,7 @@ export function DetailedNewsController(id) {
 
             $('#add-comment-button').on('click', () => {
                 AddCommentController(id);
+                loadComments(id);
             });
 
         }).catch((err) => {

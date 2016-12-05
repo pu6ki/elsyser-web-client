@@ -35,7 +35,7 @@ export function NewsController() {
             };
 
             let template = hbTemplate(dataFromApi, {
-                data: {intl: intlData}
+                data: { intl: intlData }
             });
             $('#content').html(template);
         }).catch((err) => {

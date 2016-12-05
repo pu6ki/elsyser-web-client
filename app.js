@@ -18,14 +18,24 @@ import { DetailedNewsController, loadComments } from './controllers/NewsControll
 import { DetailedHomeworkController } from './controllers/HomeworksControllers/DetailedHomeworkController.js';
 import { HomeworksController } from './controllers/HomeworksControllers/HomeworksController.js';
 
-HandlebarsIntl.registerWith(Handlebars);
+try {
+    HandlebarsIntl.registerWith(Handlebars);
+} catch (error) {
+    let toastrOptions = {
+        "timeOut": "5000000",
+        "positionClass": "toast-top-center"
+    }
+    toastr.warning('If you have opened this page on mobile device, please use Google Chrome for your mobile OS!', 'Warning', toastrOptions);
+}
+
+
 
 var router = new Navigo(null, true);
 
 window.onbeforeunload = HeaderController();
 
 router
-    .on('/', () => { router.navigate('/home')})
+    .on('/', () => { router.navigate('/home') })
     .on('/home', () => {
         HeaderController();
         HomeController();
