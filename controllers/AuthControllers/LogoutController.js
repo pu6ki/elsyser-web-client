@@ -6,4 +6,5 @@ export function LogoutController() {
     localStorage.removeItem('elsyser-username');
     HeaderController();
     window.location.href = '/#/home';
+    window.location.reload(true);
 }
