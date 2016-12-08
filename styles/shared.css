@@ -28,7 +28,6 @@ h6 {
     text-align: center;
     color: #f8f8f8;
     background-image: url('../imgs/bg-image.jpg');
-    /*background-color: #7f33a0;*/
     background-size: cover;
 }
 
@@ -150,8 +149,7 @@ h6 {
     display: inline;
 }
 
-#footer {
-    text-align: center;
+.authorized {
 }
 
 #profile-picture {
@@ -180,7 +178,7 @@ h6 {
 .panel {
 	position:relative;
 }
-.panel>.panel-heading:after,.panel>.panel-heading:before{
+.comment-panel>.panel-heading:after,.comment-panel>.panel-heading:before{
 	position:absolute;
 	top:11px;left:-16px;
 	right:100%;
@@ -205,6 +203,10 @@ h6 {
 
 .panel-heading {
 	font-size: 16px;
+}
+
+.info-panel {
+    margin: 20px;
 }
 
 #comment-content {
