@@ -291,7 +291,7 @@ h6 {
 a {
   font-size: 16px;
   text-decoration: none;
-  color: rgba(0,0,0,0.6)
+  color: black;
 }
 
 a:hover {
@@ -311,6 +311,7 @@ input {
 
 .panel-body{
   position: relative;
+  min-height: 170px;
 }
 
 #info-button {

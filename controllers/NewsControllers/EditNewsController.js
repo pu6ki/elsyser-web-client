@@ -1,7 +1,6 @@
 import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
 import { validator } from '../../utils/validator.js';
-import { formHandler } from '../../utils/formHandler.js';
 
 const newsUrl = `https://elsyser.herokuapp.com/api/news/`;
 
@@ -17,8 +16,6 @@ export function EditNewsController(id) {
                 template = hbTemplate(data);
 
             $('#content').html(template);
-
-            formHandler();
 
             $('#save-button').on('click', () => {
                 editData(id);

@@ -1,6 +1,5 @@
 import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
-import { formHandler } from '../../utils/formHandler.js';
 import { validator } from '../../utils/validator.js';
 
 export function AddNewsController() {
@@ -10,7 +9,6 @@ export function AddNewsController() {
                 template = hbTemplate();
 
             $('#content').html(template);
-            formHandler();
 
             $('#add-news').on('click', () => {
                 addNews();
