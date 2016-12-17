@@ -17,13 +17,15 @@
         <div class="panel panel-primary info-panel">
             <div class="panel-heading">
                 <strong>
-                    <span>News</span>
+                    <a href="#/news">News</span>
                 </strong>
             </div>
-            <div class="panel-body">
-                {{#each this.news}}
-                <a href="/#/news/{{id}}"> {{title}} </a>
-                <br /> {{/each}}
+            <div class="panel-body info-body">
+                {{#each news}}
+                <div class="info-container">
+                    <a href="/#/news/{{id}}"> {{title}} </a>
+                </div>
+                {{/each}}
             </div>
         </div>
     </div>
@@ -35,7 +37,7 @@
                     <span>Schedule</span>
                 </strong>
             </div>
-            <div class="panel-body">
+            <div class="panel-body info-body">
 
             </div>
         </div>
@@ -45,13 +47,17 @@
         <div class="panel panel-primary info-panel">
             <div class="panel-heading">
                 <strong>
-                    <span>Homeworks</span>
+                    <a href="#/homeworks">Homeworks</a>
                 </strong>
             </div>
-            <div class="panel-body">
-                {{#each this.homeworks}}
-                <a href="/#/homeworks/{{id}}"> {{title}} </a>
-                <br /> {{/each}}
+            <div class="panel-body info-body">
+                {{#each homeworks}}
+                <div class="info-container">
+                    <span class="text">{{subject.title}} - {{details}}</span>
+                    <br />
+                    <strong>{{deadline}}</strong>
+                </div>
+                {{/each}}
             </div>
         </div>
     </div>
@@ -60,13 +66,17 @@
         <div class="panel panel-primary info-panel">
             <div class="panel-heading">
                 <strong>
-                    <span>Exams</span>
+                    <a href="#/exams">Exams</a>
                 </strong>
             </div>
-            <div class="panel-body">
-                {{#each this.exams}}
-                <a href="/#/exams/{{id}}"> {{title}} </a>
-                <br /> {{/each}}
+            <div class="panel-body info-body">
+                {{#each exams}}
+                <div class="info-container">
+                    <span class="text">{{subject.title}} - {{topic}}</span>
+                    <br />
+                    <strong>{{date}}</strong>
+                </div>
+                {{/each}}
             </div>
         </div>
     </div>
@@ -78,7 +88,7 @@
                     <span>Subjects</span>
                 </strong>
             </div>
-            <div class="panel-body">
+            <div class="panel-body info-body">
 
             </div>
         </div>
@@ -91,7 +101,7 @@
                     <span>Grades</span>
                 </strong>
             </div>
-            <div class="panel-body">
+            <div class="panel-body info-body">
 
             </div>
         </div>
