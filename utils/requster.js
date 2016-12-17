@@ -5,8 +5,10 @@ let requester = {
                 url,
                 method: "GET",
                 beforeSend: (xhr) => {
-                    let token = window.localStorage.getItem('token');
-                    xhr.setRequestHeader('Authorization', `Token ${token}`);
+                    if (window.localStorage.getItem('token')) {
+                        let token = window.localStorage.getItem('token').slice(0, 40);
+                        xhr.setRequestHeader('Authorization', `Token ${token}`);
+                    }
                 },
                 success(response) {
                     return resolve(response);
@@ -28,8 +30,10 @@ let requester = {
                 contentType: "application/json",
                 data: JSON.stringify(body),
                 beforeSend: (xhr) => {
-                    let token = window.localStorage.getItem('token');
-                    xhr.setRequestHeader('Authorization', `Token ${token}`);
+                    if (window.localStorage.getItem('token')) {
+                        let token = window.localStorage.getItem('token').slice(0, 40);
+                        xhr.setRequestHeader('Authorization', `Token ${token}`);
+                    }
                 },
                 success(response) {
                     return resolve(response);
@@ -53,8 +57,10 @@ let requester = {
                 data: JSON.stringify(body),
                 crossDomain: true,
                 beforeSend: (xhr) => {
-                    let token = window.localStorage.getItem('token');
-                    xhr.setRequestHeader('Authorization', `Token ${token}`);
+                    if (window.localStorage.getItem('token')) {
+                        let token = window.localStorage.getItem('token').slice(0, 40);
+                        xhr.setRequestHeader('Authorization', `Token ${token}`);
+                    }
                 },
                 success(response) {
                     return resolve(response);
@@ -73,8 +79,10 @@ let requester = {
                 method: "GET",
                 contentType: "application/json",
                 beforeSend: (xhr) => {
-                    let token = window.localStorage.getItem('token');
-                    xhr.setRequestHeader('Authorization', `Token ${token}`);
+                    if (window.localStorage.getItem('token')) {
+                        let token = window.localStorage.getItem('token').slice(0, 40);
+                        xhr.setRequestHeader('Authorization', `Token ${token}`);
+                    }
                 },
                 success(response) {
                     resolve(response);
@@ -95,8 +103,10 @@ let requester = {
                 method: "PUT",
                 data: body.profile_image,
                 beforeSend: (xhr) => {
-                    let token = window.localStorage.getItem('token');
-                    xhr.setRequestHeader('Authorization', `Token ${token}`);
+                    if (window.localStorage.getItem('token')) {
+                        let token = window.localStorage.getItem('token').slice(0, 40);
+                        xhr.setRequestHeader('Authorization', `Token ${token}`);
+                    }
                 },
                 success(response) {
                     return resolve(response);
@@ -114,8 +124,10 @@ let requester = {
                 url,
                 method: "DELETE",
                 beforeSend: (xhr) => {
-                    let token = window.localStorage.getItem('token');
-                    xhr.setRequestHeader('Authorization', `Token ${token}`);
+                    if (window.localStorage.getItem('token')) {
+                        let token = window.localStorage.getItem('token').slice(0, 40);
+                        xhr.setRequestHeader('Authorization', `Token ${token}`);
+                    }
                 },
                 success(response) {
                     return resolve(response);

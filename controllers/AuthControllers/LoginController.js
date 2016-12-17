@@ -6,18 +6,16 @@ import { setUsernameToLocalSorage } from '../../utils/helper.js';
 export function LoginController() {
     templates.get('login')
         .then((res) => {
-            return new Promise((resolve, reject) => {
-                let hbTemplate = Handlebars.compile(res),
-                    template = hbTemplate();
+            let hbTemplate = Handlebars.compile(res),
+                template = hbTemplate();
 
-                $('#content').html(template);
-                formHandler();
+            $('#content').html(template);
+            formHandler();
 
-                $('#login-button').on('click', () => {
-                    login();
-                });
+            $('#login-button').on('click', () => {
+                login();
             });
-        });
+        })
 }
 
 function getDataFromTemplate() {
@@ -37,12 +35,19 @@ function login() {
     requester.postJSON(loginUrl, getDataFromTemplate())
         .then((result) => {
             if (result.token) {
-                localStorage.setItem('token', result.token);
+                let token = result.token;
+                if (result.is_teacher) {
+                    token += '1';
+                }
+
+                localStorage.setItem('token', token);
                 setUsernameToLocalSorage();
+
                 toastr.success('Logged-in successfully!');
-                window.location.href = '/#/home';
+                window.location.href = '/#/home';     
             }
-        }).catch(() => {
+        }).catch((err) => {
+            console.log(err);
             toastr.error('Couldn\'t log-in with the provided credentials!');
         });
 }
