@@ -1,5 +1,5 @@
-{{#if this}}
-    {{#each this}}
+{{#if exams}}
+    {{#each exams}}
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <strong>
@@ -26,4 +26,10 @@
     {{/each}}
 {{else}}
     <h3>No upcoming exams</h3>
+{{/if}}
+
+{{#if isTeacher}}
+    <button type="button" class="btn btn-primary btn-circle btn-lg" id="add-exam">
+        <i class="glyphicon glyphicon-pencil"></i>
+    </button>
 {{/if}}

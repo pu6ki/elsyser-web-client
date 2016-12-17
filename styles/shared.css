@@ -149,9 +149,6 @@ h6 {
     display: inline;
 }
 
-.authorized {
-}
-
 #profile-picture {
     width: 28px;
     height: 28px;
@@ -203,6 +200,14 @@ h6 {
 
 .panel-heading {
 	font-size: 16px;
+}
+
+.panel-heading a{
+	color: white;
+}
+
+.panel-heading a:hover{
+	color: gold;
 }
 
 .info-panel {
@@ -309,9 +314,9 @@ input {
   cursor: pointer;
 }
 
-.panel-body{
-  position: relative;
+.info-body{
   min-height: 170px;
+  overflow: auto
 }
 
 #info-button {
@@ -329,4 +334,16 @@ input {
 
 #profile-info {
     margin: 10px;
+}
+
+label {
+    font-size: 17px;
+}
+
+.text {
+    font-size: 14px;
+}
+
+.info-container {
+    border-bottom: 1px solid rebeccapurple
 }

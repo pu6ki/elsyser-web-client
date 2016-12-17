@@ -1,5 +1,5 @@
 {{#if this}}
-    {{#each this}}
+    {{#each homeworks}}
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <strong>
@@ -8,7 +8,7 @@
             </div>
             <div class="panel-body">
                 <div id="deadline">
-                    <i>Deadline </i><strong><span>{{formatRelative deadline}}</span></strong>
+                    <i>Deadline </i><strong><span>{{deadline}}</span></strong>
                 </div>
                 <div id="details">
                     {{#if details}}
@@ -32,4 +32,10 @@
     {{/each}}
 {{else}}
     <h3>No assigned homeworks for now.</h3>
+{{/if}}
+
+{{#if isTeacher}}
+    <button type="button" class="btn btn-primary btn-circle btn-lg" id="add-homework">
+        <i class="glyphicon glyphicon-pencil"></i>
+    </button>
 {{/if}}
