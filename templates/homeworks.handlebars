@@ -16,8 +16,10 @@
                     {{else}}
                         <i>No details provided.</i>
                     {{/if}}
-                    <button id="info-button" class="btn btn-primary" onclick="window.location.href = '#/homework/{{id}}'"><a class="heading-anchor" href="#/homework/{{id}}">Info</a></button>
                 </div>
+                Posted by <span><strong><i>{{author.username}}</i></strong></span>
+                
+                <button id="info-button" class="btn btn-primary" onclick="window.location.href = '#/homework/{{id}}'"><a class="heading-anchor" href="#/homework/{{id}}">Info</a></button>
             </div>
         </div>
     {{/each}}
