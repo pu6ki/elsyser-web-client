@@ -66,18 +66,24 @@ function postHomework() {
     let body = {
         deadline: '',
         subject: '',
-        clazz: ''
+        clazz: {
+            number: null,
+            letter: ''
+        },
+        details: ''
     }
 
     //TODO: Validate
     body.deadline = $('#date').val();
     body.subject = $('#subject').val();
-    body.clazz = $('#studentClassNumber').val() + $('#studentClassLetter').val();
+    body.clazz.number = $('#studentClassNumber').val();
+    body.clazz.letter = $('#studentClassLetter').val();
+    body.details = $('#details').val();
 
     requester.postJSON(homeworksUrl, body)
         .then(() => {
             toastr.success('Added homework successfully!');
-            ExamsController();
+            HomeworksController();
         }).catch((err) => {
             toastr.error('Couldn\'t add the homework');
             console.log(err);

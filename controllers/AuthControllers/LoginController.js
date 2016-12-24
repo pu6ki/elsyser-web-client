@@ -10,6 +10,7 @@ export function LoginController() {
                 template = hbTemplate();
 
             $('#content').html(template);
+
             formHandler();
 
             $('#login-button').on('click', () => {

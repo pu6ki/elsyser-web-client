@@ -315,8 +315,8 @@ input {
 }
 
 .info-body{
-  min-height: 170px;
-  overflow: auto
+  height: 170px;
+  overflow-y: auto;
 }
 
 #info-button {
@@ -346,4 +346,21 @@ label {
 
 .info-container {
     border-bottom: 1px solid rebeccapurple
+}
+
+.sign-in {
+    background-image: url('../imgs/gate.png');
+    background-repeat: no-repeat;
+    /*-webkit-filter: blur(5px);
+    filter: blur(5px);*/
+}
+
+#login-form {
+    /*margin-top: 35%;*/
+    text-align: center;
+}
+
+#register-form {
+    margin-top: 15%;
+    text-align: center;
 }

@@ -67,14 +67,18 @@ function postExam() {
         date: '',
         subject: '',
         topic: '',
-        clazz: ''
+        clazz: {
+            number: null,
+            letter: ''
+        }
     }
 
     //TODO: Validate
     body.date = $('#date').val();
     body.subject = $('#subject').val();
     body.topic = $('#topic').val();
-    body.clazz = $('#studentClassNumber').val() + $('#studentClassLetter').val();
+    body.clazz.number = $('#studentClassNumber').val();
+    body.clazz.letter = $('#studentClassLetter').val();
 
     requester.postJSON(examsUrl, body)
         .then(() => {

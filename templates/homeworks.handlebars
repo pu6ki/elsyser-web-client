@@ -1,4 +1,4 @@
-{{#if this}}
+{{#if homeworks}}
     {{#each homeworks}}
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -17,15 +17,6 @@
                         <i>No details provided.</i>
                     {{/if}}
                     <button id="info-button" class="btn btn-primary" onclick="window.location.href = '#/homework/{{id}}'"><a class="heading-anchor" href="#/homework/{{id}}">Info</a></button>
-                </div>
-                <div class="materials">
-                    {{#if materials}}
-                        <a id="materials" href="https://elsyser.herokuapp.com/api/media/{{materials}}">
-                            Download materials <span class="glyphicon glyphicon-download-alt"></span>
-                        </a>
-                    {{else}}
-                        <i>No materials provided.</i>
-                    {{/if}}
                 </div>
             </div>
         </div>
