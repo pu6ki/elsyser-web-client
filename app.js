@@ -28,7 +28,7 @@ try {
     toastr.warning('If you have opened this page on mobile device, please use Google Chrome for your mobile OS!', 'Warning', toastrOptions);
 }
 
-
+const domain = 'http://127.0.0.1:8080';
 
 var router = new Navigo(null, true);
 
@@ -68,7 +68,7 @@ router
         DetailedNewsController(params.id);
         let refreshId = setInterval(() => {
             loadComments(params.id);
-            if (window.location.href !== `http://127.0.0.1:8080/#/news/${params.id}`) {
+            if (window.location.href !== `${domain}/#/news/${params.id}`) {
                 clearInterval(refreshId);
             }
         }, 1000);
