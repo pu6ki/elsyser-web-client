@@ -79,10 +79,10 @@ router
     .on('/news/:id/delete', (params) => {
         DeleteNewsController(params.id);
     })
-    .on('/homework', () => {
+    .on('/homeworks', () => {
         HomeworksController();
     })
-    .on('/homework/:id', (params) => {
+    .on('/homeworks/:id', (params) => {
         DetailedHomeworkController(params.id);
     })
     .resolve();
