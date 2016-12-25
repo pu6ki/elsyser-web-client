@@ -3,6 +3,12 @@
         <strong>
             {{subject.title}}
         </strong>
+        {{#if editable}}
+        <div class="pull-right edit">
+            <span id="exam-{{id}}-edit" class="edit"><span class="glyphicon glyphicon-edit"></span></span>
+            <span id="exam-{{id}}-delete" class="delete"><span class="glyphicon glyphicon-trash"></span></span>
+        </div>
+        {{/if}}
     </div>
     <div class="panel-body">
         <div>

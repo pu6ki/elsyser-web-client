@@ -8,8 +8,8 @@ import { RegisterController } from './controllers/AuthControllers/RegisterContro
 import { ProfileController } from './controllers/ProfileController.js';
 import { EditProfileController } from './controllers/EditProfileController.js';
 
-import { ExamsController } from './controllers/ExamsController.js';
-import { DetailedExamsController } from './controllers/DetailedExamsController.js';
+import { ExamsController } from './controllers/ExamsControllers/ExamsController.js';
+import { DetailedExamsController } from './controllers/ExamsControllers/DetailedExamsController.js';
 
 import { NewsController } from './controllers/NewsControllers/NewsController.js';
 import { AddNewsController } from './controllers/NewsControllers/AddNewsController.js';

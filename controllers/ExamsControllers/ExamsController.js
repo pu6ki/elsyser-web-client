@@ -1,6 +1,6 @@
-import { requester } from '../utils/requster.js';
-import { templates } from '../utils/templates.js';
-import { formHandler } from '../utils/formHandler.js';
+import { requester } from '../../utils/requster.js';
+import { templates } from '../../utils/templates.js';
+import { formHandler } from '../../utils/formHandler.js';
 
 const examsUrl = 'https://elsyser.herokuapp.com/api/exams/';
 
@@ -45,6 +45,7 @@ function addExamController() {
             $('#content').html(template);
 
             $('#sandbox-container input').datepicker({
+                daysOfWeekDisabled: "0,6",
                 format: "yyyy-mm-dd",
                 todayBtn: "linked",
                 language: "bg",
@@ -70,7 +71,8 @@ function postExam() {
         clazz: {
             number: null,
             letter: ''
-        }
+        },
+        details: ''
     }
 
     //TODO: Validate
@@ -79,6 +81,7 @@ function postExam() {
     body.topic = $('#topic').val();
     body.clazz.number = $('#studentClassNumber').val();
     body.clazz.letter = $('#studentClassLetter').val();
+    body.details = $('#details').val();
 
     requester.postJSON(examsUrl, body)
         .then(() => {

@@ -1,0 +1,30 @@
+<div class="panel panel-primary form-wrapper">
+    <div class="panel-heading">
+        <strong>
+            {{subject.title}} 
+        </strong>
+    </div>
+    <div class="panel-body">
+        <div>
+            <strong>
+                <i>
+                    <label for="new-details-content">Edit details: </label>
+                    <textarea class="form-control" id="new-details-content" name="new-details-content">{{details}}</textarea> 
+                </i>
+            </strong>
+        </div>
+        <div>
+            <strong>
+                <i>
+                    <label for="new-exam-topic">Edit topic: </label>
+                    <textarea class="form-control" id="new-exam-topic" name="new-exam-topic">{{topic}}</textarea> 
+                </i>
+            </strong>
+        </div>
+        <div id="sandbox-container">
+            <label for="date">New date: </label>
+            <input type="text" class="form-control" id="date" value="{{date}}">
+        </div>
+        <button id="save-button" class="btn btn-primary submit">Save</button>
+    </div>
+</div>
