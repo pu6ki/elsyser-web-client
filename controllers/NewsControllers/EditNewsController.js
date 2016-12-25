@@ -46,7 +46,7 @@ function editData(id) {
         return;
     }
 
-    requester.putJSON(newsUrl + id + '/', body)
+    requester.putJSON(selectedNewsUrl, body)
         .then(() => {
             toastr.success("News updated successfully!");
             window.location.href = '#/news';
