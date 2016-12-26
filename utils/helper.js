@@ -8,3 +8,11 @@ export function setUsernameToLocalSorage() {
             localStorage.setItem('elsyser-username', data.user.username);
         });
 }
+
+export function isTeacher(token) {
+    if (token.length === 41 && token[40] === '1') {
+        return true;
+    }
+
+    return false;
+}

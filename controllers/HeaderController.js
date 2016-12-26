@@ -1,6 +1,7 @@
 import { requester } from '../utils/requster.js';
 import { templates } from '../utils/templates.js';
 import { LogoutController } from '../controllers/AuthControllers/LogoutController.js';
+import { isTeacher } from '../utils/helper.js';
 
 export function HeaderController() {
     const profileUrl = 'https://elsyser.herokuapp.com/api/profile/';
@@ -15,7 +16,7 @@ export function HeaderController() {
         requester.getJSON(profileUrl)
             .then((result) => {
                 userData.profileImage = result.profile_image;
-                userData.username = result.user.username;
+                userData.username = result.username || result.user.username;
                 compileTemplate(authHeader, userData);
             });
     }
@@ -31,6 +32,10 @@ function compileTemplate(template, data) {
                 template = hbTemplate(data);
 
             $('#header').html(template);
+
+            if (isTeacher()) {
+                $('#news-button').remove();
+            }
 
             $('#log-out').on('click', () => {
                 LogoutController();

@@ -1,5 +1,6 @@
 import { requester } from '../utils/requster.js';
 import { templates } from '../utils/templates.js';
+import { EditProfileController } from './EditProfileController.js';
 
 export function ProfileController() {
     let profileUrl = 'https://elsyser.herokuapp.com/api/profile/',
@@ -14,7 +15,7 @@ export function ProfileController() {
 
             $('#content').html(template);
             $('#edit-profile').on('click', () => {
-                window.location.href = '/#/profile/edit';
+                EditProfileController();
             });
         }).catch((err) => {
             console.log(err);

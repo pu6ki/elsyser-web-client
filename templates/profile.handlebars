@@ -1,45 +1,74 @@
 <div class="panel panel-primary">
     <div class="panel-heading"><strong>User Profile</strong></div>
-    <!--<div class="panel-body">-->
     <div class="row">
-        <img src="https://elsyser.herokuapp.com/api{{profile_image}}" alt="Profile Image" class="col-xs-6 col-md-4" id="profile-image">
+        {{#if profile_image}}<img src="{{profile_image}}" alt="Profile Image" class="col-xs-6 col-md-4" id="profile-image">{{/if}}
         <div class="col-xs-6 col-md-4" id="profile-info">
-            {{#with user}}
-            <div>
-                <i>Username:</i>
-                <strong>
-                    <span>
-                        {{username}}
-                    </span>
-                </strong>
-            </div>
-            <div>
-                <i>Name:</i>
-                <strong>
-                    <span>
-                        {{first_name}} {{last_name}}
-                    </span>
-                </strong>
-            </div>
-            <div>
-                <i>Email:</i>
-                <strong>
-                    <span>
-                        {{email}}
-                    </span>
-                </strong>
-            </div>
-            {{/with}}
-            {{#with clazz}}
-            <div>
-                <i>Class:</i>
-                <strong>
-                    <span>
-                        {{number}}{{letter}}
-                    </span>
-                </strong>
-            </div>
-            {{/with}}
+            {{#if user}}
+                {{#with user}}
+                <div>
+                    <i>Username:</i>
+                    <strong>
+                        <span>
+                            {{username}}
+                        </span>
+                    </strong>
+                </div>
+                <div>
+                    <i>Name:</i>
+                    <strong>
+                        <span>
+                            {{first_name}} {{last_name}}
+                        </span>
+                    </strong>
+                </div>
+                <div>
+                    <i>Email:</i>
+                    <strong>
+                        <span>
+                            {{email}}
+                        </span>
+                    </strong>
+                </div>
+                {{/with}}
+                    
+                {{else}}
+                    <div>
+                        <i>Username:</i>
+                        <strong>
+                            <span>
+                                {{username}}
+                            </span>
+                        </strong>
+                    </div>
+                    <div>
+                        <i>Name:</i>
+                        <strong>
+                            <span>
+                                {{first_name}} {{last_name}}
+                            </span>
+                        </strong>
+                    </div>
+                    <div>
+                        <i>Email:</i>
+                        <strong>
+                            <span>
+                                {{email}}
+                            </span>
+                        </strong>
+                    </div>
+            {{/if}}
+            {{#if clazz}}
+                {{#with clazz}}
+                <div>
+                    <i>Class:</i>
+                    <strong>
+                        <span>
+                            {{number}}{{letter}}
+                        </span>
+                    </strong>
+                </div>
+                {{/with}}
+            {{/if}}
             <div>
                 {{#if info}}
                     <i>About you:</i>

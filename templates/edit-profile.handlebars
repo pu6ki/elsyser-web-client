@@ -1,23 +1,38 @@
 <div class="panel panel-primary">
     <div class="panel-heading"><strong>User Profile</strong></div>
-    <!--<div class="panel-body">-->
     <div class="row">
-        <img src="https://elsyser.herokuapp.com/api{{profile_image}}" alt="Profile Image" class="col-xs-6 col-md-4" id="profile-image">
+        {{#if profile_image}}<img src="{{profile_image}}" alt="Profile Image" class="col-xs-6 col-md-4" id="profile-image">{{/if}}
         <div class="col-xs-6 col-md-4 form-wrapper" id="profile-info">
-            {{#with user}}
-            <div>
-                <strong><i>Username:</i></strong>
-                <input class="form-control" id="new-username" type="text" value="{{username}}">
-            </div>
-            <div>
-                <strong><i>First name:</i></strong>
-                <input class="form-control" id="new-first-name" type="text" value="{{first_name}}">
-            </div>
-            <div>
-                <strong><i>Last name:</i></strong>
-                <input class="form-control" id="new-last-name" type="text" value="{{last_name}}">
-            </div>
-            {{/with}}
+            {{#if user}}
+                {{#with user}}
+                    <div>
+                        <strong><i>Username:</i></strong>
+                        <input class="form-control" id="new-username" type="text" value="{{username}}">
+                    </div>
+                    <div>
+                        <strong><i>First name:</i></strong>
+                        <input class="form-control" id="new-first-name" type="text" value="{{first_name}}">
+                    </div>
+                    <div>
+                        <strong><i>Last name:</i></strong>
+                        <input class="form-control" id="new-last-name" type="text" value="{{last_name}}">
+                    </div>
+                {{/with}}
+
+                {{else}}
+                    <div>
+                        <strong><i>Username:</i></strong>
+                        <input class="form-control" id="new-username" type="text" value="{{username}}">
+                    </div>
+                    <div>
+                        <strong><i>First name:</i></strong>
+                        <input class="form-control" id="new-first-name" type="text" value="{{first_name}}">
+                    </div>
+                    <div>
+                        <strong><i>Last name:</i></strong>
+                        <input class="form-control" id="new-last-name" type="text" value="{{last_name}}">
+                    </div>
+            {{/if}}
             <div>
                 <strong><i>Info:</i></strong>
                 <textarea id="new-info" rows="3">{{info}}</textarea>

@@ -1,5 +1,6 @@
 import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
+import { isTeacher } from '../../utils/helper.js';
 import { formHandler } from '../../utils/formHandler.js';
 
 const examsUrl = 'https://elsyser.herokuapp.com/api/exams/';
@@ -12,7 +13,6 @@ export function ExamsController() {
         .then((result) => {
             let data = result[0],
                 hbTemplate = Handlebars.compile(result[1]),
-                isTeacher = false,
                 token = window.localStorage.getItem('token');
 
             data.forEach((el) => {
@@ -21,11 +21,7 @@ export function ExamsController() {
                 }
             });
 
-            if (token.length === 41 && token[40] === '1') {
-                isTeacher = true;
-            }
-
-            let template = hbTemplate({ exams: data, isTeacher: isTeacher });
+            let template = hbTemplate({ exams: data, isTeacher: isTeacher(token) });
             $('#content').html(template);
 
             $('#add-exam').on('click', () => {

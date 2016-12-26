@@ -52,9 +52,6 @@ router
     .on('/profile', () => {
         ProfileController();
     })
-    .on('/profile/edit', () => {
-        EditProfileController();
-    })
     .on('/exams', () => {
         ExamsController();
     })
@@ -75,9 +72,6 @@ router
     })
     .on('/add-news', () => {
         AddNewsController();
-    })
-    .on('/news/:id/delete', (params) => {
-        DeleteNewsController(params.id);
     })
     .on('/homeworks', () => {
         HomeworksController();
