@@ -27,7 +27,9 @@ export function DetailedExamsController(id) {
             })
 
             $(`#exam-${id}-delete`).on('click', () => {
-                DeleteExamController(id);
+                alertify.confirm("Are you sure you want to delete this exam?", () => {
+                    DeleteExamController(id);
+                })
             })
         })
 }

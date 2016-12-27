@@ -27,7 +27,9 @@ export function DetailedHomeworkController(id) {
             })
 
             $(`#homework-${id}-delete`).on('click', () => {
-                DeleteHomeworkController(id);
+                alertify.confirm("Are you sure you want to delete this homework?", () => {
+                    DeleteHomeworkController(id);
+                })
             })
         });
 }
