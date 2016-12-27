@@ -65,7 +65,9 @@ function addHomeworkController() {
 function postHomework() {
     let body = {
         deadline: '',
-        subject: '',
+        subject: {
+            title: ''   
+        },
         clazz: {
             number: null,
             letter: ''
@@ -75,7 +77,7 @@ function postHomework() {
 
     //TODO: Validate
     body.deadline = $('#date').val();
-    body.subject = $('#subject').val();
+    body.subject.title = $('#subject').val();
     body.clazz.number = $('#studentClassNumber').val();
     body.clazz.letter = $('#studentClassLetter').val();
     body.details = $('#details').val();
