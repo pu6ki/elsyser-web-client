@@ -33,10 +33,12 @@
                         <input class="form-control" id="new-last-name" type="text" value="{{last_name}}">
                     </div>
             {{/if}}
-            <div>
-                <strong><i>Info:</i></strong>
-                <textarea id="new-info" rows="3">{{info}}</textarea>
-            </div>
+            {{#if clazz}}
+                <div>
+                    <strong><i>Info:</i></strong>
+                    <textarea id="new-info" rows="3">{{info}}</textarea>
+                </div>
+            {{/if}}
             <!-- <div>
                 <strong><i>Change profile picture:</i></strong>
                 <input id="new-profile-picture" type="file" accept="image/*">
