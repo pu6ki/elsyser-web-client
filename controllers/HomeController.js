@@ -2,9 +2,9 @@ import { requester } from '../utils/requster.js';
 import { templates } from '../utils/templates.js';
 import { isTeacher } from '../utils/helper.js';
 
-let token = window.localStorage.getItem('token');
-
 export function HomeController() {
+    let token = window.localStorage.getItem('token');
+
     if (token) {
         const url = 'https://elsyser.herokuapp.com/api/';
         if (!isTeacher(token)) {
@@ -32,6 +32,9 @@ export function HomeController() {
                 if (isTeacher(token)) {
                     $('#news-panel').remove();
                 }
+            })
+            .catch((err) => {
+                console.log(err);
             })
     } else {
         templates.get('unauthorized-home')

@@ -33,8 +33,10 @@ function compileTemplate(template, data) {
 
             $('#header').html(template);
 
-            if (isTeacher()) {
-                $('#news-button').remove();
+            if (window.localStorage.getItem('token')) {
+                if (isTeacher(window.localStorage.getItem('token'))) {
+                    $('#news-button').remove();
+                }
             }
 
             $('#log-out').on('click', () => {

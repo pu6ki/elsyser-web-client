@@ -5,7 +5,7 @@ export function setUsernameToLocalSorage() {
 
     requester.getJSON(profileUrl)
         .then((data) => {
-            localStorage.setItem('elsyser-username', data.user.username);
+            localStorage.setItem('elsyser-username', data.username || data.user.username);
         });
 }
 
