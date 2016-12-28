@@ -1,12 +1,13 @@
 import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
 import { formHandler } from '../../utils/formHandler.js';
-
-const homeworksUrl = 'https://elsyser.herokuapp.com/api/homeworks/';
+import { AddHomeworkController } from './AddHomeworkController.js'
 
 export function HomeworksController() {
+    const homeworksUrl = 'https://elsyser.herokuapp.com/api/homeworks/';
+
     let getData = requester.getJSON(homeworksUrl),
-        getTemplate = templates.get('homeworks');
+        getTemplate = templates.get('HomeworksTemplates/homeworks');
 
     Promise.all([getData, getTemplate])
         .then((result) => {
@@ -29,65 +30,9 @@ export function HomeworksController() {
             $('#content').html(template);
 
             $('#add-homework').on('click', () => {
-                addHomeworkController();
+                AddHomeworkController();
             })
         }).catch((err) => {
             console.log(err);
         });
-}
-
-function addHomeworkController() {
-    templates.get('add-homework')
-        .then((res) => {
-            let hbTemplate = Handlebars.compile(res),
-                template = hbTemplate();
-
-            $('#content').html(template);
-
-            $('#sandbox-container input').datepicker({
-                format: "yyyy-mm-dd",
-                todayBtn: "linked",
-                language: "bg",
-                orientation: "bottom auto",
-                calendarWeeks: true,
-                autoclose: true,
-                todayHighlight: true
-            });
-
-            formHandler();
-
-            $('#add-homework').on('click', () => {
-                postHomework();
-            })
-        })
-}
-
-function postHomework() {
-    let body = {
-        deadline: '',
-        subject: {
-            title: ''   
-        },
-        clazz: {
-            number: null,
-            letter: ''
-        },
-        details: ''
-    }
-
-    //TODO: Validate
-    body.deadline = $('#date').val();
-    body.subject.title = $('#subject').val();
-    body.clazz.number = $('#studentClassNumber').val();
-    body.clazz.letter = $('#studentClassLetter').val();
-    body.details = $('#details').val();
-
-    requester.postJSON(homeworksUrl, body)
-        .then(() => {
-            toastr.success('Added homework successfully!');
-            HomeworksController();
-        }).catch((err) => {
-            toastr.error('Couldn\'t add the homework');
-            console.log(err);
-        })
 }

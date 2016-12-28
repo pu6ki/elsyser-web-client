@@ -6,7 +6,7 @@ import { DeleteHomeworkController } from '../HomeworksControllers/DeleteHomework
 export function DetailedHomeworkController(id) {
     let examUrl = `https://elsyser.herokuapp.com/api/homeworks/${id}/`,
         getData = requester.getJSON(examUrl),
-        getTemplate = templates.get('detailed-homework'),
+        getTemplate = templates.get('HomeworksTemplates/detailed-homework'),
         currentUser = localStorage.getItem('elsyser-username');
 
     Promise.all([getData, getTemplate])

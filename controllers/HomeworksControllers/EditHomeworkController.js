@@ -7,7 +7,7 @@ const homeworksUrl = `https://elsyser.herokuapp.com/api/homeworks/`;
 export function EditHomeworkController(id) {
     let selectedHomeworkUrl = homeworksUrl + id + '/',
         getData = requester.getJSON(selectedHomeworkUrl),
-        getTemplate = templates.get('edit-homework');
+        getTemplate = templates.get('HomeworksTemplates/edit-homework');
 
     Promise.all([getData, getTemplate])
         .then((result) => {

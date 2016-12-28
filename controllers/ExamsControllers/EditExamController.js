@@ -7,7 +7,7 @@ const examsUrl = `https://elsyser.herokuapp.com/api/exams/`;
 export function EditExamController(id) {
     let selectedExamUrl = examsUrl + id + '/',
         getData = requester.getJSON(selectedExamUrl),
-        getTemplate = templates.get('edit-exam');
+        getTemplate = templates.get('ExamsTemplates/edit-exam');
 
     Promise.all([getData, getTemplate])
         .then((result) => {

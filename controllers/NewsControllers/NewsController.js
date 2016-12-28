@@ -6,7 +6,7 @@ const newsUrl = 'https://elsyser.herokuapp.com/api/news/';
 export function NewsController() {
     let dataFromApi,
         getData = requester.getJSON(newsUrl),
-        getTemplate = templates.get('news');
+        getTemplate = templates.get('NewsTemplates/news');
 
     Promise.all([getData, getTemplate])
         .then((result) => {

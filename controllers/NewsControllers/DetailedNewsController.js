@@ -17,7 +17,7 @@ const newsUrl = "https://elsyser.herokuapp.com/api/news/";
 export function DetailedNewsController(id) {
     currentUsername = localStorage.getItem('elsyser-username');
     let getData = requester.getJSON(newsUrl + id + '/'),
-        getTemplate = templates.get('detailed-news');
+        getTemplate = templates.get('NewsTemplates/detailed-news');
 
     Promise.all([getData, getTemplate])
         .then((result) => {

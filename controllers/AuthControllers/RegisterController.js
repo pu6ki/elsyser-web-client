@@ -4,7 +4,7 @@ import { formHandler } from '../../utils/formHandler.js';
 import { validator } from '../../utils/validator.js';
 
 export function RegisterController() {
-    templates.get('register')
+    templates.get('AuthTemplates/register')
         .then((res) => {
             let hbTemplate = Handlebars.compile(res),
                 template = hbTemplate();

@@ -9,7 +9,7 @@ let commentToEditUrl;
 export function EditCommentController(newsId, commentId) {
     commentToEditUrl = `https://elsyser.herokuapp.com/api/news/${newsId}/comments/${commentId}/`;
     let getData = requester.getJSON(commentToEditUrl),
-        getTemplate = templates.get('edit-comment');
+        getTemplate = templates.get('partials/edit-comment');
 
     Promise.all([getData, getTemplate])
         .then((result) => {

@@ -12,7 +12,7 @@ export function HomeController() {
         }
         let getExams = requester.getJSON(url + 'exams/'),
             getHomeworks = requester.getJSON(url + 'homeworks/'),
-            getTemplate = templates.get('authorized-home');
+            getTemplate = templates.get('HomeTemplates/authorized-home');
 
         Promise.all([getTemplate, getNews, getExams, getHomeworks])
             .then((result) => {
@@ -37,7 +37,7 @@ export function HomeController() {
                 console.log(err);
             })
     } else {
-        templates.get('unauthorized-home')
+        templates.get('HomeTemplates/unauthorized-home')
             .then((template) => {
                 $('#content').html(template);
             });

@@ -5,8 +5,8 @@ import { AboutController } from './controllers/AboutController.js';
 import { LoginController } from './controllers/AuthControllers/LoginController.js';
 import { RegisterController } from './controllers/AuthControllers/RegisterController.js';
 
-import { ProfileController } from './controllers/ProfileController.js';
-import { EditProfileController } from './controllers/EditProfileController.js';
+import { ProfileController } from './controllers/ProfileControllers/ProfileController.js';
+import { EditProfileController } from './controllers/ProfileControllers/EditProfileController.js';
 
 import { ExamsController } from './controllers/ExamsControllers/ExamsController.js';
 import { DetailedExamsController } from './controllers/ExamsControllers/DetailedExamsController.js';

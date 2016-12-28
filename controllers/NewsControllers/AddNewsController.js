@@ -3,7 +3,7 @@ import { templates } from '../../utils/templates.js';
 import { validator } from '../../utils/validator.js';
 
 export function AddNewsController() {
-    templates.get('add-news')
+    templates.get('NewsTemplates/add-news')
         .then((res) => {
             let hbTemplate = Handlebars.compile(res),
                 template = hbTemplate();

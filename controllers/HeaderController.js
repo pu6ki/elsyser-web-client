@@ -26,7 +26,7 @@ export function HeaderController() {
 }
 
 function compileTemplate(template, data) {
-    templates.get(template)
+    templates.get('HeaderTemplates/' + template)
         .then((res) => {
             let hbTemplate = Handlebars.compile(res),
                 template = hbTemplate(data);

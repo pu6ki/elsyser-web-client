@@ -1,14 +1,14 @@
-import { requester } from '../utils/requster.js';
-import { templates } from '../utils/templates.js';
-import { validator } from '../utils/validator.js';
-import { isTeacher } from '../utils/helper.js';
+import { requester } from '../../utils/requster.js';
+import { templates } from '../../utils/templates.js';
+import { validator } from '../../utils/validator.js';
+import { isTeacher } from '../../utils/helper.js';
 import { ProfileController } from './ProfileController.js';
 
 const profileUrl = 'https://elsyser.herokuapp.com/api/profile/';
 
 export function EditProfileController() {
     let getData = requester.getJSON(profileUrl),
-        getTemplate = templates.get('edit-profile');
+        getTemplate = templates.get('ProfileTemplates/edit-profile');
 
     Promise.all([getData, getTemplate])
         .then((result) => {

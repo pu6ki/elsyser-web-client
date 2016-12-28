@@ -4,7 +4,7 @@ import { formHandler } from '../../utils/formHandler.js';
 import { setUsernameToLocalSorage } from '../../utils/helper.js';
 
 export function LoginController() {
-    templates.get('login')
+    templates.get('AuthTemplates/login')
         .then((res) => {
             let hbTemplate = Handlebars.compile(res),
                 template = hbTemplate();
