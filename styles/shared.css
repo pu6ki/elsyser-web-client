@@ -364,3 +364,11 @@ label {
     margin-top: 15%;
     text-align: center;
 }
+
+.center-text {
+    text-align: center;
+}
+
+.panel-body article {
+    text-align: left;
+}

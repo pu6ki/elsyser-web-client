@@ -15,6 +15,12 @@ export function MaterialsController() {
                 hbTemplate = Handlebars.compile(result[1]),
                 token = window.localStorage.getItem('token');
 
+            data.forEach(function(el) {
+                if (el.content.length > 150) {
+                    el.content = el.content.slice(0, 149) + '...';
+                }
+            }, this);
+
             let template = hbTemplate({ materials: data, isTeacher: isTeacher(token) });
             $('#content').html(template);
 

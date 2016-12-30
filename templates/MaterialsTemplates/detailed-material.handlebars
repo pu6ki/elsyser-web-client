@@ -1,0 +1,23 @@
+<div class="panel panel-primary">
+    <div class="panel-heading center-text">
+        <strong>
+            {{section}}
+        </strong>
+        {{#if editable}}
+        <div class="pull-right edit">
+            <span id="material-{{id}}-edit" class="edit"><span class="glyphicon glyphicon-edit"></span></span>
+            <span id="material-{{id}}-delete" class="delete"><span class="glyphicon glyphicon-trash"></span></span>
+        </div>
+        {{/if}}
+    </div>
+    <div class="panel-body center-text">
+        <h4>{{title}}</h4>
+        <article>
+            {{{content}}}
+        </article>
+        <br />
+        <iframe width="560" height="315" src="{{video_url}}" frameborder="0" allowfullscreen></iframe>
+        <br />
+        <span>Posted by <strong><i>{{author.username}}</i></strong></span>
+    </div>
+</div>

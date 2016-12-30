@@ -5,18 +5,15 @@ import { AddNewsController } from './AddNewsController.js';
 const newsUrl = 'https://elsyser.herokuapp.com/api/news/';
 
 export function NewsController() {
-    let dataFromApi,
-        getData = requester.getJSON(newsUrl),
+    let getData = requester.getJSON(newsUrl),
         getTemplate = templates.get('NewsTemplates/news');
 
     Promise.all([getData, getTemplate])
         .then((result) => {
-            let newData = result[0],
+            let data = result[0],
                 hbTemplate = Handlebars.compile(result[1]);
 
-            dataFromApi = newData;
-
-            dataFromApi.forEach((el) => {
+            data.forEach((el) => {
                 if (el.comment_set.length > 0) {
                     el.comments_count = el.comment_set.length;
                 }
@@ -35,7 +32,7 @@ export function NewsController() {
                 }
             };
 
-            let template = hbTemplate(dataFromApi, {
+            let template = hbTemplate(data, {
                 data: { intl: intlData }
             });
             $('#content').html(template);

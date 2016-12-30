@@ -1,31 +1,32 @@
 import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
-import { formHandler } from '../../utils/formHandler.js';
 import { validator } from '../../utils/validator.js';
+import { DetailedMaterialController } from './DetailedMaterialController.js';
 
-import { MaterialsController } from './MaterialsController.js';
+export function EditMaterialController(subjectId, materialId) {
+    let materialUrl = `https://elsyser.herokuapp.com/api/materials/${subjectId}/${materialId}/`,
+        getData = requester.getJSON(materialUrl),
+        getSubjects = requester.getJSON('https://elsyser.herokuapp.com/api/subjects/'),
+        getTemplate = templates.get('MaterialsTemplates/edit-material');
 
-export function AddMaterialController() {
-    let getTemplate = templates.get('MaterialsTemplates/add-material'),
-        getData = requester.getJSON('https://elsyser.herokuapp.com/api/subjects/');
-
-    Promise.all([getTemplate, getData])
+    Promise.all([getData, getSubjects, getTemplate])
         .then((result) => {
-            let hbTemplate = Handlebars.compile(result[0]),
-                template = hbTemplate(result[1]);
+            let data = result[0],
+                subjects = result[1],
+                hbTemplate = Handlebars.compile(result[2]),
+                template = hbTemplate({data, subjects});
 
             $('#content').html(template);
 
-            $('#add-material').on('click', () => {
-                postMaterial();
+            $('#save-button').on('click', () => {
+                editData(subjectId, materialId);
             })
         })
 }
 
-function postMaterial() {
-    const materialsUrl = 'https://elsyser.herokuapp.com/api/materials/';
-
-    let body = {
+function editData(subjectId, materialId) {
+    let materialUrl = `https://elsyser.herokuapp.com/api/materials/${subjectId}/${materialId}/`,
+        body = {
         title: '',
         section: '',
         content: '',
@@ -70,12 +71,12 @@ function postMaterial() {
     body.subject.id = $('#subject-id').val();
     body.video_url = $('#video-url').val();
 
-    requester.postJSON(materialsUrl + body.subject.id + '/', body)
+    requester.putJSON(materialUrl, body)
         .then(() => {
-            toastr.success('Added material successfully!');
-            MaterialsController();
+            toastr.success('Edited material successfully!');
+            DetailedMaterialController(subjectId, materialId);
         }).catch((err) => {
-            toastr.error('Couldn\'t add the material!');
+            toastr.error('Couldn\'t edit the material!');
             console.log(err);
         })
 }

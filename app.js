@@ -19,6 +19,8 @@ import { DetailedHomeworkController } from './controllers/HomeworksControllers/D
 import { HomeworksController } from './controllers/HomeworksControllers/HomeworksController.js';
 
 import { MaterialsController } from './controllers/MaterialsControllers/MaterialsController.js';
+import { DetailedMaterialController } from './controllers/MaterialsControllers/DetailedMaterialController.js';
+
 
 try {
     HandlebarsIntl.registerWith(Handlebars);
@@ -80,5 +82,8 @@ router
     })
     .on('/materials', () => {
         MaterialsController();
+    })
+    .on('/materials/:subjectId/:materialId', (params) => {
+        DetailedMaterialController(params.subjectId, params.materialId);
     })
     .resolve();

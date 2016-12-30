@@ -56,7 +56,7 @@ function postHomework() {
             toastr.success('Added homework successfully!');
             HomeworksController();
         }).catch((err) => {
-            toastr.error('Couldn\'t add the homework');
+            toastr.error('Couldn\'t add the homework!');
             console.log(err);
         })
 }
