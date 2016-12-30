@@ -1,5 +1,6 @@
 import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
+import { AddNewsController } from './AddNewsController.js';
 
 const newsUrl = 'https://elsyser.herokuapp.com/api/news/';
 
@@ -38,6 +39,10 @@ export function NewsController() {
                 data: { intl: intlData }
             });
             $('#content').html(template);
+
+            $('#add-news').on('click', () => {
+                AddNewsController();
+            })
         }).catch((err) => {
             console.log(err);
         });

@@ -1,6 +1,8 @@
 import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
 import { formHandler } from '../../utils/formHandler.js';
+import { isTeacher } from '../../utils/helper.js';
+
 import { AddHomeworkController } from './AddHomeworkController.js'
 
 export function HomeworksController() {
@@ -13,7 +15,6 @@ export function HomeworksController() {
         .then((result) => {
             let data = result[0],
                 hbTemplate = Handlebars.compile(result[1]),
-                isTeacher = false,
                 token = window.localStorage.getItem('token');
 
             data.forEach((el) => {
@@ -22,11 +23,7 @@ export function HomeworksController() {
                 }
             });
 
-            if (token.length === 41 && token[40] === '1') {
-                isTeacher = true;
-            }
-
-            let template = hbTemplate({ homeworks: data, isTeacher: isTeacher });
+            let template = hbTemplate({ homeworks: data, isTeacher: isTeacher(token) });
             $('#content').html(template);
 
             $('#add-homework').on('click', () => {

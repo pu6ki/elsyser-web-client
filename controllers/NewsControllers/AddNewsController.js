@@ -11,7 +11,7 @@ export function AddNewsController() {
             $('#content').html(template);
 
             $('#add-news').on('click', () => {
-                addNews();
+                postNews();
             });
         });
 }
@@ -41,7 +41,7 @@ function getDataFromTemplate() {
     return body;
 }
 
-function addNews() {
+function postNews() {
     let newsUrl = 'https://elsyser.herokuapp.com/api/news/';
     let data = getDataFromTemplate();
     if (data) {

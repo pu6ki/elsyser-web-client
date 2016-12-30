@@ -18,6 +18,8 @@ import { DetailedNewsController, loadComments } from './controllers/NewsControll
 import { DetailedHomeworkController } from './controllers/HomeworksControllers/DetailedHomeworkController.js';
 import { HomeworksController } from './controllers/HomeworksControllers/HomeworksController.js';
 
+import { MaterialsController } from './controllers/MaterialsControllers/MaterialsController.js';
+
 try {
     HandlebarsIntl.registerWith(Handlebars);
 } catch (error) {
@@ -70,13 +72,13 @@ router
             }
         }, 1000);
     })
-    .on('/add-news', () => {
-        AddNewsController();
-    })
     .on('/homeworks', () => {
         HomeworksController();
     })
     .on('/homeworks/:id', (params) => {
         DetailedHomeworkController(params.id);
+    })
+    .on('/materials', () => {
+        MaterialsController();
     })
     .resolve();

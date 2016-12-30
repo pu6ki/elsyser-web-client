@@ -1,0 +1,27 @@
+{{#if materials}}
+    {{#each materials}}
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <strong>
+                    {{subject.title}}
+                </strong>
+            </div>
+            <div class="panel-body">
+                <div id="content">
+                    {{content}}
+                </div>
+                Posted by <span><strong><i>{{author.username}}</i></strong></span>
+                
+                <button id="info-button" class="btn btn-primary" onclick="window.location.href = '#/materials/{{id}}'"><a class="heading-anchor" href="#/homeworks/{{id}}">Info</a></button>
+            </div>
+        </div>
+    {{/each}}
+{{else}}
+    <h3>No avialable materials now.</h3>
+{{/if}}
+
+{{#if isTeacher}}
+    <button type="button" class="btn btn-primary btn-circle btn-lg" id="add-homework">
+        <i class="glyphicon glyphicon-pencil"></i>
+    </button>
+{{/if}}
