@@ -53,8 +53,8 @@ router
     .on('/register', () => {
         RegisterController();
     })
-    .on('/profile', () => {
-        ProfileController();
+    .on('/profile/:id', (params) => {
+        ProfileController(params.id);
     })
     .on('/exams', () => {
         ExamsController();

@@ -4,12 +4,14 @@ import { LogoutController } from '../controllers/AuthControllers/LogoutControlle
 import { isTeacher } from '../utils/helper.js';
 
 export function HeaderController() {
-    const profileUrl = 'https://elsyser.herokuapp.com/api/profile/';
+    let profileId = localStorage.getItem('elsyser-id');
+    const profileUrl = `https://elsyser.herokuapp.com/api/profile/${profileId}/`;
     const authHeader = 'authorized-header';
     const unauthHeader = 'unauthorized-header';
     let userData = {
         username: '',
-        profileImage: ''
+        profileImage: '',
+        profileId: null
     };
 
     if (window.localStorage.getItem('token')) {
@@ -17,6 +19,7 @@ export function HeaderController() {
             .then((result) => {
                 userData.profileImage = result.profile_image;
                 userData.username = result.username || result.user.username;
+                userData.profileId = localStorage.getItem('elsyser-id');
                 compileTemplate(authHeader, userData);
             });
     }

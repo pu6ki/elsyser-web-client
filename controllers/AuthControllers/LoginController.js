@@ -1,7 +1,6 @@
 import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
 import { formHandler } from '../../utils/formHandler.js';
-import { setUsernameToLocalSorage } from '../../utils/helper.js';
 
 export function LoginController() {
     templates.get('AuthTemplates/login')
@@ -41,8 +40,9 @@ function login() {
                     token += '1';
                 }
 
+                localStorage.setItem('elsyser-username', result.username);
                 localStorage.setItem('token', token);
-                setUsernameToLocalSorage();
+                localStorage.setItem('elsyser-id', result.id);
 
                 toastr.success('Logged-in successfully!');
                 window.location.href = '/#/home';     
