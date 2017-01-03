@@ -81,15 +81,20 @@
         </div>
     </div>
 
-    <div class="col-lg-4 col-md-4 col-sm-8" id="subjects-panel">
+    <div class="col-lg-4 col-md-4 col-sm-8" id="materials-panel">
         <div class="panel panel-primary info-panel">
             <div class="panel-heading">
                 <strong>
-                    <span>Subjects</span>
+                    <span>Materials</span>
                 </strong>
             </div>
             <div class="panel-body info-body">
-
+                {{#each materials}}
+                <div class="info-container">
+                    <span class="text">{{subject.title}} - {{title}}</span>
+                    <br />
+                </div>
+                {{/each}}
             </div>
         </div>
     </div>

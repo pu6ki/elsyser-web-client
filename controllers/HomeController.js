@@ -12,9 +12,10 @@ export function HomeController() {
         }
         let getExams = requester.getJSON(url + 'exams/'),
             getHomeworks = requester.getJSON(url + 'homeworks/'),
+            getMaterials = requester.getJSON(url + 'materials/'),
             getTemplate = templates.get('HomeTemplates/authorized-home');
 
-        Promise.all([getTemplate, getNews, getExams, getHomeworks])
+        Promise.all([getTemplate, getNews, getExams, getHomeworks, getMaterials])
             .then((result) => {
                 let data = {},
                     hbTemplate = Handlebars.compile(result[0]);
@@ -24,6 +25,7 @@ export function HomeController() {
                 }
                 data.exams = result[2].slice(0, 5);
                 data.homeworks = result[3].slice(0, 5);
+                data.materials = result[4].slice(0, 5);
 
                 let template = hbTemplate(data);
 
