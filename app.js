@@ -21,6 +21,8 @@ import { HomeworksController } from './controllers/HomeworksControllers/Homework
 import { MaterialsController } from './controllers/MaterialsControllers/MaterialsController.js';
 import { DetailedMaterialController } from './controllers/MaterialsControllers/DetailedMaterialController.js';
 
+import { NotFoundController } from './controllers/NotFoundController.js';
+
 
 try {
     HandlebarsIntl.registerWith(Handlebars);
@@ -85,5 +87,8 @@ router
     })
     .on('/materials/:subjectId/:materialId', (params) => {
         DetailedMaterialController(params.subjectId, params.materialId);
+    })
+    .notFound(() => {
+        NotFoundController();
     })
     .resolve();

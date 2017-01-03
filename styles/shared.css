@@ -391,3 +391,10 @@ label {
 .panel-body button a:hover {
     color: gold;
 }
+
+.error-image-container {
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 5%;
+    margin-bottom: 20px;
+}
