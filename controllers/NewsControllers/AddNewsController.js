@@ -1,6 +1,7 @@
 import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
 import { validator } from '../../utils/validator.js';
+import { NewsController } from './NewsController.js';
 
 export function AddNewsController() {
     templates.get('NewsTemplates/add-news')
@@ -49,7 +50,7 @@ function postNews() {
             .then((result) => {
                 if (result) {
                     toastr.success('News added!');
-                    window.location.href = '#/news';
+                    NewsController();
                 }
             }).catch(() => {
                 toastr.error('Couldn\'t add the news Please check for errors!');
