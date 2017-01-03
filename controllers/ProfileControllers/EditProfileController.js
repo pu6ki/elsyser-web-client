@@ -3,6 +3,7 @@ import { templates } from '../../utils/templates.js';
 import { validator } from '../../utils/validator.js';
 import { isTeacher } from '../../utils/helper.js';
 import { ProfileController } from './ProfileController.js';
+import { HeaderController } from '../HeaderController.js'
 
 const profileUrl = 'https://elsyser.herokuapp.com/api/profile/';
 
@@ -64,7 +65,8 @@ function editData() {
                 first_name: '',
                 last_name: ''
             },
-            info: ''
+            info: '',
+            profile_image: ''
         };
 
         if (validator.name($('#new-username').val())) {
@@ -90,22 +92,36 @@ function editData() {
         }
 
         body.info = $('#new-info').val();
+
+        var filesSelected = document.getElementById("new-profile-picture").files;
+        if (filesSelected.length > 0) {
+            var fileToLoad = filesSelected[0];
+
+            var fileReader = new FileReader();
+
+            fileReader.onload = function (fileLoadedEvent) {
+                body.profile_image = fileLoadedEvent.target.result;
+
+                requester.putJSON(profileUrl, body)
+                    .then(() => {
+                        toastr.success('Data updated successfully!');
+                        ProfileController();
+                        HeaderController();
+                    }).catch((error) => {
+                        ProfileController();
+                        HeaderController();
+                    });
+            }
+            fileReader.readAsDataURL(fileToLoad);
+        }
+        else {
+            requester.putJSON(profileUrl, body)
+                .then(() => {
+                    toastr.success('Data updated successfully!');
+                    ProfileController();
+                }).catch((error) => {
+                    toastr.error('Student with this username already exists.');
+                });
+        }
     }
-
-    requester.putJSON(profileUrl, body)
-        .then(() => {
-            toastr.success('Data updated successfully!');
-            ProfileController();
-        }).catch((error) => {
-            toastr.error('Student with this username already exists.');
-        });
 }
-
-//TODO: Edit profile picture
-// function editProfilePicture() {
-//     let body = {
-//         profile_image: new FormData($('#new-profile-picture').prop('files')) 
-//     };
-
-//     Promise.resolve(requester.putImage(profileUrl, body)); 
-// }
