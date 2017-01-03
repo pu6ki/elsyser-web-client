@@ -16,7 +16,8 @@ export function EditCommentController(newsId, commentId) {
             let data = result[0],
                 hbTemplate = Handlebars.compile(result[1]),
                 template = hbTemplate(data);
-
+            
+            console.log(commentId);
             $(`#comment-${commentId}`).html(template);
 
             formHandler();

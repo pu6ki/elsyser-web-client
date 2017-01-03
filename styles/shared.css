@@ -202,11 +202,11 @@ h6 {
 	font-size: 16px;
 }
 
-.panel-heading a{
+.info-panel .panel-heading a{
 	color: white;
 }
 
-.panel-heading a:hover{
+.info-panel .panel-heading a:hover{
 	color: gold;
 }
 

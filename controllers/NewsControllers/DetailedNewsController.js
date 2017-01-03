@@ -25,14 +25,14 @@ export function DetailedNewsController(id) {
             let hbTemplate = Handlebars.compile(result[1]),
                 newsId = dataFromAPI.id;
 
-            if (dataFromAPI.author.user === currentUsername) {
+            if (dataFromAPI.author.user.username === currentUsername) {
                 dataFromAPI.editable = true;
             }
 
             dataFromAPI.comment_set.reverse();
 
             dataFromAPI.comment_set.forEach((el) => {
-                if (el.posted_by.user === currentUsername) {
+                if (el.posted_by.user.username === currentUsername) {
                     el.editableComment = true;
                 }
             });
