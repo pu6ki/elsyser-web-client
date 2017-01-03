@@ -204,10 +204,13 @@ h6 {
 
 .info-panel .panel-heading a{
 	color: white;
+    font-size: 16px;
+    text-decoration: none;
 }
 
 .info-panel .panel-heading a:hover{
 	color: gold;
+    text-decoration: none;
 }
 
 .info-panel {
@@ -371,4 +374,20 @@ label {
 
 .panel-body article {
     text-align: left;
+}
+
+.panel-body a {
+    font-size: 14px;
+    color: dimgray;
+}
+
+.panel-body a:hover{
+    color: #494949;
+}
+
+.panel-body button a {
+    color: white
+}
+.panel-body button a:hover {
+    color: gold;
 }
