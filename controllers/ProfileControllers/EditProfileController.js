@@ -5,7 +5,8 @@ import { isTeacher } from '../../utils/helper.js';
 import { ProfileController } from './ProfileController.js';
 import { HeaderController } from '../HeaderController.js'
 
-const profileUrl = 'https://elsyser.herokuapp.com/api/profile/';
+let profileId = localStorage.getItem('elsyser-id');
+const profileUrl = `https://elsyser.herokuapp.com/api/profile/${profileId}/`;
 
 export function EditProfileController() {
     let getData = requester.getJSON(profileUrl),
@@ -30,8 +31,7 @@ function editData() {
         var body = {
             username: '',
             first_name: '',
-            last_name: '',
-            info: ''
+            last_name: ''
         }
 
         if (validator.name($('#new-username').val())) {
@@ -56,7 +56,13 @@ function editData() {
             return;
         }
 
-        body.info = $('#new-info').val();
+        requester.putJSON(profileUrl, body)
+            .then(() => {
+                toastr.success('Data updated successfully!');
+                ProfileController(profileId);
+            }).catch((error) => {
+                toastr.error('Student with this username already exists.');
+            });
     }
     else {
         var body = {
@@ -105,10 +111,10 @@ function editData() {
                 requester.putJSON(profileUrl, body)
                     .then(() => {
                         toastr.success('Data updated successfully!');
-                        ProfileController();
+                        ProfileController(profileId);
                         HeaderController();
                     }).catch((error) => {
-                        ProfileController();
+                        ProfileController(profileId);
                         HeaderController();
                     });
             }
@@ -118,7 +124,7 @@ function editData() {
             requester.putJSON(profileUrl, body)
                 .then(() => {
                     toastr.success('Data updated successfully!');
-                    ProfileController();
+                    ProfileController(profileId);
                 }).catch((error) => {
                     toastr.error('Student with this username already exists.');
                 });
