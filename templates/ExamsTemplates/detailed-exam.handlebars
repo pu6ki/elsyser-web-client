@@ -4,10 +4,10 @@
             {{subject.title}}
         </strong>
         {{#if editable}}
-        <div class="pull-right edit">
-            <span id="exam-{{id}}-edit" class="edit"><span class="glyphicon glyphicon-edit"></span></span>
-            <span id="exam-{{id}}-delete" class="delete"><span class="glyphicon glyphicon-trash"></span></span>
-        </div>
+            <div class="pull-right edit">
+                <span id="exam-{{id}}-edit" class="edit"><span class="glyphicon glyphicon-edit"></span></span>
+                <span id="exam-{{id}}-delete" class="delete"><span class="glyphicon glyphicon-trash"></span></span>
+            </div>
         {{/if}}
     </div>
     <div class="panel-body">
@@ -24,7 +24,10 @@
                 <i>No details provided.</i>
             {{/if}}
         </div>
-        
-        Posted by <span><strong><i>{{author.username}}</i></strong></span>
+
+        Posted by
+        <a href="#/profile/{{author.id}}">
+            <span><strong><i>{{author.username}}</i></strong></span>
+        </a>
     </div>
 </div>

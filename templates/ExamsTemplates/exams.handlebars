@@ -20,8 +20,11 @@
                         <i>No details provided.</i>
                     {{/if}}
                 </div>
-                Posted by <span><strong><i>{{author.username}}</i></strong></span>
-                
+                Posted by
+                <a href="#/profile/{{author.id}}">
+                    <span><strong><i>{{author.username}}</i></strong></span>
+                </a>
+
                 <button id="info-button" class="btn btn-primary" onclick="window.location.href = '#/exams/{{id}}'"><a class="heading-anchor" href="#/exams/{{id}}">Info</a></button>
             </div>
         </div>

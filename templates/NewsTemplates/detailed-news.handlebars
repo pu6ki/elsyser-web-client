@@ -15,7 +15,12 @@
             <span><strong><i>{{content}}</i></strong></span>
         </div>
         <div>
-            Posted by <span><strong><i>{{author.user}}</i></strong></span><span> {{formatRelative posted_on}}</span>
+            Posted by
+            <a href="#/profile/{{author.user.id}}">
+                <span><strong><i>{{author.user.username}}</i></strong></span>
+            </a>
+            <span> {{formatRelative posted_on}}</span>
+
             {{#if edited}}
                 <span >(last edited {{formatRelative last_edited_on}})</span>
             {{/if}}
@@ -33,7 +38,11 @@
         <div class="col-xs-9 col-sm-10 col-sm-10 col-md-10 col-lg-10">
             <div class="comment-panel panel panel-default">
                 <div class="panel-heading">
-                    <strong>{{posted_by.user}}</strong> commented {{formatRelative posted_on}}
+                    <a href="#/profile/{{posted_by.user.id}}">
+                        <strong>{{posted_by.user.username}}</strong>
+                    </a>
+                    commented {{formatRelative posted_on}}
+
                     {{#if edited}}
                         <span >(last edited {{formatRelative last_edited_on}})</span>
                     {{/if}}

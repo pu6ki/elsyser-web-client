@@ -6,7 +6,10 @@
     <div class="col-xs-9 col-md-10">
         <div id="comment-{{id}}" class="comment-panel panel panel-default">
             <div class="panel-heading">
-                <strong>{{posted_by.user}}</strong> commented {{formatRelative posted_on}}
+                <a href="#/profile/{{posted_by.user.id}}">
+                    <strong>{{posted_by.user.username}}</strong>
+                </a>
+                commented {{formatRelative posted_on}}
                 {{#if editable}}
                     <div class="pull-right edit-comments">
                             <span id="news-{{newsId}}-edit-comment-{{id}}" class="edit">

@@ -11,7 +11,12 @@
                     <span><strong><i>{{content}}</i></strong></span>
                 </div>
                 <div>
-                    Posted by <span><strong><i>{{author.user}}</i></strong></span><span> {{formatRelative posted_on}}</span>
+                    Posted by
+                    <a href="#/profile/{{author.user.id}}">
+                        <span><strong><i>{{author.user.username}}</i></strong></span>
+                    </a>
+                    <span> {{formatRelative posted_on}}</span>
+
                     {{#if edited}}
                         <span >(last edited {{formatRelative last_edited_on}})</span>
                     {{/if}}
@@ -34,4 +39,3 @@
 <button type="button" class="btn btn-primary btn-circle btn-lg" id="add-news">
     <i class="glyphicon glyphicon-pencil"></i>
 </button>
-
