@@ -107,7 +107,8 @@ function editData(id) {
                 body.profile_image_url = $('#new-profile-image-url').val();
             }
             else {
-                body.profile_image_url = 'http://elsyser.herokuapp.com/static/default.png';
+                toastr.error('URL is not an image.');
+                return;
             }
 
             requester.putJSON(profileUrl + id + '/', body)
@@ -116,8 +117,7 @@ function editData(id) {
                     ProfileController(id);
                     HeaderController();
                 }).catch((error) => {
-                    console.log(error);
-                    toastr.error(error.responseText);
+                    toastr.error('Student with this username already exists.');
                 });
         });
     }

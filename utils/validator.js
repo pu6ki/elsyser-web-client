@@ -47,13 +47,5 @@ export let validator = {
             return true;
         }
         return false;
-    },
-    imageUrl: (imageUrl) => {
-        $.ajax({
-            url: imageUrl,
-            method: 'GET',
-        }).then(function (data, status, xhr) {
-            console.log(xhr.getAllResponseHeaders());
-        });
     }
 };
