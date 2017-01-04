@@ -23,7 +23,6 @@ import { DetailedMaterialController } from './controllers/MaterialsControllers/D
 
 import { NotFoundController } from './controllers/NotFoundController.js';
 
-
 try {
     HandlebarsIntl.registerWith(Handlebars);
 } catch (error) {
