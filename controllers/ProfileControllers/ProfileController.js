@@ -16,7 +16,7 @@ export function ProfileController(id) {
 
             $('#content').html(template);
             $('#edit-profile').on('click', () => {
-                EditProfileController();
+                EditProfileController(id);
             });
         }).catch((err) => {
             NotFoundController();

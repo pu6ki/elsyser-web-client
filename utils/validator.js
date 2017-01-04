@@ -1,3 +1,5 @@
+import { requester } from './requster.js'
+
 export let validator = {
     email: (email) => {
         let regexPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -45,5 +47,13 @@ export let validator = {
             return true;
         }
         return false;
+    },
+    imageUrl: (imageUrl) => {
+        $.ajax({
+            url: imageUrl,
+            method: 'GET',
+        }).then(function (data, status, xhr) {
+            console.log(xhr.getAllResponseHeaders());
+        });
     }
 };

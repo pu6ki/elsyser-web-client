@@ -5,11 +5,10 @@ import { isTeacher } from '../../utils/helper.js';
 import { ProfileController } from './ProfileController.js';
 import { HeaderController } from '../HeaderController.js'
 
-let profileId = localStorage.getItem('elsyser-id');
-const profileUrl = `https://elsyser.herokuapp.com/api/profile/${profileId}/`;
+const profileUrl = `https://elsyser.herokuapp.com/api/profile/`;
 
-export function EditProfileController() {
-    let getData = requester.getJSON(profileUrl),
+export function EditProfileController(id) {
+    let getData = requester.getJSON(profileUrl + id + '/'),
         getTemplate = templates.get('ProfileTemplates/edit-profile');
 
     Promise.all([getData, getTemplate])
@@ -21,12 +20,12 @@ export function EditProfileController() {
             $('#content').html(template);
 
             $('#save-button').on('click', () => {
-                editData();
+                editData(id);
             });
         });
 }
 
-function editData() {
+function editData(id) {
     if (isTeacher(window.localStorage.getItem('token'))) {
         var body = {
             username: '',
@@ -56,10 +55,11 @@ function editData() {
             return;
         }
 
-        requester.putJSON(profileUrl, body)
+        requester.putJSON(profileUrl + id + '/', body)
             .then(() => {
+                console.log('teacher');
                 toastr.success('Data updated successfully.');
-                ProfileController(profileId);
+                ProfileController(id);
             }).catch((error) => {
                 toastr.error('Student with this username already exists.');
             });
@@ -98,15 +98,27 @@ function editData() {
         }
 
         body.info = $('#new-info').val();
-        body.profile_image_url = $('#new-profile-image-url').val() || 'http://elsyser.herokuapp.com/static/default.png';
 
-        requester.putJSON(profileUrl, body)
-            .then(() => {
-                toastr.success('Data updated successfully.');
-                ProfileController(profileId);
-                HeaderController();
-            }).catch((error) => {
-                toastr.error(error.responseText);
-            });
+        $.ajax({
+            url: $('#new-profile-image-url').val(),
+            method: 'GET',
+        }).then(function (data, status, xhr) {
+            if (xhr.getResponseHeader('content-type').startsWith('image/')) {
+                body.profile_image_url = $('#new-profile-image-url').val();
+            }
+            else {
+                body.profile_image_url = 'http://elsyser.herokuapp.com/static/default.png';
+            }
+
+            requester.putJSON(profileUrl + id + '/', body)
+                .then(() => {
+                    toastr.success('Data updated successfully.');
+                    ProfileController(id);
+                    HeaderController();
+                }).catch((error) => {
+                    console.log(error);
+                    toastr.error(error.responseText);
+                });
+        });
     }
 }
