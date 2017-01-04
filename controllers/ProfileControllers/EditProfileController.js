@@ -101,7 +101,7 @@ function editData(id) {
 
         $.ajax({
             url: $('#new-profile-image-url').val(),
-            method: 'GET',
+            method: 'HEAD',
         }).then(function (data, status, xhr) {
             if (xhr.getResponseHeader('content-type').startsWith('image/')) {
                 body.profile_image_url = $('#new-profile-image-url').val();
@@ -119,6 +119,8 @@ function editData(id) {
                 }).catch((error) => {
                     toastr.error('Student with this username already exists.');
                 });
+        }).catch((err) => {
+            toastr.error('URL is not an image.');
         });
     }
 }
