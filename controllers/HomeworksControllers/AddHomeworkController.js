@@ -4,10 +4,13 @@ import { formHandler } from '../../utils/formHandler.js';
 import { HomeworksController } from './HomeworksController.js';
 
 export function AddHomeworkController() {
-    templates.get('HomeworksTemplates/add-homework')
-        .then((res) => {
-            let hbTemplate = Handlebars.compile(res),
-                template = hbTemplate();
+    let getTemplate = templates.get('HomeworksTemplates/add-homework'),
+        getData = requester.getJSON('https://elsyser.herokuapp.com/api/subjects/');
+
+    Promise.all([getTemplate, getData])
+        .then((result) => {
+            let hbTemplate = Handlebars.compile(result[0]),
+                template = hbTemplate(result[1]);
 
             $('#content').html(template);
 
@@ -35,7 +38,7 @@ function postHomework() {
     let body = {
         deadline: '',
         subject: {
-            title: ''   
+            id: null   
         },
         clazz: {
             number: null,
@@ -46,7 +49,7 @@ function postHomework() {
 
     //TODO: Validate
     body.deadline = $('#date').val();
-    body.subject.title = $('#subject').val();
+    body.subject.id = $('#subject-id').val();
     body.clazz.number = $('#studentClassNumber').val();
     body.clazz.letter = $('#studentClassLetter').val();
     body.details = $('#details').val();
