@@ -1,6 +1,7 @@
 import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
 import { EditProfileController } from './EditProfileController.js';
+import { NotFoundController } from '../NotFoundController.js';
 
 export function ProfileController(id) {
     let profileUrl = `https://elsyser.herokuapp.com/api/profile/${id}/`,
@@ -18,6 +19,7 @@ export function ProfileController(id) {
                 EditProfileController();
             });
         }).catch((err) => {
+            NotFoundController();
             console.log(err);
         });
 }

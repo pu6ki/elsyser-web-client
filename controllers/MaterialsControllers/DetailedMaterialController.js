@@ -2,6 +2,7 @@ import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
 import { EditMaterialController } from './EditMaterialController.js';
 import { DeleteMaterialController } from './DeleteMaterialController.js';
+import { NotFoundController } from '../NotFoundController.js';
 
 export function DetailedMaterialController(subjectId, materialId) {
     let materialUrl = `https://elsyser.herokuapp.com/api/materials/${subjectId}/${materialId}/`,
@@ -33,6 +34,8 @@ export function DetailedMaterialController(subjectId, materialId) {
             $(`#material-${materialId}-delete`).on('click', () => {
                 DeleteMaterialController(subjectId, materialId);
             })
+        }).catch((err) => {
+            NotFoundController();
         })
 }
 

@@ -10,6 +10,8 @@ import { AddCommentController } from './AddCommentController.js';
 import { EditCommentController } from './EditCommentController.js';
 import { DeleteCommentController } from './DeleteCommentController.js';
 
+import { NotFoundController } from '../NotFoundController.js';
+
 
 let dataFromAPI, currentUsername;
 const newsUrl = "https://elsyser.herokuapp.com/api/news/";
@@ -80,6 +82,7 @@ export function DetailedNewsController(id) {
             });
 
         }).catch((err) => {
+            NotFoundController();
             console.log(err);
         });
 }

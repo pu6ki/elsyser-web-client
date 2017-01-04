@@ -1,7 +1,8 @@
 import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
 import { EditHomeworkController } from '../HomeworksControllers/EditHomeworkController.js';
-import { DeleteHomeworkController } from '../HomeworksControllers/DeleteHomeworkController.js'
+import { DeleteHomeworkController } from '../HomeworksControllers/DeleteHomeworkController.js';
+import { NotFoundController } from '../NotFoundController.js';
 
 export function DetailedHomeworkController(id) {
     let examUrl = `https://elsyser.herokuapp.com/api/homeworks/${id}/`,
@@ -31,5 +32,7 @@ export function DetailedHomeworkController(id) {
                     DeleteHomeworkController(id);
                 })
             })
+        }).catch((err) => {
+            NotFoundController();
         });
 }

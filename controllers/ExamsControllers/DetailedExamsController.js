@@ -2,6 +2,7 @@ import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
 import { EditExamController } from './EditExamController.js';
 import { DeleteExamController } from './DeleteExamController.js';
+import { NotFoundController } from '../NotFoundController.js';
 
 export function DetailedExamsController(id) {
     let examUrl = `https://elsyser.herokuapp.com/api/exams/${id}/`,
@@ -31,5 +32,7 @@ export function DetailedExamsController(id) {
                     DeleteExamController(id);
                 })
             })
+        }).catch((err) => {
+            NotFoundController();
         })
 }
