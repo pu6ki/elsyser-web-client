@@ -72,7 +72,7 @@ function editData() {
                 last_name: ''
             },
             info: '',
-            profile_image: ''
+            profile_image_url: ''
         };
 
         if (validator.name($('#new-username').val())) {
@@ -99,35 +99,18 @@ function editData() {
 
         body.info = $('#new-info').val();
 
-        var filesSelected = document.getElementById("new-profile-picture").files;
-        if (filesSelected.length > 0) {
-            var fileToLoad = filesSelected[0];
+        // TODO:
+        // -> Validation if URL is a picture
+        // -> Implement the bottom line in other way
+        body.profile_image_url = $('#new-profile-image-url').val() || 'http://elsyser.herokuapp.com/static/default.png';
 
-            var fileReader = new FileReader();
-
-            fileReader.onload = function (fileLoadedEvent) {
-                body.profile_image = fileLoadedEvent.target.result;
-
-                requester.putJSON(profileUrl, body)
-                    .then(() => {
-                        toastr.success('Data updated successfully!');
-                        ProfileController(profileId);
-                        HeaderController();
-                    }).catch((error) => {
-                        ProfileController(profileId);
-                        HeaderController();
-                    });
-            }
-            fileReader.readAsDataURL(fileToLoad);
-        }
-        else {
-            requester.putJSON(profileUrl, body)
-                .then(() => {
-                    toastr.success('Data updated successfully!');
-                    ProfileController(profileId);
-                }).catch((error) => {
-                    toastr.error('Student with this username already exists.');
-                });
-        }
+        requester.putJSON(profileUrl, body)
+            .then(() => {
+                toastr.success('Data updated successfully!');
+                ProfileController(profileId);
+                HeaderController();
+            }).catch((error) => {
+                toastr.error('Student with this username already exists.');
+            });
     }
 }

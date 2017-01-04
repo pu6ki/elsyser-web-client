@@ -38,12 +38,11 @@
             {{#if clazz}}
                 <div>
                     <strong><i>About:</i></strong>
-                    <textarea id="new-info" rows="3">{{info}}</textarea>
+                    <input class="form-control" id="new-info" type="text" value="{{info}}">
                 </div>
                 <div>
-                    <div id="imgTest"></div>
-                    <strong><i>Change profile picture:</i></strong>
-                    <input id="new-profile-picture" type="file" accept="image/*">
+                    <strong><i>Profile image url:</i></strong>
+                    <input class="form-control" id="new-profile-image-url" type="text" value="{{profile_image_url}}">
                 </div>
             {{/if}}
             <button id="save-button" class="btn btn-primary submit">Save</button>
