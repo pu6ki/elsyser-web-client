@@ -17,7 +17,7 @@ export function HeaderController() {
     if (window.localStorage.getItem('token')) {
         requester.getJSON(profileUrl)
             .then((result) => {
-                userData.profileImage = result.profile_image;
+                userData.profileImageUrl = result.profile_image_url;
                 userData.username = result.username || result.user.username;
                 userData.profileId = localStorage.getItem('elsyser-id');
                 compileTemplate(authHeader, userData);

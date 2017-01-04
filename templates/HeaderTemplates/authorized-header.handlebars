@@ -7,6 +7,13 @@
 </ul>
 
 <ul class="nav navbar-nav navbar-right">
-    <li id="profile-button"><a href="#/profile/{{profileId}}" data-toggle="collapse" data-target=".navbar-collapse.in">{{#if profileImage}}<img src="https://elsyser.herokuapp.com{{profileImage}}" alt="{{username}}" id="profile-picture">{{/if}}{{username}}</a></li>
+    <li id="profile-button">
+        <a href="#/profile/{{profileId}}" data-toggle="collapse" data-target=".navbar-collapse.in">
+            {{#if profileImageUrl}}
+                <img src="{{profileImageUrl}}" alt="{{username}}" id="profile-picture">
+            {{/if}}
+        {{username}}
+    </a>
+    </li>
     <li id="log-out"><span data-toggle="collapse" data-target=".navbar-collapse.in">Logout <span class="glyphicon glyphicon-log-out"></span></span></li>
 </ul>
