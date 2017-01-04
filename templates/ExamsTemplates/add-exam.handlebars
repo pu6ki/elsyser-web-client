@@ -1,6 +1,10 @@
 <div class="form-group form-wrapper">
-    <label for="subject">Subject: </label>
-    <input type="text" class="form-control" id="subject">
+    <label for="subject-id">Subject: </label>
+    <select class="form-control" name="subject-id" id="subject-id">
+      {{#each this}}
+        <option value="{{id}}">{{title}}</option>
+      {{/each}}
+    </select>
     <label for="topic">Topic: </label>
     <input type="text" class="form-control" id="topic">
     <label for="student-class-number">Student class number: </label>

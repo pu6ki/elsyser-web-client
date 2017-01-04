@@ -4,10 +4,13 @@ import { formHandler } from '../../utils/formHandler.js';
 import { ExamsController } from './ExamsController.js';
 
 export function AddExamController() {
-    templates.get('ExamsTemplates/add-exam')
-        .then((res) => {
-            let hbTemplate = Handlebars.compile(res),
-                template = hbTemplate();
+    let getTemplate = templates.get('ExamsTemplates/add-exam'),
+        getData = requester.getJSON('https://elsyser.herokuapp.com/api/subjects/');
+
+    Promise.all([getTemplate, getData])
+        .then((result) => {
+            let hbTemplate = Handlebars.compile(result[0]),
+                template = hbTemplate(result[1]);
 
             $('#content').html(template);
 
@@ -36,7 +39,7 @@ function postExam() {
     let body = {
         date: '',
         subject: {
-            title: ''   
+            id: null
         },
         topic: '',
         clazz: {
@@ -48,7 +51,7 @@ function postExam() {
 
     //TODO: Validate
     body.date = $('#date').val();
-    body.subject.title = $('#subject').val();
+    body.subject.id = $('#subject-id').val();
     body.topic = $('#topic').val();
     body.clazz.number = $('#studentClassNumber').val();
     body.clazz.letter = $('#studentClassLetter').val();
