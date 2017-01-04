@@ -43,7 +43,7 @@ export let validator = {
     classNumber: (classNumber) => {
         if (classNumber >= 8 && classNumber <= 12) {
             return true;
-        } 
+        }
         return false;
     }
 };

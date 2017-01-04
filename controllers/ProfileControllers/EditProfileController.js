@@ -38,27 +38,27 @@ function editData() {
             body.username = $('#new-username').val();
         }
         else {
-            toastr.error('Username should be between 3 and 30 characters long!');
+            toastr.error('Username should be between 3 and 30 characters long.');
             return;
         }
         if (validator.name($('#new-first-name').val())) {
             body.first_name = $('#new-first-name').val();
         }
         else {
-            toastr.error('First name shoud be between 3 and 30 characters long!');
+            toastr.error('First name shoud be between 3 and 30 characters long.');
             return;
         }
         if (validator.name($('#new-last-name').val())) {
             body.last_name = $('#new-last-name').val();
         }
         else {
-            toastr.error('Last name shoud be between 3 and 30 characters long!');
+            toastr.error('Last name shoud be between 3 and 30 characters long.');
             return;
         }
 
         requester.putJSON(profileUrl, body)
             .then(() => {
-                toastr.success('Data updated successfully!');
+                toastr.success('Data updated successfully.');
                 ProfileController(profileId);
             }).catch((error) => {
                 toastr.error('Student with this username already exists.');
@@ -79,38 +79,34 @@ function editData() {
             body.user.username = $('#new-username').val();
         }
         else {
-            toastr.error('Username should be between 3 and 30 characters long!');
+            toastr.error('Username should be between 3 and 30 characters long.');
             return;
         }
         if (validator.name($('#new-first-name').val())) {
             body.user.first_name = $('#new-first-name').val();
         }
         else {
-            toastr.error('First name shoud be between 3 and 30 characters long!');
+            toastr.error('First name shoud be between 3 and 30 characters long.');
             return;
         }
         if (validator.name($('#new-last-name').val())) {
             body.user.last_name = $('#new-last-name').val();
         }
         else {
-            toastr.error('Last name shoud be between 3 and 30 characters long!');
+            toastr.error('Last name shoud be between 3 and 30 characters long.');
             return;
         }
 
         body.info = $('#new-info').val();
-
-        // TODO:
-        // -> Validation if URL is a picture
-        // -> Implement the bottom line in other way
         body.profile_image_url = $('#new-profile-image-url').val() || 'http://elsyser.herokuapp.com/static/default.png';
 
         requester.putJSON(profileUrl, body)
             .then(() => {
-                toastr.success('Data updated successfully!');
+                toastr.success('Data updated successfully.');
                 ProfileController(profileId);
                 HeaderController();
             }).catch((error) => {
-                toastr.error('Student with this username already exists.');
+                toastr.error(error.responseText);
             });
     }
 }
