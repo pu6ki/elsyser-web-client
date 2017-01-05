@@ -3,6 +3,8 @@
 [![GitHub issues](https://img.shields.io/github/issues/pu6ki/elsyser-web-client.svg?style=flat-square)](https://github.com/pu6ki/elsyser-web-client/issues)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/LICENSE)
 
+![Logo](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/logo-black.png)
+
 # [elsyser-web-client](https://elsyser.aerobatic.io)
 This is the web client for the [ELSYSER API](https://github.com/pu6ki/elsyser/). This is a students' platform for [ELSYS, Sofia](http://elsys-bg.org).
 
@@ -70,6 +72,7 @@ How to copy this project to your local machine and run it:
 [matir8](https://github.com/matir8) - I am a student in 10th grade in ELSYS.
 I am developing this client, which is consuming RESTful services from [the ELSYSER API](https://github.com/pu6ki/elsyser),
 which is developed by my schoolmate [wencakisa](https://github.com/wencakisa).
+Logo is designed by [Vladimir Vladinov](https://github.com/thehughmungus).
 
 ### License
 
