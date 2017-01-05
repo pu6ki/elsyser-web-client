@@ -376,6 +376,10 @@ input {
     margin: 10px;
 }
 
+#profile-block {
+    margin: 2px;
+}
+
 label {
     font-size: 17px;
 }
