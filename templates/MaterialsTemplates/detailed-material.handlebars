@@ -1,29 +1,31 @@
-<div class="panel panel-primary">
-    <div class="panel-heading center-text">
-        <strong>
-            {{section}}
-        </strong>
-        {{#if editable}}
-        <div class="pull-right edit">
-            <span id="material-{{id}}-edit" class="edit"><span class="glyphicon glyphicon-edit"></span></span>
-            <span id="material-{{id}}-delete" class="delete"><span class="glyphicon glyphicon-trash"></span></span>
+<div id="wrapper">
+    <div class="panel panel-primary">
+        <div class="panel-heading center-text">
+            <strong>
+                {{section}}
+            </strong>
+            {{#if editable}}
+            <div class="pull-right edit">
+                <span id="material-{{id}}-edit" class="edit"><span class="glyphicon glyphicon-edit"></span></span>
+                <span id="material-{{id}}-delete" class="delete"><span class="glyphicon glyphicon-trash"></span></span>
+            </div>
+            {{/if}}
         </div>
-        {{/if}}
-    </div>
-    <div class="panel-body center-text">
-        <h4>{{title}}</h4>
-        <article>
-            {{{content}}}
-        </article>
-        <br />
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="{{video_url}}" allowfullscreen></iframe>
+        <div class="panel-body center-text">
+            <h4>{{title}}</h4>
+            <article>
+                {{{content}}}
+            </article>
+            <br />
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="{{video_url}}" allowfullscreen></iframe>
+            </div>
+            <br />
+        
+            Posted by
+            <a href="#/profile/{{author.id}}">
+                <span><strong><i>{{author.username}}</i></strong></span>
+            </a>
         </div>
-        <br />
-
-        Posted by
-        <a href="#/profile/{{author.id}}">
-            <span><strong><i>{{author.username}}</i></strong></span>
-        </a>
     </div>
 </div>

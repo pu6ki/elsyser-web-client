@@ -1,4 +1,5 @@
-<div class="form-group form-wrapper">
+<div id="wrapper">
+  <div class="form-group form-wrapper">
     <label for="subject-id">Subject: </label>
     <select class="form-control" name="subject-id" id="subject-id">
       {{#each this}}
@@ -15,18 +16,19 @@
         <option value="11">11</option>
         <option value="12">12</option>
       </select>
-    <label for="student-class-number">Student class letter: </label>      
-      <select class="form-control" name="studentClassLetter" id="studentClassLetter">
+    <label for="student-class-number">Student class letter: </label>
+    <select class="form-control" name="studentClassLetter" id="studentClassLetter">
         <option value="A">A</option>
         <option value="B">B</option>
         <option value="V">V</option>
         <option value="G">G</option>
       </select>
     <div id="sandbox-container">
-        <label for="date">Date: </label>
-        <input type="text" class="form-control" id="date">
+      <label for="date">Date: </label>
+      <input type="text" class="form-control" id="date">
     </div>
     <label for="details">Details: </label>
     <textarea class="form-control" id="details" rows="4"></textarea>
     <button class="btn btn-lg btn-primary btn-block submit" id="add-exam">Add Exam</button>
+  </div>
 </div>

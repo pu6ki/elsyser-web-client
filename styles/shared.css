@@ -2,6 +2,7 @@ body {
     margin: 5px;
     padding: 0px;
     padding-top: 70px;
+    background-color: ghostwhite;
 }
 
 body,
@@ -431,6 +432,10 @@ label {
     color: gold;
 }
 
+#go-home-button {
+    margin-top: 7%;
+}
+
 #go-home-button a {
     color: white;
 }
@@ -454,6 +459,14 @@ label {
     background-size: cover;
 }
 
+.error-image-container {
+    text-shadow: 2px 2px 1px #000;
+    color: white;
+    font-size: 68px;
+    font-family: Impact, Charcoal, sans-serif;
+    font-weight: bold
+}
+
 #navbar-logo, #about-logo {
     opacity: 0.7;
 }
@@ -472,4 +485,10 @@ label {
 
 #home-logo {
     max-width: 30vw;
+}
+
+#wrapper {
+    max-width: 1200px;
+    margin-left: 10%;
+    margin-right: 10%;
 }

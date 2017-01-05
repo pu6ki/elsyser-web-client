@@ -1,33 +1,35 @@
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <strong>
-            {{subject.title}}
-        </strong>
-        {{#if editable}}
-            <div class="pull-right edit">
-                <span id="exam-{{id}}-edit" class="edit"><span class="glyphicon glyphicon-edit"></span></span>
-                <span id="exam-{{id}}-delete" class="delete"><span class="glyphicon glyphicon-trash"></span></span>
-            </div>
-        {{/if}}
-    </div>
-    <div class="panel-body">
-        <div>
-            Coming <strong><span>{{formatRelative date}}</span></strong>
-        </div>
-        <div>
-            <i>Topic: </i><strong><span>{{topic}}</span></strong>
-        </div>
-        <div>
-            {{#if details}}
-                <i>Details: </i><strong><span>{{details}}</span></strong>
-            {{else}}
-                <i>No details provided.</i>
+<div id="wrapper">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <strong>
+                {{subject.title}}
+            </strong>
+            {{#if editable}}
+                <div class="pull-right edit">
+                    <span id="exam-{{id}}-edit" class="edit"><span class="glyphicon glyphicon-edit"></span></span>
+                    <span id="exam-{{id}}-delete" class="delete"><span class="glyphicon glyphicon-trash"></span></span>
+                </div>
             {{/if}}
         </div>
+        <div class="panel-body">
+            <div>
+                Coming <strong><span>{{formatRelative date}}</span></strong>
+            </div>
+            <div>
+                <i>Topic: </i><strong><span>{{topic}}</span></strong>
+            </div>
+            <div>
+                {{#if details}}
+                    <i>Details: </i><strong><span>{{details}}</span></strong>
+                {{else}}
+                    <i>No details provided.</i>
+                {{/if}}
+            </div>
 
-        Posted by
-        <a href="#/profile/{{author.id}}">
-            <span><strong><i>{{author.username}}</i></strong></span>
-        </a>
+            Posted by
+            <a href="#/profile/{{author.id}}">
+                <span><strong><i>{{author.username}}</i></strong></span>
+            </a>
+        </div>
     </div>
 </div>

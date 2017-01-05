@@ -1,30 +1,32 @@
-<div class="form-group form-wrapper">
-    <label for="subject-id">Subject: </label>
-    <select class="form-control" name="subject-id" id="subject-id">
-      {{#each this}}
-        <option value="{{id}}">{{title}}</option>
-      {{/each}}
-    </select>
-    <label for="student-class-number">Student class number: </label>
-    <select class="form-control" name="studentClassNumber" id="studentClassNumber">
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
+<div id="wrapper">
+  <div class="form-group form-wrapper">
+      <label for="subject-id">Subject: </label>
+      <select class="form-control" name="subject-id" id="subject-id">
+        {{#each this}}
+          <option value="{{id}}">{{title}}</option>
+        {{/each}}
       </select>
-    <label for="student-class-number">Student class letter: </label>      
-      <select class="form-control" name="studentClassLetter" id="studentClassLetter">
-        <option value="A">A</option>
-        <option value="B">B</option>
-        <option value="V">V</option>
-        <option value="G">G</option>
-      </select>
-    <div id="sandbox-container">
-        <label for="date">Deadline: </label>
-        <input type="text" class="form-control" id="date">
-    </div>
-    <label for="details">Details: </label>
-    <textarea class="form-control" id="details" rows="4"></textarea>
-    <button class="btn btn-lg btn-primary btn-block submit" id="add-homework">Add Homework</button>
+      <label for="student-class-number">Student class number: </label>
+      <select class="form-control" name="studentClassNumber" id="studentClassNumber">
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+      <label for="student-class-number">Student class letter: </label>      
+        <select class="form-control" name="studentClassLetter" id="studentClassLetter">
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="V">V</option>
+          <option value="G">G</option>
+        </select>
+      <div id="sandbox-container">
+          <label for="date">Deadline: </label>
+          <input type="text" class="form-control" id="date">
+      </div>
+      <label for="details">Details: </label>
+      <textarea class="form-control" id="details" rows="4"></textarea>
+      <button class="btn btn-lg btn-primary btn-block submit" id="add-homework">Add Homework</button>
+  </div>
 </div>
