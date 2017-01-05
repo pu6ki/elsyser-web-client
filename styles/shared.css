@@ -356,7 +356,7 @@ input {
 }
 
 .info-body{
-  height: 170px;
+  height: 190px;
   overflow-y: auto;
 }
 
@@ -386,7 +386,9 @@ label {
 }
 
 .info-container {
-    border-bottom: 1px solid rebeccapurple
+    border-bottom: 1px solid rebeccapurple;
+    padding-top: 2px;
+    padding-bottom: 3px;
 }
 
 #login-form {
