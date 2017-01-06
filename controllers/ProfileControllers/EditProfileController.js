@@ -26,101 +26,62 @@ export function EditProfileController(id) {
 }
 
 function editData(id) {
-    if (isTeacher(window.localStorage.getItem('token'))) {
-        var body = {
+    var body = {
+        user: {
             username: '',
             first_name: '',
             last_name: ''
-        }
+        },
+        info: '',
+        profile_image_url: '',
+    }
 
-        if (validator.name($('#new-username').val())) {
-            body.username = $('#new-username').val();
-        }
-        else {
-            toastr.error('Username should be between 3 and 30 characters long.');
-            return;
-        }
-        if (validator.name($('#new-first-name').val())) {
-            body.first_name = $('#new-first-name').val();
-        }
-        else {
-            toastr.error('First name shoud be between 3 and 30 characters long.');
-            return;
-        }
-        if (validator.name($('#new-last-name').val())) {
-            body.last_name = $('#new-last-name').val();
-        }
-        else {
-            toastr.error('Last name shoud be between 3 and 30 characters long.');
-            return;
-        }
-
-        requester.putJSON(profileUrl + id + '/', body)
-            .then(() => {
-                console.log('teacher');
-                toastr.success('Data updated successfully.');
-                ProfileController(id);
-            }).catch((error) => {
-                toastr.error('Student with this username already exists.');
-            });
+    if (validator.name($('#new-username').val())) {
+        body.username = $('#new-username').val();
     }
     else {
-        var body = {
-            user: {
-                username: '',
-                first_name: '',
-                last_name: ''
-            },
-            info: '',
-            profile_image_url: ''
-        };
-
-        if (validator.name($('#new-username').val())) {
-            body.user.username = $('#new-username').val();
-        }
-        else {
-            toastr.error('Username should be between 3 and 30 characters long.');
-            return;
-        }
-        if (validator.name($('#new-first-name').val())) {
-            body.user.first_name = $('#new-first-name').val();
-        }
-        else {
-            toastr.error('First name shoud be between 3 and 30 characters long.');
-            return;
-        }
-        if (validator.name($('#new-last-name').val())) {
-            body.user.last_name = $('#new-last-name').val();
-        }
-        else {
-            toastr.error('Last name shoud be between 3 and 30 characters long.');
-            return;
-        }
-
-        body.info = $('#new-info').val();
-
-        $.ajax({
-            url: $('#new-profile-image-url').val(),
-            method: 'HEAD',
-        }).then(function (data, status, xhr) {
-            if (xhr.getResponseHeader('content-type').startsWith('image/')) {
-                body.profile_image_url = $('#new-profile-image-url').val();
-            }
-            else {
-                toastr.error('URL is not an image.');
-                return;
-            }
-
-            requester.putJSON(profileUrl + id + '/', body)
-                .then(() => {
-                    toastr.success('Data updated successfully.');
-                    ProfileController(id);
-                    HeaderController();
-                }).catch((error) => {
-                    toastr.error('Student with this username already exists.');
-                });
-        }).catch((err) => {
-            toastr.error('URL is not an image.');
-        });
+        toastr.error('Username should be between 3 and 30 characters long.');
+        return;
     }
+    if (validator.name($('#new-first-name').val())) {
+        body.first_name = $('#new-first-name').val();
+    }
+    else {
+        toastr.error('First name shoud be between 3 and 30 characters long.');
+        return;
+    }
+    if (validator.name($('#new-last-name').val())) {
+        body.last_name = $('#new-last-name').val();
+    }
+    else {
+        toastr.error('Last name shoud be between 3 and 30 characters long.');
+        return;
+    }
+
+    body.info = $('#new-info').val();
+
+    $.ajax({
+        url: $('#new-profile-image-url').val(),
+        method: 'HEAD',
+    }).then(function (data, status, xhr) {
+        if (xhr.getResponseHeader('content-type').startsWith('image/')) {
+            body.profile_image_url = $('#new-profile-image-url').val();
+        }
+        else {
+            toastr.error('URL is not an image.');
+            return;
+        }
+
+        // Тука е бъгясва нещо... (хвърля error.)
+        requester.putJSON(profileUrl + id + '/', body)
+            .then(() => {
+                toastr.success('Data updated successfully.');
+                ProfileController(id);
+                HeaderController();
+            }).catch((error) => {
+                toastr.error('User with this username already exists.');
+            });
+    }).catch((err) => {
+        toastr.error('URL is not an image.');
+    });
 }

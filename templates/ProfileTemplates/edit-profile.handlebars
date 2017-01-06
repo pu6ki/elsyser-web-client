@@ -1,26 +1,15 @@
 <div class="panel panel-primary">
-    <div class="panel-heading"><strong>User Profile</strong></div>
-    <div class="row">
-        {{#if profile_image_url}}
-            <img src="{{profile_image_url}}" alt="Profile Image" class="col-xs-6 col-md-4" id="profile-image">
+    <div class="panel-heading">
+        {{#if clazz}}
+            <strong>Student profile</strong>
+        {{else}}
+            <strong>Teacher Profile</strong>
         {{/if}}
+    </div>
+    <div class="row">
+        <img src="{{profile_image_url}}" alt="Profile Image" class="col-xs-6 col-md-4" id="profile-image">
         <div class="col-xs-6 col-md-4 form-wrapper" id="profile-info">
-            {{#if user}}
-                {{#with user}}
-                    <div>
-                        <strong><i>Username:</i></strong>
-                        <input class="form-control" id="new-username" type="text" value="{{username}}">
-                    </div>
-                    <div>
-                        <strong><i>First name:</i></strong>
-                        <input class="form-control" id="new-first-name" type="text" value="{{first_name}}">
-                    </div>
-                    <div>
-                        <strong><i>Last name:</i></strong>
-                        <input class="form-control" id="new-last-name" type="text" value="{{last_name}}">
-                    </div>
-                {{/with}}  
-            {{else}}
+            {{#with user}}
                 <div>
                     <strong><i>Username:</i></strong>
                     <input class="form-control" id="new-username" type="text" value="{{username}}">
@@ -33,17 +22,15 @@
                     <strong><i>Last name:</i></strong>
                     <input class="form-control" id="new-last-name" type="text" value="{{last_name}}">
                 </div>
-            {{/if}}
-            {{#if clazz}}
-                <div>
-                    <strong><i>About:</i></strong>
-                    <input class="form-control" id="new-info" type="text" value="{{info}}">
-                </div>
-                <div>
-                    <strong><i>Profile image url:</i></strong>
-                    <input class="form-control" id="new-profile-image-url" type="text" value="{{profile_image_url}}">
-                </div>
-            {{/if}}
+            {{/with}}
+            <div>
+                <strong><i>About:</i></strong>
+                <input class="form-control" id="new-info" type="text" value="{{info}}">
+            </div>
+            <div>
+                <strong><i>Profile image url:</i></strong>
+                <input class="form-control" id="new-profile-image-url" type="text" value="{{profile_image_url}}">
+            </div>
             <button id="save-button" class="btn btn-primary submit">Save</button>
         </div>
     </div>
