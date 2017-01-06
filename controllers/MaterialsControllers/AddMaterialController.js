@@ -23,6 +23,9 @@ export function AddMaterialController() {
 }
 
 function postMaterial() {
+    // Тва трябва някак си да знае subject от самия url,
+    // щото нали през subject се достъпват.
+    
     const materialsUrl = 'https://elsyser.herokuapp.com/api/materials/';
 
     let body = {
@@ -67,7 +70,7 @@ function postMaterial() {
         toastr.error('Invalid class number.');
         return;
     }
-    
+
     body.subject.id = $('#subject-id').val();
     body.video_url = $('#video-url').val();
 
