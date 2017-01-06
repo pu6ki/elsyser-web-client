@@ -23,9 +23,6 @@ export function AddMaterialController() {
 }
 
 function postMaterial() {
-    // Тва трябва някак си да знае subject от самия url,
-    // щото нали през subject се достъпват.
-    
     const materialsUrl = 'https://elsyser.herokuapp.com/api/materials/';
 
     let body = {

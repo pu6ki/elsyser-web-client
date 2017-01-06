@@ -18,12 +18,12 @@
                             <i>No details provided.</i>
                         {{/if}}
                     </div>
-                
+
                     Posted by
-                    <a href="#/profile/{{author.id}}">
-                        <span><strong><i>{{author.username}}</i></strong></span>
+                    <a href="#/profile/{{author.user.id}}">
+                        <span><strong><i>{{author.user.username}}</i></strong></span>
                     </a>
-                
+
                     <button id="info-button" class="btn btn-primary" onclick="window.location.href = '#/homeworks/{{id}}'"><a class="heading-anchor" href="#/homeworks/{{id}}">Info</a></button>
                 </div>
             </div>
@@ -31,7 +31,7 @@
     {{else}}
         <h3>No assigned homeworks for now.</h3>
     {{/if}}
-    
+
     {{#if isTeacher}}
         <button type="button" class="btn btn-primary btn-circle btn-lg" id="add-homework">
             <i class="glyphicon glyphicon-pencil"></i>
