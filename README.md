@@ -60,12 +60,13 @@ How to copy this project to your local machine and run it:
 4. Then log in with your credentials.
     ![Login page](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/login-page.png)
 5. Everything about you and your class is one click away!
-    ![Navigation bar](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/navigation.png)
+    ![Navigation bar](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/home-page.png)
     - Upcoming exams
     - Latest news with live comments
-    - Assigned homeworks with materials for them
+    - Assigned homeworks
+    - Materials for each topic
     - Profile info
-    - ...
+    - TBA
 
 ## Author
 
