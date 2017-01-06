@@ -38,9 +38,6 @@ function postExam() {
 
     let body = {
         date: '',
-        subject: {
-            id: null
-        },
         topic: '',
         clazz: {
             number: null,
@@ -51,7 +48,6 @@ function postExam() {
 
     //TODO: Validate
     body.date = $('#date').val();
-    body.subject.id = $('#subject-id').val();
     body.topic = $('#topic').val();
     body.clazz.number = $('#studentClassNumber').val();
     body.clazz.letter = $('#studentClassLetter').val();
