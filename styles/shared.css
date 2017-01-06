@@ -503,11 +503,11 @@ label {
 }
 
 #home-logo {
-    max-width: 30vw;
+    max-height: 9vh;
 }
 
 #wrapper {
-    max-width: 1200px;
-    margin-left: 10%;
-    margin-right: 10%;
+    max-width: 150vw;
+    margin-left: 11%;
+    margin-right: 11%;
 }
