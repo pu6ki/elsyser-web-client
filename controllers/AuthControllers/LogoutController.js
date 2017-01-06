@@ -1,4 +1,5 @@
 import { HeaderController } from '../HeaderController.js';
+import { HomeController } from '../HomeController.js';
 
 export function LogoutController() {
     toastr.success('Logged-out successfully!');
@@ -6,6 +7,5 @@ export function LogoutController() {
     localStorage.removeItem('elsyser-username');
     localStorage.removeItem('elsyser-id');
     HeaderController();
-    window.location.href = '/#/home';
-    window.location.reload(true);
+    HomeController();
 }

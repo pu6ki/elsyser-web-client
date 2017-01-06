@@ -87,7 +87,7 @@ router
     .on('/materials/:subjectId/:materialId', (params) => {
         DetailedMaterialController(params.subjectId, params.materialId);
     })
-    .notFound(() => {
+    /*.notFound(() => {
         NotFoundController();
-    })
+    })*/
     .resolve();

@@ -33,6 +33,7 @@ export function DetailedHomeworkController(id) {
                 })
             })
         }).catch((err) => {
+            console.log(err);
             NotFoundController();
         });
 }
