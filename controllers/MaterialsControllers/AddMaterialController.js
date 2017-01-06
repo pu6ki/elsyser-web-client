@@ -67,6 +67,7 @@ function postMaterial() {
         toastr.error('Invalid class number.');
         return;
     }
+    
     body.subject.id = $('#subject-id').val();
     body.video_url = $('#video-url').val();
 

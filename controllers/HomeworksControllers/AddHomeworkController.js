@@ -37,9 +37,6 @@ function postHomework() {
 
     let body = {
         deadline: '',
-        subject: {
-            id: null   
-        },
         clazz: {
             number: null,
             letter: ''
@@ -49,7 +46,6 @@ function postHomework() {
 
     //TODO: Validate
     body.deadline = $('#date').val();
-    body.subject.id = $('#subject-id').val();
     body.clazz.number = $('#studentClassNumber').val();
     body.clazz.letter = $('#studentClassLetter').val();
     body.details = $('#details').val();
