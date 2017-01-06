@@ -37,21 +37,21 @@ function editData(id) {
     }
 
     if (validator.name($('#new-username').val())) {
-        body.username = $('#new-username').val();
+        body.user.username = $('#new-username').val();
     }
     else {
         toastr.error('Username should be between 3 and 30 characters long.');
         return;
     }
     if (validator.name($('#new-first-name').val())) {
-        body.first_name = $('#new-first-name').val();
+        body.user.first_name = $('#new-first-name').val();
     }
     else {
         toastr.error('First name shoud be between 3 and 30 characters long.');
         return;
     }
     if (validator.name($('#new-last-name').val())) {
-        body.last_name = $('#new-last-name').val();
+        body.user.last_name = $('#new-last-name').val();
     }
     else {
         toastr.error('Last name shoud be between 3 and 30 characters long.');
@@ -72,7 +72,6 @@ function editData(id) {
             return;
         }
 
-        // Тука е бъгясва нещо... (хвърля error.)
         requester.putJSON(profileUrl + id + '/', body)
             .then(() => {
                 toastr.success('Data updated successfully.');
