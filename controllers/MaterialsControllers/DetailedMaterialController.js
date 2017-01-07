@@ -18,10 +18,15 @@ export function DetailedMaterialController(subjectId, materialId) {
             if (currentUser === data.author.user.username) {
                 data.editable = true;
             }
-            
+
             data.content = insertLineBreaks(data.content);
 
-            data.video_url = makeYouTubeVideoEmbedable(data.video_url);
+            if (data.video_url === '') {
+                data.video_url = null;
+            }
+            else {
+                data.video_url = makeYouTubeVideoEmbedable(data.video_url);
+            }
 
             let hbTemplate = Handlebars.compile(result[1]),
                 template = hbTemplate(data);

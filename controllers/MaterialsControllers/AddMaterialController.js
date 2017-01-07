@@ -12,17 +12,17 @@ export function AddMaterialController() {
     Promise.all([getTemplate, getData])
         .then((result) => {
             let hbTemplate = Handlebars.compile(result[0]),
-                template = hbTemplate(result[1]);
+                template = hbTemplate();
 
             $('#content').html(template);
 
             $('#add-material').on('click', () => {
-                postMaterial();
+                postMaterial(result[1][0].id);
             })
         })
 }
 
-function postMaterial() {
+function postMaterial(subjectId) {
     const materialsUrl = 'https://elsyser.herokuapp.com/api/materials/';
 
     let body = {
@@ -68,10 +68,9 @@ function postMaterial() {
         return;
     }
 
-    body.subject.id = $('#subject-id').val();
     body.video_url = $('#video-url').val();
 
-    requester.postJSON(materialsUrl + body.subject.id + '/', body)
+    requester.postJSON(materialsUrl + subjectId + '/', body)
         .then(() => {
             toastr.success('Added material successfully!');
             MaterialsController();
