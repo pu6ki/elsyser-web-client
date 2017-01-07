@@ -486,22 +486,6 @@ label {
     font-weight: bold
 }
 
-#navbar-logo, #about-logo {
-    opacity: 0.7;
-}
-
-#navbar-logo {
-    max-height: 3vh;
-}
-
-#navbar-logo:hover {
-    opacity: 0.9;
-}
-
-#about-logo {
-    max-height: 4vh;
-}
-
 #home-logo {
     max-height: 9vh;
 }
@@ -527,4 +511,3 @@ label {
 .form-control {
     background-color: white;
 }
-
