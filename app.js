@@ -15,8 +15,10 @@ import { NewsController } from './controllers/NewsControllers/NewsController.js'
 import { AddNewsController } from './controllers/NewsControllers/AddNewsController.js';
 import { DetailedNewsController, loadComments } from './controllers/NewsControllers/DetailedNewsController.js';
 
-import { DetailedHomeworkController } from './controllers/HomeworksControllers/DetailedHomeworkController.js';
 import { HomeworksController } from './controllers/HomeworksControllers/HomeworksController.js';
+import { DetailedHomeworkController } from './controllers/HomeworksControllers/DetailedHomeworkController.js';
+import { SubmissionsController } from './controllers/HomeworksControllers/SubmissionsController.js';
+import { DetailedSubmissionController } from './controllers/HomeworksControllers/DetailedSubmissionController.js';
 
 import { MaterialsController } from './controllers/MaterialsControllers/MaterialsController.js';
 import { DetailedMaterialController } from './controllers/MaterialsControllers/DetailedMaterialController.js';
@@ -81,13 +83,19 @@ router
     .on('/homeworks/:id', (params) => {
         DetailedHomeworkController(params.id);
     })
+    .on('/homeworks/:id/submissions', (params) => {
+        SubmissionsController(params.id);
+    })
+    .on('/homeworks/:homeworkId/submissions/:submissionId', (params) => {
+        DetailedSubmissionController(params.homeworkId, params.submissionId);
+    })
     .on('/materials', () => {
         MaterialsController();
     })
     .on('/materials/:subjectId/:materialId', (params) => {
         DetailedMaterialController(params.subjectId, params.materialId);
     })
-    /*.notFound(() => {
+    .notFound(() => {
         NotFoundController();
-    })*/
+    })
     .resolve();
