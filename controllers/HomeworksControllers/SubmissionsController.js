@@ -15,6 +15,7 @@ export function SubmissionsController(homeworkId) {
                 if (el.content.length > 150) {
                     el.content = el.content.slice(0, 149) + '...';
                 }
+
                 el.homeworkId = homeworkId;
             })
 

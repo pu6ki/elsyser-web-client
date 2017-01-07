@@ -38,9 +38,9 @@ export function DetailedHomeworkController(id) {
             $('#send-homework-button').on('click', () => {
                 SendHomeworkController(id);
             })
-            
+
             $('#submissions-button').on('click', () => {
-                SubmissionsController();
+                SubmissionsController(id);
             })
         }).catch((err) => {
             console.log(err);
