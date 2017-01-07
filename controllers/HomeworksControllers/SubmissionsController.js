@@ -1,5 +1,6 @@
 import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
+import { NotFoundController } from '../NotFoundController.js';
 
 export function SubmissionsController(homeworkId) {
     let submissionsUrl = `https://elsyser.herokuapp.com/api/homeworks/${homeworkId}/submissions/`,
@@ -22,4 +23,8 @@ export function SubmissionsController(homeworkId) {
 
             $('#content').html(template);
         })
+        /*.catch((err) => {
+            console.log(err);
+            //NotFoundController();
+        })*/
 }

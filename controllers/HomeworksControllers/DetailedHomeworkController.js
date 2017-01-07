@@ -7,8 +7,8 @@ import { SubmissionsController } from './SubmissionsController.js';
 import { NotFoundController } from '../NotFoundController.js';
 
 export function DetailedHomeworkController(id) {
-    let examUrl = `https://elsyser.herokuapp.com/api/homeworks/${id}/`,
-        getData = requester.getJSON(examUrl),
+    let homeworkUrl = `https://elsyser.herokuapp.com/api/homeworks/${id}/`,
+        getData = requester.getJSON(homeworkUrl),
         getTemplate = templates.get('HomeworksTemplates/detailed-homework'),
         currentUser = localStorage.getItem('elsyser-username');
 
@@ -38,12 +38,30 @@ export function DetailedHomeworkController(id) {
             $('#send-homework-button').on('click', () => {
                 SendHomeworkController(id);
             })
-            
+
+            viewSentHomework(id);
+
             $('#submissions-button').on('click', () => {
-                SubmissionsController();
+                SubmissionsController(id);
             })
         }).catch((err) => {
             console.log(err);
             NotFoundController();
         });
+}
+
+function viewSentHomework(id) {
+    let submissionsUrl = `https://elsyser.herokuapp.com/api/homeworks/${id}/submissions/`,
+        getData = requester.getJSON(submissionsUrl),
+        getTemplate = templates.get('HomeworksTemplates/detailed-submission');
+
+    
+    Promise.all([getData, getTemplate])
+        .then((result) => {
+            let data = result[0][0],
+                hbTemplate = Handlebars.compile(result[1]),
+                template = hbTemplate(data);
+
+            $('#sent-homework').html(template);
+        })
 }
