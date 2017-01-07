@@ -7,3 +7,7 @@ export function isTeacher(token) {
 
     return false;
 }
+
+export function insertLineBreaks(content) {
+    return content.replace(/[\n]/g, '<br />');
+}
