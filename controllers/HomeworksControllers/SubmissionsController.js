@@ -16,6 +16,7 @@ export function SubmissionsController(homeworkId) {
                 if (el.content.length > 150) {
                     el.content = el.content.slice(0, 149) + '...';
                 }
+
                 el.homeworkId = homeworkId;
             })
 
@@ -23,8 +24,12 @@ export function SubmissionsController(homeworkId) {
 
             $('#content').html(template);
         })
+<<<<<<< HEAD
         /*.catch((err) => {
             console.log(err);
             //NotFoundController();
         })*/
 }
+=======
+}
+>>>>>>> 6c15a583ffad5e9c88f66af499d4a98ada271a7a
