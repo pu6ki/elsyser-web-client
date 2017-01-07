@@ -356,7 +356,7 @@ input {
   color: #666666
 }
 
-.edit, .delete {
+.edit, .delete, .check {
   font-size: 16px;
   color: white;
   cursor: pointer;
@@ -527,3 +527,4 @@ label {
 .form-control {
     background-color: white;
 }
+

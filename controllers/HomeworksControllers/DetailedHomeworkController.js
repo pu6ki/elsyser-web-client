@@ -1,9 +1,11 @@
 import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
+import { insertLineBreaks } from '../../utils/helper.js';
 import { EditHomeworkController } from '../HomeworksControllers/EditHomeworkController.js';
 import { DeleteHomeworkController } from '../HomeworksControllers/DeleteHomeworkController.js';
 import { SendHomeworkController } from './SendHomeworkController.js';
 import { SubmissionsController } from './SubmissionsController.js';
+import { EditSubmissionController } from './EditSubmissionController.js';
 import { NotFoundController } from '../NotFoundController.js';
 
 export function DetailedHomeworkController(id) {
@@ -59,9 +61,20 @@ function viewSentHomework(id) {
     Promise.all([getData, getTemplate])
         .then((result) => {
             let data = result[0][0],
-                hbTemplate = Handlebars.compile(result[1]),
-                template = hbTemplate(data);
+                hbTemplate = Handlebars.compile(result[1]);
 
+            if(data.student.user.username === window.localStorage.getItem('elsyser-username')) {
+                data.editable = true;
+            }
+            data.content = insertLineBreaks(data.content);
+
+            let template = hbTemplate(data);
             $('#sent-homework').html(template);
+
+            $('#submission-edit').on('click', () => {
+                EditSubmissionController(id, data.id);
+            })
         })
 }
+
+

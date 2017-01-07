@@ -1,5 +1,6 @@
 import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
+import { insertLineBreaks } from '../../utils/helper.js';
 import { EditMaterialController } from './EditMaterialController.js';
 import { DeleteMaterialController } from './DeleteMaterialController.js';
 import { NotFoundController } from '../NotFoundController.js';
@@ -45,8 +46,4 @@ function makeYouTubeVideoEmbedable(videoUrl) {
         result = videoUrl.slice(0, index) + 'embed/' + videoUrl.slice(index);
 
     return result.replace('watch?v=', '');
-}
-
-function insertLineBreaks(content) {
-    return content.replace(/[\n]/g, '<br />');
 }

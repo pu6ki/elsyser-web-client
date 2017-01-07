@@ -6,15 +6,18 @@
              </strong>
             {{#if editable}}
                 <div class="pull-right edit">
-                    <span id="news-{{id}}-edit" class="edit"><span class="glyphicon glyphicon-edit"></span></span>
-                    <span id="news-{{id}}-delete" class="delete"><span class="glyphicon glyphicon-trash"></span></span>
+                    <span id="submission-edit" class="edit"><span class="glyphicon glyphicon-edit"></span></span>
+                </div>
+            {{else}}
+                <div class="pull-right check">
+                    <span id="mark-checked" class="checked"><span class="glyphicon glyphicon-ok"></span></span>
                 </div>
             {{/if}}
         </div>
         <div class="panel-body">
             <div>
-                <span><strong><i>{{content}}</i></strong></span>
-                <span><strong><i>{{solution_url}}</i></strong></span>
+                <strong><i><span id="submission-content">{{{content}}}</span></i></strong>
+                <strong><i><span id="solution-url">{{solution_url}}</span></i></strong>
             </div>
             <div>
                 Posted by
