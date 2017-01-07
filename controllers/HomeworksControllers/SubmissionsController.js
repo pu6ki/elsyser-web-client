@@ -24,12 +24,8 @@ export function SubmissionsController(homeworkId) {
 
             $('#content').html(template);
         })
-<<<<<<< HEAD
-        /*.catch((err) => {
+        .catch((err) => {
             console.log(err);
-            //NotFoundController();
-        })*/
+            NotFoundController();
+        })
 }
-=======
-}
->>>>>>> 6c15a583ffad5e9c88f66af499d4a98ada271a7a
