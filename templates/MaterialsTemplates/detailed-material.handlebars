@@ -17,9 +17,11 @@
                 {{{content}}}
             </article>
             <br />
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="{{video_url}}" allowfullscreen></iframe>
-            </div>
+            {{#if video_url}}
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="{{video_url}}" allowfullscreen></iframe>
+                </div>
+            {{/if}}
             <br />
 
             Posted by

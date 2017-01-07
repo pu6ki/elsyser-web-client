@@ -13,7 +13,10 @@ export function DetailedSubmissionController(homeworkId, submissionId) {
         .then((result) => {
             let data = result[0],
                 hbTemplate = Handlebars.compile(result[1]);
-
+            
+            if(data.student.user.username === window.localStorage.getItem('elsyser-username')) {
+                data.editable = true;
+            }
             data.content = insertLineBreaks(data.content);
             let template = hbTemplate(data);
 
