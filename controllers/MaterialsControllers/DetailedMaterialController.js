@@ -14,7 +14,7 @@ export function DetailedMaterialController(subjectId, materialId) {
         .then((result) => {
             let data = result[0];
 
-            if (currentUser === data.author.username) {
+            if (currentUser === data.author.user.username) {
                 data.editable = true;
             }
             

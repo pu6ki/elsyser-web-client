@@ -1,6 +1,7 @@
 import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
 import { AddNewsController } from './AddNewsController.js';
+import { NotFoundController } from '../NotFoundController.js';
 
 const newsUrl = 'https://elsyser.herokuapp.com/api/news/';
 
@@ -42,5 +43,6 @@ export function NewsController() {
             })
         }).catch((err) => {
             console.log(err);
+            NotFoundController();
         });
 }

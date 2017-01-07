@@ -2,6 +2,8 @@ import { requester } from '../../utils/requster.js';
 import { templates } from '../../utils/templates.js';
 import { EditHomeworkController } from '../HomeworksControllers/EditHomeworkController.js';
 import { DeleteHomeworkController } from '../HomeworksControllers/DeleteHomeworkController.js';
+import { SendHomeworkController } from './SendHomeworkController.js';
+import { SubmissionsController } from './SubmissionsController.js';
 import { NotFoundController } from '../NotFoundController.js';
 
 export function DetailedHomeworkController(id) {
@@ -14,7 +16,7 @@ export function DetailedHomeworkController(id) {
         .then((result) => {
             let data = result[0];
 
-            if (currentUser === data.author.username) {
+            if (currentUser === data.author.user.username) {
                 data.editable = true;
             }
 
@@ -31,6 +33,14 @@ export function DetailedHomeworkController(id) {
                 alertify.confirm("Are you sure you want to delete this homework?", () => {
                     DeleteHomeworkController(id);
                 })
+            })
+
+            $('#send-homework-button').on('click', () => {
+                SendHomeworkController(id);
+            })
+            
+            $('#submissions-button').on('click', () => {
+                SubmissionsController();
             })
         }).catch((err) => {
             console.log(err);

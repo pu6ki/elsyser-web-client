@@ -511,3 +511,19 @@ label {
     margin-left: 11%;
     margin-right: 11%;
 }
+
+.btn-primary a {
+    color: white;
+}
+
+.btn-primary a:hover {
+    color: gold;
+}
+
+.btn-primary:hover {
+    color: gold
+}
+
+.form-control {
+    background-color: white;
+}
