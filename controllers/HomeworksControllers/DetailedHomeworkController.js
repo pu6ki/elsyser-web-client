@@ -57,7 +57,6 @@ function viewSentHomework(id) {
         getData = requester.getJSON(submissionsUrl),
         getTemplate = templates.get('HomeworksTemplates/detailed-submission');
 
-    
     Promise.all([getData, getTemplate])
         .then((result) => {
             let data = result[0][0],
@@ -76,5 +75,3 @@ function viewSentHomework(id) {
             })
         })
 }
-
-

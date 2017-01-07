@@ -31,8 +31,11 @@
     </div>
 
     {{#if editable}}
-        <button type="button" class="btn btn-primary center-block" id="submissions-button" onclick="window.location.href = '#/homeworks/{{id}}/submissions'"><a href="#/homeworks/{{id}}/submissions">View submissions</a></button>
+        <button type="button" class="btn btn-primary center-block" id="submissions-button" onclick="window.location.href = '#/homeworks/{{id}}/submissions'">
+            <a href="#/homeworks/{{id}}/submissions">View submissions</a>
+        </button>
     {{else}}
+        <h4 class="text-center">Your latest submission:</h4>
         <div id="sent-homework"></div>
         <button type="button" class="btn btn-primary center-block" id="send-homework-button">Send homework</button>
     {{/if}}
