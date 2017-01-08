@@ -4,7 +4,7 @@ import { validator } from '../../utils/validator.js';
 import { HomeworksController } from './HomeworksController.js'
 
 export function SendHomeworkController(homeworkId) {
-    let url = `https:/elsyser.herokuapp.com/api/homeworks/${homeworkId}/submissions/`;
+    let url = `https://elsyser.herokuapp.com/api/homeworks/${homeworkId}/submissions/`;
 
     templates.get('HomeworksTemplates/send-homework')
         .then((result) => {
@@ -24,6 +24,7 @@ export function SendHomeworkController(homeworkId) {
                 }
                 else {
                     toastr.error('Content must contain atleast 5 characters.');
+                    return;
                 }
 
                 body.solution_url = $('#solution-url').val();
