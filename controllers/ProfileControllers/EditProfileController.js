@@ -59,28 +59,14 @@ function editData(id) {
     }
 
     body.info = $('#new-info').val();
+    body.profile_image_url = $('#new-profile-image-url').val();
 
-    $.ajax({
-        url: $('#new-profile-image-url').val(),
-        method: 'HEAD',
-    }).then(function (data, status, xhr) {
-        if (xhr.getResponseHeader('content-type').startsWith('image/')) {
-            body.profile_image_url = $('#new-profile-image-url').val();
-        }
-        else {
-            toastr.error('URL is not an image.');
-            return;
-        }
-
-        requester.putJSON(profileUrl + id + '/', body)
-            .then(() => {
-                toastr.success('Data updated successfully.');
-                ProfileController(id);
-                HeaderController();
-            }).catch((error) => {
-                toastr.error('User with this username already exists.');
-            });
-    }).catch((err) => {
-        toastr.error('URL is not an image.');
-    });
+    requester.putJSON(profileUrl + id + '/', body)
+        .then(() => {
+            toastr.success('Data updated successfully.');
+            ProfileController(id);
+            HeaderController();
+        }).catch((error) => {
+            toastr.error(error.responseText);
+        });
 }
