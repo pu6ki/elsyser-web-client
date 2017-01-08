@@ -27,6 +27,10 @@ export function HomeController() {
                 data.homeworks = result[3].slice(0, 5);
                 data.materials = result[4].slice(0, 5);
 
+                if (isTeacher(token)) {
+                    data.isTeacher = true;
+                }
+
                 let template = hbTemplate(data);
 
                 $('#content').html(template);
