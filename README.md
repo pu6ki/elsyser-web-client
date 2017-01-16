@@ -24,6 +24,7 @@ This is the web client for the [ELSYSER API](https://github.com/pu6ki/elsyser/).
 * [navigo](https://github.com/krasimir/navigo) - Minimalistic JavaScript router
 * [AlertifyJS](https://github.com/MohammadYounes/AlertifyJS) - A JavaScript framework for developing pretty browser dialogs and notifications
 * [Bootstrap](https://github.com/twbs/bootstrap) - Framework for developing responsive UI on the web
+* [Jasmine](https://jasmine.github.io/) - Testing framework
 * [live-server](https://github.com/tapio/live-server) - A small HTTP web server with live reload
 * [Visual Studio Code](https://github.com/Microsoft/vscode) - Another cool text editor
 
