@@ -322,6 +322,7 @@ h6 {
   bottom: 2em;
   right: 0.5em;
   background-color: gold;
+  z-index: 1;
 }
 
 .btn-md {
@@ -510,4 +511,21 @@ label {
 
 .form-control {
     background-color: white;
+    border: 0.5px solid lightgray !important;
+    border-radius: 5px !important;
+}
+
+.label-center {
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#wrapper .form-wrapper {
+    background-color: white;
+    opacity: 0.9;
+    padding: 4em;
+    border-radius: 10px;
+    z-index: 0;
 }
