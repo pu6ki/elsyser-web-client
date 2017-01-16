@@ -1,0 +1,12 @@
+{
+  "spec_dir": "tests/spec",
+  "spec_files": [
+    //include everything without the UISpex.js
+    "**/*[sS]pec.js"
+  ],
+  "helpers": [
+    "helpers/**/*.js"
+  ],
+  "stopSpecOnExpectationFailure": false,
+  "random": false
+}

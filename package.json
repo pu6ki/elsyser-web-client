@@ -4,11 +4,14 @@
   "description": "This is the SPA web client without any MV* frameworks",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clear": "rm -rf node_modules/",
+    "test": "babel-node tests/spec/run.js"
   },
   "author": "Martin Markov",
   "license": "ISC",
   "dependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
     "bootstrap": "3.3.7",
     "handlebars": "4.0.5",
     "handlebars-helper-intl": "^1.0.0-rc-2",
@@ -18,5 +21,12 @@
     "systemjs": "0.19.40",
     "systemjs-plugin-babel": "0.0.17",
     "toastr": "2.1.2"
+  },
+  "devDependencies": {
+    "jasmine": "^2.5.3",
+    "jasmine-jquery": "^2.1.1",
+    "babel-core": "^6.10.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0"
   }
 }
