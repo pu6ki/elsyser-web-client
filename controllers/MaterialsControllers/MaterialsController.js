@@ -1,4 +1,4 @@
-import { requester } from '../../utils/requster.js';
+import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
 import { isTeacher } from '../../utils/helper.js'
 import { AddMaterialController } from './AddMaterialController.js';

@@ -1,4 +1,4 @@
-import { requester } from '../../utils/requster.js';
+import { requester } from '../../utils/requester.js';
 
 const examsUrl = 'https://elsyser.herokuapp.com/api/exams/';
 

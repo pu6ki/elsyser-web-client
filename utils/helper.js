@@ -1,4 +1,4 @@
-import { requester } from './requster.js';
+import { requester } from './requester.js';
 
 export function isTeacher(token) {
     if (token.length === 41 && token[40] === '1') {

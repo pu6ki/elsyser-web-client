@@ -1,4 +1,4 @@
-import { requester } from '../../utils/requster.js';
+import { requester } from '../../utils/requester.js';
 
 const newsUrl = 'https://elsyser.herokuapp.com/api/news/';
 

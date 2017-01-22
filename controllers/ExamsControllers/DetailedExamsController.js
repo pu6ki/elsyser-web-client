@@ -1,4 +1,4 @@
-import { requester } from '../../utils/requster.js';
+import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
 import { EditExamController } from './EditExamController.js';
 import { DeleteExamController } from './DeleteExamController.js';

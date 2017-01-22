@@ -1,4 +1,4 @@
-import { requester } from './requster.js'
+import { requester } from './requester.js'
 
 export let validator = {
     email: (email) => {

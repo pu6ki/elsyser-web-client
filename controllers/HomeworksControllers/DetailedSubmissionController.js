@@ -1,4 +1,4 @@
-import { requester } from '../../utils/requster.js';
+import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
 import { validator } from '../../utils/validator.js';
 import { insertLineBreaks } from '../../utils/helper.js';
