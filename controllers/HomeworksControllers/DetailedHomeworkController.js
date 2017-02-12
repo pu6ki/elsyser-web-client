@@ -62,16 +62,18 @@ function viewSentHomework(id) {
             let data = result[0][0],
                 hbTemplate = Handlebars.compile(result[1]);
 
-            if(data.student.user.username === window.localStorage.getItem('elsyser-username')) {
-                data.editable = true;
+            if (data) {
+                if (data.student.user.username === window.localStorage.getItem('elsyser-username')) {
+                    data.editable = true;
+                }
+                data.content = insertLineBreaks(data.content);
+
+                let template = hbTemplate(data);
+                $('#sent-homework').html(template);
+
+                $('#submission-edit').on('click', () => {
+                    EditSubmissionController(id, data.id);
+                })
             }
-            data.content = insertLineBreaks(data.content);
-
-            let template = hbTemplate(data);
-            $('#sent-homework').html(template);
-
-            $('#submission-edit').on('click', () => {
-                EditSubmissionController(id, data.id);
-            })
         })
 }
