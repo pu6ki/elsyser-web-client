@@ -1,5 +1,6 @@
 import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
+
 import { EditExamController } from './EditExamController.js';
 import { DeleteExamController } from './DeleteExamController.js';
 import { NotFoundController } from '../NotFoundController.js';
@@ -14,7 +15,7 @@ export function DetailedExamsController(id) {
             let data = result[0],
                 currentUser = window.localStorage.getItem('elsyser-username');
 
-            if (currentUser === data.author.username) {
+            if (currentUser === data.author.user.username) {
                 data.editable = true;
             }
 

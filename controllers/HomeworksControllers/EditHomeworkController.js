@@ -2,6 +2,9 @@ import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
 import { validator } from '../../utils/validator.js';
 
+import { HomeworksController } from './HomeworksController.js'
+import { DetailedHomeworkController } from './DetailedHomeworkController.js';
+
 const homeworksUrl = `https://elsyser.herokuapp.com/api/homeworks/`;
 
 export function EditHomeworkController(id) {
@@ -29,6 +32,10 @@ export function EditHomeworkController(id) {
 
             $('#save-button').on('click', () => {
                 editData(id);
+            });
+
+            $('#go-back').on('click', () => {
+                DetailedHomeworkController(id);
             })
         });
 }
@@ -52,7 +59,7 @@ function editData(id) {
     requester.putJSON(selectedHomeworkUrl, body)
         .then(() => {
             toastr.success('Homework edited successfully!');
-            window.location.href = '#/homeworks'
+            DetailedHomeworkController(id);
         }).catch(() => {
             toastr.error('Couldn\'t update the selected homework!');
         })

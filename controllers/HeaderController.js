@@ -1,7 +1,8 @@
 import { requester } from '../utils/requester.js';
 import { templates } from '../utils/templates.js';
-import { LogoutController } from '../controllers/AuthControllers/LogoutController.js';
 import { isTeacher } from '../utils/helper.js';
+
+import { LogoutController } from '../controllers/AuthControllers/LogoutController.js';
 
 export function HeaderController() {
     let profileId = localStorage.getItem('elsyser-id');

@@ -2,6 +2,9 @@ import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
 import { validator } from '../../utils/validator.js';
 
+import { ExamsController } from './ExamsController.js';
+import { DetailedExamsController } from './DetailedExamsController.js';
+
 const examsUrl = `https://elsyser.herokuapp.com/api/exams/`;
 
 export function EditExamController(id) {
@@ -29,7 +32,11 @@ export function EditExamController(id) {
 
             $('#save-button').on('click', () => {
                 editData(id);
-            })
+            });
+
+            $('#go-back').on('click', () => {
+                DetailedExamsController(id);
+            });
         });
 }
 
@@ -55,7 +62,7 @@ function editData(id) {
     requester.putJSON(selectedExamUrl, body)
         .then(() => {
             toastr.success('Exam edited successfully!');
-            window.location.href = '#/exams'
+            ExamsController();
         }).catch(() => {
             toastr.error('Couldn\'t update the selected exam!');
         })

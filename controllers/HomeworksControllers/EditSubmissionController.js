@@ -1,6 +1,7 @@
 import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
 import { validator } from '../../utils/validator.js';
+
 import { DetailedHomeworkController } from './DetailedHomeworkController.js';
 
 export function EditSubmissionController(homeworkId, submissionid) {
@@ -40,6 +41,10 @@ export function EditSubmissionController(homeworkId, submissionid) {
                         console.log(err);
                         toastr.error('Couldn\'t edit homework.');
                     })
-            })
-        })
+            });
+
+            $('#go-back').on('click', () => {
+                DetailedHomeworkController(homeworkId);
+            });
+        });
 }

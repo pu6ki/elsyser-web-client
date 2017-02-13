@@ -1,6 +1,7 @@
 import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
 import { formHandler } from '../../utils/formHandler.js';
+
 import { HomeworksController } from './HomeworksController.js';
 
 export function AddHomeworkController() {
@@ -29,6 +30,10 @@ export function AddHomeworkController() {
             $('#add-homework').on('click', () => {
                 postHomework();
             })
+
+            $('#go-back').on('click', () => {
+                HomeworksController();
+            });
         })
 }
 

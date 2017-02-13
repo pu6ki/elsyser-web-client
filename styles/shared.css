@@ -311,18 +311,35 @@ h6 {
 }
 
 .btn-circle.btn-lg{
-  width: 60px;
-  height: 60px;
-  padding: 10px 16px;
-  font-size: 20px;
-  line-height: 1.33;
-  border-radius: 50%;
-  border: none;
-  position: fixed;
-  bottom: 2em;
-  right: 0.5em;
-  background-color: gold;
-  z-index: 1;
+    width: 60px;
+    height: 60px;
+    padding: 10px 16px;
+    font-size: 20px;
+    line-height: 1.33;
+    border-radius: 50%;
+    border: none;
+    position: fixed;
+    bottom: 2em;
+    right: 0.5em;
+    background-color: gold;
+    z-index: 1;
+}
+
+.btn-circle i:hover {
+    color: rebeccapurple;
+}
+
+.btn-circle i {
+    color: white;
+}
+
+#go-back {
+    padding: 10px 16px;
+    font-size: 20px;
+    line-height: 1.33;
+    border-radius: 50%;
+    border: none;
+    display: inline;
 }
 
 .btn-md {
@@ -506,7 +523,7 @@ label {
 }
 
 .btn-primary:hover {
-    color: gold
+    color: gold;
 }
 
 .form-control {

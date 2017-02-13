@@ -2,6 +2,9 @@ import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
 import { validator } from '../../utils/validator.js';
 
+import { NewsController } from './NewsController.js';
+import { DetailedNewsController } from './DetailedNewsController.js';
+
 const newsUrl = `https://elsyser.herokuapp.com/api/news/`;
 
 export function EditNewsController(id) {
@@ -19,7 +22,11 @@ export function EditNewsController(id) {
 
             $('#save-button').on('click', () => {
                 editData(id);
-            })
+            });
+
+            $('#go-back').on('click', () => {
+                NewsController();
+            });
         });
 }
 
@@ -49,7 +56,7 @@ function editData(id) {
     requester.putJSON(selectedNewsUrl, body)
         .then(() => {
             toastr.success("News updated successfully!");
-            window.location.href = '#/news';
+            DetailedNewsController(id);
         }).catch(() => {
             toastr.error('Couldn\'t update the selected news!');
         });

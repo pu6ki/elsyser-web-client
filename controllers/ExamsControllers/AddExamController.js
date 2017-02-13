@@ -1,6 +1,7 @@
 import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
 import { formHandler } from '../../utils/formHandler.js';
+
 import { ExamsController } from './ExamsController.js';
 
 export function AddExamController() {
@@ -30,6 +31,10 @@ export function AddExamController() {
             $('#add-exam').on('click', () => {
                 postExam();
             })
+            
+            $('#go-back').on('click', () => {
+                ExamsController();
+            });
         })
 }
 

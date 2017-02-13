@@ -18,8 +18,12 @@ export function AddMaterialController() {
 
             $('#add-material').on('click', () => {
                 postMaterial(result[1][0].id);
-            })
-        })
+            });
+
+            $('#go-back').on('click', () => {
+                MaterialsController();
+            });
+        });
 }
 
 function postMaterial(subjectId) {

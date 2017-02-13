@@ -1,6 +1,7 @@
 import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
 import { insertLineBreaks } from '../../utils/helper.js';
+
 import { EditMaterialController } from './EditMaterialController.js';
 import { DeleteMaterialController } from './DeleteMaterialController.js';
 import { NotFoundController } from '../NotFoundController.js';

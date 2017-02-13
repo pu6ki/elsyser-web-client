@@ -1,6 +1,7 @@
 import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
 import { validator } from '../../utils/validator.js';
+
 import { DetailedMaterialController } from './DetailedMaterialController.js';
 
 export function EditMaterialController(subjectId, materialId) {
@@ -20,7 +21,11 @@ export function EditMaterialController(subjectId, materialId) {
 
             $('#save-button').on('click', () => {
                 editData(subjectId, materialId);
-            })
+            });
+
+            $('#go-back').on('click', () => {
+                DetailedMaterialController(subjectId, materialId);
+            });
         })
 }
 

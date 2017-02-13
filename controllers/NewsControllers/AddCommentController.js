@@ -16,6 +16,6 @@ export function AddCommentController(id) {
                 $('#comment-content').val('');
             }).catch((err) => {
                 toastr.error('Comments can\'t be empty! Comments shold be max 2048 characters long!');
-            })
+            });
     }
 }

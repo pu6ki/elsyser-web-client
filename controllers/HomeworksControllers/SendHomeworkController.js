@@ -1,6 +1,8 @@
 import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
 import { validator } from '../../utils/validator.js';
+
+import { DetailedHomeworkController } from './DetailedHomeworkController.js';
 import { HomeworksController } from './HomeworksController.js'
 
 export function SendHomeworkController(homeworkId) {
@@ -38,6 +40,10 @@ export function SendHomeworkController(homeworkId) {
                         console.log(err);
                         toastr.error('Couldn\'t send homework.');
                     })
+            });
+
+            $('#go-back').on('click', () => {
+                DetailedHomeworkController(homeworkId);
             })
-        })
+        });
 }
