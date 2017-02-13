@@ -6,14 +6,16 @@ import { LoginController } from './controllers/AuthControllers/LoginController.j
 import { RegisterController } from './controllers/AuthControllers/RegisterController.js';
 
 import { ProfileController } from './controllers/ProfileControllers/ProfileController.js';
-import { EditProfileController } from './controllers/ProfileControllers/EditProfileController.js';
+// import { EditProfileController } from './controllers/ProfileControllers/EditProfileController.js';
 
 import { ExamsController } from './controllers/ExamsControllers/ExamsController.js';
 import { DetailedExamsController } from './controllers/ExamsControllers/DetailedExamsController.js';
 
 import { NewsController } from './controllers/NewsControllers/NewsController.js';
-import { AddNewsController } from './controllers/NewsControllers/AddNewsController.js';
+// import { AddNewsController } from './controllers/NewsControllers/AddNewsController.js';
 import { DetailedNewsController, loadComments } from './controllers/NewsControllers/DetailedNewsController.js';
+
+// --- Unused imports. Maybe remove them. ---
 
 import { HomeworksController } from './controllers/HomeworksControllers/HomeworksController.js';
 import { DetailedHomeworkController } from './controllers/HomeworksControllers/DetailedHomeworkController.js';
