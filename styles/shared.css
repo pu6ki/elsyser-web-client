@@ -543,6 +543,7 @@ input {
 }
 
 #wrapper .form-wrapper {
+    text-align: center;
     z-index: 0;
     opacity: 0.9;
     border-radius: 10px;

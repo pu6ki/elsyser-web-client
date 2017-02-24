@@ -4,11 +4,11 @@
 <div id="wrapper">
     <div class="form-group form-wrapper">
         <label for="title">Title: </label>
-        <input type="text" class="form-control" id="title">
-        <label for="title">Section: </label>
-        <input type="text" class="form-control" id="section">
-        <label for="content">Content: </label>
-        <textarea class="form-control" id="material-content" rows="4"></textarea>
+        <input type="text" class="form-control" name="title" id="title">
+        <label for="section">Section: </label>
+        <input type="text" class="form-control" name="section" id="section">
+        <label for="material-content">Content: </label>
+        <textarea class="form-control" name="material-content" id="material-content" rows="4"></textarea>
         <label for="class-number">Class: </label>
         <select class="form-control" name="class-number" id="class-number">
           <option value="8">8</option>
@@ -18,7 +18,7 @@
           <option value="12">12</option>
       </select>
         <label for="video-url">Link to video lesson: </label>
-        <input type="url" class="form-control" id="video-url">
+        <input type="url" class="form-control" name="video-url" id="video-url">
         <button class="btn btn-lg btn-primary btn-block submit" id="add-material">Add Material</button>
     </div>
 </div>

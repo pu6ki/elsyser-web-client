@@ -22,7 +22,11 @@
             </div>
         {{/each}}
     {{else}}
-        <h3>No available materials now.</h3>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3 class="text-center">There are no available materials so far.</h3>
+            </div>
+        </div>
     {{/if}}
 
     {{#if isTeacher}}
