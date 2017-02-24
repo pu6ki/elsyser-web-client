@@ -1,35 +1,41 @@
-<div id="wrapper">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <strong>
-                 <span>{{student.user.first_name}} {{student.user.last_name}} - {{student.clazz.number}}{{student.clazz.letter}}</span>
-             </strong>
-            {{#if editable}}
-                <div class="pull-right edit">
-                    <span id="submission-edit" class="edit"><span class="glyphicon glyphicon-edit"></span></span>
-                </div>
-            {{else}}
-                <div class="pull-right check">
-                    <span id="mark-checked" class="checked"><span class="glyphicon glyphicon-ok"></span></span>
-                </div>
-            {{/if}}
-        </div>
-        <div class="panel-body">
-            <div>
-                <strong><i><span id="submission-content">{{{content}}}</span></i></strong>
-                <strong><i><span id="solution-url">{{solution_url}}</span></i></strong>
-            </div>
-            <div>
-                Posted by
-                <a href="#/profile/{{student.user.id}}">
-                    <span><strong><i>{{student.user.username}}</i></strong></span>
-                </a>
-                <span> {{formatRelative posted_on}}</span>
-
-                {{#if edited}}
-                    <span>(last edited {{formatRelative last_edited_on}})</span>
+{{#if this}}
+    <div id="wrapper">
+        <h4 class="text-center">Your latest submission:</h4>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <strong>
+                     <span>{{student.user.first_name}} {{student.user.last_name}} - {{student.clazz.number}}{{student.clazz.letter}}</span>
+                 </strong>
+                {{#if editable}}
+                    <div class="pull-right edit">
+                        <span id="submission-edit" class="edit"><span class="glyphicon glyphicon-edit"></span></span>
+                    </div>
+                {{else}}
+                    <div class="pull-right check">
+                        <span id="mark-checked" class="checked"><span class="glyphicon glyphicon-ok"></span></span>
+                    </div>
                 {{/if}}
             </div>
+            <div class="panel-body">
+                <div>
+                    <strong><i><span id="submission-content">{{{content}}}</span></i></strong>
+                    <strong><i><span id="solution-url">{{solution_url}}</span></i></strong>
+                </div>
+                <div>
+                    Posted by
+                    <a href="#/profile/{{student.user.id}}">
+                        <span><strong><i>{{student.user.username}}</i></strong></span>
+                    </a>
+                    <span> {{formatRelative posted_on}}</span>
+
+                    {{#if edited}}
+                        <span>(last edited {{formatRelative last_edited_on}})</span>
+                    {{/if}}
+                </div>
+            </div>
         </div>
+
     </div>
-</div>
+{{else}}
+    <button type="button" class="btn btn-primary center-block" id="send-homework-button">Send homework</button>
+{{/if}}

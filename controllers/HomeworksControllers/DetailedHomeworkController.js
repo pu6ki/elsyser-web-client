@@ -37,17 +37,13 @@ export function DetailedHomeworkController(id) {
                 alertify.confirm("Are you sure you want to delete this homework?", () => {
                     DeleteHomeworkController(id);
                 })
-            })
-
-            $('#send-homework-button').on('click', () => {
-                SendHomeworkController(id);
-            })
+            });
 
             viewSentHomework(id);
 
             $('#submissions-button').on('click', () => {
                 SubmissionsController(id);
-            })
+            });
         }).catch((err) => {
             console.log(err);
             NotFoundController();
@@ -75,7 +71,15 @@ function viewSentHomework(id) {
 
                 $('#submission-edit').on('click', () => {
                     EditSubmissionController(id, data.id);
+                });
+            }
+            else {
+                let template = hbTemplate(data);
+                $('#sent-homework').html(template);
+
+                $('#send-homework-button').on('click', () => {
+                    SendHomeworkController(id);
                 })
             }
-        })
+        });
 }
