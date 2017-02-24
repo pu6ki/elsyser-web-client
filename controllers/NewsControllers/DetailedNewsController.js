@@ -64,9 +64,9 @@ export function DetailedNewsController(id) {
             $(".comment").slice(0, 2).show();
             $("#loadMore").on('click', () => {
                 $(".comment:hidden").slice(0, 5).slideDown();
-                if ($("div:hidden").length === 0) {
+                /*if ($("div:hidden").length === 0) {
                     $("#loadMore").fadeOut('slow');
-                }
+                }*/
             });
 
             $('.toTop').click(function () {
