@@ -107,7 +107,7 @@ export function loadComments(newsId) {
         dataFromAPI.comment_set = newData.comment_set;
 
         for (let i = 0; i < commentsToLoad.length; i += 1) {
-            if (commentsToLoad[i].posted_by.user == currentUsername) {
+            if (commentsToLoad[i].posted_by.user.username == currentUsername) {
                 commentsToLoad[i].newsId = newsId;
                 commentsToLoad[i].editable = true;
             }

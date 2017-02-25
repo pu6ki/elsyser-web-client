@@ -1,10 +1,10 @@
-<div class="row comment new-comment">
+<div class="row comment new-comment" id="comment-{{id}}">
     <div class="col-xs-2 col-md-1 img-container">
         <img class="user-photo" src="{{posted_by.profile_image_url}}">
     </div>
 
     <div class="col-xs-9 col-md-10">
-        <div id="comment-{{id}}" class="comment-panel panel panel-default">
+        <div class="comment-panel panel panel-default">
             <div class="panel-heading">
                 <a href="#/profile/{{posted_by.user.id}}">
                     <strong>{{posted_by.user.username}}</strong>
