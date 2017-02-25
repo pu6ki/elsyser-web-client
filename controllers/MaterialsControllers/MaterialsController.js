@@ -14,7 +14,7 @@ export function MaterialsController() {
         .then((result) => {
             let data = result[0],
                 hbTemplate = Handlebars.compile(result[1]),
-                token = window.localStorage.getItem('token');
+                token = window.localStorage.getItem('elsyser-token');
 
             data.forEach(function(el) {
                 if (el.content.length > 150) {

@@ -3,7 +3,7 @@ import { templates } from '../utils/templates.js';
 import { isTeacher } from '../utils/helper.js';
 
 export function HomeController() {
-    let token = window.localStorage.getItem('token');
+    let token = window.localStorage.getItem('elsyser-token');
 
     if (token) {
         const url = 'https://elsyser.herokuapp.com/api/';

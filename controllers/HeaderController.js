@@ -15,7 +15,7 @@ export function HeaderController() {
         profileId: null
     };
 
-    if (window.localStorage.getItem('token')) {
+    if (window.localStorage.getItem('elsyser-token')) {
         requester.getJSON(profileUrl)
             .then((result) => {
                 userData.profileImageUrl = result.profile_image_url;
@@ -37,8 +37,8 @@ function compileTemplate(template, data) {
 
             $('#header').html(template);
 
-            if (window.localStorage.getItem('token')) {
-                if (isTeacher(window.localStorage.getItem('token'))) {
+            if (window.localStorage.getItem('elsyser-token')) {
+                if (isTeacher(window.localStorage.getItem('elsyser-token'))) {
                     $('#news-button').remove();
                 }
             }

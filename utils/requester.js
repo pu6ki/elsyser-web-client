@@ -5,8 +5,8 @@ let requester = {
                 url,
                 method: "GET",
                 beforeSend: (xhr) => {
-                    if (window.localStorage.getItem('token')) {
-                        let token = window.localStorage.getItem('token').slice(0, 40);
+                    if (window.localStorage.getItem('elsyser-token')) {
+                        let token = window.localStorage.getItem('elsyser-token').slice(0, 40);
                         xhr.setRequestHeader('Authorization', `Token ${token}`);
                     }
                 },
@@ -30,8 +30,8 @@ let requester = {
                 contentType: "application/json",
                 data: JSON.stringify(body),
                 beforeSend: (xhr) => {
-                    if (window.localStorage.getItem('token')) {
-                        let token = window.localStorage.getItem('token').slice(0, 40);
+                    if (window.localStorage.getItem('elsyser-token')) {
+                        let token = window.localStorage.getItem('elsyser-token').slice(0, 40);
                         xhr.setRequestHeader('Authorization', `Token ${token}`);
                     }
                 },
@@ -57,8 +57,8 @@ let requester = {
                 data: JSON.stringify(body),
                 crossDomain: true,
                 beforeSend: (xhr) => {
-                    if (window.localStorage.getItem('token')) {
-                        let token = window.localStorage.getItem('token').slice(0, 40);
+                    if (window.localStorage.getItem('elsyser-token')) {
+                        let token = window.localStorage.getItem('elsyser-token').slice(0, 40);
                         xhr.setRequestHeader('Authorization', `Token ${token}`);
                     }
                 },
@@ -79,8 +79,8 @@ let requester = {
                 method: "GET",
                 contentType: "application/json",
                 beforeSend: (xhr) => {
-                    if (window.localStorage.getItem('token')) {
-                        let token = window.localStorage.getItem('token').slice(0, 40);
+                    if (window.localStorage.getItem('elsyser-token')) {
+                        let token = window.localStorage.getItem('elsyser-token').slice(0, 40);
                         xhr.setRequestHeader('Authorization', `Token ${token}`);
                     }
                 },
@@ -103,8 +103,8 @@ let requester = {
                 method: "PUT",
                 data: body.profile_image,
                 beforeSend: (xhr) => {
-                    if (window.localStorage.getItem('token')) {
-                        let token = window.localStorage.getItem('token').slice(0, 40);
+                    if (window.localStorage.getItem('elsyser-token')) {
+                        let token = window.localStorage.getItem('elsyser-token').slice(0, 40);
                         xhr.setRequestHeader('Authorization', `Token ${token}`);
                     }
                 },
@@ -124,8 +124,8 @@ let requester = {
                 url,
                 method: "DELETE",
                 beforeSend: (xhr) => {
-                    if (window.localStorage.getItem('token')) {
-                        let token = window.localStorage.getItem('token').slice(0, 40);
+                    if (window.localStorage.getItem('elsyser-token')) {
+                        let token = window.localStorage.getItem('elsyser-token').slice(0, 40);
                         xhr.setRequestHeader('Authorization', `Token ${token}`);
                     }
                 },

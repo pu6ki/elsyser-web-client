@@ -41,7 +41,7 @@ function login() {
                 }
 
                 localStorage.setItem('elsyser-username', result.username);
-                localStorage.setItem('token', token);
+                localStorage.setItem('elsyser-token', token);
                 localStorage.setItem('elsyser-id', result.id);
 
                 toastr.success('Logged-in successfully!');
