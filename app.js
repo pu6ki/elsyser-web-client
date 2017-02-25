@@ -21,6 +21,8 @@ import { DetailedSubmissionController } from './controllers/HomeworksControllers
 import { MaterialsController } from './controllers/MaterialsControllers/MaterialsController.js';
 import { DetailedMaterialController } from './controllers/MaterialsControllers/DetailedMaterialController.js';
 
+import { GradesController } from './controllers/GradesControllers/GradesController.js';
+
 import { NotFoundController } from './controllers/NotFoundController.js';
 
 try {
@@ -92,6 +94,9 @@ router
     })
     .on('/materials/:subjectId/:materialId', (params) => {
         DetailedMaterialController(params.subjectId, params.materialId);
+    })
+    .on('/grades', () => {
+        GradesController();
     })
     .notFound(() => {
         NotFoundController();

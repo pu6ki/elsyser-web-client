@@ -398,6 +398,20 @@ input {
     text-shadow: 2px 2px 1px #000;
 }
 
+.average-grade {
+    position: absolute;
+    bottom: 0;
+    right: 10px;;
+    
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.grade {
+    font-size: 16px;
+}
+
 #info-image {
     display: inline;
     width: 60px;

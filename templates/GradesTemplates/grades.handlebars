@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="col-lg-4 col-md-4 col-sm-12" id="news-panel">
+        <div class="panel panel-primary info-panel">
+            <div class="panel-heading">
+                <strong>
+                    <div class="text-center">{{title}}</div>
+                </strong>
+            </div>
+            <div class="panel-body info-body">
+                {{#each this}}
+                    <div class="info-container">
+                        <div class="text-center grade">{{value}}</div>
+                    </div>
+                {{/each}}
+                {{#if average}}
+                        <div class="text-center average-grade">Average: {{average}}</div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
