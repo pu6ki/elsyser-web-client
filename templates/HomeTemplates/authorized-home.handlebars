@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="intro-message">
+                <div class="intro-message text-center">
                     <img src="../static/logo-white.png" alt="Logo" align="center" id="home-logo"/>
                     <h3>Dashboard</h3>
                     <hr class="intro-divider">
@@ -15,14 +15,14 @@
 <div class="container">
     <div class="col-lg-6 col-md-6 col-sm-12" id="news-panel">
         <div class="panel panel-primary info-panel">
-            <div class="panel-heading">
+            <div class="panel-heading text-center">
                 <strong>
                     <a href="#/news">News</a>
                 </strong>
             </div>
             <div class="panel-body info-body">
                 {{#each news}}
-                <div class="info-container">
+                <div class="info-container text-center">
                     <a href="/#/news/{{id}}">{{title}} - {{author.user.username}}</a>
                 </div>
                 {{/each}}
@@ -32,14 +32,14 @@
 
     <div class="col-lg-6 col-md-6 col-sm-12" id="homeworks-panel">
         <div class="panel panel-primary info-panel">
-            <div class="panel-heading">
+            <div class="panel-heading text-center">
                 <strong>
                     <a href="#/homeworks">Homeworks</a>
                 </strong>
             </div>
             <div class="panel-body info-body">
                 {{#each homeworks}}
-                <div class="info-container">
+                <div class="info-container text-center">
                     <a href="#/homeworks/{{id}}/">{{subject.title}} - {{details}} ({{deadline}})</a>
                 </div>
                 {{/each}}
@@ -49,14 +49,14 @@
 
     <div class="col-lg-6 col-md-6 col-sm-12" id="exams-panel">
         <div class="panel panel-primary info-panel">
-            <div class="panel-heading">
+            <div class="panel-heading text-center">
                 <strong>
                     <a href="#/exams">Exams</a>
                 </strong>
             </div>
             <div class="panel-body info-body">
                 {{#each exams}}
-                <div class="info-container">
+                <div class="info-container text-center">
                     <a href="#/exams/{{id}}/">{{subject.title}} - {{topic}} ({{date}})</a>
                 </div>
                 {{/each}}
@@ -70,14 +70,14 @@
         <div class="col-lg-6 col-md-6 col-sm-12" id="materials-panel">
     {{/if}}
         <div class="panel panel-primary info-panel">
-            <div class="panel-heading">
+            <div class="panel-heading text-center">
                 <strong>
                     <a href="#/materials">Materials</a>
                 </strong>
             </div>
             <div class="panel-body info-body">
                 {{#each materials}}
-                <div class="info-container">
+                <div class="info-container text-center">
                     <a href="#/materials/{{subject.id}}/{{id}}">{{subject.title}} - {{title}}</a>
                     <br />
                 </div>
