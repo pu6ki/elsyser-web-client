@@ -22,6 +22,7 @@ import { MaterialsController } from './controllers/MaterialsControllers/Material
 import { DetailedMaterialController } from './controllers/MaterialsControllers/DetailedMaterialController.js';
 
 import { GradesController } from './controllers/GradesControllers/GradesController.js';
+import { DetailedClassGradesController } from './controllers/GradesControllers/DetailedClassGradesController.js';
 
 import { NotFoundController } from './controllers/NotFoundController.js';
 
@@ -97,6 +98,9 @@ router
     })
     .on('/grades', () => {
         GradesController();
+    })
+    .on('/grades/:classNumber/:classLetter', (params) => {
+        DetailedClassGradesController(params.classNumber, params.classLetter);
     })
     .notFound(() => {
         NotFoundController();

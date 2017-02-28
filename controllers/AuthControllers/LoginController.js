@@ -1,6 +1,7 @@
 import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
 import { formHandler } from '../../utils/formHandler.js';
+import { isTeacher, setTeacherSubjectToLocalStorage } from '../../utils/helper.js';
 
 export function LoginController() {
     templates.get('AuthTemplates/login')
@@ -43,6 +44,9 @@ function login() {
                 localStorage.setItem('elsyser-username', result.username);
                 localStorage.setItem('elsyser-token', token);
                 localStorage.setItem('elsyser-id', result.id);
+                if (isTeacher(token)) {
+                    setTeacherSubjectToLocalStorage();
+                }
 
                 toastr.success('Logged-in successfully!');
                 window.location.href = '/#/home';     

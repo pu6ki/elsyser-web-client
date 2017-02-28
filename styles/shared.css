@@ -412,6 +412,40 @@ input {
     font-size: 16px;
 }
 
+.select-class a{
+    font-size: 25px;
+    color: white;
+    line-height: 90px;
+}
+
+.select-class a:hover {
+    color: gold;
+}
+
+.select-class {
+    height: 100px;
+    background-color: rebeccapurple;
+}
+
+.select-class:hover {
+    cursor: pointer;
+}
+
+.class-heading {
+    font-size: 28px;
+    color: gray;
+}
+
+.table {
+    background-color: white;
+}
+
+#table-wrapper {
+    padding: 5%;
+    background-color: white;
+    border-radius: 10px;
+}
+
 #info-image {
     display: inline;
     width: 60px;

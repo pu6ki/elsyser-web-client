@@ -1,0 +1,25 @@
+<div class="heading text-center">
+    <h3>{{currentClass.classNumber}}{{currentClass.classLetter}} class</h3>
+</div>
+<div id="table-wrapper">
+    <table class="table table-responsive table-hover table-striped table-bordered">
+        <thead>
+            <tr>
+                <th class="text-center">№</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Grades</th>
+                <th class="text-center">Average Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each studentsInClass}}
+                <tr>
+                    <td class="text-center">{{classNumber}}</td>
+                    <td class="text-center">{{user.first_name}} {{user.last_name}}</td>
+                    <td class="text-center" id="{{user.username}}-grades"></td>
+                    <td class="text-center" id="{{user.username}}-average-grade"></td>
+                </tr>
+            {{/each}}
+        </tbody>
+</table>
+</div>
