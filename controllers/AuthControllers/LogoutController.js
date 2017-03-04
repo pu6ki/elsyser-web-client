@@ -6,6 +6,7 @@ export function LogoutController() {
     localStorage.removeItem('elsyser-token');
     localStorage.removeItem('elsyser-username');
     localStorage.removeItem('elsyser-id');
+    localStorage.removeItem('elsyser-teachers-subject-id');
     HeaderController();
     HomeController();
 }
