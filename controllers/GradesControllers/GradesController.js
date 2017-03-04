@@ -4,7 +4,7 @@ import { isTeacher, attachEvaluationWords } from '../../utils/helper.js';
 
 export function GradesController() {
     const subjectsUrl = 'https://elsyser.herokuapp.com/api/subjects/';
-    const classesUrl = 'https://elsyser.herokuapp.com/api/classes/${number}';
+    //const classesUrl = 'https://elsyser.herokuapp.com/api/classes/${number}';
 
     // TODO: Use URL from API to visualize classes
     
@@ -74,7 +74,9 @@ function visualizeGradesForSubject(currentGrade) {
                     el.value = attachEvaluationWords(el.value);
                 });
 
-                data.average = attachEvaluationWords(average / data.length);
+                average /= data.length;
+                average = average.toFixed(2);
+                data.average = attachEvaluationWords(average);
             }
             $('#content').append(hbTemplate(data));
         });
