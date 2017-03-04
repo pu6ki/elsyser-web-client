@@ -4,7 +4,10 @@ import { isTeacher, attachEvaluationWords } from '../../utils/helper.js';
 
 export function GradesController() {
     const subjectsUrl = 'https://elsyser.herokuapp.com/api/subjects/';
+    const classesUrl = 'https://elsyser.herokuapp.com/api/classes/${number}';
 
+    // TODO: Use URL from API to visualize classes
+    
     if (!isTeacher(localStorage.getItem('elsyser-token'))) {
         requester.getJSON(subjectsUrl)
             .then(subjects => {
