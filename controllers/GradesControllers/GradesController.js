@@ -1,6 +1,6 @@
 import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
-import { isTeacher } from '../../utils/helper.js';
+import { isTeacher, attachEvaluationWords } from '../../utils/helper.js';
 
 export function GradesController() {
     const subjectsUrl = 'https://elsyser.herokuapp.com/api/subjects/';
@@ -42,8 +42,7 @@ export function GradesController() {
 
                         $(`#${number}${classes[i]}`).on('click', () => {
                             window.location.href = `#/grades/${number}/${classes[i]}`;
-                            //ViewClassGradesController(number, letter);
-                        })
+                        });
                     }
                 }
             });
@@ -77,18 +76,3 @@ function visualizeGradesForSubject(currentGrade) {
             $('#content').append(hbTemplate(data));
         });
 }
-
-function attachEvaluationWords(mark) {
-    if (mark <= 6.00 && mark >= 5.50) { return `Excellent ${mark}` }
-    else if (mark < 5.50 && mark >= 4.50) { return `Very Good ${mark}` }
-    else if (mark < 4.50 && mark >= 3.50) { return `Good ${mark}` }
-    else if (mark < 3.50 && mark >= 3.00) { return `Average ${mark}` }
-    else { return `Poor ${mark}` }
-}
-
-
-// let classUrl = `https://elsyser.aerobatic.io/api/students/${number}/${letter}/`;
-// let data = {
-//     class: number + letter,
-//     students: null
-// };

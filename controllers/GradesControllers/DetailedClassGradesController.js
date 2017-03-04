@@ -1,6 +1,8 @@
 import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
-import { isTeacher } from '../../utils/helper.js';
+import { isTeacher, attachEvaluationWords } from '../../utils/helper.js';
+
+import { AddGradesController } from './AddGradesController.js';
 
 import { NotFoundController } from '../NotFoundController.js';
 
@@ -50,8 +52,12 @@ export function DetailedClassGradesController(classNumber, classLetter) {
 
                 studentsInClass.forEach((student) => {
                     populateGrades(student);
-                })
-            })
+                });
+
+                $('#add-grades').on('click', () => {
+                    AddGradesController(classNumber, classLetter);
+                });
+            });
     } else {
         NotFoundController();
     }
@@ -69,7 +75,9 @@ function populateGrades(student) {
                 avg += grades[i].value;
                 $(`#${grades[i].student.user.username}-grades`).append(`<span>${grades[i].value} </span>`);
             }
-            avg /= grades.length;
+            avg /= (grades.length);
+            avg = avg.toFixed(2);
+            avg = attachEvaluationWords(avg);
             $(`#${grades[i - 1].student.user.username}-average-grade`).html(`<span class="text-center">${avg}</span>`);
         });
 }

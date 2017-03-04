@@ -1,6 +1,9 @@
-<div class="heading text-center">
-    <h3>{{currentClass.classNumber}}{{currentClass.classLetter}} class</h3>
+<div class="panel panel-default">
+    <div class="heading text-center panel-body">
+        <h3>{{currentClass.classNumber}}{{currentClass.classLetter}} class</h3>
+    </div>
 </div>
+
 <div id="table-wrapper">
     <table class="table table-responsive table-hover table-striped table-bordered">
         <thead>
@@ -13,13 +16,16 @@
         </thead>
         <tbody>
             {{#each studentsInClass}}
-                <tr>
-                    <td class="text-center">{{classNumber}}</td>
-                    <td class="text-center">{{user.first_name}} {{user.last_name}}</td>
-                    <td class="text-center" id="{{user.username}}-grades"></td>
-                    <td class="text-center" id="{{user.username}}-average-grade"></td>
-                </tr>
+            <tr>
+                <td class="text-center">{{classNumber}}</td>
+                <td class="text-center">{{user.first_name}} {{user.last_name}}</td>
+                <td class="text-center" id="{{user.username}}-grades"></td>
+                <td class="text-center" id="{{user.username}}-average-grade"></td>
+            </tr>
             {{/each}}
         </tbody>
-</table>
+    </table>
+    <button class="btn btn-circle btn-lg btn-bottom" id="add-grades">
+        <i class="glyphicon glyphicon-pencil"></i>
+    </button>
 </div>

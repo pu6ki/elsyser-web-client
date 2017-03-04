@@ -47,5 +47,11 @@ export let validator = {
             return true;
         }
         return false;
+    },
+    grade: (grade) => {
+        if (grade >= 2 && grade <= 6) {
+            return true;
+        }
+        return false;
     }
 };

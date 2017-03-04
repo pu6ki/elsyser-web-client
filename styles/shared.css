@@ -34,6 +34,11 @@ input {
     color: #666666
 }
 
+thead {
+    color: white;
+    background-color: rebeccapurple;
+}
+
 @media(max-width:767px) {
     .intro-message {
         padding-bottom: 15%;
@@ -436,8 +441,30 @@ input {
     color: gray;
 }
 
+.student-name-col {
+    width: 75% !important;
+}
+
+.easy-autocomplete {
+    width: 100% !important;
+}
+
 .table {
     background-color: white;
+}
+
+#grade {
+    display: inline;
+    width: 80%;
+}
+
+#add-another-grade-button {
+    display: inline;
+    opacity: 0.8;
+}
+
+#add-another-grade-button:hover {
+    opacity: 1.0
 }
 
 #table-wrapper {

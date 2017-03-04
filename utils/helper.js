@@ -19,3 +19,11 @@ export function setTeacherSubjectToLocalStorage() {
             localStorage.setItem(`elsyser-teachers-subject-id`, result.subject.id);
         })
 }
+
+export function attachEvaluationWords(mark) {
+    if (mark <= 6.00 && mark >= 5.50) { return `Excellent ${mark}` }
+    else if (mark < 5.50 && mark >= 4.50) { return `Very Good ${mark}` }
+    else if (mark < 4.50 && mark >= 3.50) { return `Good ${mark}` }
+    else if (mark < 3.50 && mark >= 3.00) { return `Average ${mark}` }
+    else { return `Poor ${mark}` }
+}
