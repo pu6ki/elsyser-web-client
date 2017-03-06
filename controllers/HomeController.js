@@ -8,9 +8,7 @@ export function HomeController() {
     if (token) {
         const url = 'https://elsyser.herokuapp.com/api/';
 
-        let newsUrl = isTeacher(token) ?
-                    '' : // URL: news/teachers/<class_number>/[<class_letter>]
-                    'news/students/';
+        let newsUrl = isTeacher(token) ? 'news/teachers/' : 'news/students/';
 
         let getExams = requester.getJSON(url + 'exams/'),
             getNews = requester.getJSON(url + newsUrl),
