@@ -233,6 +233,8 @@ thead {
 
 .panel {
 	position: relative;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .comment-panel > .panel-heading:after, .comment-panel > .panel-heading:before {
@@ -407,7 +409,7 @@ thead {
     position: absolute;
     bottom: 0;
     right: 10px;;
-    
+
     font-size: 18px;
     font-weight: bold;
     font-style: italic;
