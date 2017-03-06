@@ -8,5 +8,9 @@ export function LogoutController() {
     localStorage.removeItem('elsyser-id');
     localStorage.removeItem('elsyser-teachers-subject-id');
     HeaderController();
-    HomeController();
+    if (window.location.href === '/#/home') {
+        HomeController();
+    } else {
+        window.location.href = '/#/home'
+    }
 }
