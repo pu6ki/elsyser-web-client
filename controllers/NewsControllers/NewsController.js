@@ -1,12 +1,13 @@
 import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
+import { isTeacher } from '../../utils/helper.js';
 
 import { AddNewsController } from './AddNewsController.js';
 import { NotFoundController } from '../NotFoundController.js';
 
-const newsUrl = 'https://elsyser.herokuapp.com/api/news/';
+export function NewsController(newsUrl) {
+    let token = localStorage.getItem('elsyser-token');
 
-export function NewsController() {
     let getData = requester.getJSON(newsUrl),
         getTemplate = templates.get('NewsTemplates/news');
 
@@ -33,6 +34,8 @@ export function NewsController() {
                     }`
                 }
             };
+
+            data.isTeacher = isTeacher(token);
 
             let template = hbTemplate(data, {
                 data: { intl: intlData }

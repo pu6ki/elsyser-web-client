@@ -26,6 +26,8 @@ import { DetailedClassGradesController } from './controllers/GradesControllers/D
 
 import { NotFoundController } from './controllers/NotFoundController.js';
 
+import { isTeacher, setNewsUrl } from './utils/helper.js';
+
 try {
     HandlebarsIntl.registerWith(Handlebars);
 } catch (error) {
@@ -66,14 +68,30 @@ router
     .on('/exams/:id', (params) => {
         DetailedExamsController(params.id);
     })
-    .on('/news', () => {
-        NewsController();
+    .on('/news/students/', () => {
+        let newsUrl = setNewsUrl();
+        NewsController(newsUrl);
     })
-    .on('/news/:id', (params) => {
+    .on('/news/teachers/', () => {
+        let newsUrl = setNewsUrl();
+        NewsController(newsUrl);
+    })
+    .on('/news/students/:id', (params) => {
+        let newsUrl = setNewsUrl();
         DetailedNewsController(params.id);
         let refreshId = setInterval(() => {
-            loadComments(params.id);
-            if (window.location.href !== `${domain}/#/news/${params.id}`) {
+            loadComments(newsUrl, params.id);
+            if (window.location.href !== `${domain}/#/news/students/${params.id}`) {
+                clearInterval(refreshId);
+            }
+        }, 1000);
+    })
+    .on('/news/students/teachers/:id', (params) => {
+        let newsUrl = setNewsUrl();
+        DetailedNewsController(params.id);
+        let refreshId = setInterval(() => {
+            loadComments(newsUrl, params.id);
+            if (window.location.href !== `${domain}/#/news/teachers/${params.id}`) {
                 clearInterval(refreshId);
             }
         }, 1000);

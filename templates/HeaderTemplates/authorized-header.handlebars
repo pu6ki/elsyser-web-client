@@ -1,6 +1,6 @@
 <ul class="nav navbar-nav">
     <li id="exams-button"><a href="#/exams" data-toggle="collapse" data-target=".navbar-collapse.in">Exams <span class="glyphicon glyphicon-pencil"></span></a></li>
-    <li id="news-button"><a href="#/news" data-toggle="collapse" data-target=".navbar-collapse.in">News <span class="glyphicon glyphicon-envelope"></span></a></li>
+    <li id="news-button"><a href="#/news/{{#if isTeacher}}teachers{{else}}students{{/if}}" data-toggle="collapse" data-target=".navbar-collapse.in">News <span class="glyphicon glyphicon-envelope"></span></a></li>
     <li id="homeworks-button"><a href="#/homeworks" data-toggle="collapse" data-target=".navbar-collapse.in">Homeworks <span class="glyphicon glyphicon-book"></span></a></li>
     <li id="materials-button"><a href="#/materials" data-toggle="collapse" data-target=".navbar-collapse.in">Materials <span class="glyphicon glyphicon-file"></span></a></li>
     <li id="grades-button"><a href="#/grades" data-toggle="collapse" data-target=".navbar-collapse.in">Grades <span class="glyphicon glyphicon-list-alt"></span></a></li>

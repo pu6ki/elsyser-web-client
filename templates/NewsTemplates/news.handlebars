@@ -30,14 +30,14 @@
                             <strong><i>No comments</i></strong>
                         {{/if}}
                     </div>
-                    <button id="info-button" class="btn btn-primary" onclick="window.location.href = '#/news/{{id}}'"><a class="heading-anchor" href="#/news/{{id}}">Info</a></button>
+                    <button id="info-button" class="btn btn-primary" onclick="window.location.href = '#/news/{{#if isTeacher}}teachers/{{else}}students/{{/if}}{{id}}'"><a class="heading-anchor" href="#/news/{{id}}">Info</a></button>
                 </div>
             </div>
         {{/each}}
     {{else}}
         <div class="panel panel-default">
             <div class="panel-body">
-                <h3 class="text-center">There are no available news for my class so far.</h3>
+                <h3 class="text-center">There are no available news for so far.</h3>
             </div>
         </div>
         

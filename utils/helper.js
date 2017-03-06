@@ -1,8 +1,10 @@
 import { requester } from './requester.js';
 
 export function isTeacher(token) {
-    if (token.length === 41 && token[40] === '1') {
-        return true;
+    if (token) {
+        if (token.length === 41 && token[40] === '1') {
+            return true;
+        }
     }
 
     return false;
@@ -26,4 +28,15 @@ export function attachEvaluationWords(mark) {
     else if (mark < 4.50 && mark >= 3.50) { return `Good ${mark}` }
     else if (mark < 3.50 && mark >= 3.00) { return `Average ${mark}` }
     else { return `Poor ${mark}` }
+}
+
+export function setNewsUrl() {
+    let newsUrl;
+    let token = localStorage.getItem('elsyser-token');
+    if (isTeacher(token)) {
+        newsUrl = 'https://elsyser.herokuapp.com/api/news/teachers/';
+    } else {
+        newsUrl = 'https://elsyser.herokuapp.com/api/news/students/';
+    }
+    return newsUrl;
 }

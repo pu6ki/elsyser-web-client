@@ -9,13 +9,15 @@ export function HeaderController() {
     const profileUrl = `https://elsyser.herokuapp.com/api/profile/${profileId}/`;
     const authHeader = 'authorized-header';
     const unauthHeader = 'unauthorized-header';
+    let token = window.localStorage.getItem('elsyser-token'); 
     let userData = {
         username: '',
         profileImage: '',
-        profileId: null
+        profileId: null,
+        isTeacher: isTeacher(token)
     };
-
-    if (window.localStorage.getItem('elsyser-token')) {
+    
+    if (token) {
         requester.getJSON(profileUrl)
             .then((result) => {
                 userData.profileImageUrl = result.profile_image_url;
@@ -37,11 +39,12 @@ function compileTemplate(template, data) {
 
             $('#header').html(template);
 
+            /*
             if (window.localStorage.getItem('elsyser-token')) {
                 if (isTeacher(window.localStorage.getItem('elsyser-token'))) {
                     $('#news-button').remove();
                 }
-            }
+            }*/
 
             $('#log-out').on('click', () => {
                 LogoutController();

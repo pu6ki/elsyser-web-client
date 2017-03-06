@@ -2,6 +2,7 @@ import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
 import { validator } from '../../utils/validator.js';
 import { formHandler } from '../../utils/formHandler.js';
+import { isTeacher } from '../../utils/helper.js';
 
 import { EditNewsController } from './EditNewsController.js';
 import { DeleteNewsController } from './DeleteNewsController.js';
@@ -12,11 +13,18 @@ import { DeleteCommentController } from './DeleteCommentController.js';
 
 import { NotFoundController } from '../NotFoundController.js';
 
-
 let dataFromAPI, currentUsername;
-const newsUrl = "https://elsyser.herokuapp.com/api/news/";
+
 
 export function DetailedNewsController(id) {
+    let newsUrl;
+    let token = localStorage.getItem('elsyser-token');
+
+    if (isTeacher(token)) {
+        newsUrl = 'https://elsyser.herokuapp.com/api/news/teachers/';
+    } else {
+        newsUrl = 'https://elsyser.herokuapp.com/api/news/students/';
+    }
     currentUsername = localStorage.getItem('elsyser-username');
     let getData = requester.getJSON(newsUrl + id + '/'),
         getTemplate = templates.get('NewsTemplates/detailed-news');
@@ -27,14 +35,14 @@ export function DetailedNewsController(id) {
             let hbTemplate = Handlebars.compile(result[1]),
                 newsId = dataFromAPI.id;
 
-            if (dataFromAPI.author.user.username === currentUsername) {
+            if (dataFromAPI.author.username === currentUsername) {
                 dataFromAPI.editable = true;
             }
 
             dataFromAPI.comment_set.reverse();
 
             dataFromAPI.comment_set.forEach((el) => {
-                if (el.posted_by.user.username === currentUsername) {
+                if (el.posted_by.username === currentUsername) {
                     el.editableComment = true;
                 }
             });
@@ -78,7 +86,7 @@ export function DetailedNewsController(id) {
 
             $('#add-comment-button').on('click', () => {
                 AddCommentController(id);
-                loadComments(id);
+                loadComments(newsUrl, id);
             });
 
         }).catch((err) => {
@@ -87,7 +95,7 @@ export function DetailedNewsController(id) {
         });
 }
 
-export function loadComments(newsId) {
+export function loadComments(newsUrl, newsId) {
     let getData = requester.getJSON(newsUrl + newsId + '/'),
         getTemplate = templates.get('partials/comment');
 
