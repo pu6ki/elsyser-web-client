@@ -7,10 +7,13 @@ export function HomeController() {
 
     if (token) {
         const url = 'https://elsyser.herokuapp.com/api/';
-        if (!isTeacher(token)) {
-            var getNews = requester.getJSON(url + 'news/');
-        }
+
+        let newsUrl = isTeacher(token) ?
+                    '' : // URL: news/teachers/<class_number>/[<class_letter>]
+                    'news/students/';
+
         let getExams = requester.getJSON(url + 'exams/'),
+            getNews = requester.getJSON(url + newsUrl),
             getHomeworks = requester.getJSON(url + 'homeworks/'),
             getMaterials = requester.getJSON(url + 'materials/'),
             getTemplate = templates.get('HomeTemplates/authorized-home');
