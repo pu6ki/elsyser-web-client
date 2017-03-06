@@ -6,8 +6,8 @@ import { DetailedNewsController } from './DetailedNewsController.js';
 
 let commentToEditUrl;
 
-export function EditCommentController(newsId, commentId) {
-    commentToEditUrl = `https://elsyser.herokuapp.com/api/news/${newsId}/comments/${commentId}/`;
+export function EditCommentController(newsUrl, newsId, commentId) {
+    commentToEditUrl = `${newsUrl}${newsId}/comments/${commentId}/`;
     let getData = requester.getJSON(commentToEditUrl),
         getTemplate = templates.get('partials/edit-comment');
 
@@ -23,12 +23,12 @@ export function EditCommentController(newsId, commentId) {
             formHandler();
 
             $('#save-button').on('click', () => {
-                editData(newsId, commentId);
+                editData(commentToEditUrl, newsId, commentId);
             });
         });
 }
 
-function editData(newsId, commentId) {
+function editData(commentUrl, newsId, commentId) {
     let body = {
         content: '',
         edited: true
@@ -45,7 +45,7 @@ function editData(newsId, commentId) {
     Promise.resolve(requester.putJSON(commentToEditUrl, body))
         .then(() => {
             toastr.success('Comment updated successfully!');
-            DetailedNewsController(newsId);
+            DetailedNewsController(newsUrl, newsId);
         }).catch(() => {
             toastr.error('Couldn\'t edit the comment!');
         });

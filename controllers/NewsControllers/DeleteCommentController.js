@@ -1,7 +1,7 @@
 import { requester } from '../../utils/requester.js';
 
-export function DeleteCommentController(newsId, commentId) {
-    let commentToDeleteUrl = `https://elsyser.herokuapp.com/api/news/${newsId}/comments/${commentId}/`;
+export function DeleteCommentController(newsUrl, newsId, commentId) {
+    let commentToDeleteUrl = `${newsUrl}${newsId}/comments/${commentId}/`;
 
     requester.delete(commentToDeleteUrl)
         .then(() => {

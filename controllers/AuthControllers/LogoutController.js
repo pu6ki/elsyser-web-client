@@ -11,6 +11,7 @@ export function LogoutController() {
     if (window.location.href === '/#/home') {
         HomeController();
     } else {
-        window.location.href = '/#/home'
+        window.location.href = '/#/home';
+        HomeController();
     }
 }

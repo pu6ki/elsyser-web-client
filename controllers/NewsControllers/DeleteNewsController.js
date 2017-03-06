@@ -1,16 +1,19 @@
 import { requester } from '../../utils/requester.js';
+import { isTeacher } from '../../utils/helper.js';
 
-import { DetailedNewsController } from './DeleteNewsController.js';
-
-const newsUrl = 'https://elsyser.herokuapp.com/api/news/';
-
-export function DeleteNewsController(id) {
+export function DeleteNewsController(newsUrl, id) {
     let deleteNewsUrl = newsUrl + id + '/';
 
     requester.delete(deleteNewsUrl)
         .then(() => {
+            let token = localStorage.getItem('elsyser-token');
+
             toastr.success('Deleted successfully!');
-            DetailedNewsController(id);
+            if (isTeacher(token)) {
+                window.location.href = '/#/news/teachers/';
+            } else {
+                window.location.href = '/#/news/students/'
+            }
         }).catch(() => {
             toastr.error('Can\'t delete the selected news!');
         });

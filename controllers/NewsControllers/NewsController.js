@@ -43,7 +43,7 @@ export function NewsController(newsUrl) {
             $('#content').html(template);
 
             $('#add-news').on('click', () => {
-                AddNewsController();
+                AddNewsController(newsUrl);
             })
         }).catch((err) => {
             console.log(err);

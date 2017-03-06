@@ -15,16 +15,7 @@ import { NotFoundController } from '../NotFoundController.js';
 
 let dataFromAPI, currentUsername;
 
-
-export function DetailedNewsController(id) {
-    let newsUrl;
-    let token = localStorage.getItem('elsyser-token');
-
-    if (isTeacher(token)) {
-        newsUrl = 'https://elsyser.herokuapp.com/api/news/teachers/';
-    } else {
-        newsUrl = 'https://elsyser.herokuapp.com/api/news/students/';
-    }
+export function DetailedNewsController(newsUrl, id) {
     currentUsername = localStorage.getItem('elsyser-username');
     let getData = requester.getJSON(newsUrl + id + '/'),
         getTemplate = templates.get('NewsTemplates/detailed-news');
@@ -56,12 +47,12 @@ export function DetailedNewsController(id) {
             })
 
             $(`#news-${newsId}-edit`).on('click', () => {
-                EditNewsController(newsId);
+                EditNewsController(newsUrl, newsId);
             })
 
             $(`#news-${newsId}-delete`).on('click', () => {
                 alertify.confirm("Are you sure you want to delete this news?", () => {
-                    DeleteNewsController(newsId);
+                    DeleteNewsController(newsUrl, newsId);
                 })
             })
 
@@ -85,7 +76,7 @@ export function DetailedNewsController(id) {
             });
 
             $('#add-comment-button').on('click', () => {
-                AddCommentController(id);
+                AddCommentController(newsUrl, id);
                 loadComments(newsUrl, id);
             });
 
@@ -115,25 +106,26 @@ export function loadComments(newsUrl, newsId) {
         dataFromAPI.comment_set = newData.comment_set;
 
         for (let i = 0; i < commentsToLoad.length; i += 1) {
-            if (commentsToLoad[i].posted_by.user.username == currentUsername) {
+            if (commentsToLoad[i].posted_by.username == currentUsername) {
                 commentsToLoad[i].newsId = newsId;
                 commentsToLoad[i].editable = true;
             }
             let template = hbTemplate(commentsToLoad[i]);
             $('#comments').prepend(template);
-            attachEditAndDeleteToComments(newsId, commentsToLoad[i].id);
+            attachEditAndDeleteToComments(newsUrl, newsId, commentsToLoad[i].id);
         }
     });
 }
 
-function attachEditAndDeleteToComments(newsId, commentId) {
+function attachEditAndDeleteToComments(newsUrl, newsId, commentId) {
     $(`#news-${newsId}-edit-comment-${commentId}`).on('click', () => {
-        EditCommentController(newsId, commentId);
+        console.log('object');
+        EditCommentController(newsUrl, newsId, commentId);
     })
 
     $(`#news-${newsId}-delete-comment-${commentId}`).on('click', () => {
         alertify.confirm("Are you sure you want to delete this comment?", () => {
-            DeleteCommentController(newsId, commentId);
+            DeleteCommentController(newsUrl, newsId, commentId);
         })
     })
 }

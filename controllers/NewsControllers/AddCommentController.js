@@ -2,11 +2,11 @@ import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
 import { validator } from '../../utils/validator.js';
 
-export function AddCommentController(id) {
+export function AddCommentController(newsUrl, id) {
     let body = {
             content: ''
         },
-        addCommentUrl = `https://elsyser.herokuapp.com/api/news/${id}/comments/`;
+        addCommentUrl = `${newsUrl}${id}/comments/`;
 
     if (validator.comment($('#comment-content').val())) {
         body.content = $('#comment-content').val();

@@ -4,7 +4,7 @@ import { validator } from '../../utils/validator.js';
 
 import { NewsController } from './NewsController.js';
 
-export function AddNewsController() {
+export function AddNewsController(newsUrl) {
     templates.get('NewsTemplates/add-news')
         .then((res) => {
             let hbTemplate = Handlebars.compile(res),
@@ -13,11 +13,11 @@ export function AddNewsController() {
             $('#content').html(template);
 
             $('#go-back').on('click', () => {
-                NewsController();
+                NewsController(newsUrl);
             })
 
             $('#add-news').on('click', () => {
-                postNews();
+                postNews(newsUrl);
             });
         });
 }
@@ -47,15 +47,14 @@ function getDataFromTemplate() {
     return body;
 }
 
-function postNews() {
-    let newsUrl = 'https://elsyser.herokuapp.com/api/news/';
+function postNews(newsUrl) {
     let data = getDataFromTemplate();
     if (data) {
         requester.postJSON(newsUrl, data)
             .then((result) => {
                 if (result) {
                     toastr.success('News added!');
-                    NewsController();
+                    NewsController(newsUrl);
                 }
             }).catch(() => {
                 toastr.error('Couldn\'t add the news Please check for errors!');

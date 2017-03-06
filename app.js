@@ -78,7 +78,7 @@ router
     })
     .on('/news/students/:id', (params) => {
         let newsUrl = setNewsUrl();
-        DetailedNewsController(params.id);
+        DetailedNewsController(newsUrl, params.id);
         let refreshId = setInterval(() => {
             loadComments(newsUrl, params.id);
             if (window.location.href !== `${domain}/#/news/students/${params.id}`) {

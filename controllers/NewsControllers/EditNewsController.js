@@ -5,9 +5,7 @@ import { validator } from '../../utils/validator.js';
 import { NewsController } from './NewsController.js';
 import { DetailedNewsController } from './DetailedNewsController.js';
 
-const newsUrl = `https://elsyser.herokuapp.com/api/news/`;
-
-export function EditNewsController(id) {
+export function EditNewsController(newsUrl, id) {
     let selectedNewsUrl = newsUrl + id + '/',
         getData = requester.getJSON(selectedNewsUrl),
         getTemplate = templates.get('NewsTemplates/edit-news');
@@ -21,16 +19,16 @@ export function EditNewsController(id) {
             $('#content').html(template);
 
             $('#save-button').on('click', () => {
-                editData(id);
+                editData(newsUrl, id);
             });
 
             $('#go-back').on('click', () => {
-                NewsController();
+                DetailedNewsController(newsUrl, id);
             });
         });
 }
 
-function editData(id) {
+function editData(newsUrl, id) {
     let body = {
         title: '',
         content: '',
@@ -56,7 +54,7 @@ function editData(id) {
     requester.putJSON(selectedNewsUrl, body)
         .then(() => {
             toastr.success("News updated successfully!");
-            DetailedNewsController(id);
+            DetailedNewsController(newsUrl, id);
         }).catch(() => {
             toastr.error('Couldn\'t update the selected news!');
         });
