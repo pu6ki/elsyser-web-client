@@ -4,10 +4,7 @@ import { isTeacher, attachEvaluationWords } from '../../utils/helper.js';
 
 export function GradesController() {
     const subjectsUrl = 'https://elsyser.herokuapp.com/api/subjects/';
-    //const classesUrl = 'https://elsyser.herokuapp.com/api/classes/${number}';
 
-    // TODO: Use URL from API to visualize classes
-    
     if (!isTeacher(localStorage.getItem('elsyser-token'))) {
         requester.getJSON(subjectsUrl)
             .then(subjects => {
@@ -19,36 +16,7 @@ export function GradesController() {
                 });
             });
     } else {
-        $('#content').html(`
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h2 class="text-center">Select class</h2>
-                </div>
-            </div>
-        `);
-
-        templates.get('GradesTemplates/select-class')
-            .then(result => {
-                let classes = ['A', 'B', 'V', 'G'];
-
-                for (let number = 8; number <= 12; number += 1) {
-                    $('#content').append(`<div class="text-center class-heading">${number}th class</div>`);
-
-                    for (let i = 0; i < 4; i += 1) {
-                        let data = {
-                            number,
-                            letter: classes[i]
-                        };
-                        let hbTemplate = Handlebars.compile(result);
-                        let template = hbTemplate(data);
-                        $('#content').append(template);
-
-                        $(`#${number}${classes[i]}`).on('click', () => {
-                            window.location.href = `#/grades/${number}/${classes[i]}`;
-                        });
-                    }
-                }
-            });
+        studensGradesController();
     }
 }
 
@@ -79,5 +47,41 @@ function visualizeGradesForSubject(currentGrade) {
                 data.average = attachEvaluationWords(average);
             }
             $('#content').append(hbTemplate(data));
+        });
+}
+
+function studensGradesController() {
+    let classesUrl = 'https://elsyser.herokuapp.com/api/classes/';
+    let getData = requester.getJSON(classesUrl);
+    let getTemplate = templates.get('GradesTemplates/select-class');
+
+    $('#content').html(`
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h2 class="text-center">Select class</h2>
+                </div>
+            </div>
+        `);
+
+    Promise.all([getData, getTemplate])
+        .then(result => {
+            let data = result[0];
+            let hbTemplate = Handlebars.compile(result[1]);
+
+            for (let classNumber in data) {
+                $('#content').append(`<div class="text-center class-heading">${classNumber}th class</div>`);
+                data[classNumber].forEach((el) => {
+                    let data = {
+                        number: el.number,
+                        letter: el.letter
+                    };
+                    let template = hbTemplate(data);
+                    $('#content').append(template);
+
+                    $(`#${el.number}${el.letter}`).on('click', () => {
+                        window.location.href = `#/grades/${el.number}/${el.letter}`;
+                    });
+                })
+            }
         });
 }
