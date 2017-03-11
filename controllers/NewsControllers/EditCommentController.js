@@ -16,7 +16,7 @@ export function EditCommentController(newsUrl, newsId, commentId) {
             let data = result[0],
                 hbTemplate = Handlebars.compile(result[1]),
                 template = hbTemplate(data);
-            
+
             console.log(commentId);
             $(`#comment-${commentId}`).html(template);
 
@@ -42,7 +42,7 @@ function editData(commentUrl, newsId, commentId) {
         return;
     }
 
-    Promise.resolve(requester.putJSON(commentToEditUrl, body))
+    requester.putJSON(commentUrl, body)
         .then(() => {
             toastr.success('Comment updated successfully!');
             DetailedNewsController(newsUrl, newsId);

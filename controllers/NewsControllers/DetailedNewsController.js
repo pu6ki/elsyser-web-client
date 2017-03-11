@@ -43,7 +43,7 @@ export function DetailedNewsController(newsUrl, id) {
 
             dataFromAPI.comment_set.forEach((el) => {
                 let commentId = el.id;
-                attachEditAndDeleteToComments(newsId, commentId);
+                attachEditAndDeleteToComments(newsUrl, newsId, commentId);
             })
 
             $(`#news-${newsId}-edit`).on('click', () => {
@@ -105,7 +105,7 @@ export function loadComments(newsUrl, newsId) {
 
         dataFromAPI.comment_set = newData.comment_set;
 
-        for (let i = 0; i < commentsToLoad.length; i += 1) {
+        for (let i = 0; i < commentsToLoad.length; i += 1) {    
             if (commentsToLoad[i].posted_by.username == currentUsername) {
                 commentsToLoad[i].newsId = newsId;
                 commentsToLoad[i].editable = true;
@@ -118,8 +118,10 @@ export function loadComments(newsUrl, newsId) {
 }
 
 function attachEditAndDeleteToComments(newsUrl, newsId, commentId) {
+    console.log('newsId ' + newsId);
+    console.log('newsUrl' + newsUrl);
+    console.log('commentId ' + commentId);
     $(`#news-${newsId}-edit-comment-${commentId}`).on('click', () => {
-        console.log('object');
         EditCommentController(newsUrl, newsId, commentId);
     })
 
