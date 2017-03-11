@@ -1,10 +1,39 @@
 import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
 import { validator } from '../../utils/validator.js';
+import { isTeacher } from '../../utils/helper.js';
 
 import { NewsController } from './NewsController.js';
 
 export function AddNewsController(newsUrl) {
+    let token = localStorage.getItem('elsyser-token');
+    if (isTeacher(token)) {
+        templates.get('NewsTemplates/select-strategy')
+            .then((result) => {
+                let hbTemplate = Handlebars.compile(result);
+                let template = hbTemplate();
+
+                $('#content').html(template);
+
+                $('#whole-class').on('click', () => {
+                    selectWholeClass();
+                });
+
+                $('#concrete-class').on('click', () => {
+                    console.log('concrete class');
+                });
+
+                $('#go-back').on('click', () => {
+                    NewsController(newsUrl);
+                })
+            })
+
+    } else {
+        loadTemplate(newsUrl);
+    }
+}
+
+function loadTemplate(newsUrl) {
     templates.get('NewsTemplates/add-news')
         .then((res) => {
             let hbTemplate = Handlebars.compile(res),
@@ -60,4 +89,31 @@ function postNews(newsUrl) {
                 toastr.error('Couldn\'t add the news Please check for errors!');
             });
     }
+}
+
+function selectWholeClass() {
+    const classesUrl = 'https:/elsyser.herokuapp.com/api/classes/';
+    let getData = requester.getJSON(classesUrl);
+    let getTemplate = templates.get('NewsTemplates/select-whole-class');
+
+    Promise.all([getData, getTemplate])
+        .then((result) => {
+            let wholeClasses = result[0];
+            let hbTemplate = Handlebars.compile(result[1]);
+
+            $('#content').html('');
+
+            for (let wholeClass in wholeClasses) {
+                let data = {
+                    number: wholeClass
+                }
+
+                $('#content').append(hbTemplate(data));
+
+                $(`#${wholeClass}-class`).on('click', () => {
+                    let newsUrl = `https://elsyser.herokuapp.com/api/news/teachers/${wholeClass}/`
+                    loadTemplate(newsUrl);
+                })
+            }
+        })
 }

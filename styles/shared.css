@@ -432,9 +432,28 @@ thead {
 .select-class {
     height: 100px;
     background-color: rebeccapurple;
+    color: white;
+    font-size: 25px;
+    line-height: 90px;
 }
 
 .select-class:hover {
+    cursor: pointer;
+}
+
+.select-strategy {
+    height: 30vh;
+    background-color: rebeccapurple;
+    color: white;
+    font-size: 25px;
+}
+
+.select-strategy .text-small {
+    font-size: 18px;
+    font-style: italic;
+}
+
+.select-strategy:hover {
     cursor: pointer;
 }
 

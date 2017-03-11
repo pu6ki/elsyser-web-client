@@ -53,7 +53,7 @@ function visualizeGradesForSubject(currentGrade) {
 function studensGradesController() {
     let classesUrl = 'https://elsyser.herokuapp.com/api/classes/';
     let getData = requester.getJSON(classesUrl);
-    let getTemplate = templates.get('partials/select-class');
+    let getTemplate = templates.get('partials/select-concrete-class');
 
     $('#content').html(`
             <div class="panel panel-default">
