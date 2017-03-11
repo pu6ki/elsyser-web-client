@@ -118,9 +118,6 @@ export function loadComments(newsUrl, newsId) {
 }
 
 function attachEditAndDeleteToComments(newsUrl, newsId, commentId) {
-    console.log('newsId ' + newsId);
-    console.log('newsUrl' + newsUrl);
-    console.log('commentId ' + commentId);
     $(`#news-${newsId}-edit-comment-${commentId}`).on('click', () => {
         EditCommentController(newsUrl, newsId, commentId);
     })

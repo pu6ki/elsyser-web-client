@@ -21,9 +21,7 @@ export function HomeController() {
                 let data = {},
                     hbTemplate = Handlebars.compile(result[0]);
 
-                if (!isTeacher(token)) {
-                    data.news = result[1].slice(0, 5);
-                }
+                data.news = result[1].slice(0, 5);
                 data.exams = result[2].slice(0, 5);
                 data.homeworks = result[3].slice(0, 5);
                 data.materials = result[4].slice(0, 5);
