@@ -35,10 +35,6 @@ export function HomeController() {
                 let template = hbTemplate(data);
 
                 $('#content').html(template);
-
-                if (isTeacher(token)) {
-                    $('#news-panel').remove();
-                }
             })
             .catch((err) => {
                 console.log(err);
