@@ -16,7 +16,7 @@ export function AddNewsController(newsUrl) {
                 $('#content').html(template);
 
                 $('#whole-class').on('click', () => {
-                    selectWholeClass();
+                    selectWholeClass(newsUrl);
                 });
 
                 $('#concrete-class').on('click', () => {
@@ -91,7 +91,7 @@ function postNews(newsUrl) {
     }
 }
 
-function selectWholeClass() {
+function selectWholeClass(newsUrl) {
     const classesUrl = 'https:/elsyser.herokuapp.com/api/classes/';
     let getData = requester.getJSON(classesUrl);
     let getTemplate = templates.get('NewsTemplates/select-whole-class');
@@ -111,9 +111,13 @@ function selectWholeClass() {
                 $('#content').append(hbTemplate(data));
 
                 $(`#${wholeClass}-class`).on('click', () => {
-                    let newsUrl = `https://elsyser.herokuapp.com/api/news/teachers/${wholeClass}/`
-                    loadTemplate(newsUrl);
+                    let newNewsUrl = `${newsUrl}${wholeClass}/`
+                    loadTemplate(newNewsUrl);
                 })
             }
+
+            $('#go-back').on('click', () => {
+                NewsController(newsUrl);
+            });
         })
 }
