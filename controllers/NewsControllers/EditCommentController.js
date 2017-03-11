@@ -4,10 +4,8 @@ import { validator } from '../../utils/validator.js';
 import { formHandler } from '../../utils/formHandler.js';
 import { DetailedNewsController } from './DetailedNewsController.js';
 
-let commentToEditUrl;
-
 export function EditCommentController(newsUrl, newsId, commentId) {
-    commentToEditUrl = `${newsUrl}${newsId}/comments/${commentId}/`;
+    let commentToEditUrl = `${newsUrl}${newsId}/comments/${commentId}/`;
     let getData = requester.getJSON(commentToEditUrl),
         getTemplate = templates.get('partials/edit-comment');
 
@@ -17,18 +15,17 @@ export function EditCommentController(newsUrl, newsId, commentId) {
                 hbTemplate = Handlebars.compile(result[1]),
                 template = hbTemplate(data);
 
-            console.log(commentId);
             $(`#comment-${commentId}`).html(template);
 
             formHandler();
 
             $('#save-button').on('click', () => {
-                editData(commentToEditUrl, newsId, commentId);
+                editData(newsUrl, newsId, commentToEditUrl);
             });
         });
 }
 
-function editData(commentUrl, newsId, commentId) {
+function editData(newsUrl, newsId, commentUrl) {
     let body = {
         content: '',
         edited: true
@@ -46,7 +43,8 @@ function editData(commentUrl, newsId, commentId) {
         .then(() => {
             toastr.success('Comment updated successfully!');
             DetailedNewsController(newsUrl, newsId);
-        }).catch(() => {
+        }).catch((err) => {
+            console.log(err);
             toastr.error('Couldn\'t edit the comment!');
         });
 }
