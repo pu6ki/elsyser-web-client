@@ -20,7 +20,7 @@ export function AddNewsController(newsUrl) {
                 });
 
                 $('#concrete-class').on('click', () => {
-                    console.log('concrete class');
+                    //TODO
                 });
 
                 $('#go-back').on('click', () => {
@@ -120,4 +120,8 @@ function selectWholeClass(newsUrl) {
                 NewsController(newsUrl);
             });
         })
+}
+
+function concreteClass(newsUrl) {
+    //TODO
 }

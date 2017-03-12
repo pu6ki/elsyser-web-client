@@ -39,8 +39,10 @@ export function DetailedMaterialController(subjectId, materialId) {
             })
 
             $(`#material-${materialId}-delete`).on('click', () => {
-                DeleteMaterialController(subjectId, materialId);
-            })
+                alertify.confirm("Are you sure you want to delete this material?", () => {
+                    DeleteMaterialController(subjectId, materialId);
+                });
+            });
         }).catch((err) => {
             NotFoundController();
         })
