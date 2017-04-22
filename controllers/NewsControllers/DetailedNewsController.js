@@ -125,6 +125,7 @@ function attachEditAndDeleteToComments(newsUrl, newsId, commentId) {
     $(`#news-${newsId}-delete-comment-${commentId}`).on('click', () => {
         alertify.confirm("Are you sure you want to delete this comment?", () => {
             DeleteCommentController(newsUrl, newsId, commentId);
+            DetailedNewsController(newsUrl, newsId);
         })
     })
 }

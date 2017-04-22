@@ -1,25 +1,27 @@
-<div class="row comment new-comment" id="comment-{{id}}">
-    <div class="col-xs-2 col-md-1 img-container">
+<div class="row new-comment" id="comment-{{id}}">
+    <div class="col-xs-3 col-sm-1 col-md-1 col-lg-1 img-container">
         <img class="user-photo" src="{{posted_by.profile_image_url}}">
     </div>
 
-    <div class="col-xs-9 col-md-10">
+    <div class="col-xs-9 col-sm-10 col-sm-10 col-md-10 col-lg-10">
         <div class="comment-panel panel panel-default">
             <div class="panel-heading">
-                <a href="#/profile/{{posted_by.user.id}}">
-                    <strong>{{posted_by.user.username}}</strong>
+                <a href="#/profile/{{posted_by.id}}">
+                    <strong>{{posted_by.username}}</strong>
                 </a>
                 commented {{formatRelative posted_on}}
-                {{#if editable}}
-                    <div class="pull-right edit-comments">
-                        <span id="news-{{newsId}}-edit-comment-{{id}}" class="edit">
-                            <span class="glyphicon glyphicon-edit"></span>
-                        </span>
-                        <span id="news-{{newsId}}-delete-comment-{{id}}" class="delete">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </span>
-                    </div>
+                
+                {{#if edited}}
+                    <span >(last edited {{formatRelative last_edited_on}})</span>
                 {{/if}}
+                <div class="pull-right edit-comments">
+                    <span id="news-{{newsId}}-edit-comment-{{id}}" class="edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </span>
+                    <span id="news-{{newsId}}-delete-comment-{{id}}" class="delete">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </span>
+                </div>
             </div>
             <div class="panel-body">
                 {{content}}
