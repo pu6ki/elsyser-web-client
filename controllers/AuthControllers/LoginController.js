@@ -4,19 +4,23 @@ import { formHandler } from '../../utils/formHandler.js';
 import { isTeacher, setTeacherSubjectToLocalStorage } from '../../utils/helper.js';
 
 export function LoginController() {
-    templates.get('AuthTemplates/login')
-        .then((res) => {
-            let hbTemplate = Handlebars.compile(res),
-                template = hbTemplate();
+    if (window.localStorage.getItem('elsyser-token') === null) {
+        templates.get('AuthTemplates/login')
+            .then((res) => {
+                let hbTemplate = Handlebars.compile(res),
+                    template = hbTemplate();
 
-            $('#content').html(template);
+                $('#content').html(template);
 
-            formHandler();
+                formHandler();
 
-            $('#login-button').on('click', () => {
-                login();
+                $('#login-button').on('click', () => {
+                    login();
+                });
             });
-        })
+    } else {
+        window.location.href = '/#/home';
+    }
 }
 
 function getDataFromTemplate() {
@@ -49,7 +53,7 @@ function login() {
                 }
 
                 toastr.success('Logged-in successfully!');
-                window.location.href = '/#/home';     
+                window.location.href = '/#/home';
             }
         }).catch((err) => {
             console.log(err);

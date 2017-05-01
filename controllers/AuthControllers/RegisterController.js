@@ -4,18 +4,22 @@ import { formHandler } from '../../utils/formHandler.js';
 import { validator } from '../../utils/validator.js';
 
 export function RegisterController() {
-    templates.get('AuthTemplates/register')
-        .then((res) => {
-            let hbTemplate = Handlebars.compile(res),
-                template = hbTemplate();
+    if (window.localStorage.getItem('elsyser-token') === null) {
+        templates.get('AuthTemplates/register')
+            .then((res) => {
+                let hbTemplate = Handlebars.compile(res),
+                    template = hbTemplate();
 
-            $('#content').html(template);
-            formHandler();
+                $('#content').html(template);
+                formHandler();
 
-            $('#registerButton').on('click', () => {
-                register();
+                $('#registerButton').on('click', () => {
+                    register();
+                });
             });
-        });
+    } else {
+        window.location.href = "/#/home";
+    }
 }
 
 function getDataFromTemplate() {
