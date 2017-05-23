@@ -1,31 +1,4 @@
-import { HeaderController } from './controllers/HeaderController.js';
-import { HomeController } from './controllers/HomeController.js';
-import { AboutController } from './controllers/AboutController.js';
-
-import { LoginController } from './controllers/AuthControllers/LoginController.js';
-import { RegisterController } from './controllers/AuthControllers/RegisterController.js';
-
-import { ProfileController } from './controllers/ProfileControllers/ProfileController.js';
-
-import { ExamsController } from './controllers/ExamsControllers/ExamsController.js';
-import { DetailedExamsController } from './controllers/ExamsControllers/DetailedExamsController.js';
-
-import { NewsController } from './controllers/NewsControllers/NewsController.js';
-import { DetailedNewsController, loadComments } from './controllers/NewsControllers/DetailedNewsController.js';
-
-import { HomeworksController } from './controllers/HomeworksControllers/HomeworksController.js';
-import { DetailedHomeworkController } from './controllers/HomeworksControllers/DetailedHomeworkController.js';
-import { SubmissionsController } from './controllers/HomeworksControllers/SubmissionsController.js';
-import { DetailedSubmissionController } from './controllers/HomeworksControllers/DetailedSubmissionController.js';
-
-import { MaterialsController } from './controllers/MaterialsControllers/MaterialsController.js';
-import { DetailedMaterialController } from './controllers/MaterialsControllers/DetailedMaterialController.js';
-
-import { GradesController } from './controllers/GradesControllers/GradesController.js';
-import { DetailedClassGradesController } from './controllers/GradesControllers/DetailedClassGradesController.js';
-
-import { NotFoundController } from './controllers/NotFoundController.js';
-
+import { controllers } from './controllers/controllers.js';
 import { isTeacher, setNewsUrl } from './utils/helper.js';
 
 try {
@@ -42,45 +15,45 @@ const domain = 'http://127.0.0.1:8080';
 
 var router = new Navigo(null, true);
 
-window.onbeforeunload = HeaderController();
+window.onbeforeunload = controllers.header();
 
 router
     .on('/', () => { router.navigate('/home') })
     .on('/home', () => {
-        HeaderController();
-        HomeController();
+        controllers.header();
+        controllers.home();
     })
     .on('/about', () => {
-        AboutController();
+        controllers.about();
     })
     .on('/login', () => {
-        LoginController();
+        controllers.login();
     })
     .on('/register', () => {
-        RegisterController();
+        controllers.register();
     })
     .on('/profile/:id', (params) => {
-        ProfileController(params.id);
+        controllers.profile(params.id);
     })
     .on('/exams', () => {
-        ExamsController();
+        controllers.exams();
     })
     .on('/exams/:id', (params) => {
-        DetailedExamsController(params.id);
+        controllers.detailedExam(params.id);
     })
     .on('/news/students/', () => {
         let newsUrl = setNewsUrl();
-        NewsController(newsUrl);
+        controllers.news(newsUrl);
     })
     .on('/news/teachers/', () => {
         let newsUrl = setNewsUrl();
-        NewsController(newsUrl);
+        controllers.news(newsUrl);
     })
     .on('/news/students/:id', (params) => {
         let newsUrl = setNewsUrl();
-        DetailedNewsController(newsUrl, params.id);
+        controllers.detailedNews(newsUrl, params.id);
         let refreshId = setInterval(() => {
-            loadComments(newsUrl, params.id);
+            controllers.loadComments(newsUrl, params.id);
             if (window.location.href !== `${domain}/#/news/students/${params.id}`) {
                 clearInterval(refreshId);
             }
@@ -88,39 +61,39 @@ router
     })
     .on('/news/students/teachers/:id', (params) => {
         let newsUrl = setNewsUrl();
-        DetailedNewsController(newsUrl, params.id);
+        controllers.detailedNews(newsUrl, params.id);
         let refreshId = setInterval(() => {
-            loadComments(newsUrl, params.id);
+            controllers.loadComments(newsUrl, params.id);
             if (window.location.href !== `${domain}/#/news/teachers/${params.id}`) {
                 clearInterval(refreshId);
             }
         }, 1000);
     })
     .on('/homeworks', () => {
-        HomeworksController();
+        controllers.homeworks();
     })
     .on('/homeworks/:id', (params) => {
-        DetailedHomeworkController(params.id);
+        controllers.detailedHomework(params.id);
     })
     .on('/homeworks/:id/submissions', (params) => {
-        SubmissionsController(params.id);
+        controllers.submission(params.id);
     })
     .on('/homeworks/:homeworkId/submissions/:submissionId', (params) => {
-        DetailedSubmissionController(params.homeworkId, params.submissionId);
+        controllers.detailedSubmission(params.homeworkId, params.submissionId);
     })
     .on('/materials', () => {
-        MaterialsController();
+        controllers.materials();
     })
     .on('/materials/:subjectId/:materialId', (params) => {
-        DetailedMaterialController(params.subjectId, params.materialId);
+        controllers.detailedMaterial(params.subjectId, params.materialId);
     })
     .on('/grades', () => {
-        GradesController();
+        controllers.grades();
     })
     .on('/grades/:classNumber/:classLetter', (params) => {
-        DetailedClassGradesController(params.classNumber, params.classLetter);
+        controllers.detailedClassGrades(params.classNumber, params.classLetter);
     })
     .notFound(() => {
-        NotFoundController();
+        controllers.notFound();
     })
     .resolve();
