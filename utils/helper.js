@@ -31,12 +31,15 @@ export function attachEvaluationWords(mark) {
 }
 
 export function setNewsUrl() {
-    let newsUrl;
-    let token = localStorage.getItem('elsyser-token');
-    if (isTeacher(token)) {
-        newsUrl = 'https://elsyser.herokuapp.com/api/news/teachers/';
-    } else {
-        newsUrl = 'https://elsyser.herokuapp.com/api/news/students/';
-    }
-    return newsUrl;
+    return isTeacher(localStorage.getItem('elsyser-token')) ? 
+    'https://elsyser.herokuapp.com/api/news/teachers/' :
+    'https://elsyser.herokuapp.com/api/news/students/';
+    // let newsUrl;
+    // let token = localStorage.getItem('elsyser-token');
+    // if (isTeacher(token)) {
+    //     newsUrl = 'https://elsyser.herokuapp.com/api/news/teachers/';
+    // } else {
+    //     newsUrl = 'https://elsyser.herokuapp.com/api/news/students/';
+    // }
+    // return newsUrl;
 }
