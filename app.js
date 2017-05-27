@@ -59,7 +59,7 @@ router
             }
         }, 1000);
     })
-    .on('/news/students/teachers/:id', (params) => {
+    .on('/news/teachers/:id', (params) => {
         let newsUrl = setNewsUrl();
         controllers.detailedNews(newsUrl, params.id);
         let refreshId = setInterval(() => {

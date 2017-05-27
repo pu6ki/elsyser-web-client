@@ -2,16 +2,16 @@
     {{#if materials}}
         {{#each materials}}
             <div class="panel panel-primary">
-                <div class="panel-heading material-panel-heading">
+                <div class="panel-heading material-panel-heading text-center">
                     <strong>
                         {{subject.title}}
                     </strong>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body text-center">
                     <h4 class="material-title">{{title}}</h4>
                     <h5 class="material-section">{{section}}</h5>
                     <div id="content">{{content}}</div>
-
+                    <hr />
                     Posted by
                     <a href="#/profile/{{author.user.id}}">
                         <span><strong><i>{{author.user.username}}</i></strong></span>

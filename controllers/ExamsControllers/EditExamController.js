@@ -57,7 +57,7 @@ function editData(id) {
     }
     
     body.details = $('#new-details-content').val();
-    body.date = $('#new-date-content').val();
+    body.date = $('#date').val();
 
     requester.putJSON(selectedExamUrl, body)
         .then(() => {

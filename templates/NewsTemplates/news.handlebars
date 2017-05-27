@@ -2,15 +2,16 @@
     {{#if this}}
         {{#each this}}
             <div class="panel panel-primary">
-                <div class="panel-heading">
+                <div class="panel-heading text-center">
                     <strong>
                         <span>{{title}}</span>
                     </strong>
                 </div>
                 <div class="panel-body">
-                    <div>
+                    <div class="text-center">
                         <span><strong><i>{{content}}</i></strong></span>
                     </div>
+                    <hr />
                     <div>
                         Posted by
                         <a href="#/profile/{{author.id}}">
