@@ -39,16 +39,16 @@ How to copy this project to your local machine and run it:
     $ cd elsyser-web-client/
     ```
 
-2. Install Node.js dependencies:
+2. Install Bower dependencies:
 
     ```
-    $ npm install
-    $ npm install -g live-server
+    $ bower install
     ```
 
 3. Run the live server:
 
     ```
+    $ npm install -g live-server
     $ live-server
     ```
 

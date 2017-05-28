@@ -1,5 +1,6 @@
-import { requester } from '../../utils/requester.js';
-import { templates } from '../../utils/templates.js';
+import { requester } from '../utils/requester.js';
+import { templates } from '../utils/templates.js';
+import { validator } from '../utils/validator.js';
 import { notFoundController } from './notFoundController.js';
 import { headerController } from './headerController.js'
 

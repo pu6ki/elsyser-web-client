@@ -2,7 +2,8 @@ import { requester } from '../utils/requester.js';
 import { templates } from '../utils/templates.js';
 import { formHandler } from '../utils/formHandler.js';
 import { isTeacher, insertLineBreaks } from '../utils/helper.js';
-import { notFoundController } from './notFoundController.js'
+import { validator } from '../utils/validator.js';
+import { notFoundController } from './notFoundController.js';
 
 const homeworksUrl = 'https://elsyser.herokuapp.com/api/homeworks/';
 
@@ -284,7 +285,7 @@ function editHomeworkData(id) {
 }
 
 function editSubmissionController(homeworkId, submissionid) {
-    let url = `${homeworksUrl}}${homeworkId}/submissions/${submissionid}/`,
+    let url = `${homeworksUrl}${homeworkId}/submissions/${submissionid}/`,
         getData = requester.getJSON(url),
         getTemplate = templates.get('HomeworksTemplates/edit-submission');
 

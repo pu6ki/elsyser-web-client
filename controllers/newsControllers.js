@@ -71,7 +71,7 @@ function addNewsController(newsUrl) {
                 });
 
                 $('#go-back').on('click', () => {
-                    NewsController(newsUrl);
+                    newsController(newsUrl);
                 })
             })
 
@@ -130,9 +130,10 @@ function postNews(newsUrl) {
             .then((result) => {
                 if (result) {
                     toastr.success('News added!');
-                    NewsController(newsUrl);
+                    newsController(newsUrl);
                 }
-            }).catch(() => {
+            }).catch((err) => {
+                console.log(err);
                 toastr.error('Couldn\'t add the news Please check for errors!');
             });
     }
@@ -164,13 +165,69 @@ function selectWholeClass(newsUrl) {
             }
 
             $('#go-back').on('click', () => {
-                NewsController(newsUrl);
+                newsController(newsUrl);
             });
         })
 }
 
 function concreteClass(newsUrl) {
     //TODO
+}
+
+function editNewsController(newsUrl, id) {
+    let selectedNewsUrl = newsUrl + id + '/',
+        getData = requester.getJSON(selectedNewsUrl),
+        getTemplate = templates.get('NewsTemplates/edit-news');
+
+    Promise.all([getData, getTemplate])
+        .then((result) => {
+            let data = result[0],
+                hbTemplate = Handlebars.compile(result[1]),
+                template = hbTemplate(data);
+
+            $('#content').html(template);
+
+            $('#save-button').on('click', () => {
+                editNewsData(newsUrl, id);
+            });
+
+            $('#go-back').on('click', () => {
+                detailedNewsController(newsUrl, id);
+            });
+        });
+}
+
+function editNewsData(newsUrl, id) {
+    let body = {
+        title: '',
+        content: '',
+        edited: true
+    },
+        selectedNewsUrl = newsUrl + id + '/';
+
+    if (validator.title($('#new-news-title').val())) {
+        body.title = $('#new-news-title').val();
+    }
+    else {
+        toastr.error('Title shoud be between 3 and 100 characters long!');
+        return;
+    }
+    if (validator.content($('#new-news-content').val())) {
+        body.content = $('#new-news-content').val();
+    }
+    else {
+        toastr.error('Content shoud be between 5 and 10000 characters long!');
+        return;
+    }
+
+    requester.putJSON(selectedNewsUrl, body)
+        .then(() => {
+            toastr.success("News updated successfully!");
+            detailedNewsController(newsUrl, id);
+        }).catch(() => {
+            toastr.error('Couldn\'t update the selected news!');
+        });
+
 }
 
 let dataFromAPI, currentUsername;
