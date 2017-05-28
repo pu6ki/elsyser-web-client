@@ -1,14 +1,32 @@
 import { requester } from '../../utils/requester.js';
 import { templates } from '../../utils/templates.js';
-import { validator } from '../../utils/validator.js';
-import { isTeacher } from '../../utils/helper.js';
-
-import { ProfileController } from './ProfileController.js';
-import { HeaderController } from '../HeaderController.js'
+import { notFoundController } from './notFoundController.js';
+import { headerController } from './headerController.js'
 
 const profileUrl = `https://elsyser.herokuapp.com/api/profile/`;
 
-export function EditProfileController(id) {
+export function profileController(id) {
+    let profileUrl = `https://elsyser.herokuapp.com/api/profile/${id}/`,
+        getData = requester.getJSON(profileUrl),
+        getTemplate = templates.get('ProfileTemplates/profile');
+
+    Promise.all([getData, getTemplate])
+        .then((result) => {
+            let data = result[0],
+                hbTemplate = Handlebars.compile(result[1]),
+                template = hbTemplate(data);
+
+            $('#content').html(template);
+            $('#edit-profile').on('click', () => {
+                editProfileController(id);
+            });
+        }).catch((err) => {
+            notFoundController();
+            console.log(err);
+        });
+}
+
+function editProfileController(id) {
     let getData = requester.getJSON(profileUrl + id + '/'),
         getTemplate = templates.get('ProfileTemplates/edit-profile');
 
@@ -65,8 +83,8 @@ function editData(id) {
     requester.putJSON(profileUrl + id + '/', body)
         .then(() => {
             toastr.success('Data updated successfully.');
-            ProfileController(id);
-            HeaderController();
+            profileController(id);
+            headerController();
         }).catch((error) => {
             toastr.error(error.responseText);
         });

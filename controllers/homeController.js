@@ -2,7 +2,7 @@ import { requester } from '../utils/requester.js';
 import { templates } from '../utils/templates.js';
 import { isTeacher } from '../utils/helper.js';
 
-export function HomeController() {
+export function homeController() {
     let token = window.localStorage.getItem('elsyser-token');
 
     if (token) {

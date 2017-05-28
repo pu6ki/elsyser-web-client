@@ -2,9 +2,9 @@ import { requester } from '../utils/requester.js';
 import { templates } from '../utils/templates.js';
 import { isTeacher } from '../utils/helper.js';
 
-import { LogoutController } from '../controllers/AuthControllers/LogoutController.js';
+import { auth } from '../controllers/authControllers.js';
 
-export function HeaderController() {
+export function headerController() {
     let profileId = localStorage.getItem('elsyser-id');
     const profileUrl = `https://elsyser.herokuapp.com/api/profile/${profileId}/`;
     const authHeader = 'authorized-header';
@@ -39,15 +39,8 @@ function compileTemplate(template, data) {
 
             $('#header').html(template);
 
-            /*
-            if (window.localStorage.getItem('elsyser-token')) {
-                if (isTeacher(window.localStorage.getItem('elsyser-token'))) {
-                    $('#news-button').remove();
-                }
-            }*/
-
             $('#log-out').on('click', () => {
-                LogoutController();
+                auth.logout();
             })
         });
 }

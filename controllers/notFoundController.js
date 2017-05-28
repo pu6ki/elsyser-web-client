@@ -1,7 +1,7 @@
 import { requester } from '../utils/requester.js';
 import { templates } from '../utils/templates.js';
 
-export function NotFoundController() {
+export function notFoundController() {
     templates.get('404-error')
         .then((result) => {
             let hbTemplate = Handlebars.compile(result),
