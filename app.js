@@ -49,22 +49,12 @@ router
         let newsUrl = setNewsUrl();
         controllers.news(newsUrl);
     })
-    .on('/news/students/:id', (params) => {
+    .on(/\/news\/(students|teachers)\/(\d+)/, (user, id) => {
         let newsUrl = setNewsUrl();
-        controllers.detailedNews(newsUrl, params.id);
+        controllers.detailedNews(newsUrl, id);
         let refreshId = setInterval(() => {
-            controllers.loadComments(newsUrl, params.id);
-            if (window.location.href !== `${domain}/#/news/students/${params.id}`) {
-                clearInterval(refreshId);
-            }
-        }, 1000);
-    })
-    .on('/news/teachers/:id', (params) => {
-        let newsUrl = setNewsUrl();
-        controllers.detailedNews(newsUrl, params.id);
-        let refreshId = setInterval(() => {
-            controllers.loadComments(newsUrl, params.id);
-            if (window.location.href !== `${domain}/#/news/teachers/${params.id}`) {
+            controllers.loadComments(newsUrl, id);
+            if (window.location.href !== `${domain}/#/news/students/${id}` || `${domain}/#/news/teachers/${id}`) {
                 clearInterval(refreshId);
             }
         }, 1000);
