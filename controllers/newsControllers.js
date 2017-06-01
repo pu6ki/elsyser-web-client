@@ -98,7 +98,7 @@ function loadTemplate(newsUrl) {
         });
 }
 
-function getDataFromTemplate() {
+function getNewsDataFromTemplate() {
     let body = {
         title: '',
         content: ''
@@ -124,7 +124,7 @@ function getDataFromTemplate() {
 }
 
 function postNews(newsUrl) {
-    let data = getDataFromTemplate();
+    let data = getNewsDataFromTemplate();
     if (data) {
         requester.postJSON(newsUrl, data)
             .then((result) => {
@@ -243,16 +243,12 @@ function detailedNewsController(newsUrl, id) {
             let hbTemplate = Handlebars.compile(result[1]),
                 newsId = dataFromAPI.id;
 
-            if (dataFromAPI.author.username === currentUsername) {
-                dataFromAPI.editable = true;
-            }
+            dataFromAPI.editable = dataFromAPI.author.username === currentUsername;
 
             dataFromAPI.comment_set.reverse();
 
             dataFromAPI.comment_set.forEach((el) => {
-                if (el.posted_by.username === currentUsername) {
-                    el.editableComment = true;
-                }
+                el.editableComment = el.posted_by.username === currentUsername;
             });
 
             let template = hbTemplate(dataFromAPI);
@@ -277,12 +273,9 @@ function detailedNewsController(newsUrl, id) {
 
             formHandler();
 
-            $(".comment").slice(0, 2).show();
+            $(".comment").slice(0, 3).show();
             $("#loadMore").on('click', () => {
-                $(".comment:hidden").slice(0, 3).slideDown();
-                /*if ($("div:hidden").length === 0) {
-                    $("#loadMore").fadeOut('slow');
-                }*/
+                $(".comment:hidden").slice(0, 5).slideDown();
             });
 
             $('.toTop').click(function () {
@@ -322,14 +315,14 @@ export function loadComments(newsUrl, newsId) {
 
         dataFromAPI.comment_set = newData.comment_set;
 
-        for (let i = 0; i < commentsToLoad.length; i += 1) {    
-            if (commentsToLoad[i].posted_by.username == currentUsername) {
-                commentsToLoad[i].newsId = newsId;
-                commentsToLoad[i].editable = true;
+        for (let comment of commentsToLoad) {
+            if (comment.posted_by.username === currentUsername) {
+                comment.newsId = newsId;
+                comment.editable = true;
             }
-            let template = hbTemplate(commentsToLoad[i]);
+            let template = hbTemplate(comment);
             $('#comments').prepend(template);
-            attachEditAndDeleteToComments(newsUrl, newsId, commentsToLoad[i].id);
+            attachEditAndDeleteToComments(newsUrl, newsId, comment.id);
         }
     });
 }
