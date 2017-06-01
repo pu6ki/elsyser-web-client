@@ -11,7 +11,7 @@ try {
     toastr.warning('If you have opened this page on mobile device, please use Google Chrome for your mobile OS!', 'Warning', toastrOptions);
 }
 
-const domain = 'http://127.0.0.1:8080';
+const domain = `${window.location.protocol}//${window.location.host}`;
 
 var router = new Navigo(null, true);
 
@@ -54,7 +54,7 @@ router
         controllers.detailedNews(newsUrl, id);
         let refreshId = setInterval(() => {
             controllers.loadComments(newsUrl, id);
-            if (window.location.href !== `${domain}/#/news/students/${id}` || `${domain}/#/news/teachers/${id}`) {
+            if (window.location.href !== `${domain}/#/news/students/${id}` && window.location.href !== `${domain}/#/news/teachers/${id}`) {
                 clearInterval(refreshId);
             }
         }, 1000);
