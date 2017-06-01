@@ -15,7 +15,7 @@ function materialsController() {
                 hbTemplate = Handlebars.compile(result[1]),
                 token = window.localStorage.getItem('elsyser-token');
 
-            data.forEach(function(el) {
+            data.forEach(function (el) {
                 if (el.content.length > 150) {
                     el.content = el.content.slice(0, 149) + '...';
                 }
@@ -130,9 +130,16 @@ function editMaterialController(subjectId, materialId) {
             let data = result[0],
                 subjects = result[1],
                 hbTemplate = Handlebars.compile(result[2]),
-                template = hbTemplate({data, subjects});
+                template = hbTemplate({ data, subjects });
 
             $('#content').html(template);
+
+            let options = $('#class-number').children();
+            for (let option of options) {
+                if (data.class_number.toString() === option.value) {
+                    option.setAttribute('selected', 'selected');
+                }
+            }
 
             $('#save-button').on('click', () => {
                 editData(subjectId, materialId);
@@ -147,15 +154,15 @@ function editMaterialController(subjectId, materialId) {
 function editData(subjectId, materialId) {
     let materialUrl = `https://elsyser.herokuapp.com/api/materials/${subjectId}/${materialId}/`,
         body = {
-        title: '',
-        section: '',
-        content: '',
-        class_number: null,
-        subject: {
-            id: null
-        },
-        video_url: ''
-    }
+            title: '',
+            section: '',
+            content: '',
+            class_number: null,
+            subject: {
+                id: null
+            },
+            video_url: ''
+        }
 
     if (validator.title($('#title').val())) {
         body.title = $('#title').val();
@@ -252,6 +259,6 @@ function makeYouTubeVideoEmbedable(videoUrl) {
 }
 
 export let materials = {
-  allMaterials: materialsController,
-  detailedMaterial: detailedMaterialController
+    allMaterials: materialsController,
+    detailedMaterial: detailedMaterialController
 }
