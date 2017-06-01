@@ -3,12 +3,12 @@ import { templates } from '../utils/templates.js';
 import { formHandler } from '../utils/formHandler.js';
 import { isTeacher, insertLineBreaks } from '../utils/helper.js';
 import { validator } from '../utils/validator.js';
+import { urls } from '../utils/urls.js';
+
 import { notFoundController } from './notFoundController.js';
 
-const homeworksUrl = 'https://elsyser.herokuapp.com/api/homeworks/';
-
 function homeworksController() {
-    let getData = requester.getJSON(homeworksUrl),
+    let getData = requester.getJSON(urls.homeworks),
         getTemplate = templates.get('HomeworksTemplates/homeworks');
 
     Promise.all([getData, getTemplate])
@@ -36,7 +36,7 @@ function homeworksController() {
 
 function addHomeworkController() {
     let getTemplate = templates.get('HomeworksTemplates/add-homework'),
-        getData = requester.getJSON('https://elsyser.herokuapp.com/api/subjects/');
+        getData = requester.getJSON(urls.subjects);
 
     Promise.all([getTemplate, getData])
         .then((result) => {
@@ -83,7 +83,7 @@ function postHomework() {
     body.clazz.letter = $('#studentClassLetter').val();
     body.details = $('#details').val();
 
-    requester.postJSON(homeworksUrl, body)
+    requester.postJSON(urls.homeworks, body)
         .then(() => {
             toastr.success('Added homework successfully!');
             homeworksController();
@@ -94,7 +94,7 @@ function postHomework() {
 }
 
 function deleteHomeworkController(id) {
-    let deleteHomeworkUrl = homeworksUrl + id + '/';
+    let deleteHomeworkUrl = `${urls.homeworks}${id}/`;
 
     requester.delete(deleteHomeworkUrl)
         .then(() => {
@@ -106,7 +106,7 @@ function deleteHomeworkController(id) {
 }
 
 function detailedHomeworkController(id) {
-    let homeworkUrl = `${homeworksUrl}${id}/`,
+    let homeworkUrl = `${urls.homeworks}${id}/`,
         getData = requester.getJSON(homeworkUrl),
         getTemplate = templates.get('HomeworksTemplates/detailed-homework'),
         currentUser = localStorage.getItem('elsyser-username');
@@ -146,7 +146,7 @@ function detailedHomeworkController(id) {
 }
 
 function viewSentHomework(id) {
-    let submissionsUrl = `${homeworksUrl}${id}/submissions/`,
+    let submissionsUrl = `${urls.homeworks}${id}/submissions/`,
         getData = requester.getJSON(submissionsUrl),
         getTemplate = templates.get('HomeworksTemplates/detailed-submission');
 
@@ -180,7 +180,7 @@ function viewSentHomework(id) {
 }
 
 function detailedSubmissionController(homeworkId, submissionId) {
-    let url = `${homeworksUrl}${homeworkId}/submissions/${submissionId}/`,
+    let url = `${urls.homeworks}${homeworkId}/submissions/${submissionId}/`,
         getData = requester.getJSON(url),
         getTemplate = templates.get('HomeworksTemplates/detailed-submission');
 
@@ -227,7 +227,7 @@ function detailedSubmissionController(homeworkId, submissionId) {
 }
 
 function editHomeworkController(id) {
-    let selectedHomeworkUrl = `${homeworksUrl}${id}/`,
+    let selectedHomeworkUrl = `${urls.homeworks}${id}/`,
         getData = requester.getJSON(selectedHomeworkUrl),
         getTemplate = templates.get('HomeworksTemplates/edit-homework');
 
@@ -264,7 +264,7 @@ function editHomeworkData(id) {
         deadline: '',
         details: ''
     },
-        selectedHomeworkUrl = `${homeworksUrl}${id}/`;
+        selectedHomeworkUrl = `${urls.homeworks}${id}/`;
 
     if (validator.content($('#new-details-content').val())) {
         body.details = $('#new-details-content').val();
@@ -285,7 +285,7 @@ function editHomeworkData(id) {
 }
 
 function editSubmissionController(homeworkId, submissionid) {
-    let url = `${homeworksUrl}${homeworkId}/submissions/${submissionid}/`,
+    let url = `${urls.homeworks}${homeworkId}/submissions/${submissionid}/`,
         getData = requester.getJSON(url),
         getTemplate = templates.get('HomeworksTemplates/edit-submission');
 
@@ -330,7 +330,7 @@ function editSubmissionController(homeworkId, submissionid) {
 }
 
 function sendHomeworkController(homeworkId) {
-    let url = `${homeworksUrl}${homeworkId}/submissions/`;
+    let url = `${urls.homeworks}${homeworkId}/submissions/`;
 
     templates.get('HomeworksTemplates/send-homework')
         .then((result) => {
@@ -373,7 +373,7 @@ function sendHomeworkController(homeworkId) {
 }
 
 function submissionsController(homeworkId) {
-    let submissionsUrl = `${homeworksUrl}${homeworkId}/submissions/`,
+    let submissionsUrl = `${urls.homeworks}${homeworkId}/submissions/`,
         getData = requester.getJSON(submissionsUrl),
         getTemplate = templates.get('HomeworksTemplates/submissions');
 

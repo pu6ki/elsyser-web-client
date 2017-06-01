@@ -2,12 +2,11 @@ import { requester } from '../utils/requester.js';
 import { templates } from '../utils/templates.js';
 import { isTeacher, insertLineBreaks } from '../utils/helper.js';
 import { validator } from '../utils/validator.js';
-
-const materialsUrl = 'https://elsyser.herokuapp.com/api/materials/'
+import { urls } from '../utils/urls.js';
 
 function materialsController() {
+    let getData = requester.getJSON(urls.materials);
     let getTemplate = templates.get('MaterialsTemplates/materials');
-    let getData = requester.getJSON(materialsUrl);
 
     Promise.all([getData, getTemplate])
         .then((result) => {
@@ -32,7 +31,7 @@ function materialsController() {
 
 function addMaterialController() {
     let getTemplate = templates.get('MaterialsTemplates/add-material'),
-        getData = requester.getJSON('https://elsyser.herokuapp.com/api/subjects/');
+        getData = requester.getJSON(urls.subjects);
 
     Promise.all([getTemplate, getData])
         .then((result) => {
@@ -97,7 +96,7 @@ function postMaterial(subjectId) {
 
     body.video_url = $('#video-url').val();
 
-    requester.postJSON(materialsUrl + subjectId + '/', body)
+    requester.postJSON(`${urls.materials}${subjectId}/`, body)
         .then(() => {
             toastr.success('Added material successfully!');
             materialsController();
@@ -108,7 +107,7 @@ function postMaterial(subjectId) {
 }
 
 function deleteMaterialController(subjectId, materialId) {
-    let deleteMaterialUrl = `${materialsUrl}/${subjectId}/${materialId}/`;
+    let deleteMaterialUrl = `${urls.materials}/${subjectId}/${materialId}/`;
 
     requester.delete(deleteMaterialUrl)
         .then(() => {
@@ -120,9 +119,9 @@ function deleteMaterialController(subjectId, materialId) {
 }
 
 function editMaterialController(subjectId, materialId) {
-    let materialUrl = `https://elsyser.herokuapp.com/api/materials/${subjectId}/${materialId}/`,
+    let materialUrl = `${urls.materials}${subjectId}/${materialId}/`,
         getData = requester.getJSON(materialUrl),
-        getSubjects = requester.getJSON('https://elsyser.herokuapp.com/api/subjects/'),
+        getSubjects = requester.getJSON(urls.subjects),
         getTemplate = templates.get('MaterialsTemplates/edit-material');
 
     Promise.all([getData, getSubjects, getTemplate])
@@ -152,7 +151,7 @@ function editMaterialController(subjectId, materialId) {
 }
 
 function editData(subjectId, materialId) {
-    let materialUrl = `https://elsyser.herokuapp.com/api/materials/${subjectId}/${materialId}/`,
+    let materialUrl = `${urls.materials}${subjectId}/${materialId}/`,
         body = {
             title: '',
             section: '',
@@ -209,7 +208,7 @@ function editData(subjectId, materialId) {
 }
 
 function detailedMaterialController(subjectId, materialId) {
-    let materialUrl = `https://elsyser.herokuapp.com/api/materials/${subjectId}/${materialId}/`,
+    let materialUrl = `${urls.materials}${subjectId}/${materialId}/`,
         getData = requester.getJSON(materialUrl),
         getTemplate = templates.get('MaterialsTemplates/detailed-material'),
         currentUser = localStorage.getItem('elsyser-username');

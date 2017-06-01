@@ -2,13 +2,13 @@ import { requester } from '../utils/requester.js';
 import { templates } from '../utils/templates.js';
 import { isTeacher, attachEvaluationWords } from '../utils/helper.js';
 import { validator } from '../utils/validator.js';
+import { urls } from '../utils/urls.js';
+
 import { notFoundController } from './notFoundController.js';
 
 function gradesController() {
-    const subjectsUrl = 'https://elsyser.herokuapp.com/api/subjects/';
-
     if (!isTeacher(localStorage.getItem('elsyser-token'))) {
-        requester.getJSON(subjectsUrl)
+        requester.getJSON(urls.subjects)
             .then(subjects => {
                 return subjects;
             }).then(subjects => {
@@ -24,7 +24,7 @@ function gradesController() {
 
 function visualizeGradesForSubject(currentGrade) {
     let profileId = localStorage.getItem('elsyser-id');
-    let gradesUrl = `https://elsyser.herokuapp.com/api/grades/${currentGrade.id}/${profileId}/`;
+    let gradesUrl = `${urls.grades}${currentGrade.id}/${profileId}/`;
 
     let getData = requester.getJSON(gradesUrl),
         getTemplate = templates.get('GradesTemplates/grades');
@@ -53,8 +53,7 @@ function visualizeGradesForSubject(currentGrade) {
 }
 
 function studensGradesController() {
-    let classesUrl = 'https://elsyser.herokuapp.com/api/classes/';
-    let getData = requester.getJSON(classesUrl);
+    let getData = requester.getJSON(urls.classes);
     let getTemplate = templates.get('partials/select-concrete-class');
 
     $('#content').html(`
@@ -81,7 +80,7 @@ function studensGradesController() {
                     $('#content').append(template);
 
                     $(`#${el.number}${el.letter}`).on('click', () => {
-                        window.location.href = `#/grades/${el.number}/${el.letter}`;
+                        window.location.href = `/#/grades/${el.number}/${el.letter}`;
                     });
                 })
             }
@@ -90,7 +89,7 @@ function studensGradesController() {
 
 
 function detailedClassGradesController(classNumber, classLetter) {
-    let getStudentsUrl = `https://elsyser.herokuapp.com/api/students/${classNumber}/${classLetter}/`;
+    let getStudentsUrl = `${urls.students}/${classNumber}/${classLetter}/`;
     let getStudents = requester.getJSON(getStudentsUrl);
     let getTemplate = templates.get('GradesTemplates/class-grades');
     let currentClass = { classNumber, classLetter };
@@ -148,7 +147,7 @@ function detailedClassGradesController(classNumber, classLetter) {
 
 function populateGrades(student) {
     let subjectId = localStorage.getItem('elsyser-teachers-subject-id');
-    let gradesUrl = `https://elsyser.herokuapp.com/api/grades/${subjectId}/${student.user.id}/`;
+    let gradesUrl = `${urls.grades}/${subjectId}/${student.user.id}/`;
 
     requester.getJSON(gradesUrl)
         .then((grades) => {
@@ -166,7 +165,7 @@ function populateGrades(student) {
 }
 
 function addGradesController(classNumber, classLetter) {
-    let getStudentsUrl = `https://elsyser.herokuapp.com/api/students/${classNumber}/${classLetter}/`;
+    let getStudentsUrl = `${urls.students}/${classNumber}/${classLetter}/`;
     let getStudents = requester.getJSON(getStudentsUrl);
     let getTemplate = templates.get('GradesTemplates/add-grades');
     let getPartialFormField = templates.get('partials/grade-form-field');
@@ -226,7 +225,8 @@ function sendGrades(students, classNumber, classLetter) {
     for (let i = 0; i < len; i += 1) {
         for (let j = 0; j < students.length; j += 1) {
             if ($(`#student-name-${i}`).val() === students[j].fullName) {
-                let sendGradesUrl = `https://elsyser.herokuapp.com/api/grades/${localStorage.getItem('elsyser-teachers-subject-id')}/${students[j].id}/`
+                let teacherSubjectId = localStorage.getItem('elsyser-teachers-subject-id')
+                let sendGradesUrl = `${urls.grades}/${teacherSubjectId}/${students[j].id}/`
 
                 if (validator.grade($(`#grade-${i}`).val())) {
                     let grade = { value: $(`#grade-${i}`).val() };

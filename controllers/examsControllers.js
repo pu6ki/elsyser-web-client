@@ -1,16 +1,13 @@
-import { requester } from '../../utils/requester.js';
-import { templates } from '../../utils/templates.js';
-import { isTeacher } from '../../utils/helper.js';
-import { formHandler } from '../../utils/formHandler.js';
+import { requester } from '../utils/requester.js';
+import { templates } from '../utils/templates.js';
+import { isTeacher } from '../utils/helper.js';
+import { formHandler } from '../utils/formHandler.js';
+import { urls } from '../utils/urls.js';
 
 import { notFoundController } from './notFoundController.js'
 
-const examsUrl = 'https://elsyser.herokuapp.com/api/exams/';
-
 export function examsController() {
-    const examsUrl = 'https://elsyser.herokuapp.com/api/exams/';
-
-    let getData = requester.getJSON(examsUrl),
+    let getData = requester.getJSON(urls.exams),
         getTemplate = templates.get('ExamsTemplates/exams');
 
     Promise.all([getData, getTemplate])
@@ -71,8 +68,6 @@ function addExamController() {
 }
 
 function postExam() {
-    const examsUrl = 'https://elsyser.herokuapp.com/api/exams/';
-
     let body = {
         date: '',
         topic: '',
@@ -90,7 +85,7 @@ function postExam() {
     body.clazz.letter = $('#studentClassLetter').val();
     body.details = $('#details').val();
 
-    requester.postJSON(examsUrl, body)
+    requester.postJSON(urls.exams, body)
         .then(() => {
             toastr.success('Added exam successfully!');
             ExamsController();
@@ -102,7 +97,7 @@ function postExam() {
 
 
 function deleteExamController(id) {
-    let deleteExamUrl = examsUrl + id + '/';
+    let deleteExamUrl = urls.exams + id + '/';
 
     requester.delete(deleteExamUrl)
         .then(() => {
@@ -147,7 +142,7 @@ function detailedExamsController(id) {
 }
 
 function editExamController(id) {
-    let selectedExamUrl = examsUrl + id + '/',
+    let selectedExamUrl = urls.exams + id + '/',
         getData = requester.getJSON(selectedExamUrl),
         getTemplate = templates.get('ExamsTemplates/edit-exam');
 
@@ -185,7 +180,7 @@ function editData(id) {
         date: '',
         details: ''
     },
-        selectedExamUrl = examsUrl + id + '/';
+        selectedExamUrl = urls.exams + id + '/';
 
     if (validator.title($('#new-exam-topic').val())) {
         body.topic = $('#new-exam-topic').val();

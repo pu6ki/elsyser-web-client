@@ -1,12 +1,13 @@
 import { requester } from '../utils/requester.js';
 import { templates } from '../utils/templates.js';
 import { isTeacher } from '../utils/helper.js';
+import { urls } from '../utils/urls.js';
 
 import { auth } from '../controllers/authControllers.js';
 
 export function headerController() {
     let profileId = localStorage.getItem('elsyser-id');
-    const profileUrl = `https://elsyser.herokuapp.com/api/profile/${profileId}/`;
+    const profileUrl = `${urls.profile}${profileId}/`;
     const authHeader = 'authorized-header';
     const unauthHeader = 'unauthorized-header';
     let token = window.localStorage.getItem('elsyser-token'); 

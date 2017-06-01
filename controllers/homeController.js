@@ -1,19 +1,18 @@
 import { requester } from '../utils/requester.js';
 import { templates } from '../utils/templates.js';
 import { isTeacher } from '../utils/helper.js';
+import { urls } from '../utils/urls.js';
 
 export function homeController() {
     let token = window.localStorage.getItem('elsyser-token');
 
     if (token) {
-        const url = 'https://elsyser.herokuapp.com/api/';
+        let newsUrl = isTeacher(token) ? urls.news.teachers : urls.news.students;
 
-        let newsUrl = isTeacher(token) ? 'news/teachers/' : 'news/students/';
-
-        let getExams = requester.getJSON(url + 'exams/'),
-            getNews = requester.getJSON(url + newsUrl),
-            getHomeworks = requester.getJSON(url + 'homeworks/'),
-            getMaterials = requester.getJSON(url + 'materials/'),
+        let getExams = requester.getJSON(urls.exams),
+            getNews = requester.getJSON(newsUrl),
+            getHomeworks = requester.getJSON(urls.homeworks),
+            getMaterials = requester.getJSON(urls.materials),
             getTemplate = templates.get('HomeTemplates/authorized-home');
 
         Promise.all([getTemplate, getNews, getExams, getHomeworks, getMaterials])

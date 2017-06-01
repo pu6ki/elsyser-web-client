@@ -3,6 +3,7 @@ import { templates } from '../utils/templates.js';
 import { isTeacher } from '../utils/helper.js';
 import { validator } from '../utils/validator.js'
 import { formHandler } from '../utils/formHandler.js';
+import { urls } from '../utils/urls.js';
 
 import { notFoundController } from './notFoundController.js';
 
@@ -140,8 +141,7 @@ function postNews(newsUrl) {
 }
 
 function selectWholeClass(newsUrl) {
-    const classesUrl = 'https:/elsyser.herokuapp.com/api/classes/';
-    let getData = requester.getJSON(classesUrl);
+    let getData = requester.getJSON(urls.classes);
     let getTemplate = templates.get('NewsTemplates/select-whole-class');
 
     Promise.all([getData, getTemplate])
@@ -175,7 +175,7 @@ function concreteClass(newsUrl) {
 }
 
 function editNewsController(newsUrl, id) {
-    let selectedNewsUrl = newsUrl + id + '/',
+    let selectedNewsUrl = `${newsUrl}${id}/`,
         getData = requester.getJSON(selectedNewsUrl),
         getTemplate = templates.get('NewsTemplates/edit-news');
 
@@ -203,7 +203,7 @@ function editNewsData(newsUrl, id) {
         content: '',
         edited: true
     },
-        selectedNewsUrl = newsUrl + id + '/';
+        selectedNewsUrl = `${newsUrl}${id}/`;
 
     if (validator.title($('#new-news-title').val())) {
         body.title = $('#new-news-title').val();
@@ -234,7 +234,7 @@ let dataFromAPI, currentUsername;
 
 function detailedNewsController(newsUrl, id) {
     currentUsername = localStorage.getItem('elsyser-username');
-    let getData = requester.getJSON(newsUrl + id + '/'),
+    let getData = requester.getJSON(`${newsUrl}${id}/`),
         getTemplate = templates.get('NewsTemplates/detailed-news');
 
     Promise.all([getData, getTemplate])
@@ -291,13 +291,13 @@ function detailedNewsController(newsUrl, id) {
             });
 
         }).catch((err) => {
-            notFoundController();
             console.log(err);
+            notFoundController();
         });
 }
 
 export function loadComments(newsUrl, newsId) {
-    let getData = requester.getJSON(newsUrl + newsId + '/'),
+    let getData = requester.getJSON(`${newsUrl}${newsId}/`),
         getTemplate = templates.get('partials/comment');
 
     Promise.all([getData, getTemplate]).then((result) => {

@@ -1,13 +1,13 @@
 import { requester } from '../utils/requester.js';
 import { templates } from '../utils/templates.js';
 import { validator } from '../utils/validator.js';
+import { urls } from '../utils/urls.js';
+
 import { notFoundController } from './notFoundController.js';
 import { headerController } from './headerController.js'
 
-const profileUrl = `https://elsyser.herokuapp.com/api/profile/`;
-
 export function profileController(id) {
-    let profileUrl = `https://elsyser.herokuapp.com/api/profile/${id}/`,
+    let profileUrl = `${urls.profile}${id}/`,
         getData = requester.getJSON(profileUrl),
         getTemplate = templates.get('ProfileTemplates/profile');
 
@@ -28,7 +28,7 @@ export function profileController(id) {
 }
 
 function editProfileController(id) {
-    let getData = requester.getJSON(profileUrl + id + '/'),
+    let getData = requester.getJSON(`${urls.profile}${id}/`),
         getTemplate = templates.get('ProfileTemplates/edit-profile');
 
     Promise.all([getData, getTemplate])
@@ -81,7 +81,7 @@ function editData(id) {
     body.info = $('#new-info').val();
     body.profile_image_url = $('#new-profile-image-url').val();
 
-    requester.putJSON(profileUrl + id + '/', body)
+    requester.putJSON(`${urls.profile}${id}/`, body)
         .then(() => {
             toastr.success('Data updated successfully.');
             profileController(id);

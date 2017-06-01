@@ -2,6 +2,7 @@ import { requester } from '../utils/requester.js';
 import { templates } from '../utils/templates.js';
 import { formHandler } from '../utils/formHandler.js';
 import { isTeacher, setTeacherSubjectToLocalStorage } from '../utils/helper.js';
+import { urls } from '../utils/urls.js';
 
 import { headerController } from './headerController.js';
 import { homeController } from './homeController.js';
@@ -39,8 +40,7 @@ function getDataFromLoginTemplate() {
 }
 
 function login() {
-    let loginUrl = 'https://elsyser.herokuapp.com/api/login/';
-    requester.postJSON(loginUrl, getDataFromLoginTemplate())
+    requester.postJSON(urls.auth.login, getDataFromLoginTemplate())
         .then((result) => {
             if (result.token) {
                 let token = result.token;
@@ -141,10 +141,9 @@ function getDataFromRegisterTemplate() {
 }
 
 function register() {
-    let registerUrl = 'https://elsyser.herokuapp.com/api/register/';
     let data = getDataFromRegisterTemplate();
     if (data) {
-        requester.postJSON(registerUrl, data)
+        requester.postJSON(urls.auth.register, data)
             .then((result) => {
                 if (result) {
                     toastr.success('Registered successfully! Now you can log-in!');
