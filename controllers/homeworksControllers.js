@@ -273,7 +273,7 @@ function editHomeworkData(id) {
         toastr.error('Details shoud be between 5 and 10000 characters long!');
         return;
     }
-    body.deadline = $('#new-deadline-content').val();
+    body.deadline = $('#new-deadline').val();
 
     requester.putJSON(selectedHomeworkUrl, body)
         .then(() => {

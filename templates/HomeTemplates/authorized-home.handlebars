@@ -17,13 +17,13 @@
         <div class="panel panel-primary info-panel">
             <div class="panel-heading text-center">
                 <strong>
-                    <a href="#/news/{{#if isTeacher}}teachers/{{else}}students/{{/if}}">News</a>
+                    <a href="#/news/{{#if isTeacher}}teachers/{{else}}students/{{/if}}">Latest news</a>
                 </strong>
             </div>
             <div class="panel-body info-body">
                 {{#each news}}
                 <div class="info-container text-center">
-                    <a href="/#/news/{{#if isTeacher}}teachers/{{else}}students/{{/if}}{{id}}">{{title}} - {{author.username}}</a>
+                    <a href="/#/news/{{#if ../isTeacher}}teachers/{{clazz.number}}/{{clazz.letter}}/{{else}}students/{{/if}}{{id}}">{{title}} - <b><i>{{author.username}}</i></b></a>
                 </div>
                 {{/each}}
             </div>
@@ -51,7 +51,7 @@
         <div class="panel panel-primary info-panel">
             <div class="panel-heading text-center">
                 <strong>
-                    <a href="#/exams">Exams</a>
+                    <a href="#/exams">Upcoming exams</a>
                 </strong>
             </div>
             <div class="panel-body info-body">
@@ -68,7 +68,7 @@
         <div class="panel panel-primary info-panel">
             <div class="panel-heading text-center">
                 <strong>
-                    <a href="#/materials">Materials</a>
+                    <a href="#/materials">Latest materials</a>
                 </strong>
             </div>
             <div class="panel-body info-body">
