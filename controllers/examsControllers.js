@@ -8,8 +8,8 @@ import { urls } from '../utils/urls.js';
 import { notFoundController } from './notFoundController.js'
 
 export function examsController() {
-    let getData = requester.getJSON(urls.exams),
-        getTemplate = templates.get('ExamsTemplates/exams');
+    let getData = requester.getJSON(urls.exams);
+    let getTemplate = templates.get('ExamsTemplates/exams');
 
     Promise.all([getData, getTemplate])
         .then((result) => {
@@ -35,8 +35,8 @@ export function examsController() {
 }
 
 function addExamController() {
-    let getTemplate = templates.get('ExamsTemplates/add-exam'),
-        getData = requester.getJSON('https://elsyser.herokuapp.com/api/subjects/');
+    let getTemplate = templates.get('ExamsTemplates/add-exam');
+    let getData = requester.getJSON(urls.subjects);
 
     Promise.all([getTemplate, getData])
         .then((result) => {
@@ -79,23 +79,41 @@ function postExam() {
         details: ''
     }
 
-    //TODO: Validate
     body.date = $('#date').val();
-    body.topic = $('#topic').val();
-    body.clazz.number = $('#studentClassNumber').val();
-    body.clazz.letter = $('#studentClassLetter').val();
-    body.details = $('#details').val();
+    if (validator.topic($('#topic').val())) {
+        body.topic = $('#topic').val();
+    } else {
+        toastr.error('Topic should be between 1 and 60 symbols long.');
+        return;
+    }
+    if (validator.classNumber($('#studentClassNumber').val())) {
+        body.clazz.number = $('#studentClassNumber').val();
+    } else {
+        toastr.error('Invalid class number.');
+        return;
+    }
+    if (validator.classLetter($('#studentClassLetter').val())) {
+        body.clazz.letter = $('#studentClassLetter').val();
+    } else {
+        toastr.error('Invalid class letter.');
+        return;
+    }
+    if (validator.details($('#details').val())) {
+        body.details = $('#details').val();
+    } else {
+        toastr.error('Details should be less than 1000 symbols long.');
+        return;
+    }
 
     requester.postJSON(urls.exams, body)
         .then(() => {
             toastr.success('Added exam successfully!');
-            еxamsController();
+            examsController();
         }).catch((err) => {
             toastr.error('Couldn\'t add the exam');
             console.log(err);
-        })
+        });
 }
-
 
 function deleteExamController(id) {
     let deleteExamUrl = urls.exams + id + '/';
@@ -110,14 +128,14 @@ function deleteExamController(id) {
 }
 
 function detailedExamsController(id) {
-    let examUrl = `https://elsyser.herokuapp.com/api/exams/${id}/`,
-        getData = requester.getJSON(examUrl),
-        getTemplate = templates.get('ExamsTemplates/detailed-exam');
+    let examUrl = `${urls.exams}${id}/`;
+    let getData = requester.getJSON(examUrl);
+    let getTemplate = templates.get('ExamsTemplates/detailed-exam');
 
     Promise.all([getData, getTemplate])
         .then((result) => {
-            let data = result[0],
-                currentUser = window.localStorage.getItem('elsyser-username');
+            let data = result[0];
+            let currentUser = window.localStorage.getItem('elsyser-username');
 
             if (currentUser === data.author.user.username) {
                 data.editable = true;
@@ -139,19 +157,19 @@ function detailedExamsController(id) {
             })
         }).catch((err) => {
             notFoundController();
-        })
+        });
 }
 
 function editExamController(id) {
-    let selectedExamUrl = urls.exams + id + '/',
+    let selectedExamUrl = `${urls.exams}${id}/`,
         getData = requester.getJSON(selectedExamUrl),
         getTemplate = templates.get('ExamsTemplates/edit-exam');
 
     Promise.all([getData, getTemplate])
         .then((result) => {
-            let data = result[0],
-                hbTemplate = Handlebars.compile(result[1]),
-                template = hbTemplate(data);
+            let data = result[0];
+            let hbTemplate = Handlebars.compile(result[1]);
+            let template = hbTemplate(data);
 
             $('#content').html(template);
 
@@ -180,29 +198,32 @@ function editData(id) {
         topic: '',
         date: '',
         details: ''
-    },
-        selectedExamUrl = urls.exams + id + '/';
+    };
+    let selectedExamUrl = `${urls.exams}${id}/`;
 
-    if (validator.title($('#new-exam-topic').val())) {
+    if (validator.topic($('#new-exam-topic').val())) {
         body.topic = $('#new-exam-topic').val();
     }
     else {
-        toastr.error('Topic shoud be between 3 and 100 characters long!');
+        toastr.error('Topic should be between 1 and 60 symbols long.');
         return;
     }
-    
-    body.details = $('#new-details-content').val();
+    if (validator.details($('#new-details-content').val())) {
+        body.details = $('#new-details-content').val();
+    } else {
+        toastr.error('Details should be less than 1000 symbols long.');
+        return;
+    }
     body.date = $('#date').val();
 
     requester.putJSON(selectedExamUrl, body)
         .then(() => {
             toastr.success('Exam edited successfully!');
-            examsController();
+            detailedExamsController(id);
         }).catch(() => {
             toastr.error('Couldn\'t update the selected exam!');
         })
 }
-
 
 export let exams = {
   allExams: examsController,

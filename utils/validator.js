@@ -48,8 +48,26 @@ export let validator = {
         }
         return false;
     },
+    classLetter: (classLetter) => {
+        if (classLetter >= 'A' && classLetter <= 'Z') {
+            return true;
+        }
+        return false;
+    },
     grade: (grade) => {
         if (grade >= 2 && grade <= 6) {
+            return true;
+        }
+        return false;
+    },
+    topic: (topic) => {
+        if (typeof topic === 'string' && topic.length > 0 && topic.length <= 60) {
+            return true;
+        }
+        return false;
+    },
+    details: (details) => {
+        if (typeof details === 'string' && details.length <= 1000) {
             return true;
         }
         return false;
