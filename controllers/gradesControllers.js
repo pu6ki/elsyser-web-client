@@ -54,7 +54,7 @@ function visualizeGradesForSubject(currentGrade) {
 
 function studensGradesController() {
     let getData = requester.getJSON(urls.classes);
-    let getTemplate = templates.get('partials/select-concrete-class');
+    let getTemplate = templates.get('GradesTemplates/select-concrete-class');
 
     $('#content').html(`
             <div class="panel panel-default">
@@ -168,7 +168,7 @@ function addGradesController(classNumber, classLetter) {
     let getStudentsUrl = `${urls.students}${classNumber}/${classLetter}/`;
     let getStudents = requester.getJSON(getStudentsUrl);
     let getTemplate = templates.get('GradesTemplates/add-grades');
-    let getPartialFormField = templates.get('partials/grade-form-field');
+    let getPartialFormField = templates.get('GradesTemplates/grade-form-field');
     let currentClass = { classNumber, classLetter };
 
     Promise.all([getStudents, getTemplate, getPartialFormField])

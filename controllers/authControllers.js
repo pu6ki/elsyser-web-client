@@ -2,6 +2,7 @@ import { requester } from '../utils/requester.js';
 import { templates } from '../utils/templates.js';
 import { formHandler } from '../utils/formHandler.js';
 import { isTeacher, setTeacherSubjectToLocalStorage } from '../utils/helper.js';
+import { validator } from '../utils/validator.js';
 import { urls } from '../utils/urls.js';
 
 import { headerController } from './headerController.js';
@@ -59,7 +60,7 @@ function login() {
                 window.location.href = '/#/home';
             }
         }).catch((err) => {
-            console.log(err);
+            //console.log(err);
             toastr.error('Couldn\'t log-in with the provided credentials!');
         });
 }
