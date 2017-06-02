@@ -68,7 +68,7 @@ function addNewsController(newsUrl) {
                 });
 
                 $('#concrete-class').on('click', () => {
-                    //TODO
+                    concreteClass(newsUrl);
                 });
 
                 $('#go-back').on('click', () => {
@@ -163,15 +163,30 @@ function selectWholeClass(newsUrl) {
                     loadTemplate(newNewsUrl);
                 })
             }
-
-            $('#go-back').on('click', () => {
-                newsController(newsUrl);
-            });
         })
 }
 
 function concreteClass(newsUrl) {
-    //TODO
+    let getData = requester.getJSON(urls.classes);
+    let getTemplate = templates.get('NewsTemplates/select-concrete-class');
+
+    Promise.all([getData, getTemplate])
+        .then((result) => {
+            let wholeClasses = result[0];
+            let hbTemplate = Handlebars.compile(result[1]);
+
+            $('#content').html('');
+            for (let classNum in wholeClasses) {
+                for (let schoolClass of wholeClasses[classNum]) {
+                    $('#content').append(hbTemplate(schoolClass));
+
+                    $(`#${schoolClass.number}${schoolClass.letter}`).on('click', () => {
+                        let newNewsUrl = `${newsUrl}${schoolClass.number}/${schoolClass.letter}/`
+                        loadTemplate(newNewsUrl);
+                    });
+                }
+            }
+        });
 }
 
 function editNewsController(newsUrl, id) {
@@ -338,8 +353,8 @@ function attachEditAndDeleteToComments(newsUrl, newsId, commentId) {
 
 function editCommentController(newsUrl, newsId, commentId) {
     let commentToEditUrl = `${newsUrl}${newsId}/comments/${commentId}/`;
-    let getData = requester.getJSON(commentToEditUrl),
-        getTemplate = templates.get('partials/edit-comment');
+    let getData = requester.getJSON(commentToEditUrl);
+    let getTemplate = templates.get('partials/edit-comment');
 
     Promise.all([getData, getTemplate])
         .then((result) => {
@@ -409,12 +424,12 @@ function deleteCommentController(newsUrl, newsId, commentId) {
         }).catch((err) => {
             toastr.error('Couldn\'t delete the selected comment!');
         });
-}   
+}
 
 function addCommentController(newsUrl, id) {
     let body = {
-            content: ''
-        },
+        content: ''
+    },
         addCommentUrl = `${newsUrl}${id}/comments/`;
 
     if (validator.comment($('#comment-content').val())) {
@@ -430,6 +445,6 @@ function addCommentController(newsUrl, id) {
 }
 
 export let news = {
-  allNews: newsController,
-  detailedNews: detailedNewsController
+    allNews: newsController,
+    detailedNews: detailedNewsController
 }
