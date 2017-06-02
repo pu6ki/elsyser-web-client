@@ -2,6 +2,7 @@ import { requester } from '../utils/requester.js';
 import { templates } from '../utils/templates.js';
 import { isTeacher } from '../utils/helper.js';
 import { formHandler } from '../utils/formHandler.js';
+import { validator } from '../utils/validator.js';
 import { urls } from '../utils/urls.js';
 
 import { notFoundController } from './notFoundController.js'
@@ -88,7 +89,7 @@ function postExam() {
     requester.postJSON(urls.exams, body)
         .then(() => {
             toastr.success('Added exam successfully!');
-            ExamsController();
+            еxamsController();
         }).catch((err) => {
             toastr.error('Couldn\'t add the exam');
             console.log(err);

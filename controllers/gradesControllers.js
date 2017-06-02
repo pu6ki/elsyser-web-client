@@ -89,7 +89,7 @@ function studensGradesController() {
 
 
 function detailedClassGradesController(classNumber, classLetter) {
-    let getStudentsUrl = `${urls.students}/${classNumber}/${classLetter}/`;
+    let getStudentsUrl = `${urls.students}${classNumber}/${classLetter}/`;
     let getStudents = requester.getJSON(getStudentsUrl);
     let getTemplate = templates.get('GradesTemplates/class-grades');
     let currentClass = { classNumber, classLetter };
@@ -147,7 +147,7 @@ function detailedClassGradesController(classNumber, classLetter) {
 
 function populateGrades(student) {
     let subjectId = localStorage.getItem('elsyser-teachers-subject-id');
-    let gradesUrl = `${urls.grades}/${subjectId}/${student.user.id}/`;
+    let gradesUrl = `${urls.grades}${subjectId}/${student.user.id}/`;
 
     requester.getJSON(gradesUrl)
         .then((grades) => {
@@ -165,7 +165,7 @@ function populateGrades(student) {
 }
 
 function addGradesController(classNumber, classLetter) {
-    let getStudentsUrl = `${urls.students}/${classNumber}/${classLetter}/`;
+    let getStudentsUrl = `${urls.students}${classNumber}/${classLetter}/`;
     let getStudents = requester.getJSON(getStudentsUrl);
     let getTemplate = templates.get('GradesTemplates/add-grades');
     let getPartialFormField = templates.get('partials/grade-form-field');
@@ -226,7 +226,7 @@ function sendGrades(students, classNumber, classLetter) {
         for (let j = 0; j < students.length; j += 1) {
             if ($(`#student-name-${i}`).val() === students[j].fullName) {
                 let teacherSubjectId = localStorage.getItem('elsyser-teachers-subject-id')
-                let sendGradesUrl = `${urls.grades}/${teacherSubjectId}/${students[j].id}/`
+                let sendGradesUrl = `${urls.grades}${teacherSubjectId}/${students[j].id}/`
 
                 if (validator.grade($(`#grade-${i}`).val())) {
                     let grade = { value: $(`#grade-${i}`).val() };

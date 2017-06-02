@@ -1,20 +1,20 @@
-const host = `https://elsyser.herokuapp.com`
+const host = `https://elsyser.herokuapp.com/api/`
 
 export let urls = {
   auth: {
-    login: `${host}/api/login/`,
-    register: `${host}/api/register/`
+    login: `${host}login/`,
+    register: `${host}register/`
   },
-  exams: `${host}/api/exams/`,
-  subjects: `${host}/api/subjects/`,
-  grades: `${host}/api/grades/`,
-  classes: `${host}/api/classes/`,
-  students: `${host}/api/students/`,
-  profile: `${host}/api/profile/`,
+  exams: `${host}exams/`,
+  subjects: `${host}subjects/`,
+  grades: `${host}grades/`,
+  classes: `${host}classes/`,
+  students: `${host}students/`,
+  profile: `${host}profile/`,
   news: {
-    teachers: `${host}/api/news/teachers/`,
-    students: `${host}/api/news/students/`
+    teachers: `${host}news/teachers/`,
+    students: `${host}news/students/`
   },
-  homeworks: `${host}/api/homeworks/`,
-  materials: `${host}/api/materials/`
+  homeworks: `${host}homeworks/`,
+  materials: `${host}materials/`
 }
