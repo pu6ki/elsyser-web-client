@@ -245,8 +245,6 @@ function detailedNewsController(newsUrl, id) {
 
             dataFromAPI.editable = dataFromAPI.author.username === currentUsername;
 
-            dataFromAPI.comment_set.reverse();
-
             dataFromAPI.comment_set.forEach((el) => {
                 el.editableComment = el.posted_by.username === currentUsername;
             });
@@ -304,8 +302,6 @@ export function loadComments(newsUrl, newsId) {
         let newData = result[0],
             hbTemplate = Handlebars.compile(result[1]),
             commentsToLoad = [];
-
-        newData.comment_set.reverse();
 
         commentsToLoad = newData.comment_set.filter(function (obj) {
             return !dataFromAPI.comment_set.some(function (obj2) {
