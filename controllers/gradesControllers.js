@@ -168,7 +168,7 @@ function addGradesController(classNumber, classLetter) {
     let getStudentsUrl = `${urls.students}${classNumber}/${classLetter}/`;
     let getStudents = requester.getJSON(getStudentsUrl);
     let getTemplate = templates.get('GradesTemplates/add-grades');
-    let getPartialFormField = templates.get('GradesTemplates/grade-form-field');
+    let getPartialFormField = templates.get('partials/grade-form-field');
     let currentClass = { classNumber, classLetter };
 
     Promise.all([getStudents, getTemplate, getPartialFormField])
@@ -232,7 +232,7 @@ function sendGrades(students, classNumber, classLetter) {
                     let grade = { value: $(`#grade-${i}`).val() };
                     requester.postJSON(sendGradesUrl, grade)
                         .then(() => {
-                            toastr.success('Grades added successfully!');
+                            toastr.success('Grade added successfully!');
                             detailedClassGradesController(classNumber, classLetter);
                         })
                         .catch(() => {
