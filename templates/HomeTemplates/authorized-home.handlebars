@@ -23,7 +23,7 @@
             <div class="panel-body info-body">
                 {{#each news}}
                 <div class="info-container text-center">
-                    <a href="/#/news/{{#if ../isTeacher}}teachers/{{clazz.number}}/{{clazz.letter}}/{{else}}students/{{/if}}{{id}}">{{title}} - <b><i>{{author.username}}</i></b></a>
+                    <a href="/#/news/{{#if ../isTeacher}}teachers/{{class_number}}/{{#if class_letter}}{{class_letter}}{{else}}A{{/if}}/{{else}}students/{{/if}}{{id}}">{{title}} - <b><i>{{author.username}}</i></b></a>
                 </div>
                 {{/each}}
             </div>

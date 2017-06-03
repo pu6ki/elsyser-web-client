@@ -68,6 +68,7 @@ thead {
         float: left;
         margin-top: 15px;
     }
+    
 }
 
 @media(max-width:767px) {
@@ -86,6 +87,11 @@ thead {
     ul.banner-social-buttons > li:last-child {
         margin-bottom: 0;
     }
+    
+    .nav-collapse.collapse {
+        height: auto !important;
+        overflow: visible !important;
+    }    
 }
 
 hr {
@@ -659,4 +665,9 @@ hr {
     border-radius: 10px;
     background-color: white;
     padding: 2em;
+}
+
+.footer {
+    margin: 0px;
+    border-radius: 0px
 }

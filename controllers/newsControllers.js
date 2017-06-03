@@ -143,23 +143,26 @@ function postNews(newsUrl) {
 function selectWholeClass(newsUrl) {
     let getData = requester.getJSON(urls.classes);
     let getTemplate = templates.get('NewsTemplates/select-whole-class');
+    let getPartial = templates.get('partials/whole-class');
 
-    Promise.all([getData, getTemplate])
+    Promise.all([getData, getTemplate, getPartial])
         .then((result) => {
             let wholeClasses = result[0];
             let hbTemplate = Handlebars.compile(result[1]);
+            let partial = Handlebars.compile(result[2]);
 
-            $('#content').html('');
+            $('#content').html(hbTemplate());
 
             for (let wholeClass in wholeClasses) {
                 let data = {
                     number: wholeClass
                 }
 
-                $('#content').append(hbTemplate(data));
+                $('#content').append(partial(data));
 
                 $(`#${wholeClass}-class`).on('click', () => {
                     let newNewsUrl = `${newsUrl}${wholeClass}/`
+                    console.log(newNewsUrl)
                     loadTemplate(newNewsUrl);
                 })
             }
