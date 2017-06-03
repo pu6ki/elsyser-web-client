@@ -88,6 +88,10 @@ thead {
     }
 }
 
+hr {
+    max-width: 100%;
+}
+
 .topnav {
     font-size: 14px;
 }
@@ -237,6 +241,10 @@ thead {
     margin-right: 15px;
 }
 
+.row {
+    margin: 0px;
+}
+
 .comment-panel > .panel-heading:after, .comment-panel > .panel-heading:before {
     content: " ";
     position: absolute;
@@ -265,6 +273,11 @@ thead {
 
 .panel-heading {
 	font-size: 16px;
+}
+
+.panel-footer {
+    background-color: #fafafa;
+    color: #4a148c
 }
 
 .info-panel .panel-heading a {
@@ -372,6 +385,7 @@ thead {
 
 .panel-body article {
     text-align: left;
+    font-size: 15px;
 }
 
 .panel-body a {
@@ -406,17 +420,18 @@ thead {
 }
 
 .average-grade {
-    position: absolute;
-    bottom: 0;
-    right: 10px;;
-
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     font-style: italic;
 }
 
 .grade {
     font-size: 16px;
+    color: black;
+}
+
+.all-grades-container {
+    padding: 0px;
 }
 
 .select-class a{
@@ -513,12 +528,13 @@ thead {
 }
 
 #comment-content {
-	height: 35px;
 	margin: 5px;
+    max-width: 90%;
+    display: inline;
 }
 
 #add-comment-button {
-	margin-top: 5px;
+    display: inline;
 }
 
 #loadMore {
@@ -629,20 +645,18 @@ thead {
 }
 
 #home-logo {
-    max-height: 9vh;
+    max-height: 17vh;
+    max-width: 100%;
 }
 
 #wrapper {
     max-width: 150vw;
-    margin-left: 11%;
-    margin-right: 11%;
 }
 
 #wrapper .form-wrapper {
     text-align: center;
     z-index: 0;
-    opacity: 0.9;
     border-radius: 10px;
-    padding: 4em;
     background-color: white;
+    padding: 2em;
 }
