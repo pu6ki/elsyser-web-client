@@ -1,6 +1,8 @@
 <div id="wrapper">
     {{#if exams}}
+    <div class="row">
         {{#each exams}}
+        <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
             <div class="panel panel-primary text-center">
                 <div class="panel-heading">
                     <strong>
@@ -30,7 +32,9 @@
                     <button id="info-button" class="btn btn-primary" onclick="window.location.href = '#/exams/{{id}}'"><a class="heading-anchor" href="#/exams/{{id}}">Info</a></button>
                 </div>
             </div>
+        </div>
         {{/each}}
+        </div>
     {{else}}
         <div class="panel panel-default">
             <div class="panel-body">

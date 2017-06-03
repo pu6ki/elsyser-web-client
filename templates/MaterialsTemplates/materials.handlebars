@@ -1,26 +1,30 @@
 <div id="wrapper">
+    <div class="row">
     {{#if materials}}
-        {{#each materials}}
-            <div class="panel panel-primary">
-                <div class="panel-heading material-panel-heading text-center">
-                    <strong>
-                        {{subject.title}}
-                    </strong>
-                </div>
-                <div class="panel-body text-center">
-                    <h4 class="material-title">{{title}}</h4>
-                    <h5 class="material-section">{{section}}</h5>
-                    <div id="content">{{content}}</div>
-                    <hr />
-                    Posted by
-                    <a href="#/profile/{{author.user.id}}">
-                        <span><strong><i>{{author.user.username}}</i></strong></span>
-                    </a>
+        <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+            {{#each materials}}
+                <div class="panel panel-primary">
+                    <div class="panel-heading material-panel-heading text-center">
+                        <strong>
+                            {{subject.title}}
+                        </strong>
+                    </div>
+                    <div class="panel-body text-center">
+                        <h4 class="material-title">{{title}}</h4>
+                        <h5 class="material-section">{{section}}</h5>
+                        <div id="content">{{content}}</div>
+                        <hr />
+                        Posted by
+                        <a href="#/profile/{{author.user.id}}">
+                            <span><strong><i>{{author.user.username}}</i></strong></span>
+                        </a>
 
-                    <button id="info-button" class="btn btn-primary" onclick="window.location.href = '#/materials/{{subject.id}}/{{id}}'"><a class="heading-anchor" href="#/materials/{{subject.id}}/{{id}}">Info</a></button>
+                        <button id="info-button" class="btn btn-primary" onclick="window.location.href = '#/materials/{{subject.id}}/{{id}}'"><a class="heading-anchor" href="#/materials/{{subject.id}}/{{id}}">Info</a></button>
+                    </div>
                 </div>
-            </div>
-        {{/each}}
+            {{/each}}
+        </div>
+    </div>
     {{else}}
         <div class="panel panel-default">
             <div class="panel-body">

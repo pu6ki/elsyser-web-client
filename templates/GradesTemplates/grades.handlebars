@@ -1,4 +1,4 @@
-<div class="container">
+<div class="all-grades-container">
     <div class="col-lg-4 col-md-4 col-sm-12" id="grades-panel">
         <div class="panel panel-primary info-panel">
             <div class="panel-heading">
@@ -12,10 +12,12 @@
                         <div class="text-center grade">{{value}}</div>
                     </div>
                 {{/each}}
-                {{#if average}}
-                        <div class="text-center average-grade">Average: {{average}}</div>
-                {{/if}}
             </div>
+            {{#if average}}
+                <div class="panel-footer">
+                    <div class="text-center average-grade">Average: {{average}}</div>
+                </div>
+            {{/if}}
         </div>
     </div>
 </div>

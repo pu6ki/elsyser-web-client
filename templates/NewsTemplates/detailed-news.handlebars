@@ -1,78 +1,85 @@
 <div id="wrapper">
-    <div class="panel panel-primary text-center">
-        <div class="panel-heading">
-            <strong>
-                 <span>{{title}}</span>
-             </strong>
-            {{#if editable}}
-                <div class="pull-right edit">
-                    <span id="news-{{id}}-edit" class="edit"><span class="glyphicon glyphicon-edit"></span></span>
-                    <span id="news-{{id}}-delete" class="delete"><span class="glyphicon glyphicon-trash"></span></span>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+            <div class="panel panel-primary text-center">
+                <div class="panel-heading">
+                    <strong>
+                         <span>{{title}}</span>
+                     </strong>
+                    {{#if editable}}
+                        <div class="pull-right edit">
+                            <span id="news-{{id}}-edit" class="edit"><span class="glyphicon glyphicon-edit"></span></span>
+                            <span id="news-{{id}}-delete" class="delete"><span class="glyphicon glyphicon-trash"></span></span>
+                        </div>
+                    {{/if}}
                 </div>
-            {{/if}}
-        </div>
-        <div class="panel-body">
-            <div>
-                <span><strong><i>{{content}}</i></strong></span>
-            </div>
-            <div>
-                <hr />
-                Posted by
-                <a href="#/profile/{{author.id}}">
-                    <span><strong><i>{{author.username}}</i></strong></span>
-                </a>
-                <span> {{formatRelative posted_on}}</span>
-
-                {{#if edited}}
-                    <span >(last edited {{formatRelative last_edited_on}})</span>
-                {{/if}}
-            </div>
-        </div>
-    </div>
-
-    <div id="comments">
-        {{#each comment_set}}
-        <div class="row comment" id="comment-{{id}}">
-            <div class="col-xs-3 col-sm-1 col-md-1 col-lg-1 img-container">
-                <img class="user-photo" src="{{author_image}}">
-            </div>
-
-            <div class="col-xs-9 col-sm-10 col-sm-10 col-md-10 col-lg-10">
-                <div class="comment-panel panel panel-default">
-                    <div class="panel-heading">
-                        <a href="#/profile/{{posted_by.id}}">
-                            <strong>{{posted_by.username}}</strong>
+                <div class="panel-body">
+                    <div>
+                        <span><strong><i>{{content}}</i></strong></span>
+                    </div>
+                    <div>
+                        <hr />
+                        Posted by
+                        <a href="#/profile/{{author.id}}">
+                            <span><strong><i>{{author.username}}</i></strong></span>
                         </a>
-                        commented {{formatRelative posted_on}}
+                        <span> {{formatRelative posted_on}}</span>
 
                         {{#if edited}}
                             <span >(last edited {{formatRelative last_edited_on}})</span>
                         {{/if}}
-                        {{#if editableComment}}
-                            <div class="pull-right edit-comments">
-                                <span id="news-{{../id}}-edit-comment-{{id}}" class="edit">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </span>
-                                <span id="news-{{../id}}-delete-comment-{{id}}" class="delete">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </span>
-                            </div>
-                        {{/if}}
-                    </div>
-                    <div class="panel-body">
-                        {{content}}
                     </div>
                 </div>
             </div>
-        </div>
-        {{/each}}
-    </div>
 
-    <button class="center-block" id="loadMore">Load More</button>
+            <div id="comments">
+                {{#if comment_set}}
+                    {{#each comment_set}}
+                    <div class="row comment" id="comment-{{id}}">
+                        <div class="col-xs-3 col-sm-1 col-md-1 col-lg-1 img-container">
+                            <img class="user-photo" src="{{author_image}}">
+                        </div>
+
+                        <div class="col-xs-9 col-sm-11 col-sm-11 col-md-11 col-lg-11">
+                            <div class="comment-panel panel panel-default">
+                                <div class="panel-heading">
+                                    <a href="#/profile/{{posted_by.id}}">
+                                        <strong>{{posted_by.username}}</strong>
+                                    </a>
+                                    commented {{formatRelative posted_on}}
+
+                                    {{#if edited}}
+                                        <span >(last edited {{formatRelative last_edited_on}})</span>
+                                    {{/if}}
+                                    {{#if editableComment}}
+                                        <div class="pull-right edit-comments">
+                                            <span id="news-{{../id}}-edit-comment-{{id}}" class="edit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </span>
+                                            <span id="news-{{../id}}-delete-comment-{{id}}" class="delete">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </span>
+                                        </div>
+                                    {{/if}}
+                                </div>
+                                <div class="panel-body">
+                                    {{content}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                {{/if}}
+                <button class="center-block" id="loadMore">Load More</button>
+            </div>
+        </div>
+    </div>
     <button class="toTop btn btn-primary btn-circle btn-lg"><span class="glyphicon glyphicon-chevron-up"></span></button>
 
-    <div class="row center-block form-wrapper">
-        <input type="text" id="comment-content" class="col-xs-12 col-sm-9 col-md-9 col-lg-9"></input>
-        <button id="add-comment-button" class="btn btn-primary submit col-xs-12 col-sm-2 col-md-2 col-lg-2">Send<span class="glyphicon glyphicon-send"></span></span></button>
+    <div class="row form-wrapper">
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
+            <input type="text" id="comment-content" class="form-control" placeholder="Add Comment"></input>
+            <button id="add-comment-button" class="btn btn-primary submit">Send<span class="glyphicon glyphicon-send"></span></button>
+        </div>
     </div>
 </div>

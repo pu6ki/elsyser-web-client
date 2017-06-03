@@ -1,75 +1,79 @@
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        {{#if clazz}}
-            <strong>Student profile</strong>
-        {{else}}
-            <strong>Teacher profile</strong>
-        {{/if}}
-    </div>
-    <div class="row" id="profile-block">
-        <img src="{{profile_image_url}}" alt="Profile Image" class="col-xs-6 col-md-4" id="profile-image">
-        <div class="col-xs-6 col-md-4" id="profile-info">
-            {{#with user}}
-                <div>
-                    <i>Username: </i>
-                    <strong>
-                        <span>
-                            {{username}}
-                        </span>
-                    </strong>
-                </div>
-                <div>
-                    <i>Name: </i>
-                    <strong>
-                        <span>
-                            {{first_name}} {{last_name}}
-                        </span>
-                    </strong>
-                </div>
-                <div>
-                    <i>Email: </i>
-                    <strong>
-                        <span>
-                            {{email}}
-                        </span>
-                    </strong>
-                </div>
-            {{/with}}
-
-            <div>
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
                 {{#if clazz}}
-                    {{#with clazz}}
-                        <i>Class: </i>
-                        <strong>
-                            <span>
-                                {{number}}{{letter}}
-                            </span>
-                        </strong>
-                    {{/with}}
+                    <strong>Student profile</strong>
                 {{else}}
-                    {{#with subject}}
-                        <i>Subject: </i>
-                        <strong>
-                            <span>
-                                {{title}}
-                            </span>
-                        </strong>
-                    {{/with}}
+                    <strong>Teacher profile</strong>
                 {{/if}}
             </div>
-
-            <div>
-                {{#if info}}
-                    <i>About: </i>
-                    <strong><span>{{info}}</span></strong>
-                {{else}}
-                    <strong><span><i>No details provided.</i></span></strong>
-                {{/if}}
-            </div>
-            <div>
-                {{#if can_edit}}
-                    <button id="edit-profile" class="btn btn-primary">Edit profile</button>
-                {{/if}}
+            <div class="row" id="profile-block">
+                <img src="{{profile_image_url}}" alt="Profile Image" class="col-xs-6 col-md-4" id="profile-image">
+                <div class="col-xs-6 col-md-4" id="profile-info">
+                    {{#with user}}
+                        <div>
+                            <i>Username: </i>
+                            <strong>
+                                <span>
+                                    {{username}}
+                                </span>
+                            </strong>
+                        </div>
+                        <div>
+                            <i>Name: </i>
+                            <strong>
+                                <span>
+                                    {{first_name}} {{last_name}}
+                                </span>
+                            </strong>
+                        </div>
+                        <div>
+                            <i>Email: </i>
+                            <strong>
+                                <span>
+                                    {{email}}
+                                </span>
+                            </strong>
+                        </div>
+                    {{/with}}
+                
+                    <div>
+                        {{#if clazz}}
+                            {{#with clazz}}
+                                <i>Class: </i>
+                                <strong>
+                                    <span>
+                                        {{number}}{{letter}}
+                                    </span>
+                                </strong>
+                            {{/with}}
+                        {{else}}
+                            {{#with subject}}
+                                <i>Subject: </i>
+                                <strong>
+                                    <span>
+                                        {{title}}
+                                    </span>
+                                </strong>
+                            {{/with}}
+                        {{/if}}
+                    </div>
+                
+                    <div>
+                        {{#if info}}
+                            <i>About: </i>
+                            <strong><span>{{info}}</span></strong>
+                        {{else}}
+                            <strong><span><i>No details provided.</i></span></strong>
+                        {{/if}}
+                    </div>
+                    <div>
+                        {{#if can_edit}}
+                            <button id="edit-profile" class="btn btn-primary">Edit profile</button>
+                        {{/if}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
