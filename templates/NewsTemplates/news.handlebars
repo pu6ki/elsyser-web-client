@@ -19,6 +19,9 @@
                             <a href="#/profile/{{author.id}}">
                                 <span><strong><i>{{author.username}}</i></strong></span>
                             </a>
+                            {{#if isTeacher}}
+                                <span>for <b>{{class_number}}{{#if class_letter}}{{class_letter}}{{/if}} class</b></span>
+                            {{/if}}
                             <span> {{formatRelative posted_on}}</span>
 
                             {{#if edited}}

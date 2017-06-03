@@ -25,6 +25,8 @@ function newsController(newsUrl) {
                 if (el.content.length > 150) {
                     el.content = el.content.slice(0, 149) + '...';
                 }
+                
+                el.isTeacher = isTeacher(token);
             }, this);
 
             let intlData = {
@@ -266,6 +268,8 @@ function detailedNewsController(newsUrl, id) {
             dataFromAPI.comment_set.forEach((el) => {
                 el.editableComment = el.posted_by.username === currentUsername;
             });
+
+            dataFromAPI.isTeacher = isTeacher(localStorage.getItem('elsyser-token'));
 
             let template = hbTemplate(dataFromAPI);
             $('#content').html(template);
