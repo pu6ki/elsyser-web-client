@@ -3,7 +3,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/pu6ki/elsyser-web-client.svg?style=flat-square)](https://github.com/pu6ki/elsyser-web-client/issues)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/LICENSE)
 
-![Logo](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/tues_building_with_logo.jpg)
+![Logo](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/logos/tues_building_with_logo.jpg)
 
 # [elsyser-web-client](https://elsyser.aerobatic.io)
 This is the web client for the [ELSYSER API](https://github.com/pu6ki/elsyser/). This is a students' platform for [ELSYS, Sofia](http://elsys-bg.org).
@@ -26,7 +26,7 @@ This is the web client for the [ELSYSER API](https://github.com/pu6ki/elsyser/).
 * [Bootstrap](https://github.com/twbs/bootstrap) - Framework for developing responsive UI on the web
 * [Jasmine](https://jasmine.github.io/) - Testing framework
 * [live-server](https://github.com/tapio/live-server) - A small HTTP web server with live reload
-* [Visual Studio Code](https://github.com/Microsoft/vscode) - Another cool text editor
+* [Visual Studio Code](https://github.com/Microsoft/vscode)
 
 ## Getting started
 
@@ -57,11 +57,11 @@ How to copy this project to your local machine and run it:
 1. `$ live-server`
 2. Visit http://127.0.0.1:8080/
 3. Click "Register" to create your school account.
-    ![Register page](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/register-page.png)
+    ![Register page](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/readme_images/register-page.png)
 4. Then log in with your credentials.
-    ![Login page](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/login-page.png)
+    ![Login page](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/readme_images/login-page.png)
 5. Everything about you and your class is one click away!
-    ![Navigation bar](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/home-page.png)
+    ![Navigation bar](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/readme_images/home-page.png)
     - Upcoming exams
     - Latest news with live comments
     - Assigned homeworks

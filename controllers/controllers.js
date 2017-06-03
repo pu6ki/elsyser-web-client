@@ -1,6 +1,5 @@
 import { headerController } from './headerController.js';
 import { homeController } from './homeController.js';
-import { aboutController } from './aboutController.js';
 import { auth } from './authControllers.js';
 import { profileController } from './profileControllers.js';
 import { exams } from './examsControllers.js'
@@ -13,7 +12,6 @@ import { notFoundController } from './notFoundController.js';
 export let controllers = {
   header: headerController,
   home: homeController,
-  about: aboutController,
   login: auth.login,
   register: auth.register,
   profile: profileController,

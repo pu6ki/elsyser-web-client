@@ -23,9 +23,6 @@ router
         controllers.header();
         controllers.home();
     })
-    .on('/about', () => {
-        controllers.about();
-    })
     .on('/login', () => {
         controllers.login();
     })
