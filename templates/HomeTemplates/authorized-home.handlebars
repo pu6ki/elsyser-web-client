@@ -40,7 +40,7 @@
             <div class="panel-body info-body">
                 {{#each homeworks}}
                 <div class="info-container text-center">
-                    <a href="#/homeworks/{{id}}/">{{subject.title}} - {{details}} ({{deadline}})</a>
+                    <a href="#/homeworks/{{id}}/"><b>{{subject.title}}</b> - {{details}} ({{deadline}})</a>
                 </div>
                 {{/each}}
             </div>
@@ -57,7 +57,7 @@
             <div class="panel-body info-body">
                 {{#each exams}}
                 <div class="info-container text-center">
-                    <a href="#/exams/{{id}}/">{{subject.title}} - {{topic}} ({{date}})</a>
+                    <a href="#/exams/{{id}}/"><b>{{subject.title}}</b> - {{topic}} ({{date}})</a>
                 </div>
                 {{/each}}
             </div>
@@ -74,7 +74,7 @@
             <div class="panel-body info-body">
                 {{#each materials}}
                 <div class="info-container text-center">
-                    <a href="#/materials/{{subject.id}}/{{id}}">{{subject.title}} - {{title}}</a>
+                    <a href="#/materials/{{subject.id}}/{{id}}"><b>{{subject.title}}</b> - {{title}}</a>
                     <br />
                 </div>
                 {{/each}}
