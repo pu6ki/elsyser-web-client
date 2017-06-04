@@ -41,7 +41,7 @@ function addMaterialController() {
             $('#content').html(template);
 
             $('#add-material').on('click', () => {
-                postMaterial(result[1][0].id);
+                postMaterial(localStorage.getItem('elsyser-teachers-subject-id'));
             });
 
             $('#go-back').on('click', () => {
@@ -57,7 +57,7 @@ function postMaterial(subjectId) {
         content: '',
         class_number: null,
         subject: {
-            id: null
+            id: subjectId
         },
         video_url: ''
     }
@@ -158,7 +158,7 @@ function editData(subjectId, materialId) {
             content: '',
             class_number: null,
             subject: {
-                id: null
+                id: subjectId
             },
             video_url: ''
         }
@@ -194,7 +194,6 @@ function editData(subjectId, materialId) {
         toastr.error('Invalid class number.');
         return;
     }
-    body.subject.id = $('#subject-id').val();
     body.video_url = $('#video-url').val();
 
     requester.putJSON(materialUrl, body)
