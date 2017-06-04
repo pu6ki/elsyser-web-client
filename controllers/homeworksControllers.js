@@ -202,19 +202,8 @@ function detailedSubmissionController(homeworkId, submissionId) {
 
             $('#mark-checked').on('click', () => {
                 let body = {
-                    content: '',
-                    solution_url: '',
                     checked: true
                 }
-
-                if (validator.content($('#submission-content').text())) {
-                    body.content = $('#submission-content').text();
-                }
-                else {
-                    toastr.error('Content must contain atleast 5 characters.');
-                }
-
-                body.solution_url = $('#solution-url').text();
 
                 requester.putJSON(url, body)
                     .then(() => {
