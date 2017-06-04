@@ -31,7 +31,14 @@ export function attachEvaluationWords(mark) {
 }
 
 export function setNewsUrl() {
-    return isTeacher(localStorage.getItem('elsyser-token')) ? 
-    'https://elsyser.herokuapp.com/api/news/teachers/' :
-    'https://elsyser.herokuapp.com/api/news/students/';
+    return isTeacher(localStorage.getItem('elsyser-token')) ?
+        'https://elsyser.herokuapp.com/api/news/teachers/' :
+        'https://elsyser.herokuapp.com/api/news/students/';
 }
+
+export function collapseNavOnClick() {
+    var navMain = $(".navbar-collapse");
+    navMain.on("click", "a:not([data-toggle])", null, function () {
+        navMain.collapse('hide');
+    });
+};

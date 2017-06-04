@@ -1,5 +1,5 @@
 import { controllers } from './controllers/controllers.js';
-import { isTeacher, setNewsUrl } from './utils/helper.js';
+import { isTeacher, setNewsUrl, collapseNavOnClick } from './utils/helper.js';
 
 try {
     HandlebarsIntl.registerWith(Handlebars);
@@ -10,6 +10,8 @@ try {
     }
     toastr.warning('If you have opened this page on mobile device, please use Google Chrome for your mobile OS!', 'Warning', toastrOptions);
 }
+
+collapseNavOnClick();
 
 const domain = `${window.location.protocol}//${window.location.host}`;
 
