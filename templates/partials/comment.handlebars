@@ -14,6 +14,7 @@
                 {{#if edited}}
                     <span >(last edited {{formatRelative last_edited_on}})</span>
                 {{/if}}
+                {{#if editable}}
                 <div class="pull-right edit-comments">
                     <span id="news-{{newsId}}-edit-comment-{{id}}" class="edit">
                         <span class="glyphicon glyphicon-edit"></span>
@@ -22,6 +23,7 @@
                         <span class="glyphicon glyphicon-trash"></span>
                     </span>
                 </div>
+                {{/if}}
             </div>
             <div class="panel-body">
                 {{content}}
