@@ -1,3 +1,4 @@
+{{#if this}}
 <div class="all-grades-container">
     <div class="col-lg-4 col-md-4 col-sm-12" id="grades-panel">
         <div class="panel panel-primary info-panel">
@@ -21,3 +22,10 @@
         </div>
     </div>
 </div>
+{{else}}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h3 class="text-center">You have no grades yet.</h3>
+        </div>
+    </div>
+{{/if}}

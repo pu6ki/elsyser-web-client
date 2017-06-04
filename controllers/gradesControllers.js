@@ -26,17 +26,17 @@ function visualizeGradesForSubject(currentGrade) {
     let profileId = localStorage.getItem('elsyser-id');
     let gradesUrl = `${urls.grades}${currentGrade.id}/${profileId}/`;
 
-    let getData = requester.getJSON(gradesUrl),
-        getTemplate = templates.get('GradesTemplates/grades');
+    let getGrades = requester.getJSON(gradesUrl);
+    let getTemplate = templates.get('GradesTemplates/grades');
 
-    Promise.all([getData, getTemplate])
+    Promise.all([getGrades, getTemplate])
         .then((result) => {
-            let data = result[0],
-                hbTemplate = Handlebars.compile(result[1]);
-
-            if (data) {
+            let data = result[0];
+            let hbTemplate = Handlebars.compile(result[1]);
+            
+            if (data.length) {
                 data.title = data[0].subject.title;
-
+                
                 let average = 0.0;
 
                 data.forEach(el => {
@@ -47,8 +47,10 @@ function visualizeGradesForSubject(currentGrade) {
                 average /= data.length;
                 average = average.toFixed(2);
                 data.average = attachEvaluationWords(average);
+                $('#content').append(hbTemplate(data));
+            } else {
+                $('#content').html(hbTemplate(data));
             }
-            $('#content').append(hbTemplate(data));
         });
 }
 
