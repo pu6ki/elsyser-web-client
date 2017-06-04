@@ -9,9 +9,15 @@
                              <span>{{student.user.first_name}} {{student.user.last_name}} - {{student.clazz.number}}{{student.clazz.letter}}</span>
                          </strong>
                         {{#if editable}}
-                            <div class="pull-right edit">
-                                <span id="submission-edit" class="edit"><span class="glyphicon glyphicon-edit"></span></span>
-                            </div>
+                            {{#if checked}}
+                                <div class="pull-right">
+                                    Checked
+                                </div>
+                            {{else}}
+                                <div class="pull-right edit">
+                                    <span id="submission-edit" class="edit"><span class="glyphicon glyphicon-edit"></span></span>
+                                </div>
+                            {{/if}}
                         {{else}}
                             <div class="pull-right check">
                                 <span id="mark-checked" class="checked"><span class="glyphicon glyphicon-ok"></span></span>

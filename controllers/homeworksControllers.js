@@ -109,7 +109,8 @@ function detailedHomeworkController(id) {
     let homeworkUrl = `${urls.homeworks}${id}/`,
         getData = requester.getJSON(homeworkUrl),
         getTemplate = templates.get('HomeworksTemplates/detailed-homework'),
-        currentUser = localStorage.getItem('elsyser-username');
+        currentUser = localStorage.getItem('elsyser-username'),
+        token = localStorage.getItem('elsyser-token');
 
     Promise.all([getData, getTemplate])
         .then((result) => {
@@ -136,9 +137,11 @@ function detailedHomeworkController(id) {
 
             viewSentHomework(id);
 
-            $('#submissions-button').on('click', () => {
-                submissionsController(id);
-            });
+            if (isTeacher(token)) {
+                $('#submissions-button').on('click', () => {
+                    submissionsController(id);
+                });
+            }
         }).catch((err) => {
             console.log(err);
             notFoundController();
