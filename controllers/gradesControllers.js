@@ -235,7 +235,6 @@ function sendGrades(students, classNumber, classLetter) {
                     requester.postJSON(sendGradesUrl, grade)
                         .then(() => {
                             toastr.success('Grade added successfully!');
-                            detailedClassGradesController(classNumber, classLetter);
                         })
                         .catch(() => {
                             toastr.error('Couldn\'t add grades! Please check if they\'re valid.');
@@ -246,6 +245,7 @@ function sendGrades(students, classNumber, classLetter) {
             }
         }
     }
+    detailedClassGradesController(classNumber, classLetter);
 }
 
 export let grades = {
