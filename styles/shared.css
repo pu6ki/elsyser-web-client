@@ -180,7 +180,7 @@ hr {
 
 .intro-message > h3 {
     color: white;
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    
 }
 
 .intro-divider {
@@ -344,7 +344,7 @@ hr {
     height: 60px;
     width: 60px;
     padding: 10px 16px;
-    background-color: gold;
+    background-color: rebeccapurple;
     font-size: 20px;
     line-height: 1.33;
 }
@@ -354,7 +354,7 @@ hr {
 }
 
 .btn-circle i:hover {
-    color: rebeccapurple;
+    color: gold;
 }
 
 .btn-md {
@@ -479,7 +479,7 @@ hr {
 
 .class-heading {
     font-size: 28px;
-    color: gray;
+    color: white;
 }
 
 .student-name-col {
@@ -529,7 +529,11 @@ hr {
     padding: 20px;
     cursor: pointer;
     font-size: 16px;
-    color: #666666;
+    color: white;
+}
+
+#log-out:hover{
+    color: gold;
 }
 
 #comment-content {
@@ -664,6 +668,42 @@ hr {
     border-radius: 10px;
     background-color: white;
     padding: 2em;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: gold;
+}
+
+.navbar-default .navbar-nav > li > a:focus {
+    color: gold;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+.navbar-default .navbar-brand:hover {
+    color: gold;
+}
+
+.navbar-default .navbar-brand:focus {
+    color: gold;
+}
+
+.navbar-fixed-top {
+    background-color: rebeccapurple;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: white;
+}
+
+.btn-default {
+    color: rebeccapurple;
 }
 
 .footer {
