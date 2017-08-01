@@ -3,7 +3,6 @@
     <h1>{{ msg }}</h1>
     <button v-on:click="getData()">Click</button>
     <button v-on:click="redirect()">Redirect</button>
-    
   </div>
 </template>
 

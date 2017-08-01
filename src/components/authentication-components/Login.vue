@@ -3,14 +3,24 @@
     <div class="row auth-intro-header overlay" id="pwd-container">
       <div class="col-sm-1 col-md-4 col-lg-4"></div>
       <div class="col-xs-12 col-sm-10 col-md-4 col-lg-4 form-wrapper">
-        <section id="login-form">
-          <input type="text" v-model="email_or_username" class="form-control" id="email-or-username" name="email-or-username" placeholder="Email or username" required="" autofocus="" />
-          <input type="password" v-model="password" class="form-control" id="password" name="password" placeholder="Password" required="" />
-          <button v-on:click="login" class="btn btn-lg btn-primary btn-block submit" id="login-button">Login</button>
-          <div>
-            <a href="/register">Create account</a>
-          </div>
-        </section>
+        <form @submit.prevent="onSubmit">
+          <section id="login-form" class="is-12">
+            <p :class="{'control': true}">
+              <span v-show="errors.has('email-or-username')" class="help is-danger error">{{ errors.first('email-or-username') }}</span>
+              <input type="text" v-model="email_or_username" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('email-or-username') }" class="form-control" id="email-or-username" name="email-or-username" placeholder="Email or username" autofocus/>
+            </p>
+            <p :class="{'control': true}">
+              <span v-show="errors.has('password')" class="help is-danger error">{{ errors.first('password') }}</span>
+              <input type="password" v-model="password" v-validate="'required'" class="form-control" id="password" name="password" placeholder="Password" />
+            </p>
+            <button class="btn btn-lg btn-primary btn-block" id="login-button">Login</button>
+            <div>
+              <span class="text-formatted">Not a member yet?</span>
+              <br />
+              <a href="/register">Create account</a>
+            </div>
+          </section>
+        </form>
       </div>
       <div class="col-sm-1 col-md-4 col-lg-4"></div>
     </div>
@@ -29,15 +39,24 @@ export default {
     }
   },
   methods: {
-    login: function () {
-      requester.post('/login/', this.$data)
-        .then(res => {
-          window.localStorage.setItem('elsyser-token', res.data.token)
-          window.localStorage.setItem('elsyser-username', res.data.username)
-          window.localStorage.setItem('elsyser-id', res.data.id)
-          this.$router.push('/')
-        })
-        .catch(console.log)
+    onSubmit () {
+      this.$validator.validateAll()
+
+      if (this.errors.any()) {
+        this.$toastr('error', 'Invalid input data.', 'Error')
+      } else {
+        requester.post('/login/', this.$data)
+          .then(res => {
+            window.localStorage.setItem('elsyser-token', res.data.token)
+            window.localStorage.setItem('elsyser-username', res.data.username)
+            window.localStorage.setItem('elsyser-id', res.data.id)
+            this.$router.push('/')
+            this.$toastr('success', 'Logged-in successfully.', 'Welcome.')
+          })
+          .catch((err) => {
+            this.$toastr('error', err.response.data.non_field_errors[0], 'Access denied.')
+          })
+      }
     }
   }
 }
@@ -47,6 +66,14 @@ export default {
 input,
 select {
   margin-bottom: 10px;
+}
+
+span.error {
+  color: #9F3A38;
+}
+
+a {
+  color: #337ab7;
 }
 
 .auth-intro-header {

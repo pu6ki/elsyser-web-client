@@ -3,33 +3,59 @@
     <div class="row auth-intro-header overlay" id="pwd-container">
       <div class="col-sm-1 col-md-4 col-lg-4"></div>
       <div class="col-xs-12 col-sm-10 col-md-4 col-lg-4 form-wrapper">
-        <section id="register-form">
-          <input type="text" v-model="user.username" id="username" class="form-control" name="username" placeholder="Username" required autofocus="" />
-          <input type="text" v-model="user.first_name" id="firstName" class="form-control" name="firstName" placeholder="First name" required />
-          <input type="text" v-model="user.last_name" id="lastName" class="form-control" name="lastName" placeholder="Last name" required />
-          <input type="email" v-model="user.email" id="email" class="form-control" name="email" placeholder="Email address" required />
-          <input type="password" v-model="user.password" id="password" class="form-control" name="password" placeholder="Password" required />
-          <input type="password" id="verify-password" class="form-control" name="verify-password" placeholder="Enter password again" required />
-          <select class="form-control" v-model="clazz.number" name="studentClassNumber" id="studentClassNumber">
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-          </select>
-          <select class="form-control" v-model="clazz.letter" name="studentClassLetter" id="studentClassLetter">
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="V">V</option>
-            <option value="G">G</option>
-          </select>
-          <button v-on:click="register" class="btn btn-lg btn-primary btn-block submit" id="registerButton">Register</button>
-          <div>
-            <span class="text-formatted">Already a member?</span>
-            <br />
-            <a href="/login"> Log-in</a>
-          </div>
-        </section>
+        <form @submit.prevent="onSubmit">
+          <section id="register-form">
+            <p :class="{'control': true}">
+              <span v-show="errors.has('username')" class="help is-danger error">Username must be between 3 and 30 characters long.</span>
+              <input type="text" v-model="user.username" v-validate="'required|min:3|max:30'" id="username" class="form-control" name="username" placeholder="Username" autofocus/>
+            </p>
+            <p :class="{'control': true}">
+              <span v-show="errors.has('firstName')" class="help is-danger error">First name must be between 3 and 30 characters long.</span>
+              <input type="text" v-model="user.first_name" v-validate="'required|min:3|max:30'" id="firstName" class="form-control" name="firstName" placeholder="First name" />
+            </p>
+            <p :class="{'control': true}">
+              <span v-show="errors.has('lastName')" class="help is-danger error"> Last name must be between 3 and 30 characters long. </span>
+              <input type="text" v-model="user.last_name" v-validate="'required|min:3|max:30'" id="lastName" class="form-control" name="lastName" placeholder="Last name" />
+            </p>
+            <p :class="{'control': true}">
+              <span v-show="errors.has('email')" class="help is-danger error">{{ errors.first('email') }}</span>
+              <input type="email" v-validate="'required|email'" v-model="user.email" id="email" class="form-control" name="email" placeholder="Email address" />
+            </p>
+            <p :class="{'control': true}">
+              <span v-show="errors.has('password')" class="help is-danger error">{{ errors.first('password') }}</span>
+              <input type="password" v-model="user.password" v-validate="'required|min:6|max:16'" id="password" class="form-control" name="password" placeholder="Password" />
+            </p>
+            <p :class="{'control': true}">
+              <span v-show="errors.has('password-confirmation')" class="help is-danger error">{{ errors.first('password-confirmation') }}</span>
+              <input type="password" id="password-confirmation" v-validate="'required|confirmed:password'" data-vv-as="password" class="form-control" name="password-confirmation" placeholder="Enter password again" />
+            </p>
+            <p :class="{'control': true}">
+              <span v-show="errors.has('studentClassNumber')" class="help is-danger error"> Please select your class number </span>
+              <select class="form-control" v-model="clazz.number" name="studentClassNumber" id="studentClassNumber" v-validate="'required'">
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </p>
+            <p :class="{'control': true}">
+              <span v-show="errors.has('studentClassLetter')" class="help is-danger error"> Please select your class letter </span>
+              <select class="form-control" v-model="clazz.letter" v-validate="'required'" name="studentClassLetter" id="studentClassLetter">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="V">V</option>
+                <option value="G">G</option>
+              </select>
+            </p>
+            <button class="btn btn-lg btn-primary btn-block" id="registerButton">Register</button>
+            <div>
+              <span class="text-formatted">Already a member?</span>
+              <br />
+              <a href="/login"> Log-in</a>
+            </div>
+          </section>
+        </form>
       </div>
       <div class="col-sm-1 col-md-4 col-lg-4"></div>
     </div>
@@ -57,12 +83,21 @@ export default {
     }
   },
   methods: {
-    register: function () {
-      requester.post('/register/', this.$data)
-        .then(res => {
-          this.$router.push('/login')
-        })
-        .catch(console.log)
+    onSubmit () {
+      this.$validator.validateAll()
+
+      if (this.errors.any()) {
+        this.$toastr('error', 'Invalid input data.', 'Error')
+      } else {
+        requester.post('/register/', this.$data)
+          .then(res => {
+            this.$toastr('success', 'Now you can log-in', 'Registered successfully.')
+            this.$router.push('/login')
+          })
+          .catch((err) => {
+            this.$toastr('error', err.response.data.non_field_errors[0])
+          })
+      }
     }
   }
 }
@@ -72,6 +107,14 @@ export default {
 input,
 select {
   margin-bottom: 10px;
+}
+
+span.error {
+  color: #9F3A38;
+}
+
+a {
+  color: #337ab7;
 }
 
 .auth-intro-header {
