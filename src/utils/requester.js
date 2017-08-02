@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let token = window.localStorage.getItem('elsyser-token')
+let token = window.localStorage.getItem('elsyserToken')
 
 if (token) {
   token = token.slice(0, 40)

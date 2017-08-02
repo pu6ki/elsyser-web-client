@@ -29,7 +29,7 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  const token = window.localStorage.getItem('elsyser-token')
+  const token = window.localStorage.getItem('elsyserToken')
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!token) {
       next({

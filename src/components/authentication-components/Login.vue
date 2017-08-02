@@ -29,6 +29,7 @@
 
 <script>
 import requester from '../../utils/requester'
+import { isTeacher, setTeacherSubjectToLocalStorage } from '../../utils/helper'
 
 export default {
   name: 'login',
@@ -47,9 +48,13 @@ export default {
       } else {
         requester.post('/login/', this.$data)
           .then(res => {
-            window.localStorage.setItem('elsyser-token', res.data.token)
-            window.localStorage.setItem('elsyser-username', res.data.username)
-            window.localStorage.setItem('elsyser-id', res.data.id)
+            res.data.token += res.data.is_teacher ? '1' : '0'
+            window.localStorage.setItem('elsyserToken', res.data.token)
+            window.localStorage.setItem('elsyserUsername', res.data.username)
+            window.localStorage.setItem('elsyserId', res.data.id)
+            if (isTeacher(res.data.token)) {
+              setTeacherSubjectToLocalStorage()
+            }
             this.$router.push('/')
             this.$toastr('success', 'Logged-in successfully.', 'Welcome.')
           })

@@ -1,12 +1,16 @@
 <template>
   <div id="app">
+    <navigation></navigation> 
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import Navigation from './components/Navigation.vue'
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: { Navigation }
 }
 </script>
 
@@ -111,69 +115,70 @@ hr {
 }
 
 .form-control {
-    border: 0.5px solid lightgray !important;
-    border-radius: 5px !important;
-    background-color: white;
+  border: 0.5px solid lightgray !important;
+  border-radius: 5px !important;
+  background-color: white;
 }
 
 .btn-primary a {
-    color: white;
+  color: white;
 }
 
-.btn-primary:hover, .btn-primary a:hover {
-    color: gold;
+.btn-primary:hover,
+.btn-primary a:hover {
+  color: gold;
 }
 
 .row {
-    margin: 0px;
+  margin: 0px;
 }
 
 .panel {
-	position: relative;
-    margin-left: 15px;
-    margin-right: 15px;
+  position: relative;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .content {
-    margin: 10%;
+  margin: 10%;
 }
 
 .section-heading {
-    color: rebeccapurple;
+  color: rebeccapurple;
 }
 
 .btn-primary {
-    background-color: rebeccapurple;
-    color: white;
+  background-color: rebeccapurple;
+  color: white;
 }
 
 .btn-primary:hover .btn-primary:active {
-    background-color: white;
-    color: rebeccapurple;
+  background-color: white;
+  color: rebeccapurple;
 }
 
 .btn-primary:hover a {
-    color: white;
+  color: white;
 }
 
 .btn-primary:active a {
-    color: white;
+  color: white;
 }
 
 #wrapper {
-    max-width: 150vw;
+  max-width: 150vw;
 }
 
 #wrapper .form-wrapper {
-    text-align: center;
-    z-index: 0;
-    border-radius: 10px;
-    background-color: white;
-    padding: 2em;
+  text-align: center;
+  z-index: 0;
+  border-radius: 10px;
+  background-color: white;
+  padding: 2em;
 }
 
-#pwd-container .form-wrapper, #go-home-button a {
-    color: white;
+#pwd-container .form-wrapper,
+#go-home-button a {
+  color: white;
 }
-
 </style>

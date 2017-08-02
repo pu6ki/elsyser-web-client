@@ -1,14 +1,12 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>{{ localStorage.elsyserUsername }}</h1>
     <button v-on:click="getData()">Click</button>
     <button v-on:click="redirect()">Redirect</button>
   </div>
 </template>
 
 <script>
-import requester from '../utils/requester'
-
 export default {
   name: 'hello',
   data () {
@@ -18,7 +16,7 @@ export default {
   },
   methods: {
     getData: function () {
-      requester.get('/subjects').then(res => console.log(res))
+      console.log(this.localStorage.elsyserUsername)
     },
     redirect: function () {
       this.$router.push('register')
