@@ -91,11 +91,11 @@ export default {
       } else {
         requester.post('/register/', this.$data)
           .then(res => {
-            this.$toastr('success', 'Now you can log-in', 'Registered successfully.')
+            this.$toastr('success', res.data.message, 'Registered successfully.')
             this.$router.push('/login')
           })
-          .catch((err) => {
-            this.$toastr('error', err.response.data.non_field_errors[0])
+          .catch(() => {
+            this.$toastr('error', 'Could not register you with the provided data. Username and email must be uniqe.')
           })
       }
     }

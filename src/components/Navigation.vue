@@ -86,11 +86,14 @@ export default {
     }
   },
   created () {
-    let id = this.localStorage.elsyserId
-    requester.get(`/profile/${id}/`)
-      .then((res) => {
-        this.profileImageUrl = res.data.profile_image_url
-      })
+    if (this.localStorage.elsyserToken) {
+      let id = this.localStorage.elsyserId
+      requester.get(`/profile/${id}/`)
+        .then((res) => {
+          this.profileImageUrl = res.data.profile_image_url
+        })
+        .catch()
+    }
   },
   methods: {
     isTeacher: function () {
@@ -110,6 +113,38 @@ export default {
 </script>
 
 <style scoped>
+.navbar-default .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: gold;
+}
+
+.navbar-default .navbar-nav > li > a:focus {
+    color: gold;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+.navbar-default .navbar-brand:hover {
+    color: gold;
+}
+
+.navbar-default .navbar-brand:focus {
+    color: gold;
+}
+
+.navbar-fixed-top {
+    background-color: rebeccapurple;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: white;
+}
+
 #profile-picture {
     margin-right: 5px;
     height: 26px;

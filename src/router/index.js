@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Login from '../components/authentication-components/Login'
 import Register from '../components/authentication-components/Register'
+import ActivateAccount from '../components/authentication-components/ActivateAccount'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ const router = new Router({
       path: '/register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/activate/:id/:activationId',
+      name: 'ActivateAccount',
+      component: ActivateAccount
     }
   ]
 })
