@@ -3,9 +3,9 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/home">
+          <router-link to="/home" class="navbar-brand">
             ELSYSER
-          </a>
+          </router-link>
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -17,43 +17,43 @@
           <div id="header" v-if="localStorage.elsyserToken">
             <ul class="nav navbar-nav">
               <li id="exams-button">
-                <a href="/exams" data-toggle="collapse" data-target=".navbar-collapse.in">Exams
+                <router-link to="/exams" data-toggle="collapse" data-target=".navbar-collapse.in">Exams
                   <span class="glyphicon glyphicon-pencil"></span>
-                </a>
+                </router-link>
               </li>
               <li id="news-button" v-if="isTeacher">
-                <a href="/news/teachers" data-toggle="collapse" data-target=".navbar-collapse.in">News
+                <router-link to="/news/teachers" data-toggle="collapse" data-target=".navbar-collapse.in">News
                   <span class="glyphicon glyphicon-envelope"></span>
-                </a>
+                </router-link>
               </li>
               <li id="news-button" v-else>
-                <a href="/news/students" data-toggle="collapse" data-target=".navbar-collapse.in">News
+                <router-link to="/news/students" data-toggle="collapse" data-target=".navbar-collapse.in">News
                   <span class="glyphicon glyphicon-envelope"></span>
-                </a>
+                </router-link>
               </li>
               <li id="homeworks-button">
-                <a href="/homeworks" data-toggle="collapse" data-target=".navbar-collapse.in">Homeworks
+                <router-link to="/homeworks" data-toggle="collapse" data-target=".navbar-collapse.in">Homeworks
                   <span class="glyphicon glyphicon-book"></span>
-                </a>
+                </router-link>
               </li>
               <li id="materials-button">
-                <a href="/materials" data-toggle="collapse" data-target=".navbar-collapse.in">Materials
+                <router-link to="/materials" data-toggle="collapse" data-target=".navbar-collapse.in">Materials
                   <span class="glyphicon glyphicon-file"></span>
-                </a>
+                </router-link>
               </li>
               <li id="grades-button">
-                <a href="/grades" data-toggle="collapse" data-target=".navbar-collapse.in">Grades
+                <router-link to="/grades" data-toggle="collapse" data-target=".navbar-collapse.in">Grades
                   <span class="glyphicon glyphicon-list-alt"></span>
-                </a>
+                </router-link>
               </li>
             </ul>
   
             <ul class="nav navbar-nav navbar-right">
               <li id="profile-button">
-                <a :href="'/profile/' + localStorage.elsyserId" data-toggle="collapse" data-target=".navbar-collapse.in">
+                <router-link :to="'/profile/' + localStorage.elsyserId" data-toggle="collapse" data-target=".navbar-collapse.in">
                   <img :src="profileImageUrl" :alt="localStorage.elsyserUsername" id="profile-picture" class="img-circle">
                   <span> {{localStorage.elsyserUsername}} </span>
-                </a>
+                </router-link>
               </li>
               <li v-on:click="logOut" id="log-out">
                 <a data-toggle="collapse" data-target=".navbar-collapse.in">Logout
@@ -64,8 +64,8 @@
           </div>
           <div v-else>
             <ul class="nav navbar-nav navbar-right" id="sign-in-buttons">
-              <li role="presentation" id="log-in"><a href="/login" data-toggle="collapse" data-target=".navbar-collapse.in">Log-in <span class="glyphicon glyphicon-log-in"></span></a></li>
-              <li role="presentation" id="register"><a href="/register" data-toggle="collapse" data-target=".navbar-collapse.in">Register <span class="glyphicon glyphicon-education"></span></a></li>
+              <li role="presentation" id="log-in"><router-link to="/login" data-toggle="collapse" data-target=".navbar-collapse.in">Log-in <span class="glyphicon glyphicon-log-in"></span></router-link></li>
+              <li role="presentation" id="register"><router-link to="/register" data-toggle="collapse" data-target=".navbar-collapse.in">Register <span class="glyphicon glyphicon-education"></span></router-link></li>
             </ul>
           </div>
         </div>
