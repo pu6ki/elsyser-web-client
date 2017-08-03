@@ -76,7 +76,7 @@
 
 <script>
 import requester from '../utils/requester'
-import isTeacher from '../utils/helper'
+import helper from '../utils/helper'
 
 export default {
   name: 'navigation',
@@ -97,7 +97,7 @@ export default {
   },
   methods: {
     isTeacher: function () {
-      return isTeacher(this.localStorage.elsyserToken)
+      return helper.isTeacher(this.localStorage.elsyserToken)
     },
     logOut: function () {
       this.localStorage.elsyserToken = null

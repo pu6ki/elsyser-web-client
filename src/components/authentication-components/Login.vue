@@ -29,7 +29,7 @@
 
 <script>
 import requester from '../../utils/requester'
-import { isTeacher, setTeacherSubjectToLocalStorage } from '../../utils/helper'
+import helper from '../../utils/helper'
 
 export default {
   name: 'login',
@@ -52,8 +52,8 @@ export default {
             window.localStorage.setItem('elsyserToken', res.data.token)
             window.localStorage.setItem('elsyserUsername', res.data.username)
             window.localStorage.setItem('elsyserId', res.data.id)
-            if (isTeacher(res.data.token)) {
-              setTeacherSubjectToLocalStorage()
+            if (helper.isTeacher(res.data.token)) {
+              helper.setTeacherSubjectToLocalStorage()
             }
             this.$toastr('success', 'Logged-in successfully.', 'Welcome.')
             this.$router.push('/home', function () {
@@ -61,6 +61,7 @@ export default {
             })
           })
           .catch((err) => {
+            console.log(err)
             this.$toastr('error', err.response.data.non_field_errors[0], 'Access denied.')
           })
       }
