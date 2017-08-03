@@ -55,8 +55,10 @@ export default {
             if (isTeacher(res.data.token)) {
               setTeacherSubjectToLocalStorage()
             }
-            this.$router.push('/')
             this.$toastr('success', 'Logged-in successfully.', 'Welcome.')
+            this.$router.push('/home', function () {
+              window.location.reload(true)
+            })
           })
           .catch((err) => {
             this.$toastr('error', err.response.data.non_field_errors[0], 'Access denied.')
