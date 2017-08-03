@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <navigation></navigation> 
+    <navigation></navigation>
     <router-view></router-view>
   </div>
 </template>
@@ -163,6 +163,111 @@ hr {
 
 .btn-primary:active a {
   color: white;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.panel-body article {
+  text-align: left;
+  font-size: 15px;
+}
+
+.panel-body a {
+  font-size: 14px;
+  color: dimgray;
+}
+
+.panel-body a:hover {
+  color: #494949;
+}
+
+.panel-body button a {
+  color: white
+}
+
+.panel-body button a:hover {
+  color: gold;
+}
+
+.info-container {
+  border-bottom: 1px solid rebeccapurple;
+  padding-bottom: 3px;
+  padding-top: 2px;
+}
+
+.info-body {
+  overflow-y: auto;
+  height: 190px;
+}
+
+.panel {
+  position: relative;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.row {
+  margin: 0px;
+}
+
+.comment-panel>.panel-heading:after,
+.comment-panel>.panel-heading:before {
+  content: " ";
+  position: absolute;
+  top: 11px;
+  right: 100%;
+  left: -16px;
+  display: block;
+  border-color: transparent;
+  border-style: solid solid outset;
+  height: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+.panel>.panel-heading:after {
+  border-right-color: #f7f7f7;
+  border-width: 7px;
+  margin-left: 2px;
+  margin-top: 1px;
+}
+
+.panel>.panel-heading:before {
+  border-right-color: #ddd;
+  border-width: 8px;
+}
+
+.panel-heading {
+  font-size: 16px;
+}
+
+.panel-footer {
+  background-color: #fafafa;
+  color: #4a148c
+}
+
+.panel-body article {
+  text-align: left;
+  font-size: 15px;
+}
+
+.panel-body a {
+  font-size: 14px;
+  color: dimgray;
+}
+
+.panel-body a:hover {
+  color: #494949;
+}
+
+.panel-body button a {
+  color: white
+}
+
+.panel-body button a:hover {
+  color: gold;
 }
 
 #wrapper {
