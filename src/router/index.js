@@ -4,6 +4,7 @@ import Home from '../components/Home'
 import Login from '../components/authentication-components/Login'
 import Register from '../components/authentication-components/Register'
 import ActivateAccount from '../components/authentication-components/ActivateAccount'
+import AllExams from '../components/exams-components/AllExams'
 
 Vue.use(Router)
 
@@ -33,6 +34,12 @@ const router = new Router({
       path: '/activate/:id/:activationId',
       name: 'ActivateAccount',
       component: ActivateAccount
+    },
+    {
+      path: '/exams',
+      name: 'AllExams',
+      component: AllExams,
+      meta: { requiresAuth: true }
     }
   ]
 })
@@ -40,7 +47,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   const token = window.localStorage.getItem('elsyserToken')
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!token) {
+    if (token === 'null') {
       next({
         path: '/login',
         query: { redirect: to.fullPath }
