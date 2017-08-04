@@ -7,6 +7,7 @@ import Register from '../components/authentication-components/Register'
 import ActivateAccount from '../components/authentication-components/ActivateAccount'
 import AllExams from '../components/exams-components/AllExams'
 import AddExam from '../components/exams-components/AddExam'
+import Exam from '../components/exams-components/Exam'
 
 Vue.use(Router)
 
@@ -56,6 +57,12 @@ const router = new Router({
           path: 'add',
           name: 'AddExam',
           component: AddExam,
+          meta: { requiresAuth: true }
+        },
+        {
+          path: ':id',
+          name: 'Exam',
+          component: Exam,
           meta: { requiresAuth: true }
         }
       ]
