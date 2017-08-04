@@ -133,10 +133,41 @@ hr {
   margin: 0px;
 }
 
+.panel-heading {
+  background-color: rebeccapurple !important;
+}
+
 .panel {
   position: relative;
   margin-left: 15px;
   margin-right: 15px;
+  border-radius: 7px;
+}
+
+.panel-primary {
+  border-color: lightgrey;
+}
+
+.panel-body article {
+    text-align: left;
+    font-size: 15px;
+}
+
+.panel-body a {
+    font-size: 14px;
+    color: dimgray;
+}
+
+.panel-body a:hover {
+    color: #494949;
+}
+
+.panel-body button a {
+    color: white
+}
+
+.panel-body button a:hover {
+    color: gold;
 }
 
 .content {
@@ -150,11 +181,12 @@ hr {
 .btn-primary {
   background-color: rebeccapurple;
   color: white;
+  border-color: rebeccapurple;
 }
 
-.btn-primary:hover .btn-primary:active {
-  background-color: white;
-  color: rebeccapurple;
+.btn-primary:hover, .btn-primary:active {
+  background-color: rebeccapurple !important;
+  color: white;
 }
 
 .btn-primary:hover a {
@@ -163,6 +195,36 @@ hr {
 
 .btn-primary:active a {
   color: white;
+}
+
+.btn-circle.btn-lg {
+    position: fixed;
+    z-index: 1;
+    right: 0.5em;
+    bottom: 2em;
+    border: none;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    padding: 10px 16px;
+    background-color: rebeccapurple;
+    font-size: 20px;
+    line-height: 1.33;
+}
+
+.btn-circle i {
+    color: white;
+}
+
+.btn-circle i:hover {
+    color: gold;
+}
+
+.btn-md {
+    padding: 8px 14px;
+    height: 40px;
+    width: 40px;
+    font-size: 15px;
 }
 
 .center-text {
@@ -280,6 +342,12 @@ hr {
   border-radius: 10px;
   background-color: white;
   padding: 2em;
+}
+
+#info-button {
+    position: absolute;
+    right: 6px;
+    bottom: 3px;
 }
 
 #pwd-container .form-wrapper,

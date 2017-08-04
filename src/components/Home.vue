@@ -49,8 +49,8 @@
               </strong>
             </div>
             <div class="panel-body info-body">
-              <div class="info-container text-center" v-for="exam in exams" :key="exam">
-                <router-link :to="'/exams' + exam.id">
+              <div class="info-container text-center" v-for="exam in exams" :key="exam.id">
+                <router-link :to="'/exams/' + exam.id">
                   <b>{{exam.subject.title}}</b> ({{exam.date}})
                 </router-link>
               </div>
@@ -67,7 +67,7 @@
             </div>
             <div class="panel-body info-body">
               <div class="info-container text-center" v-for="material in materials" :key="material.id">
-                <router-link :to="'#/materials/' + material.subject.id + '/' + material.id">
+                <router-link :to="'/materials/' + material.subject.id + '/' + material.id">
                   <b>{{material.subject.title}}</b> - {{material.title}}
                 </router-link>
                 <br />
@@ -253,10 +253,6 @@ export default {
     padding-top: 2px;
 }
 
-.panel-heading {
-  background-color: rebeccapurple;
-}
-
 .info-panel .panel-heading a {
 	color: white;
     font-size: 16px;
@@ -275,5 +271,11 @@ export default {
 .footer {
     margin: 0px;
     border-radius: 0px
+}
+
+#info-button {
+    position: absolute;
+    right: 6px;
+    bottom: 3px;
 }
 </style>
