@@ -22,9 +22,10 @@
               </strong>
             </div>
             <div>
-              <i v-if="exam.details">Details:
+              <i v-if="exam.details">
+                Details:
                 <strong>
-                  <span>{{exam.details}}</span>
+                  <div id="details">{{exam.details}}</div>
                 </strong>
               </i>
               <i v-else>No details provided.</i>
@@ -37,12 +38,12 @@
                 </strong>
               </span>
             </router-link>
-  
-            <button id="info-button" class="btn btn-primary" v-on:click="$router.push('/exams/' + exam.id)">
-              <router-link :to="'/exams/' + exam.id" class="heading-anchor">Info</router-link>
-            </button>
           </div>
         </div>
+  
+        <button id="info-button" class="btn btn-primary" v-on:click="$router.push('/exams/' + exam.id)">
+          <router-link :to="'/exams/' + exam.id" class="heading-anchor">Info</router-link>
+        </button>
       </div>
     </div>
     <div class="panel panel-default" v-else>
@@ -53,7 +54,9 @@
   
     <div v-if="isTeacher()">
       <button type="button" v-on:click="$router.push('/exams/add')" class="btn btn-primary btn-circle btn-lg" id="add-exam">
-        <router-link to="/exams/add"><i class="glyphicon glyphicon-pencil"></i></router-link>
+        <router-link to="/exams/add">
+          <i class="glyphicon glyphicon-pencil"></i>
+        </router-link>
       </button>
     </div>
   </div>
@@ -90,7 +93,12 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+#details {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 </style>
  

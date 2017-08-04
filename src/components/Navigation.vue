@@ -17,7 +17,7 @@
           <div id="header" v-if="localStorage.elsyserToken">
             <ul class="nav navbar-nav">
               <li id="exams-button">
-                <router-link to="/exams" data-toggle="collapse" data-target=".navbar-collapse.in">Exams
+                <router-link to="/exams/all" data-toggle="collapse" data-target=".navbar-collapse.in">Exams
                   <span class="glyphicon glyphicon-pencil"></span>
                 </router-link>
               </li>
@@ -88,7 +88,7 @@ export default {
   created () {
     if (this.localStorage.elsyserToken) {
       let id = this.localStorage.elsyserId
-      requester.get(`/profile/${id}/`)
+      requester.get(`/profile/${id}`)
         .then((res) => {
           this.profileImageUrl = res.data.profile_image_url
         })
@@ -139,6 +139,7 @@ export default {
 
 .navbar-fixed-top {
     background-color: rebeccapurple;
+    border-bottom-color: rebeccapurple;
 }
 
 .navbar-default .navbar-toggle .icon-bar {

@@ -135,6 +135,7 @@ hr {
 
 .panel-heading {
   background-color: rebeccapurple !important;
+  border-color: rebeccapurple !important;
 }
 
 .panel {
@@ -180,12 +181,13 @@ hr {
 
 .btn-primary {
   background-color: rebeccapurple;
-  color: white;
   border-color: rebeccapurple;
+  color: white;
 }
 
 .btn-primary:hover, .btn-primary:active {
   background-color: rebeccapurple !important;
+  border-color: rebeccapurple;
   color: white;
 }
 
@@ -332,6 +334,10 @@ hr {
   color: gold;
 }
 
+span.error {
+  color: #9F3A38;
+}
+
 #wrapper {
   max-width: 150vw;
 }
@@ -346,8 +352,8 @@ hr {
 
 #info-button {
     position: absolute;
-    right: 6px;
-    bottom: 3px;
+    right: 40px;
+    bottom: 23px;
 }
 
 #pwd-container .form-wrapper,

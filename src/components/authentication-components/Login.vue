@@ -46,7 +46,7 @@ export default {
       if (this.errors.any()) {
         this.$toastr('error', 'Invalid input data.', 'Error')
       } else {
-        requester.post('/login/', this.$data)
+        requester.post('/login', this.$data)
           .then(res => {
             res.data.token += res.data.is_teacher ? '1' : '0'
             window.localStorage.setItem('elsyserToken', res.data.token)
@@ -74,10 +74,6 @@ export default {
 input,
 select {
   margin-bottom: 10px;
-}
-
-span.error {
-  color: #9F3A38;
 }
 
 a {

@@ -89,7 +89,7 @@ export default {
       if (this.errors.any()) {
         this.$toastr('error', 'Invalid input data.', 'Error')
       } else {
-        requester.post('/register/', this.$data)
+        requester.post('/register', this.$data)
           .then(res => {
             this.$toastr('success', res.data.message, 'Registered successfully.')
             this.$router.push('/login')

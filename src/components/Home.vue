@@ -143,10 +143,10 @@ export default {
   beforeMount: function () {
     if (this.localStorage.elsyserToken) {
       let isTeacher = helper.isTeacher(this.localStorage.elsyserToken)
-      let getNews = isTeacher ? requester.get('/news/teachers/') : requester.get('/news/students/')
-      let getExams = requester.get('/exams/')
-      let getHomeworks = requester.get('/homeworks/')
-      let getMaterials = requester.get('/materials/')
+      let getNews = isTeacher ? requester.get('/news/teachers') : requester.get('/news/students')
+      let getExams = requester.get('/exams')
+      let getHomeworks = requester.get('/homeworks')
+      let getMaterials = requester.get('/materials')
 
       Promise.all([getNews, getExams, getHomeworks, getMaterials])
         .then(res => {
