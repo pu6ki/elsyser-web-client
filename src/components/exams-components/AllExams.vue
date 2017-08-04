@@ -9,10 +9,12 @@
             </strong>
           </div>
           <div class="panel-body">
-            <!--TODO: Make date relative -->
-            <!-- <div>
-                                    Coming <strong><span>{{formatRelative date}}</span></strong>
-                                </div> -->
+            <div>
+              Coming in
+              <strong>
+                <span>{{relitveDate(exam.date)}}</span>
+              </strong>
+            </div>
             <div>
               <i>Topic: </i>
               <strong>
@@ -28,7 +30,7 @@
               <i v-else>No details provided.</i>
             </div>
             <hr /> Posted by
-            <router-link :to="'#/profile/' + exam.author.user.id">
+            <router-link :to="'/profile/' + exam.author.user.id">
               <span>
                 <strong>
                   <i>{{exam.author.user.username}}</i>
@@ -36,9 +38,9 @@
               </span>
             </router-link>
   
-            <!-- <button id="info-button" class="btn btn-primary" onclick="window.location.href = '#/exams/{{id}}'">
-                    <a class="heading-anchor" href="#/exams/{{id}}">Info</a>
-                  </button> -->
+            <button id="info-button" class="btn btn-primary" v-on:click="$router.push('/exams/' + exam.id)">
+              <router-link :to="'/exams/' + exam.id" class="heading-anchor">Info</router-link>
+            </button>
           </div>
         </div>
       </div>
@@ -49,9 +51,9 @@
       </div>
     </div>
   
-    <div v-if="isTeacher">
-      <button type="button" class="btn btn-primary btn-circle btn-lg" id="add-exam">
-        <i class="glyphicon glyphicon-pencil"></i>
+    <div v-if="isTeacher()">
+      <button type="button" v-on:click="$router.push('/exams/add')" class="btn btn-primary btn-circle btn-lg" id="add-exam">
+        <router-link to="/exams/add"><i class="glyphicon glyphicon-pencil"></i></router-link>
       </button>
     </div>
   </div>
@@ -60,6 +62,7 @@
 <script>
 import requester from '../../utils/requester'
 import helper from '../../utils/helper'
+import moment from 'moment'
 
 export default {
   name: 'allExams',
@@ -79,6 +82,9 @@ export default {
   methods: {
     isTeacher: function () {
       return helper.isTeacher(this.localStorage.elsyserToken)
+    },
+    relitveDate: function (date) {
+      return moment(date).fromNow(true)
     }
   }
 }
