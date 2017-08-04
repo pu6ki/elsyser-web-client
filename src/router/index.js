@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import RouterTemplate from '../components/RouterTemplate'
 import Home from '../components/Home'
 import Login from '../components/authentication-components/Login'
 import Register from '../components/authentication-components/Register'
 import ActivateAccount from '../components/authentication-components/ActivateAccount'
 import AllExams from '../components/exams-components/AllExams'
+import AddExam from '../components/exams-components/AddExam'
 
 Vue.use(Router)
 
@@ -21,25 +23,42 @@ const router = new Router({
       component: Home
     },
     {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/register',
-      name: 'Register',
-      component: Register
-    },
-    {
-      path: '/activate/:id/:activationId',
-      name: 'ActivateAccount',
-      component: ActivateAccount
+      path: '/auth',
+      component: RouterTemplate,
+      children: [
+        {
+          path: 'login',
+          name: 'Login',
+          component: Login
+        },
+        {
+          path: 'register',
+          name: 'Register',
+          component: Register
+        },
+        {
+          path: 'activate/:activationId',
+          name: 'ActivateAccount',
+          component: ActivateAccount
+        }
+      ]
     },
     {
       path: '/exams',
-      name: 'AllExams',
-      component: AllExams,
-      meta: { requiresAuth: true }
+      component: RouterTemplate,
+      children: [
+        {
+          path: 'all',
+          component: AllExams,
+          meta: { requiresAuth: true }
+        },
+        {
+          path: 'add',
+          name: 'AddExam',
+          component: AddExam,
+          meta: { requiresAuth: true }
+        }
+      ]
     }
   ]
 })

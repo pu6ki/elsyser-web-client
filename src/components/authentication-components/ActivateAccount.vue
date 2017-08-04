@@ -11,17 +11,16 @@ export default {
   name: 'activateAccount',
   data () {
     return {
-      id: this.$route.params.id,
       activationId: this.$route.params.activationId,
       msg: ''
     }
   },
   created: function () {
-    requester.put(`/activate/${this.id}/${this.activationId}/`)
+    requester.put(`/activate/${this.activationId}/`)
       .then((res) => {
         this.msg = 'Your account had been activated. Redirecting...'
         setTimeout(() => {
-          this.$router.push('/login')
+          this.$router.push('/auth/login')
         }, 3000)
       })
       .catch(err => {

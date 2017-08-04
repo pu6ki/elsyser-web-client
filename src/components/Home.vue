@@ -9,7 +9,7 @@
                 <a href="/news/teachers">Latest news</a>
               </strong>
               <strong v-else>
-                <a href="#/news/students">Latest news</a>
+                <a href="/news/students">Latest news</a>
               </strong>
             </div>
             <div class="panel-body info-body">
@@ -45,7 +45,7 @@
           <div class="panel panel-primary info-panel">
             <div class="panel-heading text-center">
               <strong>
-                <router-link to="/exams">Upcoming exams</router-link>
+                <router-link to="/exams/all">Upcoming exams</router-link>
               </strong>
             </div>
             <div class="panel-body info-body">
@@ -86,10 +86,10 @@
                 <img src="/static/logos/logo-white.png" alt="Logo" align="center" id="home-logo" />
                 <h3>Your school in the cloud</h3>
                 <hr class="intro-divider">
-                <router-link  to="/login" class="btn btn-default btn-lg signup-button">
+                <router-link  to="/auth/login" class="btn btn-default btn-lg signup-button">
                   <span class="network-name">Login</span>
                 </router-link>
-                <router-link to="/register" class="btn btn-default btn-lg signup-button">
+                <router-link to="/auth/register" class="btn btn-default btn-lg signup-button">
                   <span class="network-name">Register</span>
                 </router-link>
               </div>
@@ -106,7 +106,7 @@
             <p class="lead" id="info">
               This is your school but mobile! You can see your current homeworks, prepare for upcoming exams and be informed about the events in your school.
             </p>
-            <router-link to="/register" class="btn btn-primary btn-lg content-button">
+            <router-link to="/auth/register" class="btn btn-primary btn-lg content-button">
               <span class="network-name">Join now !</span>
             </router-link>
           </div>

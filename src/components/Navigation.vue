@@ -64,8 +64,8 @@
           </div>
           <div v-else>
             <ul class="nav navbar-nav navbar-right" id="sign-in-buttons">
-              <li role="presentation" id="log-in"><router-link to="/login" data-toggle="collapse" data-target=".navbar-collapse.in">Log-in <span class="glyphicon glyphicon-log-in"></span></router-link></li>
-              <li role="presentation" id="register"><router-link to="/register" data-toggle="collapse" data-target=".navbar-collapse.in">Register <span class="glyphicon glyphicon-education"></span></router-link></li>
+              <li role="presentation" id="log-in"><router-link to="/auth/login" data-toggle="collapse" data-target=".navbar-collapse.in">Log-in <span class="glyphicon glyphicon-log-in"></span></router-link></li>
+              <li role="presentation" id="register"><router-link to="/auth/register" data-toggle="collapse" data-target=".navbar-collapse.in">Register <span class="glyphicon glyphicon-education"></span></router-link></li>
             </ul>
           </div>
         </div>

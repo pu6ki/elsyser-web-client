@@ -52,7 +52,7 @@
             <div>
               <span class="text-formatted">Already a member?</span>
               <br />
-              <a href="/login"> Log-in</a>
+              <a href="/auth/login"> Log-in</a>
             </div>
           </section>
         </form>

@@ -17,7 +17,7 @@
             <div>
               <span class="text-formatted">Not a member yet?</span>
               <br />
-              <a href="/register">Create account</a>
+              <a href="/auth/register">Create account</a>
             </div>
           </section>
         </form>
