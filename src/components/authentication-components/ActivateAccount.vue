@@ -16,7 +16,7 @@ export default {
     }
   },
   created: function () {
-    requester.put(`/activate/${this.activationId}/`)
+    requester.put(`/activate/${this.activationId}`)
       .then((res) => {
         this.msg = 'Your account had been activated. Redirecting...'
         setTimeout(() => {
