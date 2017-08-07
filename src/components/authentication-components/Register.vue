@@ -64,6 +64,7 @@
 
 <script>
 import requester from '../../utils/requester'
+import sha256 from 'crypto-js'
 
 export default {
   name: 'register',
@@ -89,10 +90,23 @@ export default {
       if (this.errors.any()) {
         this.$toastr('error', 'Invalid input data.', 'Error')
       } else {
-        requester.post('/register', this.$data)
+        let body = {
+          user: {
+            username: this.$data.user.username,
+            first_name: this.$data.user.first_name,
+            last_name: this.$data.user.last_name,
+            email: this.$data.user.email,
+            password: sha256.HmacSHA256(this.$data.user.password, 'PuRpl3r@1N').toString()
+          },
+          clazz: {
+            number: this.$data.clazz.number,
+            letter: this.$data.clazz.letter
+          }
+        }
+        requester.post('/register', body)
           .then(res => {
             this.$toastr('success', res.data.message, 'Registered successfully.')
-            this.$router.push('/login')
+            this.$router.push('/auth/login')
           })
           .catch(() => {
             this.$toastr('error', 'Could not register you with the provided data. Username and email must be uniqe.')

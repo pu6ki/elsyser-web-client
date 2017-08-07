@@ -7,11 +7,11 @@
           <section id="login-form" class="is-12">
             <p :class="{'control': true}">
               <span v-show="errors.has('email-or-username')" class="help is-danger error">{{ errors.first('email-or-username') }}</span>
-              <input type="text" v-model="email_or_username" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('email-or-username') }" class="form-control" id="email-or-username" name="email-or-username" placeholder="Email or username" autofocus/>
+              <input type="text" v-model="creds.email_or_username" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('email-or-username') }" class="form-control" id="email-or-username" name="email-or-username" placeholder="Email or username" autofocus/>
             </p>
             <p :class="{'control': true}">
               <span v-show="errors.has('password')" class="help is-danger error">{{ errors.first('password') }}</span>
-              <input type="password" v-model="password" v-validate="'required'" class="form-control" id="password" name="password" placeholder="Password" />
+              <input type="password" v-model="creds.password" v-validate="'required'" class="form-control" id="password" name="password" placeholder="Password" />
             </p>
             <button class="btn btn-lg btn-primary btn-block" id="login-button">Login</button>
             <div>
@@ -30,13 +30,16 @@
 <script>
 import requester from '../../utils/requester'
 import helper from '../../utils/helper'
+import sha256 from 'crypto-js'
 
 export default {
   name: 'login',
   data: function () {
     return {
-      email_or_username: '',
-      password: ''
+      creds: {
+        email_or_username: '',
+        password: ''
+      }
     }
   },
   methods: {
@@ -46,7 +49,11 @@ export default {
       if (this.errors.any()) {
         this.$toastr('error', 'Invalid input data.', 'Error')
       } else {
-        requester.post('/login', this.$data)
+        let body = {
+          email_or_username: this.$data.creds.email_or_username,
+          password: sha256.HmacSHA256(this.$data.creds.password, 'PuRpl3r@1N').toString()
+        }
+        requester.post('/login', body)
           .then(res => {
             res.data.token += res.data.is_teacher ? '1' : '0'
             window.localStorage.setItem('elsyserToken', res.data.token)
@@ -62,7 +69,8 @@ export default {
           })
           .catch((err) => {
             console.log(err)
-            this.$toastr('error', err.response.data.non_field_errors[0], 'Access denied.')
+            let msg = err.response.data.non_field_errors[0] ? err.response.data.non_field_errors[0] : 'Wrong credentials.'
+            this.$toastr('error', msg, 'Access denied.')
           })
       }
     }
