@@ -334,6 +334,16 @@ hr {
   color: gold;
 }
 
+.edit, .delete, .check {
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+.edit:hover,.delete:hover, .check:hover {
+  color: gold;
+}
+
 span.error {
   color: #9F3A38;
 }
@@ -351,9 +361,8 @@ span.error {
 }
 
 #info-button {
-    position: absolute;
-    right: 40px;
-    bottom: 23px;
+    width: 30%;
+    margin-bottom: 10px;
 }
 
 #pwd-container .form-wrapper,

@@ -8,6 +8,7 @@ import ActivateAccount from '../components/authentication-components/ActivateAcc
 import AllExams from '../components/exams-components/AllExams'
 import AddExam from '../components/exams-components/AddExam'
 import Exam from '../components/exams-components/Exam'
+import EditExam from '../components/exams-components/EditExam'
 
 Vue.use(Router)
 
@@ -63,6 +64,12 @@ const router = new Router({
           path: ':id',
           name: 'Exam',
           component: Exam,
+          meta: { requiresAuth: true }
+        },
+        {
+          path: ':id/edit',
+          name: 'EditExam',
+          component: EditExam,
           meta: { requiresAuth: true }
         }
       ]

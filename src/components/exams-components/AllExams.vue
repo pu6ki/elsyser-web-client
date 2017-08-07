@@ -39,11 +39,10 @@
               </span>
             </router-link>
           </div>
+          <button id="info-button" class="btn btn-primary" v-on:click="$router.push('/exams/' + exam.id)">
+            <router-link :to="'/exams/' + exam.id" class="heading-anchor">Info</router-link>
+          </button>
         </div>
-  
-        <button id="info-button" class="btn btn-primary" v-on:click="$router.push('/exams/' + exam.id)">
-          <router-link :to="'/exams/' + exam.id" class="heading-anchor">Info</router-link>
-        </button>
       </div>
     </div>
     <div class="panel panel-default" v-else>

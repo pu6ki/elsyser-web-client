@@ -7,47 +7,47 @@
             <strong>
               {{exam.subject.title}}
             </strong>
-              <div class="pull-right edit" v-if="isEditable()">
-                <span :id="'exam-' + exam.id + '-edit'" class="edit">
-                  <span class="glyphicon glyphicon-edit"></span>
-                </span>
-                <span :id="'exam-' + exam.id + '-delete'" class="delete">
-                  <span class="glyphicon glyphicon-trash"></span>
-                </span>
-              </div>
-          </div>
-           <div class="panel-body">
-              <div>
-                Coming in
-                <strong>
-                  <span>{{relitveDate(exam.date)}}</span>
-                </strong>
-              </div>
-              <div>
-                <i>Topic: </i>
-                <strong>
-                  <span>{{exam.topic}}</span>
-                </strong>
-              </div>
-              <div v-if="exam.details">
-                <i>Details: </i>
-                <strong>
-                  <span>{{exam.details}}</span>
-                </strong>
-              </div>
-              <div v-else>
-                <i>No details provided.</i>
-              </div>
-    
-              <hr /> Posted by
-              <router-link :to="'#/profile/' + exam.author.user.id">
-                <span>
-                  <strong>
-                    <i>{{exam.author.user.username}}</i>
-                  </strong>
-                </span>
+            <div class="pull-right edit" v-if="isEditable()">
+              <router-link :to="'/exams/' + exam.id + '/edit'" class="edit">
+                <span class="glyphicon glyphicon-edit"></span>
               </router-link>
-            </div> 
+              <span class="delete" v-on:click="showDeleteConfirm()">
+                <span class="glyphicon glyphicon-trash"></span>
+              </span>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div>
+              Coming in
+              <strong>
+                <span>{{relitveDate(exam.date)}}</span>
+              </strong>
+            </div>
+            <div>
+              <i>Topic: </i>
+              <strong>
+                <span>{{exam.topic}}</span>
+              </strong>
+            </div>
+            <div v-if="exam.details">
+              <i>Details: </i>
+              <strong>
+                <span>{{exam.details}}</span>
+              </strong>
+            </div>
+            <div v-else>
+              <i>No details provided.</i>
+            </div>
+  
+            <hr /> Posted by
+            <router-link :to="'#/profile/' + exam.author.user.id">
+              <span>
+                <strong>
+                  <i>{{exam.author.user.username}}</i>
+                </strong>
+              </span>
+            </router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -65,10 +65,9 @@ export default {
       exam: null
     }
   },
-  beforeMount: function () {
+  beforeCreate: function () {
     requester.get(`/exams/${this.$route.params.id}`)
       .then(res => {
-        console.log(res.data)
         this.$data.exam = res.data
       })
   },
@@ -78,6 +77,31 @@ export default {
     },
     relitveDate: function (date) {
       return moment(date).fromNow(true)
+    },
+    showDeleteConfirm: function () {
+      let examId = this.exam.id
+      let router = this.$router
+      window.swal({
+        title: 'Are you sure?',
+        text: 'This exam will be deleted forever.',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'Yes, delete it!',
+        closeOnConfirm: false
+      },
+        function () {
+          requester.delete(`/exams/${examId}`)
+            .then(() => {
+              window.swal({
+                title: 'Deleted!',
+                text: 'The exam has been deleted.',
+                type: 'success'
+              }, function () {
+                router.push('/exams/all')
+              })
+            })
+        })
     }
   }
 }
