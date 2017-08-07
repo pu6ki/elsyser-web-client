@@ -1,14 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import RouterTemplate from '../components/RouterTemplate'
+
 import Home from '../components/Home'
+
 import Login from '../components/authentication-components/Login'
 import Register from '../components/authentication-components/Register'
 import ActivateAccount from '../components/authentication-components/ActivateAccount'
+
 import AllExams from '../components/exams-components/AllExams'
 import AddExam from '../components/exams-components/AddExam'
 import Exam from '../components/exams-components/Exam'
 import EditExam from '../components/exams-components/EditExam'
+
+import Profile from '../components/profile-components/Profile'
+import EditProfile from '../components/profile-components/EditProfile'
 
 Vue.use(Router)
 
@@ -51,28 +57,42 @@ const router = new Router({
       children: [
         {
           path: 'all',
-          component: AllExams,
-          meta: { requiresAuth: true }
+          component: AllExams
         },
         {
           path: 'add',
           name: 'AddExam',
-          component: AddExam,
-          meta: { requiresAuth: true }
+          component: AddExam
         },
         {
           path: ':id',
           name: 'Exam',
-          component: Exam,
-          meta: { requiresAuth: true }
+          component: Exam
         },
         {
           path: ':id/edit',
           name: 'EditExam',
-          component: EditExam,
-          meta: { requiresAuth: true }
+          component: EditExam
         }
-      ]
+      ],
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/profile',
+      component: RouterTemplate,
+      children: [
+        {
+          path: ':id',
+          name: 'Profile',
+          component: Profile
+        },
+        {
+          path: ':id/edit',
+          name: 'EditProfile',
+          component: EditProfile
+        }
+      ],
+      meta: { requiresAuth: true }
     }
   ]
 })
@@ -82,7 +102,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (token === 'null') {
       next({
-        path: '/login',
+        path: '/auth/login',
         query: { redirect: to.fullPath }
       })
     } else {
