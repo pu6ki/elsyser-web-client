@@ -62,7 +62,21 @@ export default {
   name: 'exam',
   data: function () {
     return {
-      exam: null
+      exam: {
+        subject: {
+          title: ''
+        },
+        id: null,
+        date: null,
+        topic: '',
+        details: '',
+        author: {
+          user: {
+            username: '',
+            id: null
+          }
+        }
+      }
     }
   },
   beforeCreate: function () {

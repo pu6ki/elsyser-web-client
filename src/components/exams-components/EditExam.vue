@@ -55,7 +55,6 @@ export default {
       } else {
         requester.put(`/exams/${this.id}`, this.$data)
           .then((res) => {
-            console.log(res)
             this.$toastr('success', 'Exam edited successfully.', 'Success.')
             this.$router.push('/exams/all')
           })
