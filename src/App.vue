@@ -363,6 +363,7 @@ span.error {
 #info-button {
     width: 30%;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 #pwd-container .form-wrapper,

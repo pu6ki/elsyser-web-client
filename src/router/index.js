@@ -16,6 +16,8 @@ import EditExam from '../components/exams-components/EditExam'
 import Profile from '../components/profile-components/Profile'
 import EditProfile from '../components/profile-components/EditProfile'
 
+import AllMaterials from '../components/materials-components/AllMaterials'
+
 Vue.use(Router)
 
 const router = new Router({
@@ -90,6 +92,18 @@ const router = new Router({
           path: ':id/edit',
           name: 'EditProfile',
           component: EditProfile
+        }
+      ],
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/materials',
+      component: RouterTemplate,
+      children: [
+        {
+          path: 'all',
+          name: 'AllMaterials',
+          component: AllMaterials
         }
       ],
       meta: { requiresAuth: true }

@@ -32,12 +32,12 @@
                 </router-link>
               </li>
               <li id="homeworks-button">
-                <router-link to="/homeworks" data-toggle="collapse" data-target=".navbar-collapse.in">Homeworks
+                <router-link to="/homeworks/all" data-toggle="collapse" data-target=".navbar-collapse.in">Homeworks
                   <span class="glyphicon glyphicon-book"></span>
                 </router-link>
               </li>
               <li id="materials-button">
-                <router-link to="/materials" data-toggle="collapse" data-target=".navbar-collapse.in">Materials
+                <router-link to="/materials/all" data-toggle="collapse" data-target=".navbar-collapse.in">Materials
                   <span class="glyphicon glyphicon-file"></span>
                 </router-link>
               </li>
