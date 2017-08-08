@@ -29,12 +29,12 @@
           <div class="panel panel-primary info-panel">
             <div class="panel-heading text-center">
               <strong>
-                <a href="#/homeworks">Homeworks</a>
+                <a href="/homeworks/all">Homeworks</a>
               </strong>
             </div>
             <div class="panel-body info-body">
               <div class="info-container text-center" v-for="homework in homeworks" :key="homework.id">
-                <router-link :to="'/homework/' + homework.id">
+                <router-link :to="'/homeworks/' + homework.id">
                   <b>{{homework.subject.title}}</b> - ({{homework.deadline}})
                 </router-link>
               </div>

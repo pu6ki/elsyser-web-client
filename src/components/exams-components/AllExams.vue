@@ -12,7 +12,7 @@
             <div>
               Coming in
               <strong>
-                <span>{{relitveDate(exam.date)}}</span>
+                <span>{{relativeDate(exam.date)}}</span>
               </strong>
             </div>
             <div>
@@ -85,7 +85,7 @@ export default {
     isTeacher: function () {
       return helper.isTeacher(this.localStorage.elsyserToken)
     },
-    relitveDate: function (date) {
+    relativeDate: function (date) {
       return moment(date).fromNow(true)
     }
   }
