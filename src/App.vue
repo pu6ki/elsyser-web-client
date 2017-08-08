@@ -114,6 +114,10 @@ hr {
   }
 }
 
+.container {
+  width: 80%;
+}
+
 .form-control {
   border: 0.5px solid lightgray !important;
   border-radius: 5px !important;

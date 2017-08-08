@@ -62,7 +62,7 @@
           <div class="panel panel-primary info-panel">
             <div class="panel-heading text-center">
               <strong>
-                <router-link to="/materials">Latest materials</router-link>
+                <router-link to="/materials/all">Latest materials</router-link>
               </strong>
             </div>
             <div class="panel-body info-body">
