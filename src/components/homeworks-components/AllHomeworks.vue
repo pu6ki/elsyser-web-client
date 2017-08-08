@@ -1,6 +1,6 @@
 <template>
   <div id="wrapper">
-    <div class="row" v-if="homeworks">
+    <div class="row" v-if="homeworks.length > 0">
       <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1" v-for="homework in homeworks" :key="homework.id">
         <div class="panel panel-primary text-center">
           <div class="panel-heading">
@@ -12,17 +12,17 @@
             <div id="deadline">
               <i>Deadline </i>
               <strong>
-                <span>{{homework.deadline}}</span>
+                <span>{{relativeDate(homework.deadline)}}</span>
               </strong>
             </div>
             <div id="details">
               <i v-if="homework.details">Details:
-                  <div>{{homework.details}}</div>
+                <div>{{homework.details}}</div>
               </i>
               <i v-else>No details provided.</i>
             </div>
             <hr /> Posted by
-            <router-link :to="'#/profile/' + homework.author.user.id">
+            <router-link :to="'/profile/' + homework.author.user.id">
               <span>
                 <strong>
                   <i>{{homework.author.user.username}}</i>
@@ -52,6 +52,7 @@
 <script>
 import requester from '../../utils/requester'
 import helper from '../../utils/helper'
+import moment from 'moment'
 
 export default {
   name: 'allHomeworks',
@@ -70,6 +71,9 @@ export default {
   methods: {
     hasTeacherRights: function () {
       return helper.isTeacher(this.localStorage.elsyserToken)
+    },
+    relativeDate: function (date) {
+      return moment(date).fromNow(true)
     }
   }
 }
