@@ -61,8 +61,15 @@ export default {
             window.localStorage.setItem('elsyserUsername', res.data.username)
             window.localStorage.setItem('elsyserId', res.data.id)
             if (helper.isTeacher(res.data.token)) {
-              helper.setTeacherSubjectToLocalStorage()
+              return requester.get(`/profile/${window.localStorage.getItem('elsyserId')}`)
+            } else {
+              this.$toastr('success', 'Logged-in successfully.', 'Welcome.')
+              this.$router.push('/home', function () {
+                window.location.reload(true)
+              })
             }
+          }).then((res) => {
+            this.localStorage.elsyserTeacherSubjectId = res.data.subject.id
             this.$toastr('success', 'Logged-in successfully.', 'Welcome.')
             this.$router.push('/home', function () {
               window.location.reload(true)

@@ -17,6 +17,8 @@ import Profile from '../components/profile-components/Profile'
 import EditProfile from '../components/profile-components/EditProfile'
 
 import AllMaterials from '../components/materials-components/AllMaterials'
+import Material from '../components/materials-components/Material'
+import AddMaterial from '../components/materials-components/AddMaterial'
 
 Vue.use(Router)
 
@@ -104,6 +106,16 @@ const router = new Router({
           path: 'all',
           name: 'AllMaterials',
           component: AllMaterials
+        },
+        {
+          path: ':subjectId/:id',
+          name: 'Material',
+          component: Material
+        },
+        {
+          path: 'add',
+          name: 'AddMaterial',
+          component: AddMaterial
         }
       ],
       meta: { requiresAuth: true }

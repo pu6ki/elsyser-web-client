@@ -1,5 +1,3 @@
-import requester from './requester'
-
 export default {
   isTeacher: (token) => {
     if (token) {
@@ -12,13 +10,6 @@ export default {
   },
   insertLineBreaks: (content) => {
     return content.replace(/[\n]/g, '<br />')
-  },
-  setTeacherSubjectToLocalStorage: () => {
-    const profileUrl = `/profile/${window.localStorage.getItem('elsyserId')}/`
-    requester.get(profileUrl)
-      .then((result) => {
-        window.localStorage.setItem(`elsyserTeacherSubjectId`, result.data.subject.id)
-      })
   },
   attachEvaluationWords: (mark) => {
     if (mark <= 6.00 && mark >= 5.50) {
@@ -37,5 +28,12 @@ export default {
     return isTeacher(window.localStorage.getItem('elsyser-token')) ? // eslint-disable-line
       'https://elsyser.herokuapp.com/api/news/teachers/' : // eslint-disable-line
       'https://elsyser.herokuapp.com/api/news/students/'
+  },
+  makeYouTubeVideoEmbeddable: (videoUrl) => {
+    let youtubeUrl = 'www.youtube.com/'
+    let index = videoUrl.indexOf(youtubeUrl) + youtubeUrl.length
+    let result = videoUrl.slice(0, index) + 'embed/' + videoUrl.slice(index)
+
+    return result.replace('watch?v=', '')
   }
 }

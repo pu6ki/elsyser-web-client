@@ -33,7 +33,7 @@
           <h3 class="text-center">There are no available materials so far.</h3>
         </div>
       </div>
-      <button v-if="hasTeacherRights()" type="button" class="btn btn-primary btn-circle btn-lg" id="add-material">
+      <button v-if="hasTeacherRights()" type="button" class="btn btn-primary btn-circle btn-lg" id="add-material" v-on:click="$router.push('/materials/add')">
         <i class="glyphicon glyphicon-pencil"></i>
       </button>
     </div>
