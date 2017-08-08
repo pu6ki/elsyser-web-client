@@ -19,6 +19,7 @@ import EditProfile from '../components/profile-components/EditProfile'
 import AllMaterials from '../components/materials-components/AllMaterials'
 import Material from '../components/materials-components/Material'
 import AddMaterial from '../components/materials-components/AddMaterial'
+import EditMaterial from '../components/materials-components/EditMaterial'
 
 Vue.use(Router)
 
@@ -111,6 +112,11 @@ const router = new Router({
           path: ':subjectId/:id',
           name: 'Material',
           component: Material
+        },
+        {
+          path: ':subjectId/:id/edit',
+          name: 'EditMaterial',
+          component: EditMaterial
         },
         {
           path: 'add',
