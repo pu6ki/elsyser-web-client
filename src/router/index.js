@@ -21,6 +21,8 @@ import Material from '../components/materials-components/Material'
 import AddMaterial from '../components/materials-components/AddMaterial'
 import EditMaterial from '../components/materials-components/EditMaterial'
 
+import AllHomeworks from '../components/homeworks-components/AllHomeworks'
+
 Vue.use(Router)
 
 const router = new Router({
@@ -122,6 +124,18 @@ const router = new Router({
           path: 'add',
           name: 'AddMaterial',
           component: AddMaterial
+        }
+      ],
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/homeworks',
+      component: RouterTemplate,
+      children: [
+        {
+          path: 'all',
+          name: 'AllHomeworks',
+          component: AllHomeworks
         }
       ],
       meta: { requiresAuth: true }
