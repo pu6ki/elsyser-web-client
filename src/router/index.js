@@ -24,6 +24,7 @@ import EditMaterial from '../components/materials-components/EditMaterial'
 import AllHomeworks from '../components/homeworks-components/AllHomeworks'
 import Homework from '../components/homeworks-components/Homework'
 import AddHomework from '../components/homeworks-components/AddHomework'
+import EditHomework from '../components/homeworks-components/EditHomework'
 import AddSubmission from '../components/homeworks-components/AddSubmission'
 import EditSubmission from '../components/homeworks-components/EditSubmission'
 
@@ -150,6 +151,11 @@ const router = new Router({
           path: ':id',
           name: 'Homework',
           component: Homework
+        },
+        {
+          path: ':id/edit',
+          name: 'EditHomework',
+          component: EditHomework
         },
         {
           path: ':id/send',
