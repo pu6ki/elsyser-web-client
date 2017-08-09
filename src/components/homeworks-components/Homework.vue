@@ -44,7 +44,7 @@
           <button v-if="isEditable()" type="button" class="btn btn-primary center-block" id="submissions-button" v-on:click="$router.push('/homeworks/' + homework.id + '/submissions')">
             <router-link :to="'/homeworks/' + homework.id + '/submissions'">View new submissions</router-link>
           </button>
-          <!-- <sent-homeworks v-else></sent-homeworks> -->
+          <sent-homeworks v-else></sent-homeworks> 
         </div>
       </div>
     </div>
@@ -54,9 +54,11 @@
 <script>
 import requester from '../../utils/requester'
 import moment from 'moment'
+import SentHomeworks from './SentHomeworks'
 
 export default {
   name: 'homework',
+  components: { SentHomeworks },
   data: function () {
     return {
       homework: {
