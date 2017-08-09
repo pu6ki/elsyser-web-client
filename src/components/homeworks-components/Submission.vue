@@ -3,38 +3,39 @@
     <h4 class="text-center">Latest submission:</h4>
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
-        <div class="panel panel-primary">
+        <div class="panel panel-primary text-center">
           <div class="panel-heading">
             <strong>
               <span>{{submission.student.user.first_name}} {{submission.student.user.last_name}} - {{submission.student.clazz.number}}{{submission.student.clazz.letter}}</span>
             </strong>
-            <div v-if="isEditable">
-              <div class="pull-right" v-if="submission.checked">
-                Checked
+            <div v-if="isEditable()">
+              <div class="pull-right" id="checked-text" v-if="submission.checked">
+                <span class="glyphicon">Checked</span>
               </div>
               <div class="pull-right edit" v-else>
-                <span v-on:click="$router.push(`/homeworks/${$route.params.id}/submissions/${submission.id}/edit`)" id="submission-edit" class="edit">
+                <span v-on:click="$router.push(`/homeworks/${$route.params.homeworkId}/submissions/${submission.id}/edit`)" id="submission-edit" class="edit">
                   <span class="glyphicon glyphicon-edit"></span>
                 </span>
               </div>
             </div>
             <div class="pull-right check" v-else>
-              <span id="mark-checked" class="checked">
+              <span id="mark-checked" class="checked" v-on:click="markAsChecked()">
                 <span class="glyphicon glyphicon-ok"></span>
               </span>
             </div>
           </div>
           <div class="panel-body">
             <div>
-              Content:
-              <br />
               <strong>
-                <i>
-                  <span id="submission-content" v-html="submission.content"></span>
-                </i>
+                Content:
               </strong>
               <br />
-              <div v-show="submission.solution_url">Solution URL:
+              <i>
+                <span id="submission-content" v-html="submission.content"></span>
+              </i>
+              <br />
+              <div v-show="submission.solution_url">
+                <strong>Solution URL:</strong>
                 <a :href="submission.solution_url" target="_blank">
                   <strong>
                     <i>
@@ -62,15 +63,16 @@
       </div>
     </div>
   </div>
-  <button v-on:click="$router.push(`/homeworks/${$route.params.id}/send`)" type="button" class="btn btn-primary center-block" id="send-homework-button" v-else>Send homework</button>
+  <button v-on:click="$router.push(`/homeworks/${$route.params.homeworkId}/send`)" type="button" class="btn btn-primary center-block" id="send-homework-button" v-else>Send homework</button>
 </template>
 
 <script>
 import requester from '../../utils/requester'
+import helper from '../../utils/helper'
 import moment from 'moment'
 
 export default {
-  name: 'sent-homeworks',
+  name: 'submission',
   data: function () {
     return {
       submission: {
@@ -95,25 +97,40 @@ export default {
     }
   },
   beforeCreate: function () {
-    requester.get(`/homeworks/${this.$route.params.id}/submissions`)
+    requester.get(`/homeworks/${this.$route.params.homeworkId}/submissions`)
       .then((res) => {
         this.$data.submission = res.data[0]
+        this.$data.submission.content = helper.insertLineBreaks(this.$data.submission.content)
       })
       .catch(console.log)
   },
   methods: {
     isEditable: function () {
-      return this.localStorage.elsyserUsername === this.homework.author.user.username
+      return this.localStorage.elsyserUsername === this.submission.student.user.username
     },
     relativeDate: function (date) {
       return moment(date).fromNow()
+    },
+    markAsChecked: function () {
+      let body = {
+        checked: true
+      }
+      requester.put(`/homeworks/${this.$route.params.homeworkId}/submissions/${this.$route.params.submissionId}`, body)
+        .then((res) => {
+          this.$toastr('success', 'Submission marked as checked.', 'Success.')
+          this.$router.push(`/homeworks/${this.$route.params.homeworkId}/submissions`)
+        })
+        .catch((err) => {
+          console.log(err)
+          this.$toastr('error', 'Submission could not be marked as checked.', 'Error.')
+        })
     }
   }
 }
 </script>
 
 <style>
-#submission-edit span {
+#submission-edit span, #checked-text span {
   top: -20px;
 }
 </style>

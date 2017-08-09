@@ -25,13 +25,13 @@
             </div>
             <div v-if="homework.details">
               <i>Details: </i>
-                {{homework.details}}
+                <div>{{homework.details}}</div>
             </div>
             <div v-else>
               <i>No details provided.</i>
             </div>
             <hr /> Posted by
-            <router-link :to="'#/profile/' + homework.author.user.id">
+            <router-link :to="'/profile/' + homework.author.user.id">
               <span>
                 <strong>
                   <i>{{homework.author.user.username}}</i>
@@ -44,7 +44,7 @@
           <button v-if="isEditable()" type="button" class="btn btn-primary center-block" id="submissions-button" v-on:click="$router.push('/homeworks/' + homework.id + '/submissions')">
             <router-link :to="'/homeworks/' + homework.id + '/submissions'">View new submissions</router-link>
           </button>
-          <sent-homeworks v-else></sent-homeworks> 
+          <submission v-else></submission> 
         </div>
       </div>
     </div>
@@ -54,11 +54,11 @@
 <script>
 import requester from '../../utils/requester'
 import moment from 'moment'
-import SentHomeworks from './SentHomeworks'
+import Submission from './Submission'
 
 export default {
   name: 'homework',
-  components: { SentHomeworks },
+  components: { Submission },
   data: function () {
     return {
       homework: {
@@ -79,7 +79,7 @@ export default {
     }
   },
   beforeCreate: function () {
-    requester.get(`/homeworks/${this.$route.params.id}`)
+    requester.get(`/homeworks/${this.$route.params.homeworkId}`)
       .then((res) => {
         this.$data.homework = res.data
       })
