@@ -8,7 +8,7 @@
 import requester from '../../utils/requester'
 
 export default {
-  name: 'activateAccount',
+  name: 'activate-account',
   data () {
     return {
       activationId: this.$route.params.activationId,

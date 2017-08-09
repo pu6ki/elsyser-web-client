@@ -15,7 +15,7 @@
             <div class="panel-body info-body">
               <div class="info-container text-center" v-for="item in news" :key="item.id">
                 <div v-if="hasTeacherRights()">
-                  <router-link :to="'/news/teachers/' + item.class_number + '/' + item.class_letter ? item.class_letter : 'A/' + item.id">{{item.title}}</router-link>
+                  <router-link :to="'/news/teachers/' + item.class_number + '/' + (item.class_letter ? item.class_letter : 'A/' + item.id)">{{item.title}}</router-link>
                 </div>
                 <div v-else>
                   <router-link :to="'/news/students/' + item.id">{{item.title}}</router-link>

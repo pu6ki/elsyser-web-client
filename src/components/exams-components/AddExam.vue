@@ -49,7 +49,7 @@
 import requester from '../../utils/requester'
 
 export default {
-  name: 'addExam',
+  name: 'add-exam',
   data: function () {
     return {
       date: '',

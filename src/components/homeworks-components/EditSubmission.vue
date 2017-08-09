@@ -26,7 +26,7 @@ import requester from '../../utils/requester'
 import helper from '../../utils/helper'
 
 export default {
-  name: 'send-homework',
+  name: 'edit-submission',
   data: function () {
     return {
       submission: {

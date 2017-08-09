@@ -47,7 +47,7 @@
 import requester from '../../utils/requester'
 
 export default {
-  name: 'addExam',
+  name: 'add-homework',
   data: function () {
     return {
       deadline: '',

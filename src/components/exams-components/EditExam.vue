@@ -28,7 +28,7 @@
 import requester from '../../utils/requester'
 
 export default {
-  name: 'editExam',
+  name: 'edit-exam',
   data: function () {
     return {
       date: '',

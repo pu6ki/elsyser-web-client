@@ -38,7 +38,7 @@
 import requester from '../../utils/requester'
 
 export default {
-  name: 'addMaterial',
+  name: 'edit-material',
   data: function () {
     return {
       material: {

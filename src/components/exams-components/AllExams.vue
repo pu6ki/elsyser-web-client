@@ -67,7 +67,7 @@ import helper from '../../utils/helper'
 import moment from 'moment'
 
 export default {
-  name: 'allExams',
+  name: 'all-exams',
   data: function () {
     return {
       exams: []

@@ -45,7 +45,7 @@ import requester from '../../utils/requester'
 import helper from '../../utils/helper'
 
 export default {
-  name: 'allMaterials',
+  name: 'all-materials',
   data: function () {
     return {
       materials: null
