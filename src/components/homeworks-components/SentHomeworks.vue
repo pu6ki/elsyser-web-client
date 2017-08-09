@@ -13,7 +13,7 @@
                 Checked
               </div>
               <div class="pull-right edit" v-else>
-                <span id="submission-edit" class="edit">
+                <span v-on:click="$router.push(`/homeworks/${$route.params.id}/submissions/${submission.id}/edit`)" id="submission-edit" class="edit">
                   <span class="glyphicon glyphicon-edit"></span>
                 </span>
               </div>
@@ -85,6 +85,7 @@ export default {
             letter: ''
           }
         },
+        id: null,
         content: '',
         solution_url: '',
         edited: null,

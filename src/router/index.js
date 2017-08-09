@@ -22,6 +22,10 @@ import AddMaterial from '../components/materials-components/AddMaterial'
 import EditMaterial from '../components/materials-components/EditMaterial'
 
 import AllHomeworks from '../components/homeworks-components/AllHomeworks'
+import Homework from '../components/homeworks-components/Homework'
+import AddHomework from '../components/homeworks-components/AddHomework'
+import AddSubmission from '../components/homeworks-components/AddSubmission'
+import EditSubmission from '../components/homeworks-components/EditSubmission'
 
 Vue.use(Router)
 
@@ -136,6 +140,26 @@ const router = new Router({
           path: 'all',
           name: 'AllHomeworks',
           component: AllHomeworks
+        },
+        {
+          path: 'add',
+          name: 'AddHomework',
+          component: AddHomework
+        },
+        {
+          path: ':id',
+          name: 'Homework',
+          component: Homework
+        },
+        {
+          path: ':id/send',
+          name: 'AddSubmission',
+          component: AddSubmission
+        },
+        {
+          path: ':homeworkId/submissions/:submissionId/edit',
+          name: 'EditSubmission',
+          component: EditSubmission
         }
       ],
       meta: { requiresAuth: true }
