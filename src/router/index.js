@@ -30,6 +30,8 @@ import Submission from '../components/homeworks-components/Submission'
 import AddSubmission from '../components/homeworks-components/AddSubmission'
 import EditSubmission from '../components/homeworks-components/EditSubmission'
 
+import AllNews from '../components/news-components/AllNews'
+
 Vue.use(Router)
 
 const router = new Router({
@@ -178,6 +180,19 @@ const router = new Router({
           path: ':homeworkId/submissions/:submissionId/edit',
           name: 'EditSubmission',
           component: EditSubmission
+        }
+      ],
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/news',
+      component: RouterTemplate,
+      children: [
+        {
+          path: 'teachers',
+          alias: 'students',
+          name: 'AllNews',
+          component: AllNews
         }
       ],
       meta: { requiresAuth: true }

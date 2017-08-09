@@ -21,7 +21,7 @@
                   <span class="glyphicon glyphicon-pencil"></span>
                 </router-link>
               </li>
-              <li id="news-button" v-if="isTeacher">
+              <li id="news-button" v-if="isTeacher()">
                 <router-link to="/news/teachers" data-toggle="collapse" data-target=".navbar-collapse.in">News
                   <span class="glyphicon glyphicon-envelope"></span>
                 </router-link>
