@@ -33,6 +33,7 @@ import EditSubmission from '../components/homeworks-components/EditSubmission'
 import AllNews from '../components/news-components/AllNews'
 import News from '../components/news-components/News'
 import AddNews from '../components/news-components/AddNews'
+import EditNews from '../components/news-components/EditNews'
 
 Vue.use(Router)
 
@@ -219,6 +220,16 @@ const router = new Router({
           path: 'add',
           name: 'AddNews',
           component: AddNews
+        },
+        {
+          path: 'students/:id/edit',
+          name: 'EditStudentNews',
+          component: EditNews
+        },
+        {
+          path: 'teachers/:classNumber/:classLetter/:id/edit',
+          name: 'EditTeacherNews',
+          component: EditNews
         }
       ],
       meta: { requiresAuth: true }

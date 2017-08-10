@@ -91,7 +91,7 @@ export default {
         content: '',
         solution_url: '',
         edited: null,
-        last_editted_on: null,
+        last_edited_on: null,
         posted_on: null
       }
     }

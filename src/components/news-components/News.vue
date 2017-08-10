@@ -8,10 +8,10 @@
               <span>{{news.title}}</span>
             </strong>
             <div v-show="isEditable(news)" class="pull-right edit">
-              <span class="edit">
+              <span class="edit" v-on:click="$router.push(`${$route.path}/edit`)">
                 <span class="glyphicon glyphicon-edit"></span>
               </span>
-              <span class="delete">
+              <span class="delete" v-on:click="showDeleteConfirm()">
                 <span class="glyphicon glyphicon-trash"></span>
               </span>
             </div>
@@ -34,9 +34,7 @@
                 </span>
               </router-link>
               <span v-show="hasTeacherRights()">for
-                <b>{{news.class_number}}
-                  <span v-show="news.class_letter">{{news.class_letter}} class</span>
-                </b>
+                <b>{{news.class_number}}<span v-show="news.class_letter">{{news.class_letter}}</span> class</b>
               </span>
               <span> {{relativeDate(news.posted_on)}}</span>
   
@@ -122,7 +120,8 @@ export default {
       },
       comment: {
         content: ''
-      }
+      },
+      interval: null
     }
   },
   beforeCreate: function () {
@@ -135,7 +134,7 @@ export default {
   mounted: function () {
     let vm = this
     let url = `${this.$route.path}/comments`
-    setInterval(function () {
+    this.interval = setInterval(function () {
       requester.get(url)
         .then((res) => {
           if (vm.$data.news.comment_set.length !== res.data.count) {
@@ -143,6 +142,9 @@ export default {
           }
         })
     }, 1000)
+  },
+  beforeDestroy: function () {
+    clearInterval(this.interval)
   },
   methods: {
     hasTeacherRights: function () {
@@ -170,6 +172,32 @@ export default {
             this.$toastr('error', 'Invalid data.')
           })
       }
+    },
+    showDeleteConfirm: function () {
+      let url = this.$route.path
+      let router = this.$router
+      window.swal({
+        title: 'Are you sure?',
+        text: 'This news will be deleted forever.',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'Yes, delete it!',
+        closeOnConfirm: false
+      },
+        function () {
+          requester.delete(url)
+            .then(() => {
+              window.swal({
+                title: 'Deleted!',
+                text: 'The news has been deleted.',
+                type: 'success'
+              }, function () {
+                let redirectUrl = helper.isTeacher(helper.elsyserToken) ? '/news/teachers' : '/news/students'
+                router.push(redirectUrl)
+              })
+            })
+        })
     }
   }
 }
