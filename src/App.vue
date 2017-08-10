@@ -154,25 +154,25 @@ hr {
 }
 
 .panel-body article {
-    text-align: left;
-    font-size: 15px;
+  text-align: left;
+  font-size: 15px;
 }
 
 .panel-body a {
-    font-size: 14px;
-    color: dimgray;
+  font-size: 14px;
+  color: dimgray;
 }
 
 .panel-body a:hover {
-    color: #494949;
+  color: #494949;
 }
 
 .panel-body button a {
-    color: white
+  color: white
 }
 
 .panel-body button a:hover {
-    color: gold;
+  color: gold;
 }
 
 .content {
@@ -189,7 +189,8 @@ hr {
   color: white;
 }
 
-.btn-primary:hover, .btn-primary:active {
+.btn-primary:hover,
+.btn-primary:active {
   background-color: rebeccapurple !important;
   border-color: rebeccapurple;
   color: white;
@@ -204,33 +205,33 @@ hr {
 }
 
 .btn-circle.btn-lg {
-    position: fixed;
-    z-index: 1;
-    right: 0.5em;
-    bottom: 2em;
-    border: none;
-    border-radius: 50%;
-    height: 60px;
-    width: 60px;
-    padding: 10px 16px;
-    background-color: rebeccapurple;
-    font-size: 20px;
-    line-height: 1.33;
+  position: fixed;
+  z-index: 1;
+  right: 0.5em;
+  bottom: 2em;
+  border: none;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  padding: 10px 16px;
+  background-color: rebeccapurple;
+  font-size: 20px;
+  line-height: 1.33;
 }
 
 .btn-circle i {
-    color: white;
+  color: white;
 }
 
 .btn-circle i:hover {
-    color: gold;
+  color: gold;
 }
 
 .btn-md {
-    padding: 8px 14px;
-    height: 40px;
-    width: 40px;
-    font-size: 15px;
+  padding: 8px 14px;
+  height: 40px;
+  width: 40px;
+  font-size: 15px;
 }
 
 .center-text {
@@ -278,6 +279,17 @@ hr {
 
 .row {
   margin: 0px;
+}
+
+.img-container>img {
+  height: 40px;
+  width: 40px;
+}
+
+.img-container {
+  margin-left: 7px;
+  margin-right: 5px;
+  width: 50px;
 }
 
 .comment-panel>.panel-heading:after,
@@ -338,13 +350,17 @@ hr {
   color: gold;
 }
 
-.edit, .delete, .check {
-    cursor: pointer;
-    color: white;
-    font-size: 16px;
+.edit,
+.delete,
+.check {
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
 }
 
-.edit:hover,.delete:hover, .check:hover {
+.edit:hover,
+.delete:hover,
+.check:hover {
   color: gold;
 }
 
@@ -365,9 +381,9 @@ span.error {
 }
 
 #info-button {
-    width: 30%;
-    margin-bottom: 10px;
-    margin-top: 10px;
+  width: 30%;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 #pwd-container .form-wrapper,
