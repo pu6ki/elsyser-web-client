@@ -57,7 +57,7 @@
         <h3 class="text-center">There are no available news so far.</h3>
       </div>
     </div>
-    <button class="btn btn-circle btn-lg btn-bottom" id="add-news">
+    <button class="btn btn-circle btn-lg btn-bottom" id="add-news" v-on:click="$router.push('/news/add')">
       <i class="glyphicon glyphicon-pencil"></i>
     </button>
   </div>
@@ -78,7 +78,7 @@ export default {
   beforeCreate: function () {
     requester.get(this.$route.path)
       .then((res) => {
-        this.news = res.data
+        this.news = res.data.results
       })
   },
   methods: {

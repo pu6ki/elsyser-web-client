@@ -32,6 +32,7 @@ import EditSubmission from '../components/homeworks-components/EditSubmission'
 
 import AllNews from '../components/news-components/AllNews'
 import News from '../components/news-components/News'
+import AddNews from '../components/news-components/AddNews'
 
 Vue.use(Router)
 
@@ -186,20 +187,38 @@ const router = new Router({
       meta: { requiresAuth: true }
     },
     {
-      path: '/news/teachers',
-      alias: '/news/students',
+      path: '/news',
       component: RouterTemplate,
       children: [
         {
-          path: 'all',
-          name: 'AllNews',
+          path: 'teachers',
+          name: 'TeachersAllNews',
           component: AllNews
         },
         {
-          path: ':id',
-          alias: ':classNumber/:classLetter/:id',
-          name: 'News',
+          path: 'teachers/:classNumber',
+          name: 'TeachersAllNewsForClass',
+          component: AllNews
+        },
+        {
+          path: 'students',
+          name: 'StudentsAllNews',
+          component: AllNews
+        },
+        {
+          path: 'students/:id',
+          name: 'StudentNews',
           component: News
+        },
+        {
+          path: 'teachers/:classNumber/:classLetter/:id',
+          name: 'TeacherNews',
+          component: News
+        },
+        {
+          path: 'add',
+          name: 'AddNews',
+          component: AddNews
         }
       ],
       meta: { requiresAuth: true }
