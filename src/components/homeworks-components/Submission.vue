@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper" v-if="submission.posted_on">
+  <div id="wrapper" v-if="submission.content">
     <h4 class="text-center">Latest submission:</h4>
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
@@ -99,7 +99,7 @@ export default {
   beforeCreate: function () {
     requester.get(`/homeworks/${this.$route.params.homeworkId}/submissions`)
       .then((res) => {
-        this.$data.submission = res.data[0]
+        this.$data.submission = res.data.results[0]
         this.$data.submission.content = helper.insertLineBreaks(this.$data.submission.content)
       })
       .catch(console.log)

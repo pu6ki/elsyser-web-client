@@ -138,8 +138,8 @@ export default {
     setInterval(function () {
       requester.get(url)
         .then((res) => {
-          if (vm.$data.news.comment_set.length !== res.data.length) {
-            vm.$data.news.comment_set = res.data
+          if (vm.$data.news.comment_set.length !== res.data.count) {
+            vm.$data.news.comment_set = res.data.results
           }
         })
     }, 1000)

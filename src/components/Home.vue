@@ -152,22 +152,22 @@ export default {
         .then(res => {
           const maxLen = 5
 
-          res[0].data.every((el, index) => {
+          res[0].data.results.every((el, index) => {
             if (index > maxLen) return false
             this.news.push(el)
             return true
           })
-          res[1].data.every((el, index) => {
+          res[1].data.results.every((el, index) => {
             if (index > maxLen) return false
             this.exams.push(el)
             return true
           })
-          res[2].data.every((el, index) => {
+          res[2].data.results.every((el, index) => {
             if (index > maxLen) return false
             this.homeworks.push(el)
             return true
           })
-          res[3].data.every((el, index) => {
+          res[3].data.results.every((el, index) => {
             if (index > maxLen) return false
             this.materials.push(el)
             return true

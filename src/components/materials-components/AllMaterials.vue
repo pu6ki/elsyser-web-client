@@ -54,7 +54,7 @@ export default {
   beforeMount: function () {
     requester.get('/materials')
       .then((res) => {
-        this.materials = res.data
+        this.materials = res.data.results
       })
   },
   methods: {

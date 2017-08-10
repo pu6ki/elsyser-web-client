@@ -76,9 +76,7 @@ export default {
   beforeMount: function () {
     requester.get('/exams')
       .then(res => {
-        for (let exam of res.data) {
-          this.exams.push(exam)
-        }
+        this.exams = res.data.results
       })
   },
   methods: {

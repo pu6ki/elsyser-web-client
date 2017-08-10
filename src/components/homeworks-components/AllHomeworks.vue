@@ -64,7 +64,7 @@ export default {
   beforeCreate: function () {
     requester.get('/homeworks')
       .then((res) => {
-        this.$data.homeworks = res.data
+        this.$data.homeworks = res.data.results
       })
       .catch(console.log)
   },

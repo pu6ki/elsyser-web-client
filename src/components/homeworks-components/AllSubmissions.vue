@@ -57,7 +57,7 @@ export default {
   beforeCreate: function () {
     requester.get(`/homeworks/${this.$route.params.homeworkId}/submissions`)
       .then((res) => {
-        this.submissions = res.data
+        this.submissions = res.data.results
       })
   },
   methods: {

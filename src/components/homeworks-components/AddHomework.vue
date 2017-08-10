@@ -7,7 +7,7 @@
           <span v-show="errors.has('topic')" class="help is-danger error">{{ errors.first('topic') }}</span>
           <input v-model="topic" v-validate="'required|max:60'" :class="{'input': true, 'is-danger': errors.has('topic') }" type="text" class="form-control" id="topic" name="topic">
         </p>
-        <label for="student-class-number">Student class number: </label>
+        <label for="studentClassNumber">Student class number: </label>
         <p :class="{'control': true}">
           <span v-show="errors.has('studentClassNumber')" class="help is-danger error">Please select class number</span>
           <select v-model="clazz.number" v-validate="'required'" class="form-control" name="studentClassNumber" id="studentClassNumber">
@@ -18,7 +18,7 @@
             <option value="12">12</option>
           </select>
         </p>
-        <label for="student-class-number">Student class letter: </label>
+        <label for="studentClassLetter">Student class letter: </label>
         <p :class="{'control': true}">
           <span v-show="errors.has('studentClassLetter')" class="help is-danger error">Please select class letter</span>
           <select v-model="clazz.letter" v-validate="'required'" class="form-control" name="studentClassLetter" id="studentClassLetter">
