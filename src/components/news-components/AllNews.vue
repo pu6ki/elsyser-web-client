@@ -37,8 +37,9 @@
               </div>
               <div class="text-center">
                 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-                <strong v-if="item.comments_count > 0">
-                  <i>{{item.comments_count}}</i>
+                <strong v-if="item.comment_set.length > 0">
+                  <i v-if="item.comment_set.length > 1">{{item.comment_set.length}} comments</i>
+                  <i v-else>One comment</i>                  
                 </strong>
                 <strong v-else>
                   <i>No comments</i>

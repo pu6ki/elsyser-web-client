@@ -11,7 +11,7 @@
               <span class="edit" v-on:click="$router.push(`${$route.path}/edit`)">
                 <span class="glyphicon glyphicon-edit"></span>
               </span>
-              <span class="delete" v-on:click="showDeleteConfirm()">
+              <span class="delete" v-on:click="showNewsDeleteConfirm()">
                 <span class="glyphicon glyphicon-trash"></span>
               </span>
             </div>
@@ -34,7 +34,8 @@
                 </span>
               </router-link>
               <span v-show="hasTeacherRights()">for
-                <b>{{news.class_number}}<span v-show="news.class_letter">{{news.class_letter}}</span> class</b>
+                <b>{{news.class_number}}
+                  <span v-show="news.class_letter">{{news.class_letter}}</span> class</b>
               </span>
               <span> {{relativeDate(news.posted_on)}}</span>
   
@@ -58,17 +59,21 @@
                   commented {{relativeDate(comment.posted_on)}}
                   <span v-show="comment.edited">(last edited {{relativeDate(comment.last_edited_on)}})</span>
                   <div v-show="isEditable(comment)" class="pull-right edit-comments">
-                    <span class="edit">
+                    <span class="edit" v-on:click="toggleShowCommentEditForm(comment)">
                       <span class="glyphicon glyphicon-edit"></span>
                     </span>
-                    <span class="delete">
+                    <span class="delete" v-on:click="showCommentDeleteConfirm(comment.id)">
                       <span class="glyphicon glyphicon-trash"></span>
                     </span>
                   </div>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" v-if="!comment.showCommentEditForm">
                   {{comment.content}}
                 </div>
+                <form class="panel-body form-wrapper" @submit.prevent="editComment(comment)" v-else>
+                  <input v-model="comment.content" class="form-control" id="new-comment-content" type="text" :value="comment.content">
+                  <button id="save-button" class="btn btn-primary submit">Save</button>
+                </form>
               </div>
             </div>
           </div>
@@ -76,9 +81,6 @@
         </div>
       </div>
     </div>
-    <button class="toTop btn btn-primary btn-circle btn-lg">
-      <span class="glyphicon glyphicon-chevron-up"></span>
-    </button>
   
     <form class="row form-wrapper" @submit.prevent="onSubmit()">
       <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
@@ -119,7 +121,8 @@ export default {
         class_letter: ''
       },
       comment: {
-        content: ''
+        content: '',
+        showCommentEditForm: false
       },
       interval: null
     }
@@ -128,6 +131,9 @@ export default {
     requester.get(this.$route.path)
       .then((res) => {
         this.news = res.data
+        this.news.comment_set.forEach((el) => {
+          el.showCommentEditForm = false
+        })
       })
       .catch(console.log)
   },
@@ -173,7 +179,10 @@ export default {
           })
       }
     },
-    showDeleteConfirm: function () {
+    toggleShowCommentEditForm: function (comment) {
+      comment.showCommentEditForm = !comment.showCommentEditForm
+    },
+    showNewsDeleteConfirm: function () {
       let url = this.$route.path
       let router = this.$router
       window.swal({
@@ -198,6 +207,27 @@ export default {
               })
             })
         })
+    },
+    showCommentDeleteConfirm: function (id) {
+      let url = `${this.$route.path}/comments/${id}`
+      window.swal({
+        title: 'Are you sure?',
+        text: 'This news will be deleted forever.',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'Yes, delete it!',
+        closeOnConfirm: false
+      }, function () {
+        requester.delete(url)
+          .then(() => {
+            window.swal({
+              title: 'Deleted!',
+              text: 'The comment has been deleted.',
+              type: 'success'
+            })
+          })
+      })
     }
   }
 }
