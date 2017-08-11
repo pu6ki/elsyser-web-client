@@ -35,6 +35,8 @@ import News from '../components/news-components/News'
 import AddNews from '../components/news-components/AddNews'
 import EditNews from '../components/news-components/EditNews'
 
+import AllGrades from '../components/grades-components/AllGrades'
+
 Vue.use(Router)
 
 const router = new Router({
@@ -230,6 +232,18 @@ const router = new Router({
           path: 'teachers/:classNumber/:classLetter/:id/edit',
           name: 'EditTeacherNews',
           component: EditNews
+        }
+      ],
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/grades',
+      component: RouterTemplate,
+      children: [
+        {
+          path: 'all',
+          name: 'AllGrades',
+          component: AllGrades
         }
       ],
       meta: { requiresAuth: true }
