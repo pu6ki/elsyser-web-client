@@ -39,24 +39,28 @@ export default {
     }
   },
   beforeCreate: function () {
-    requester.get('/subjects')
-      .then((res) => {
-        this.subjects = res.data.results
-      })
-      .then(() => {
-        for (let i = 0; i < this.subjects.length; i++) {
-          requester.get(`/grades/${this.subjects[i].id}/${this.localStorage.elsyserId}`)
-            .then((grades) => {
-              this.$set(this.subjects[i], 'grades', grades.data)
-              let average = 0.0
-              this.subjects[i].grades.forEach(function (grade) {
-                average += grade.value
-              }, this)
-              average = (average / this.subjects[i].grades.length).toFixed(2)
-              this.subjects[i].average = average
-            })
-        }
-      })
+    if (helper.isTeacher(window.localStorage.getItem('elsyserToken'))) {
+      this.$router.push('/grades/select-class')
+    } else {
+      requester.get('/subjects')
+        .then((res) => {
+          this.subjects = res.data.results
+        })
+        .then(() => {
+          for (let i = 0; i < this.subjects.length; i += 1) {
+            requester.get(`/grades/${this.subjects[i].id}/${this.localStorage.elsyserId}`)
+              .then((grades) => {
+                this.$set(this.subjects[i], 'grades', grades.data)
+                let average = 0.0
+                this.subjects[i].grades.forEach((grade) => {
+                  average += grade.value
+                })
+                average = (average / this.subjects[i].grades.length).toFixed(2)
+                this.subjects[i].average = average
+              })
+          }
+        })
+    }
   },
   methods: {
     attachEvaluationWords: function (mark) {
