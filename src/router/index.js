@@ -36,6 +36,8 @@ import AddNews from '../components/news-components/AddNews'
 import EditNews from '../components/news-components/EditNews'
 
 import AllGrades from '../components/grades-components/AllGrades'
+import SelectClass from '../components/grades-components/SelectClass'
+import ClassGrades from '../components/grades-components/ClassGrades'
 
 Vue.use(Router)
 
@@ -244,6 +246,16 @@ const router = new Router({
           path: 'all',
           name: 'AllGrades',
           component: AllGrades
+        },
+        {
+          path: 'select-class',
+          name: 'SelectClass',
+          component: SelectClass
+        },
+        {
+          path: ':classNumber/:classLetter',
+          name: 'ClassGrades',
+          component: ClassGrades
         }
       ],
       meta: { requiresAuth: true }
