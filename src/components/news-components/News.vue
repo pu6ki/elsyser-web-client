@@ -67,10 +67,10 @@
                     </span>
                   </div>
                 </div>
-                <div class="panel-body" v-if="!comment.showCommentEditForm">
+                <div class="panel-body" v-show="toggleShowCommentEditForm(comment)">
                   {{comment.content}}
                 </div>
-                <form class="panel-body form-wrapper" @submit.prevent="editComment(comment)" v-else>
+                <form class="panel-body form-wrapper" @submit.prevent="editComment(comment)" v-show="toggleShowCommentEditForm(comment)">
                   <input v-model="comment.content" class="form-control" id="new-comment-content" type="text" :value="comment.content">
                   <button id="save-button" class="btn btn-primary submit">Save</button>
                 </form>
@@ -121,8 +121,7 @@ export default {
         class_letter: ''
       },
       comment: {
-        content: '',
-        showCommentEditForm: false
+        content: ''
       },
       interval: null
     }
@@ -180,7 +179,8 @@ export default {
       }
     },
     toggleShowCommentEditForm: function (comment) {
-      comment.showCommentEditForm = !comment.showCommentEditForm
+      this.$set(comment, 'showCommentEditForm', !comment.showCommentEditForm)
+      return comment.showCommentEditForm
     },
     showNewsDeleteConfirm: function () {
       let url = this.$route.path

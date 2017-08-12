@@ -21,7 +21,7 @@
                   <span class="glyphicon glyphicon-pencil"></span>
                 </router-link>
               </li>
-              <li id="news-button" v-if="isTeacher()">
+              <li id="news-button" v-if="hasTeacherRights()">
                 <router-link to="/news/teachers" data-toggle="collapse" data-target=".navbar-collapse.in">News
                   <span class="glyphicon glyphicon-envelope"></span>
                 </router-link>
@@ -41,8 +41,13 @@
                   <span class="glyphicon glyphicon-file"></span>
                 </router-link>
               </li>
-              <li id="grades-button">
-                <router-link to="/grades" data-toggle="collapse" data-target=".navbar-collapse.in">Grades
+              <li id="grades-button" v-if="hasTeacherRights(localStorage.elsyserToken)">
+                <router-link to="/grades/all" data-toggle="collapse" data-target=".navbar-collapse.in">Grades
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                </router-link>
+              </li>
+              <li id="grades-button" v-else>
+                <router-link to="/grades/select-class" data-toggle="collapse" data-target=".navbar-collapse.in">Grades
                   <span class="glyphicon glyphicon-list-alt"></span>
                 </router-link>
               </li>
@@ -96,7 +101,7 @@ export default {
     }
   },
   methods: {
-    isTeacher: function () {
+    hasTeacherRights: function () {
       return helper.isTeacher(this.localStorage.elsyserToken)
     },
     logOut: function () {

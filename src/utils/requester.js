@@ -14,7 +14,7 @@ let apiUrl = 'https://elsyser.herokuapp.com/api'
 
 let requester = {
   get: (url) => {
-    return axios.get(apiUrl + url + '/', config)
+    return axios.get(apiUrl + url, config)
   },
   post: (url, data) => {
     return axios.post(apiUrl + url + '/', data, config)
