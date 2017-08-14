@@ -1,0 +1,712 @@
+body {
+    margin: 5px;
+    padding: 0px;
+    padding-top: 70px;
+    background-color: ghostwhite;
+}
+
+h1,
+body,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: black;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+a:hover {
+    color: rebeccapurple;
+    text-decoration: none;
+}
+
+label {
+    font-size: 17px;
+}
+
+input {
+    color: #666666
+}
+
+thead {
+    color: white;
+    background-color: rebeccapurple;
+}
+
+@media(max-width:767px) {
+    .intro-message {
+        padding-bottom: 15%;
+    }
+
+    .intro-message > h1 {
+        font-size: 3em;
+    }
+
+    ul.intro-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.intro-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+
+    .intro-divider {
+        width: 100%;
+    }
+}
+
+@media(max-width:1199px) {
+    ul.banner-social-buttons {
+        float: left;
+        margin-top: 15px;
+    }
+}
+
+@media(max-width:767px) {
+    .banner h2 {
+        font-size: 3em;
+        margin: 0;
+        text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    }
+
+    ul.banner-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.banner-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+    
+    .nav-collapse.collapse {
+        height: auto !important;
+        overflow: visible !important;
+    }    
+}
+
+hr {
+    max-width: 100%;
+}
+
+.topnav {
+    font-size: 14px;
+}
+
+.lead {
+    font-size: 18px;
+}
+
+.intro-header {
+    z-index: -2;
+
+    display: inline-block;
+
+    width: 100%;
+    height: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    background: url(/static/bg-image.jpg) no-repeat center center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+
+    text-align: center;
+}
+
+.auth-intro-header {
+    display: inline-block;
+    opacity: 0.9;
+
+    margin: 0px;
+    width: 100%;
+    height: 100vh;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    background: url(/static/logos/tues_building.jpg) no-repeat center center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+
+    text-align: center;
+}
+
+.auth-intro-header.overlay:after {
+    top: 0;
+    left: 0;
+    position: fixed;
+    overflow: hidden;
+}
+
+.overlay {
+    position: relative;
+}
+
+.overlay:after {
+    content: "";
+    z-index: -2;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    width: 100%;
+    height: 100vh;
+    background-color: indigo;
+}
+
+.intro-message {
+    position: relative;
+    padding-bottom: 10%;
+    padding-top: 10%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    font-size: 5em;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    color: white;
+}
+
+.intro-message > h3 {
+    color: white;
+    
+}
+
+.intro-divider {
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    border-top: 1px solid #f8f8f8;
+    width: 400px;
+}
+
+.signup-button {
+    width: 120px;
+    background-color: white;
+}
+
+.content {
+    margin: 10%;
+}
+
+.section-heading {
+    color: rebeccapurple;
+}
+
+.btn-primary {
+    background-color: rebeccapurple;
+    color: white;
+}
+
+.btn-primary:hover .btn-primary:active {
+    background-color: white;
+    color: rebeccapurple;
+}
+
+.btn-primary:hover a {
+    color: white;
+}
+
+.btn-primary:active a {
+    color: white;
+}
+
+.footer {
+    color: rebeccapurple;
+    text-align: center;
+}
+
+.submit {
+    margin-top: 5px;
+}
+
+.img-container > img {
+    height: 40px;
+    width: 40px;
+}
+
+.img-container {
+    margin-left: 7px;
+    margin-right: 5px;
+	width: 50px;
+}
+
+.panel {
+	position: relative;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.row {
+    margin: 0px;
+}
+
+.comment-panel > .panel-heading:after, .comment-panel > .panel-heading:before {
+    content: " ";
+    position: absolute;
+    top: 11px;
+    right: 100%;
+    left: -16px;
+    display: block;
+    border-color: transparent;
+    border-style: solid solid outset;
+    height: 0;
+    width: 0;
+    pointer-events: none;
+}
+
+.panel > .panel-heading:after {
+    border-right-color: #f7f7f7;
+	border-width: 7px;
+    margin-left: 2px;
+	margin-top: 1px;
+}
+
+.panel > .panel-heading:before {
+	border-right-color: #ddd;
+	border-width: 8px;
+}
+
+.panel-heading {
+	font-size: 16px;
+}
+
+.panel-footer {
+    background-color: #fafafa;
+    color: #4a148c
+}
+
+.info-panel .panel-heading a {
+	color: white;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.info-panel .panel-heading a:hover {
+    color: gold;
+    text-decoration: none;
+}
+
+.info-panel {
+    margin: 20px;
+}
+
+.comment {
+	display: none;
+}
+
+.new-comment {
+	display: block;
+}
+
+.edit-comments span {
+    cursor: pointer;
+    color: #33739E;
+}
+
+.btn-primary a {
+    color: white;
+}
+
+.btn-primary:hover, .btn-primary a:hover {
+    color: gold;
+}
+
+.form-control {
+    border: 0.5px solid lightgray !important;
+    border-radius: 5px !important;
+    background-color: white;
+}
+
+.label-center {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn-circle.btn-lg {
+    position: fixed;
+    z-index: 1;
+    right: 0.5em;
+    bottom: 2em;
+    border: none;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    padding: 10px 16px;
+    background-color: rebeccapurple;
+    font-size: 20px;
+    line-height: 1.33;
+}
+
+.btn-circle i {
+    color: white;
+}
+
+.btn-circle i:hover {
+    color: gold;
+}
+
+.btn-md {
+    padding: 8px 14px;
+    height: 40px;
+    width: 40px;
+    font-size: 15px;
+}
+
+.heading-anchor, .heading-anchor:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.edit, .delete, .check {
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+.info-body {
+    overflow-y: auto;
+    height: 190px;
+}
+
+.text {
+    font-size: 14px;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.panel-body article {
+    text-align: left;
+    font-size: 15px;
+}
+
+.panel-body a {
+    font-size: 14px;
+    color: dimgray;
+}
+
+.panel-body a:hover {
+    color: #494949;
+}
+
+.panel-body button a {
+    color: white
+}
+
+.panel-body button a:hover {
+    color: gold;
+}
+
+.info-container {
+    border-bottom: 1px solid rebeccapurple;
+    padding-bottom: 3px;
+    padding-top: 2px;
+}
+
+.error-image-container {
+    color: white;
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 68px;
+    font-weight: bold;
+    text-shadow: 2px 2px 1px #000;
+}
+
+.average-grade {
+    font-size: 16px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.grade {
+    font-size: 16px;
+    color: black;
+}
+
+.all-grades-container {
+    padding: 0px;
+}
+
+.select-class a{
+    font-size: 25px;
+    color: white;
+    line-height: 90px;
+}
+
+.select-class a:hover {
+    color: gold;
+}
+
+.select-class {
+    height: 100px;
+    background-color: rebeccapurple;
+    color: white;
+    font-size: 25px;
+    line-height: 90px;
+}
+
+.select-class:hover {
+    cursor: pointer;
+}
+
+.select-strategy {
+    height: 30vh;
+    background-color: rebeccapurple;
+    color: white;
+    font-size: 25px;
+}
+
+.select-strategy .text-small {
+    font-size: 18px;
+    font-style: italic;
+}
+
+.select-strategy:hover {
+    cursor: pointer;
+}
+
+.class-heading {
+    font-size: 28px;
+    color: white;
+}
+
+.student-name-col {
+    width: 75% !important;
+}
+
+.easy-autocomplete {
+    width: 100% !important;
+}
+
+.table {
+    background-color: white;
+}
+
+#grade {
+    display: inline;
+    width: 80%;
+}
+
+#add-another-grade-button {
+    display: inline;
+    opacity: 0.8;
+}
+
+#add-another-grade-button:hover {
+    opacity: 1.0
+}
+
+#table-wrapper {
+    padding: 5%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#info-image {
+    display: inline;
+    width: 60px;
+}
+
+#profile-picture {
+    margin-right: 5px;
+    height: 28px;
+    width: 28px;
+}
+
+#log-out {
+    padding: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+}
+
+#log-out:hover{
+    color: gold;
+}
+
+#comment-content {
+	margin: 5px;
+    max-width: 90%;
+    display: inline;
+}
+
+#add-comment-button {
+    display: inline;
+}
+
+#loadMore {
+    transition: all 600ms ease-in-out;
+    -moz-transition: all 600ms ease-in-out;
+    -o-transition: all 600ms ease-in-out;
+    -webkit-transition: all 600ms ease-in-out;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    box-shadow: 0 1px 1px #ccc;
+    padding: 10px;
+    background-color: rebeccapurple;
+    color: #fff;
+    text-align: center;
+	text-decoration: none;
+}
+
+#loadMore:hover {
+    background-color: #fff;
+    color: rebeccapurple;
+}
+
+#materials:link {
+    text-decoration: none;
+    color: #1096F3;
+}
+
+#go-back {
+    display: inline;
+    border: none;
+    border-radius: 50%;
+    padding: 10px 16px;
+    font-size: 20px;
+    line-height: 1.33;
+}
+
+#info-button {
+    position: absolute;
+    right: 6px;
+    bottom: 3px;
+}
+
+#profile-image {
+    margin: 10px;
+    border-radius: 10%;
+    max-height: 300px;
+    max-width: 300px;
+}
+
+#profile-info {
+    margin: 10px;
+}
+
+#login-form {
+    opacity: 0.9;
+    border-radius: 10px;
+    margin-top: 7em;
+    padding: 10%;
+    background-color: white;
+    text-align: center;
+}
+
+#register-form {
+    opacity: 0.9;
+    border-radius: 10px;
+    margin-top: 7em;
+    padding: 10%;
+    background-color: white;
+    text-align: center;
+}
+
+#go-home-button {
+    margin-top: 7%;
+}
+
+#pwd-container .form-wrapper, #go-home-button a {
+    color: white;
+}
+
+#pwd-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+#error-block {
+    position: fixed;
+    left: 0;
+    right: 0;
+    display: inline-block;
+
+    margin: 0px;
+    height: 100vh;
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    background: url(/static/404.gif) no-repeat center center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+
+    text-align: center;
+    overflow: hidden;
+}
+
+#home-logo {
+    max-height: 17vh;
+    max-width: 100%;
+}
+
+#wrapper {
+    max-width: 150vw;
+}
+
+#wrapper .form-wrapper {
+    text-align: center;
+    z-index: 0;
+    border-radius: 10px;
+    background-color: white;
+    padding: 2em;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: gold;
+}
+
+.navbar-default .navbar-nav > li > a:focus {
+    color: gold;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+.navbar-default .navbar-brand:hover {
+    color: gold;
+}
+
+.navbar-default .navbar-brand:focus {
+    color: gold;
+}
+
+.navbar-fixed-top {
+    background-color: rebeccapurple;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: white;
+}
+
+.btn-default {
+    color: rebeccapurple;
+}
+
+.footer {
+    margin: 0px;
+    border-radius: 0px
+}
