@@ -43,3 +43,6 @@ bower_components
 # Aerobatic files
 aero-deploy.tar.gz
 aerobatic.yml
+
+# Auth config
+src/config/authConfig.js
