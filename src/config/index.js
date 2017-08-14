@@ -5,6 +5,7 @@ import '@deveodk/vue-toastr/dist/@deveodk/vue-toastr.css'
 import reactiveStorage from 'vue-reactivestorage'
 
 Vue.use(VeeValidate)
+
 Vue.use(VueToastr, {
   defaultPosition: 'toast-top-right',
   defaultType: 'info',

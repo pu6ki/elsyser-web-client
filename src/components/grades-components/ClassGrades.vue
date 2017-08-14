@@ -27,7 +27,7 @@
           </tr>
         </tbody>
       </table>
-      <button class="btn btn-circle btn-lg btn-bottom" id="add-grades">
+      <button class="btn btn-circle btn-lg btn-bottom" id="add-grades" v-on:click="$router.push(`/grades/${$route.params.classNumber}/${$route.params.classLetter}/add`)">
         <i class="glyphicon glyphicon-pencil"></i>
       </button>
     </div>
@@ -107,6 +107,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  #table-wrapper {
+    margin-left: 5%;
+    margin-right: 5%;    
+  }
 </style>

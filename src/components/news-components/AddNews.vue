@@ -9,7 +9,7 @@
       <label class="label-center" for="news-content">Content</label>
       <p :class="{'control': true}">
         <span v-show="errors.has('content')" class="help is-danger error">{{errors.first('content')}}</span>
-        <textarea class="form-control" name="content" id="content" rows="4" v-model="content" v-validate="'required'"></textarea>
+        <textarea class="form-control" name="content" id="content" rows="4" v-model="content" v-validate="'required|min:5'"></textarea>
       </p>
       <div v-if="hasTeacherRights()">
         <label for="class-number">Class: </label>
