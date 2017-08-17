@@ -46,3 +46,6 @@ aerobatic.yml
 
 # Auth config
 src/config/authConfig.js
+
+# Production folder
+dist

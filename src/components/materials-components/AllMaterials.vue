@@ -1,8 +1,12 @@
 <template>
   <div id="wrapper">
-    <div class="row">
-      <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1" v-if="materials">
-        <div class="panel panel-primary" v-for="material in materials" :key="material.id">
+    <div class="row" v-if="materials">
+      <div class="col-md-10 col-md-offset-1 text-center search-container">
+        <label for="search">Search: </label>
+        <input type="text" id="search" class="form-control" v-model="search">
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+        <div class="panel panel-primary" v-for="material in filteredMaterials" :key="material.id">
           <div class="panel-heading material-panel-heading text-center">
             <strong>
               {{material.subject.title}}
@@ -28,14 +32,14 @@
           </div>
         </div>
       </div>
-      <div class="panel panel-default" v-else>
-        <div class="panel-body">
-          <h3 class="text-center">There are no available materials so far.</h3>
-        </div>
-      </div>
       <button v-if="hasTeacherRights()" type="button" class="btn btn-primary btn-circle btn-lg" id="add-material" v-on:click="$router.push('/materials/add')">
         <i class="glyphicon glyphicon-pencil"></i>
       </button>
+    </div>
+    <div class="panel panel-default" v-else>
+      <div class="panel-body">
+        <h3 class="text-center">There are no available materials so far.</h3>
+      </div>
     </div>
   </div>
 </template>
@@ -48,7 +52,19 @@ export default {
   name: 'all-materials',
   data: function () {
     return {
-      materials: null
+      materials: [],
+      search: ''
+    }
+  },
+  computed: {
+    filteredMaterials: function () {
+      let self = this
+      return this.materials.filter((material) => {
+        return material.content.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 ||
+          material.subject.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 ||
+          material.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 ||
+          material.section.toLowerCase().indexOf(self.search.toLowerCase()) >= 0
+      })
     }
   },
   beforeMount: function () {

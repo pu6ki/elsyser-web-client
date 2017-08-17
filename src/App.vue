@@ -364,6 +364,11 @@ hr {
   color: gold;
 }
 
+.search-container {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
 span.error {
   color: #9F3A38;
 }

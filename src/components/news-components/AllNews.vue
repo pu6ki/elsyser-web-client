@@ -2,7 +2,11 @@
   <div id="wrapper">
     <div id="news" v-if="news.length > 0">
       <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1" v-for="item in news" :key="item.id">
+        <div class="col-md-10 col-md-offset-1 text-center search-container">
+          <label for="search">Search: </label>
+          <input type="text" id="search" class="form-control" v-model="search">
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1" v-for="item in filteredNews" :key="item.id">
           <div class="panel panel-primary">
             <div class="panel-heading text-center">
               <strong>
@@ -39,7 +43,7 @@
                 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
                 <strong v-if="item.comment_set.length > 0">
                   <i v-if="item.comment_set.length > 1">{{item.comment_set.length}} comments</i>
-                  <i v-else>One comment</i>                  
+                  <i v-else>One comment</i>
                 </strong>
                 <strong v-else>
                   <i>No comments</i>
@@ -73,7 +77,8 @@ export default {
   name: 'all-news',
   data: function () {
     return {
-      news: []
+      news: [],
+      search: ''
     }
   },
   beforeCreate: function () {
@@ -81,6 +86,15 @@ export default {
       .then((res) => {
         this.news = res.data.results
       })
+  },
+  computed: {
+    filteredNews: function () {
+      let self = this
+      return this.news.filter((el) => {
+        return el.content.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 ||
+          el.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0
+      })
+    }
   },
   methods: {
     hasTeacherRights: function () {

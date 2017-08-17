@@ -1,7 +1,11 @@
 <template>
   <div id="wrapper">
     <div class="row" v-if="homeworks.length > 0">
-      <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1" v-for="homework in homeworks" :key="homework.id">
+      <div class="col-md-10 col-md-offset-1 text-center search-container">
+        <label for="search">Search: </label>
+        <input type="text" id="search" class="form-control" v-model="search">
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1" v-for="homework in filteredHomeworks" :key="homework.id">
         <div class="panel panel-primary text-center">
           <div class="panel-heading">
             <strong>
@@ -10,7 +14,7 @@
           </div>
           <div class="panel-body">
             <div id="deadline">
-              <i>Deadline </i>
+              <i>Deadline ends in</i>
               <strong>
                 <span>{{relativeDate(homework.deadline)}}</span>
               </strong>
@@ -58,7 +62,17 @@ export default {
   name: 'all-homeworks',
   data: function () {
     return {
-      homeworks: []
+      homeworks: [],
+      search: ''
+    }
+  },
+  computed: {
+    filteredHomeworks: function () {
+      let self = this
+      return this.homeworks.filter((homework) => {
+        return homework.details.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 ||
+          homework.subject.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0
+      })
     }
   },
   beforeCreate: function () {

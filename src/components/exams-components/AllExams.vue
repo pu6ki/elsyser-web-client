@@ -1,7 +1,11 @@
 <template>
   <div id="allExams">
     <div class="row" v-if="exams.length > 0">
-      <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1" v-for="exam in exams" :key="exam.id">
+      <div class="col-md-10 col-md-offset-1 text-center search-container">
+        <label for="search">Search: </label>
+        <input type="text" id="search" class="form-control" v-model="search">
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1" v-for="exam in filteredExams" :key="exam.id">
         <div class="panel panel-primary text-center">
           <div class="panel-heading">
             <strong>
@@ -70,7 +74,18 @@ export default {
   name: 'all-exams',
   data: function () {
     return {
-      exams: []
+      exams: [],
+      search: ''
+    }
+  },
+  computed: {
+    filteredExams: function () {
+      let self = this
+      return this.exams.filter((exam) => {
+        return exam.details.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 ||
+          exam.subject.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 ||
+          exam.topic.toLowerCase().indexOf(self.search.toLowerCase()) >= 0
+      })
     }
   },
   beforeMount: function () {
