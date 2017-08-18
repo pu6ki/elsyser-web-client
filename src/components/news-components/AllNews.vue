@@ -55,6 +55,10 @@
             </div>
           </div>
         </div>
+        <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading">
+          <span slot="no-more"></span>
+          <span slot="no-results"></span>  
+        </infinite-loading>
       </div>
     </div>
     <div class="panel panel-default" v-else>
@@ -72,28 +76,39 @@
 import requester from '../../utils/requester'
 import helper from '../../utils/helper'
 import moment from 'moment'
+import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
   name: 'all-news',
   data: function () {
     return {
       news: [],
-      search: ''
+      search: '',
+      nextPage: null
     }
   },
   beforeCreate: function () {
     requester.get(this.$route.path)
       .then((res) => {
         this.news = res.data.results
+
+        if (res.data.next) {
+          let index = res.data.next.indexOf('=') + 1
+          this.nextPage = res.data.next.substr(index)
+        }
       })
   },
   computed: {
     filteredNews: function () {
       let self = this
-      return this.news.filter((el) => {
+      let filtered = this.news.filter((el) => {
         return el.content.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 ||
           el.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0
       })
+      if (filtered.length === 0) {
+        this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+      }
+      return filtered
     }
   },
   methods: {
@@ -115,7 +130,28 @@ export default {
         url += `/students/${item.id}`
       }
       return url
+    },
+    onInfinite: function () {
+      if (this.nextPage) {
+        requester.get(this.$route.path + `?page=${this.nextPage}`)
+          .then((res) => {
+            this.$set(this.$data, 'news', this.news.concat(res.data.results))
+            this.filteredNews.concat(res.data.results)
+            this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
+            if (res.data.nextPage) {
+              let index = res.data.next.indexOf('=') + 1
+              this.nextPage = res.data.next.substr(index)
+            } else {
+              this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+            }
+          })
+      } else {
+        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+      }
     }
+  },
+  components: {
+    InfiniteLoading
   }
 }
 </script>

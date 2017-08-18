@@ -31,6 +31,10 @@
             </div>
           </div>
         </div>
+        <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading">
+          <span slot="no-more"></span>
+          <span slot="no-results"></span>
+        </infinite-loading>
       </div>
       <button v-if="hasTeacherRights()" type="button" class="btn btn-primary btn-circle btn-lg" id="add-material" v-on:click="$router.push('/materials/add')">
         <i class="glyphicon glyphicon-pencil"></i>
@@ -47,36 +51,68 @@
 <script>
 import requester from '../../utils/requester'
 import helper from '../../utils/helper'
+import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
   name: 'all-materials',
   data: function () {
     return {
       materials: [],
-      search: ''
+      search: '',
+      nextPage: null
     }
   },
   computed: {
     filteredMaterials: function () {
       let self = this
-      return this.materials.filter((material) => {
+      let filtered = this.materials.filter((material) => {
         return material.content.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 ||
           material.subject.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 ||
           material.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 ||
           material.section.toLowerCase().indexOf(self.search.toLowerCase()) >= 0
       })
+      if (filtered.length === 0) {
+        this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+      }
+      return filtered
     }
   },
   beforeMount: function () {
     requester.get('/materials')
       .then((res) => {
         this.materials = res.data.results
+
+        if (res.data.next) {
+          let index = res.data.next.indexOf('=') + 1
+          this.nextPage = res.data.next.substr(index)
+        }
       })
   },
   methods: {
     hasTeacherRights: function () {
       return helper.isTeacher(this.localStorage.elsyserToken)
+    },
+    onInfinite: function () {
+      if (this.nextPage) {
+        requester.get(this.$route.path + `?page=${this.nextPage}`)
+          .then((res) => {
+            this.$set(this.$data, 'materials', this.news.concat(res.data.results))
+            this.filteredMaterials.concat(res.data.results)
+            this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
+            if (res.data.nextPage) {
+              let index = res.data.next.indexOf('=') + 1
+              this.nextPage = res.data.next.substr(index)
+            } else {
+              this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+            }
+          })
+      } else {
+        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+      }
     }
+  },
+  components: {
+    InfiniteLoading
   }
 }
 </script>
