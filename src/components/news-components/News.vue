@@ -170,7 +170,7 @@ export default {
         requester.post(`${this.$route.path}/comments`, this.$data.comment)
           .then(() => {
             this.$toastr('success', 'Comment added successfully.', 'Success.')
-            this.comment = ''
+            this.comment.content = ''
           })
           .catch((err) => {
             console.log(err)

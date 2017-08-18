@@ -43,7 +43,7 @@ import AddGrades from '../components/grades-components/AddGrades'
 Vue.use(Router)
 
 const router = new Router({
-  mode: 'history',
+  mode: 'hash',
   routes: [
     {
       path: '/',
