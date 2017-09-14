@@ -150,22 +150,23 @@ export default {
       })
       .catch(console.log)
   },
-  // mounted: function () {
-  //   let vm = this
-  //   let url = `${this.$route.path}/comments`
-  //   this.interval = setInterval(function () {
-  //     requester.get(url)
-  //       .then((res) => {
-  //         if (vm.$data.news.totalComments !== res.data.count) {
-  //           vm.$set(vm.$data.news, 'comments', res.data.results)
-  //           if (res.data.next) {
-  //             let index = res.data.next.indexOf('=') + 1
-  //             this.nextPage = res.data.next.substr(index)
-  //           }
-  //         }
-  //       })
-  //   }, 1000)
-  // },
+  mounted: function () {
+    let vm = this
+    let url = `${this.$route.path}/comments`
+    this.interval = setInterval(function () {
+      requester.get(url)
+        .then((res) => {
+          if (vm.$data.news.totalComments !== res.data.count) {
+            vm.$set(vm.$data.news, 'comments', res.data.results)
+            vm.$data.news.totalComments = res.data.count
+            if (res.data.next) {
+              let index = res.data.next.indexOf('=') + 1
+              this.nextPage = res.data.next.substr(index)
+            }
+          }
+        })
+    }, 1000)
+  },
   beforeDestroy: function () {
     clearInterval(this.interval)
   },

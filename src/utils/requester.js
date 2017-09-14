@@ -3,7 +3,7 @@ import axios from 'axios'
 let config = {}
 let token = window.localStorage.getItem('elsyserToken')
 
-if (token !== 'null') {
+if (token !== 'null' && token) {
   token = token.slice(0, 40)
   config.headers = { 'Authorization': `Token ${token}` }
 }
