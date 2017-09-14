@@ -44,8 +44,8 @@
           </div>
         </div>
   
-        <div id="comments" v-if="news.comment_set">
-          <div class="row comment" v-for="comment in news.comment_set" :key="comment.id">
+        <div id="comments" v-if="computedComments">
+          <div class="row comment" v-for="comment in computedComments" :key="comment.id">
             <div class="col-xs-3 col-sm-1 col-md-1 col-lg-1 img-container">
               <img class="user-photo" :src="comment.author_image">
             </div>
@@ -77,7 +77,7 @@
               </div>
             </div>
           </div>
-          <button class="center-block" id="loadMore">Load More</button>
+          <button class="center-block" @click="loadMore" id="loadMore">Load More</button>
         </div>
       </div>
     </div>
@@ -113,41 +113,59 @@ export default {
           last_name: '',
           email: ''
         },
-        comment_set: [],
+        comments: [],
         posted_on: '',
         edited: false,
         last_edited_on: '',
         class_number: null,
-        class_letter: ''
+        class_letter: '',
+        totalComments: null
       },
       comment: {
-        content: ''
+        content: '',
+        showCommentEditForm: false
       },
-      interval: null
+      interval: null,
+      nextPage: null
+    }
+  },
+  computed: {
+    computedComments: function () {
+      return this.news.comments
     }
   },
   beforeCreate: function () {
     requester.get(this.$route.path)
       .then((res) => {
         this.news = res.data
-        this.news.comment_set.forEach((el) => {
-          el.showCommentEditForm = false
-        })
+        return requester.get(this.$route.path + '/comments')
+      })
+      .then((res) => {
+        if (res.data.next) {
+          let index = res.data.next.indexOf('=') + 1
+          this.nextPage = res.data.next.substr(index)
+        }
+        this.news.totalComments = res.data.count
+        this.news.comments = res.data.results
       })
       .catch(console.log)
   },
-  mounted: function () {
-    let vm = this
-    let url = `${this.$route.path}/comments`
-    this.interval = setInterval(function () {
-      requester.get(url)
-        .then((res) => {
-          if (vm.$data.news.comment_set.length !== res.data.count) {
-            vm.$data.news.comment_set = res.data.results
-          }
-        })
-    }, 1000)
-  },
+  // mounted: function () {
+  //   let vm = this
+  //   let url = `${this.$route.path}/comments`
+  //   this.interval = setInterval(function () {
+  //     requester.get(url)
+  //       .then((res) => {
+  //         if (vm.$data.news.totalComments !== res.data.count) {
+  //           vm.$set(vm.$data.news, 'comments', res.data.results)
+  //           if (res.data.next) {
+  //             let index = res.data.next.indexOf('=') + 1
+  //             this.nextPage = res.data.next.substr(index)
+  //           }
+  //         }
+  //       })
+  //   }, 1000)
+  // },
   beforeDestroy: function () {
     clearInterval(this.interval)
   },
@@ -171,6 +189,14 @@ export default {
           .then(() => {
             this.$toastr('success', 'Comment added successfully.', 'Success.')
             this.comment.content = ''
+            return requester.get(`${this.$route.path}/comments`)
+          })
+          .then((res) => {
+            this.$set(this.news, 'comments', res.data.results)
+            if (res.data.next) {
+              let index = res.data.next.indexOf('=') + 1
+              this.nextPage = res.data.next.substr(index)
+            }
           })
           .catch((err) => {
             console.log(err)
@@ -181,6 +207,13 @@ export default {
     toggleShowCommentEditForm: function (comment) {
       this.$set(comment, 'showCommentEditForm', !comment.showCommentEditForm)
       return comment.showCommentEditForm
+    },
+    editComment: function (comment) {
+      requester.put(`${this.$route.path}/comments/${comment.id}`, comment)
+        .then((res) => {
+          this.$toastr('success', 'Comment editted successfully.', 'Success.')
+          this.toggleShowCommentEditForm(comment)
+        })
     },
     showNewsDeleteConfirm: function () {
       let url = this.$route.path
@@ -210,6 +243,7 @@ export default {
     },
     showCommentDeleteConfirm: function (id) {
       let url = `${this.$route.path}/comments/${id}`
+      let vm = this
       window.swal({
         title: 'Are you sure?',
         text: 'This news will be deleted forever.',
@@ -226,8 +260,27 @@ export default {
               text: 'The comment has been deleted.',
               type: 'success'
             })
+            for (let i = 0; i < vm.news.comments.length; i += 1) {
+              if (vm.news.comments[i].id === id) {
+                vm.news.comments.splice(i, 1)
+              }
+            }
           })
       })
+    },
+    loadMore: function () {
+      if (this.nextPage) {
+        requester.get(this.$route.path + `/comments?page=${this.nextPage}`)
+          .then((res) => {
+            this.$set(this.news, 'comments', this.news.comments.concat(res.data.results))
+            if (res.data.next) {
+              let index = res.data.next.indexOf('=') + 1
+              this.nextPage = res.data.next.substr(index)
+            } else {
+              this.nextPage = null
+            }
+          })
+      }
     }
   }
 }
