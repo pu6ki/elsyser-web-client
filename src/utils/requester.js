@@ -1,13 +1,11 @@
 import axios from 'axios'
 
+let config = {}
 let token = window.localStorage.getItem('elsyserToken')
 
-if (token) {
+if (token !== 'null') {
   token = token.slice(0, 40)
-}
-
-let config = {
-  headers: {'Authorization': `Token ${token}`}
+  config.headers = { 'Authorization': `Token ${token}` }
 }
 
 let apiUrl = 'https://elsyser.herokuapp.com/api'

@@ -109,7 +109,8 @@ export default {
             this.$toastr('success', res.data.message, 'Registered successfully.')
             this.$router.push('/auth/login')
           })
-          .catch(() => {
+          .catch((err) => {
+            console.log(err)
             this.$toastr('error', 'Could not register you with the provided data. Username and email must be uniqe.')
           })
       }
