@@ -1,83 +1,81 @@
 <template>
   <div id="home">
     <div v-if="localStorage.elsyserToken">
-      <div class="container">
-        <div class="col-lg-6 col-md-6 col-sm-12" id="news-panel">
-          <div class="panel panel-primary info-panel">
-            <div class="panel-heading text-center">
-              <strong v-if="hasTeacherRights()">
-                <a href="#/news/teachers">Latest news</a>
-              </strong>
-              <strong v-else>
-                <a href="#/news/students">Latest news</a>
-              </strong>
-            </div>
-            <div class="panel-body info-body">
-              <div class="info-container text-center" v-for="item in news" :key="item.id">
-                <div v-if="hasTeacherRights()">
-                  <router-link :to="'/news/teachers/' + item.class_number + '/' + (item.class_letter ? item.class_letter : 'A') + '/' + item.id">{{item.title}}</router-link>
-                </div>
-                <div v-else>
-                  <router-link :to="'/news/students/' + item.id">{{item.title}}</router-link>
-                </div>
-              </div>
-            </div>
+      <div class="col-lg-6 col-md-6 col-sm-12" id="news-panel">
+        <div class="panel panel-primary info-panel">
+          <div class="panel-heading text-center">
+            <strong v-if="hasTeacherRights()">
+              <a href="#/news/teachers">Latest news</a>
+            </strong>
+            <strong v-else>
+              <a href="#/news/students">Latest news</a>
+            </strong>
           </div>
-        </div>
-  
-        <div class="col-lg-6 col-md-6 col-sm-12" id="homeworks-panel">
-          <div class="panel panel-primary info-panel">
-            <div class="panel-heading text-center">
-              <strong>
-                <a href="/homeworks/all">Homeworks</a>
-              </strong>
-            </div>
-            <div class="panel-body info-body">
-              <div class="info-container text-center" v-for="homework in homeworks" :key="homework.id">
-                <router-link :to="'/homeworks/' + homework.id">
-                  <b>{{homework.subject.title}}</b> - ({{homework.deadline}})
-                </router-link>
+          <div class="panel-body info-body">
+            <div class="info-container text-center" v-for="item in news" :key="item.id">
+              <div v-if="hasTeacherRights()">
+                <router-link :to="'/news/teachers/' + item.class_number + '/' + (item.class_letter ? item.class_letter : 'A') + '/' + item.id">{{item.title}}</router-link>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12" id="homeworks-panel">
-          <div class="panel panel-primary info-panel">
-            <div class="panel-heading text-center">
-              <strong>
-                <router-link to="/exams/all">Upcoming exams</router-link>
-              </strong>
-            </div>
-            <div class="panel-body info-body">
-              <div class="info-container text-center" v-for="exam in exams" :key="exam.id">
-                <router-link :to="'/exams/' + exam.id">
-                  <b>{{exam.subject.title}}</b> ({{exam.date}})
-                </router-link>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="col-lg-6 col-md-6 col-sm-12" id="materials-panel">
-          <div class="panel panel-primary info-panel">
-            <div class="panel-heading text-center">
-              <strong>
-                <router-link to="/materials/all">Latest materials</router-link>
-              </strong>
-            </div>
-            <div class="panel-body info-body">
-              <div class="info-container text-center" v-for="material in materials" :key="material.id">
-                <router-link :to="'/materials/' + material.subject.id + '/' + material.id">
-                  <b>{{material.subject.title}}</b> - {{material.title}}
-                </router-link>
-                <br />
+              <div v-else>
+                <router-link :to="'/news/students/' + item.id">{{item.title}}</router-link>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-12" id="homeworks-panel">
+        <div class="panel panel-primary info-panel">
+          <div class="panel-heading text-center">
+            <strong>
+              <a href="/homeworks/all">Homeworks</a>
+            </strong>
+          </div>
+          <div class="panel-body info-body">
+            <div class="info-container text-center" v-for="homework in homeworks" :key="homework.id">
+              <router-link :to="'/homeworks/' + homework.id">
+                <b>{{homework.subject.title}}</b> - ({{homework.deadline}})
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12" id="homeworks-panel">
+        <div class="panel panel-primary info-panel">
+          <div class="panel-heading text-center">
+            <strong>
+              <router-link to="/exams/all">Upcoming exams</router-link>
+            </strong>
+          </div>
+          <div class="panel-body info-body">
+            <div class="info-container text-center" v-for="exam in exams" :key="exam.id">
+              <router-link :to="'/exams/' + exam.id">
+                <b>{{exam.subject.title}}</b> ({{exam.date}})
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-12" id="materials-panel">
+        <div class="panel panel-primary info-panel">
+          <div class="panel-heading text-center">
+            <strong>
+              <router-link to="/materials/all">Latest materials</router-link>
+            </strong>
+          </div>
+          <div class="panel-body info-body">
+            <div class="info-container text-center" v-for="material in materials" :key="material.id">
+              <router-link :to="'/materials/' + material.subject.id + '/' + material.id">
+                <b>{{material.subject.title}}</b> - {{material.title}}
+              </router-link>
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div v-else> 
+    <div v-else>
       <div class="intro-header">
         <div class="container">
           <div class="row">
@@ -86,7 +84,7 @@
                 <img src="/static/logos/logo-white.png" alt="Logo" align="center" id="home-logo" />
                 <h3>Your school in the cloud</h3>
                 <hr class="intro-divider">
-                <router-link  to="/auth/login" class="btn btn-default btn-lg signup-button">
+                <router-link to="/auth/login" class="btn btn-default btn-lg signup-button">
                   <span class="network-name">Login</span>
                 </router-link>
                 <router-link to="/auth/register" class="btn btn-default btn-lg signup-button">
@@ -97,7 +95,7 @@
           </div>
         </div>
       </div>
-  
+
       <div class="container content">
         <div class="row">
           <div class="col-lg-5 col-sm-6">
@@ -115,7 +113,7 @@
           </div>
         </div>
       </div>
-  
+
       <div class="footer lead navbar navbar-bottom center-text">
         <span class="glyphicon glyphicon-chevron-left"></span>
         <span class="glyphicon glyphicon-chevron-right"></span> with
@@ -248,34 +246,34 @@ export default {
 }
 
 .info-container {
-    border-bottom: 1px solid rebeccapurple;
-    padding-bottom: 3px;
-    padding-top: 2px;
+  border-bottom: 1px solid rebeccapurple;
+  padding-bottom: 3px;
+  padding-top: 2px;
 }
 
 .info-panel .panel-heading a {
-	color: white;
-    font-size: 16px;
-    text-decoration: none;
+  color: white;
+  font-size: 16px;
+  text-decoration: none;
 }
 
 .info-panel .panel-heading a:hover {
-    color: gold;
-    text-decoration: none;
+  color: gold;
+  text-decoration: none;
 }
 
 .info-panel {
-    margin: 20px;
+  margin: 20px;
 }
 
 .footer {
-    margin: 0px;
-    border-radius: 0px
+  margin: 0px;
+  border-radius: 0px
 }
 
 #info-button {
-    position: absolute;
-    right: 6px;
-    bottom: 3px;
+  position: absolute;
+  right: 6px;
+  bottom: 3px;
 }
 </style>
