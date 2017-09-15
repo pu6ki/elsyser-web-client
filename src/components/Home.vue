@@ -6,10 +6,10 @@
           <div class="panel panel-primary info-panel">
             <div class="panel-heading text-center">
               <strong v-if="hasTeacherRights()">
-                <a href="/news/teachers">Latest news</a>
+                <a href="#/news/teachers">Latest news</a>
               </strong>
               <strong v-else>
-                <a href="/news/students">Latest news</a>
+                <a href="#/news/students">Latest news</a>
               </strong>
             </div>
             <div class="panel-body info-body">
