@@ -65,7 +65,6 @@
 <script>
 import requester from '../../utils/requester'
 import sha256 from 'crypto-js'
-import authConfig from '../../config/authConfig'
 
 export default {
   name: 'register',
@@ -97,7 +96,7 @@ export default {
             first_name: this.$data.user.first_name,
             last_name: this.$data.user.last_name,
             email: this.$data.user.email,
-            password: sha256.HmacSHA256(this.$data.user.password, authConfig.secret).toString()
+            password: sha256.HmacSHA256(this.$data.user.password, process.env.secret).toString()
           },
           clazz: {
             number: this.$data.clazz.number,

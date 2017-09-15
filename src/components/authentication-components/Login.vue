@@ -31,7 +31,6 @@
 import requester from '../../utils/requester'
 import helper from '../../utils/helper'
 import sha256 from 'crypto-js'
-import authConfig from '../../config/authConfig'
 
 export default {
   name: 'login',
@@ -52,7 +51,7 @@ export default {
       } else {
         let body = {
           email_or_username: this.$data.creds.email_or_username,
-          password: sha256.HmacSHA256(this.$data.creds.password, authConfig.secret).toString()
+          password: sha256.HmacSHA256(this.$data.creds.password, process.env.secret).toString()
         }
         requester.post('/login', body)
           .then(res => {

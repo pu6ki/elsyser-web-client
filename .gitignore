@@ -45,7 +45,7 @@ aero-deploy.tar.gz
 aerobatic.yml
 
 # Auth config
-src/config/authConfig.js
+config/dev.env.js
 
 # Production folder
 dist
