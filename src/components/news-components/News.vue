@@ -67,10 +67,10 @@
                     </span>
                   </div>
                 </div>
-                <div class="panel-body" v-show="toggleShowCommentEditForm(comment)">
+                <div class="panel-body" v-show="!comment.showCommentEditForm">
                   {{comment.content}}
                 </div>
-                <form class="panel-body form-wrapper" @submit.prevent="editComment(comment)" v-show="toggleShowCommentEditForm(comment)">
+                <form class="panel-body form-wrapper" @submit.prevent="editComment(comment)" v-show="comment.showCommentEditForm">
                   <input v-model="comment.content" class="form-control" id="new-comment-content" type="text" :value="comment.content">
                   <button id="save-button" class="btn btn-primary submit">Save</button>
                 </form>
@@ -206,10 +206,12 @@ export default {
       }
     },
     toggleShowCommentEditForm: function (comment) {
+      let temp = comment.showCommentEditForm
       this.$set(comment, 'showCommentEditForm', !comment.showCommentEditForm)
-      return comment.showCommentEditForm
+      return temp
     },
     editComment: function (comment) {
+      comment.edited = true
       requester.put(`${this.$route.path}/comments/${comment.id}`, comment)
         .then((res) => {
           this.$toastr('success', 'Comment editted successfully.', 'Success.')
