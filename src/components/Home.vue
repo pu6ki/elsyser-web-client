@@ -5,10 +5,10 @@
         <div class="panel panel-primary info-panel">
           <div class="panel-heading text-center">
             <strong v-if="hasTeacherRights()">
-              <a href="#/news/teachers">Latest news</a>
+              <router-link to="/news/teachers">Latest news</router-link>
             </strong>
             <strong v-else>
-              <a href="#/news/students">Latest news</a>
+              <router-link to="/news/students">Latest news</router-link>
             </strong>
           </div>
           <div class="panel-body info-body">
@@ -28,7 +28,7 @@
         <div class="panel panel-primary info-panel">
           <div class="panel-heading text-center">
             <strong>
-              <a href="/homeworks/all">Homeworks</a>
+              <router-link to="/homeworks/all">Homeworks</router-link>
             </strong>
           </div>
           <div class="panel-body info-body">
