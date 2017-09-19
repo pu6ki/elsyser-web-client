@@ -84,10 +84,10 @@
                 <img src="/static/logos/logo-white.png" alt="Logo" align="center" id="home-logo" />
                 <h3>Your school in the cloud</h3>
                 <hr class="intro-divider">
-                <router-link to="/auth/login" class="btn btn-default btn-lg signup-button">
+                <router-link to="/auth/login" id="login-btn" class="btn btn-default btn-lg signup-button">
                   <span class="network-name">Login</span>
                 </router-link>
-                <router-link to="/auth/register" class="btn btn-default btn-lg signup-button">
+                <router-link to="/auth/register" id="register-btn" class="btn btn-default btn-lg signup-button">
                   <span class="network-name">Register</span>
                 </router-link>
               </div>
@@ -104,7 +104,7 @@
             <p class="lead" id="info">
               This is your school but mobile! You can see your current homeworks, prepare for upcoming exams and be informed about the events in your school.
             </p>
-            <router-link to="/auth/register" class="btn btn-primary btn-lg content-button">
+            <router-link to="/auth/register" class="btn btn-primary btn-lg content-button signup-button">
               <span class="network-name">Join now !</span>
             </router-link>
           </div>

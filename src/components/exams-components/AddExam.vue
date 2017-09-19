@@ -36,8 +36,13 @@
               <input v-model="date" v-validate="'required'" type="date" class="form-control" id="date" name="date">
             </p>
           </div>
-          <label for="details">Details: </label>
-          <textarea v-model="details" name="details" class="form-control" id="details" rows="4"></textarea>
+          <div id="sandbox-container">         
+            <label for="details">Details: </label>
+            <p :class="{'control': true}">
+              <span v-show="errors.has('details')" class="help is-danger error">{{ errors.first('details') }}</span>              
+              <textarea v-model="details" v-validate="'max:10000'" name="details" class="form-control" id="details" rows="4"></textarea>
+            </p>
+          </div>
           <button class="btn btn-lg btn-primary btn-block submit" id="add-exam">Add Exam</button>
         </section>
       </form>

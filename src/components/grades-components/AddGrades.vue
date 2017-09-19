@@ -10,7 +10,7 @@
         <thead>
           <tr>
             <th class="text-center">Name
-              <button type="button" class="btn btn-success" id="add-another-grade-button">+</button>
+              <!-- <button type="button" class="btn btn-success" id="add-another-grade-button">+</button> -->
             </th>
             <th class="text-center">Grade</th>
           </tr>

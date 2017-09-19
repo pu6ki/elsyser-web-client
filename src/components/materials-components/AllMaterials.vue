@@ -1,6 +1,6 @@
 <template>
   <div id="wrapper">
-    <div class="row" v-if="materials">
+    <div class="row" v-if="materials.length > 0">
       <div class="col-md-10 col-md-offset-1 text-center search-container">
         <label for="search">Search: </label>
         <input type="text" id="search" class="form-control" v-model="search">
@@ -36,15 +36,15 @@
           <span slot="no-results"></span>
         </infinite-loading>
       </div>
-      <button v-if="hasTeacherRights()" type="button" class="btn btn-primary btn-circle btn-lg" id="add-material" v-on:click="$router.push('/materials/add')">
-        <i class="glyphicon glyphicon-pencil"></i>
-      </button>
     </div>
     <div class="panel panel-default" v-else>
       <div class="panel-body">
         <h3 class="text-center">There are no available materials so far.</h3>
       </div>
     </div>
+    <button v-if="hasTeacherRights()" type="button" class="btn btn-primary btn-circle btn-lg" id="add-material" v-on:click="$router.push('/materials/add')">
+      <i class="glyphicon glyphicon-pencil"></i>
+    </button>
   </div>
 </template>
 
@@ -71,7 +71,7 @@ export default {
           material.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 ||
           material.section.toLowerCase().indexOf(self.search.toLowerCase()) >= 0
       })
-      if (filtered.length === 0) {
+      if (filtered.length === 0 && this.$refs.infiniteLoading) {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
       }
       return filtered

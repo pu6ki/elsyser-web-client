@@ -32,7 +32,7 @@
             <div v-if="exam.details">
               <i>Details: </i>
               <strong>
-                <span>{{exam.details}}</span>
+                <span v-html="exam.details"></span>
               </strong>
             </div>
             <div v-else>
@@ -57,6 +57,7 @@
 <script>
 import requester from '../../utils/requester'
 import moment from 'moment'
+import helper from '../../utils/helper'
 
 export default {
   name: 'exam',
@@ -83,6 +84,7 @@ export default {
     requester.get(`/exams/${this.$route.params.id}`)
       .then(res => {
         this.$data.exam = res.data
+        this.$data.exam.details = helper.insertLineBreaks(res.data.details)
       })
   },
   methods: {

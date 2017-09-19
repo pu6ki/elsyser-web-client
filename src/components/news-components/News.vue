@@ -320,6 +320,10 @@ export default {
   pointer-events: none;
 }
 
+.comment-panel>.panel-heading {
+  background-color: #4a148c !important
+}
+
 .panel-heading {
   color: white;
 }

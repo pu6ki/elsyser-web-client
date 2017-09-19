@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div id="login">
     <div class="row auth-intro-header overlay" id="pwd-container">
       <div class="col-sm-1 col-md-4 col-lg-4"></div>
       <div class="col-xs-12 col-sm-10 col-md-4 col-lg-4 form-wrapper">
@@ -53,6 +53,7 @@ export default {
           email_or_username: this.$data.creds.email_or_username,
           password: sha256.HmacSHA256(this.$data.creds.password, process.env.secret).toString()
         }
+        console.log(body.password)
         requester.post('/login', body)
           .then(res => {
             res.data.token += res.data.is_teacher ? '1' : '0'
