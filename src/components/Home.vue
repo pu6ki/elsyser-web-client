@@ -138,6 +138,14 @@ export default {
       materials: []
     }
   },
+  beforeCreate: function () {
+    if (helper.isTeacher(window.localStorage.getItem('elsyserToken'))) {
+      requester.get(`/profile/${window.localStorage.getItem('elsyserId')}`)
+        .then(res => {
+          window.localStorage.setItem('elsyserTeacherSubjectId', res.data.subject.id)
+        })
+    }
+  },
   beforeMount: function () {
     if (this.localStorage.elsyserToken) {
       let isTeacher = helper.isTeacher(this.localStorage.elsyserToken)

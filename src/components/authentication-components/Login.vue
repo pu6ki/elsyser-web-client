@@ -31,7 +31,6 @@
 
 <script>
 import requester from '../../utils/requester'
-import helper from '../../utils/helper'
 import sha256 from 'crypto-js'
 import VueRecaptcha from 'vue-recaptcha'
 
@@ -66,18 +65,12 @@ export default {
             window.localStorage.setItem('elsyserUsername', res.data.username)
             window.localStorage.setItem('elsyserId', res.data.id)
 
-            return requester.get(`/profile/${window.localStorage.getItem('elsyserId')}`)
-          }).then(res => {
-            if (helper.isTeacher(window.localStorage.getItem('elsyserToken'))) {
-              window.localStorage.setItem('elsyserTeacherSubjectId', res.data.subject.id)
-            }
-            setTimeout(() => {
-              this.$toastr('success', 'Logged-in successfully.', 'Welcome.')
-              this.$router.push('/home', function () {
-                window.location.reload(true)
-              })
-            }, 2000)
-          }).catch((err) => {
+            this.$toastr('success', 'Logged-in successfully.', 'Welcome.')
+            this.$router.push('/home', function () {
+              window.location.reload(true)
+            })
+          })
+          .catch((err) => {
             console.log(err)
             let msg = err.response.data.non_field_errors[0] ? err.response.data.non_field_errors[0] : 'Wrong credentials.'
             this.$toastr('error', msg, 'Access denied.')
