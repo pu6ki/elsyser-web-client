@@ -13,7 +13,9 @@
               <span v-show="errors.has('password')" class="help is-danger error">{{ errors.first('password') }}</span>
               <input type="password" v-model="creds.password" v-validate="'required'" class="form-control" id="password" name="password" placeholder="Password" />
             </p>
-            <button class="btn btn-lg btn-primary btn-block" id="login-button">Login</button>
+            <vue-recaptcha sitekey="6Le-sjEUAAAAAIUSppd8sER_EUrBJJxwloYx8DTC" ref="invisibleRecaptcha" @verify="onVerify" @expired="onExpired">
+              <button class="btn btn-lg btn-primary btn-block" id="login-button">Login</button>
+            </vue-recaptcha>
             <div>
               <span class="text-formatted">Not a member yet?</span>
               <br />
@@ -31,6 +33,7 @@
 import requester from '../../utils/requester'
 import helper from '../../utils/helper'
 import sha256 from 'crypto-js'
+import VueRecaptcha from 'vue-recaptcha'
 
 export default {
   name: 'login',
@@ -44,6 +47,9 @@ export default {
   },
   methods: {
     onSubmit () {
+      this.$refs.invisibleRecaptcha.execute()
+    },
+    onVerify: function (response) {
       this.$validator.validateAll()
 
       if (this.errors.any()) {
@@ -53,35 +59,37 @@ export default {
           email_or_username: this.$data.creds.email_or_username,
           password: sha256.HmacSHA256(this.$data.creds.password, process.env.secret).toString()
         }
-        console.log(body.password)
         requester.post('/login', body)
           .then(res => {
             res.data.token += res.data.is_teacher ? '1' : '0'
             window.localStorage.setItem('elsyserToken', res.data.token)
             window.localStorage.setItem('elsyserUsername', res.data.username)
             window.localStorage.setItem('elsyserId', res.data.id)
-            if (helper.isTeacher(res.data.token)) {
-              return requester.get(`/profile/${window.localStorage.getItem('elsyserId')}`)
-            } else {
+
+            return requester.get(`/profile/${window.localStorage.getItem('elsyserId')}`)
+          }).then(res => {
+            if (helper.isTeacher(window.localStorage.getItem('elsyserToken'))) {
+              window.localStorage.setItem('elsyserTeacherSubjectId', res.data.subject.id)
+            }
+            setTimeout(() => {
               this.$toastr('success', 'Logged-in successfully.', 'Welcome.')
               this.$router.push('/home', function () {
                 window.location.reload(true)
               })
-            }
-          }).then((res) => {
-            this.localStorage.elsyserTeacherSubjectId = res.data.subject.id
-            this.$toastr('success', 'Logged-in successfully.', 'Welcome.')
-            this.$router.push('/home', function () {
-              window.location.reload(true)
-            })
-          })
-          .catch((err) => {
+            }, 2000)
+          }).catch((err) => {
             console.log(err)
             let msg = err.response.data.non_field_errors[0] ? err.response.data.non_field_errors[0] : 'Wrong credentials.'
             this.$toastr('error', msg, 'Access denied.')
           })
       }
+    },
+    onExpired: function () {
+      console.log('Expired')
     }
+  },
+  components: {
+    VueRecaptcha
   }
 }
 </script>
