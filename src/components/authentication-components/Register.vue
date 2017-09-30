@@ -48,11 +48,13 @@
                 <option value="G">G</option>
               </select>
             </p>
-            <button class="btn btn-lg btn-primary btn-block" id="registerButton">Register</button>
+            <vue-recaptcha sitekey="6Le-sjEUAAAAAIUSppd8sER_EUrBJJxwloYx8DTC" ref="invisibleRecaptcha" @verify="onVerify" @expired="onExpired">
+              <button class="btn btn-lg btn-primary btn-block" id="registerButton">Register</button>
+            </vue-recaptcha>
             <div>
               <span class="text-formatted">Already a member?</span>
               <br />
-              <a href="/auth/login"> Log-in</a>
+              <router-link href="/auth/login"> Log-in</router-link>
             </div>
           </section>
         </form>
@@ -65,6 +67,7 @@
 <script>
 import requester from '../../utils/requester'
 import sha256 from 'crypto-js'
+import VueRecaptcha from 'vue-recaptcha'
 
 export default {
   name: 'register',
@@ -84,7 +87,11 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
+    onSubmit: function () {
+      this.$refs.invisibleRecaptcha.execute()
+    },
+    onVerify: function (response) {
+      console.log('Verify: ' + response)
       this.$validator.validateAll()
 
       if (this.errors.any()) {
@@ -113,7 +120,13 @@ export default {
             this.$toastr('error', 'Could not register you with the provided data. Username and email must be uniqe.')
           })
       }
+    },
+    onExpired: function () {
+      console.log('Expired')
     }
+  },
+  components: {
+    VueRecaptcha
   }
 }
 </script>
