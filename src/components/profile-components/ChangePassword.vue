@@ -64,7 +64,6 @@
               </strong>
             </div>
             <form @submit.prevent="onSubmit">
-              <section id="reset-password-form" class="is-12">
                 <label for="currentPassword">Current password:</label>
                 <p :class="{'control': true}">
                   <span v-show="errors.has('current-password')" class="help is-danger error">{{ errors.first('current-password') }}</span>
@@ -81,7 +80,6 @@
                   <input type="password" v-validate="'required|confirmed:new-password'" class="form-control" id="password-confirmation" name="password-confirmation" placehcurrenter="Confirm Password" />
                 </p>
                 <button class="btn btn-lg btn-primary btn-block" id="change-password-button">Change</button>
-              </section>
             </form>
           </div>
         </div>
@@ -158,7 +156,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 label {
   font-size: 16px;
 }
