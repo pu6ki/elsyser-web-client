@@ -5,11 +5,6 @@
       <div class="col-xs-12 col-sm-10 col-md-4 col-lg-4 form-wrapper">
         <form @submit.prevent="onSubmit">
           <section id="reset-password-form" class="is-12">
-            <span class="text">Please enter your email:</span>
-            <p :class="{'control': true}">
-              <span v-show="errors.has('old-password')" class="help is-danger error">{{ errors.first('old-password') }}</span>
-              <input type="password" v-model="oldPassword" v-validate="'required'" class="form-control" id="old-password" name="old-password" placeholder="Old Password" />
-            </p>
             <p :class="{'control': true}">
               <span v-show="errors.has('new-password')" class="help is-danger error">{{ errors.first('new-password') }}</span>
               <input type="password" v-model="newPassword" v-validate="'required|min:6|max:16'" class="form-control" id="new-password" name="new-password" placeholder="New Password" />
@@ -35,7 +30,6 @@ export default {
   name: 'new-password',
   data: function () {
     return {
-      oldPassword: '',
       newPassword: ''
     }
   },
@@ -44,7 +38,6 @@ export default {
       this.$validator.validateAll()
       if (!this.errors.any()) {
         let body = {
-          old_password: sha256.HmacSHA256(this.$data.oldPassword, process.env.secret).toString(),
           new_password: sha256.HmacSHA256(this.$data.newPassword, process.env.secret).toString(),
           uid: this.$route.params.uid,
           token: this.$route.params.token

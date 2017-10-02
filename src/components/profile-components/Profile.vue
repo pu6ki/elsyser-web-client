@@ -66,6 +66,7 @@
             </div>
             <div v-if="can_edit">
               <router-link :to="'/profile/' + this.user.id + '/edit'" id="edit-profile" class="btn btn-primary">Edit profile</router-link>
+              <router-link :to="'/profile/' + this.user.id + '/password-change'" id="change-profile" class="btn btn-primary">Change password</router-link>              
             </div>
           </div>
         </div>
