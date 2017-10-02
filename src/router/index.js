@@ -7,6 +7,8 @@ import Home from '../components/Home'
 import Login from '../components/authentication-components/Login'
 import Register from '../components/authentication-components/Register'
 import ActivateAccount from '../components/authentication-components/ActivateAccount'
+import ResetPassword from '../components/authentication-components/ResetPassword.vue'
+import NewPassword from '../components/authentication-components/NewPassword.vue'
 
 import AllExams from '../components/exams-components/AllExams'
 import AddExam from '../components/exams-components/AddExam'
@@ -72,6 +74,16 @@ const router = new Router({
           path: 'activate/:activationId',
           name: 'ActivateAccount',
           component: ActivateAccount
+        },
+        {
+          path: 'password/reset',
+          name: 'ResetPassword',
+          component: ResetPassword
+        },
+        {
+          path: 'password/reset/confirm/:uid/:token',
+          name: 'NewPassword',
+          component: NewPassword
         }
       ]
     },

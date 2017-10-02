@@ -13,13 +13,13 @@
               <span v-show="errors.has('password')" class="help is-danger error">{{ errors.first('password') }}</span>
               <input type="password" v-model="creds.password" v-validate="'required'" class="form-control" id="password" name="password" placeholder="Password" />
             </p>
-            <vue-recaptcha sitekey="6Le-sjEUAAAAAIUSppd8sER_EUrBJJxwloYx8DTC" ref="invisibleRecaptcha" @verify="onVerify" @expired="onExpired">
-              <button class="btn btn-lg btn-primary btn-block" id="login-button">Login</button>
-            </vue-recaptcha>
+            <button class="btn btn-lg btn-primary btn-block" id="login-button">Login</button>
             <div>
-              <span class="text-formatted">Not a member yet?</span>
+              <span class="text">Not a member yet?</span>
               <br />
-              <a href="/auth/register">Create account</a>
+              <router-link to="/auth/register">Create account</router-link>
+              <br />              
+              <router-link to="/auth/password/reset">Forgotten password</router-link>              
             </div>
           </section>
         </form>
@@ -32,7 +32,6 @@
 <script>
 import requester from '../../utils/requester'
 import sha256 from 'crypto-js'
-import VueRecaptcha from 'vue-recaptcha'
 
 export default {
   name: 'login',
@@ -46,14 +45,8 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.$refs.invisibleRecaptcha.execute()
-    },
-    onVerify: function (response) {
       this.$validator.validateAll()
-
-      if (this.errors.any()) {
-        this.$toastr('error', 'Invalid input data.', 'Error')
-      } else {
+      if (!this.errors.any()) {
         let body = {
           email_or_username: this.$data.creds.email_or_username,
           password: sha256.HmacSHA256(this.$data.creds.password, process.env.secret).toString()
@@ -75,14 +68,10 @@ export default {
             let msg = err.response.data.non_field_errors[0] ? err.response.data.non_field_errors[0] : 'Wrong credentials.'
             this.$toastr('error', msg, 'Access denied.')
           })
+      } else {
+        this.$toastr('error', 'Invalid input data.', 'Error')
       }
-    },
-    onExpired: function () {
-      console.log('Expired')
     }
-  },
-  components: {
-    VueRecaptcha
   }
 }
 </script>
@@ -136,6 +125,11 @@ a {
   width: 100%;
   height: 100vh;
   background-color: indigo;
+}
+
+.text {
+  color: black;
+  font-size: 16px; 
 }
 
 #login-form {

@@ -54,7 +54,7 @@
             <div>
               <span class="text-formatted">Already a member?</span>
               <br />
-              <router-link href="/auth/login"> Log-in</router-link>
+              <router-link to="/auth/login"> Log-in</router-link>
             </div>
           </section>
         </form>
