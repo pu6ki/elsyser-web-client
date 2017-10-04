@@ -328,6 +328,11 @@ export default {
   color: white;
 }
 
+.panel-heading a {
+  color: white;
+  font-weight: bolder;
+}
+
 .panel-heading a:hover {
   color: gold
 }

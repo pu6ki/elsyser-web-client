@@ -118,7 +118,7 @@
         <span class="glyphicon glyphicon-chevron-left"></span>
         <span class="glyphicon glyphicon-chevron-right"></span> with
         <span class="glyphicon glyphicon-heart-empty"></span> by
-        <a href="http://www.github.com/pu6ki" target="_blank">pu6ki.</a> All rights reserved.
+        <a href="http://www.github.com/pu6ki" target="_blank" rel="noopener">pu6ki.</a> All rights reserved.
       </div>
     </div>
   </div>
