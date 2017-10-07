@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <div v-if="localStorage.elsyserToken">
-      <div class="col-lg-6 col-md-6 col-sm-12" id="news-panel">
+      <div class="col-lg-5 col-lg-offset-1 col-md-6 col-sm-12" id="news-panel">
         <div class="panel panel-primary info-panel">
           <div class="panel-heading text-center">
             <strong v-if="hasTeacherRights()">
@@ -24,7 +24,7 @@
         </div>
       </div>
 
-      <div class="col-lg-6 col-md-6 col-sm-12" id="homeworks-panel">
+      <div class="col-lg-5 pull-left col-md-6 col-sm-12" id="homeworks-panel">
         <div class="panel panel-primary info-panel">
           <div class="panel-heading text-center">
             <strong>
@@ -40,7 +40,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-12" id="homeworks-panel">
+      <div class="col-lg-5 col-lg-offset-1 col-md-6 col-sm-12" id="homeworks-panel">
         <div class="panel panel-primary info-panel">
           <div class="panel-heading text-center">
             <strong>
@@ -57,7 +57,7 @@
         </div>
       </div>
 
-      <div class="col-lg-6 col-md-6 col-sm-12" id="materials-panel">
+      <div class="col-lg-5 pull-left col-md-6 col-sm-12" id="materials-panel">
         <div class="panel panel-primary info-panel">
           <div class="panel-heading text-center">
             <strong>
