@@ -221,6 +221,7 @@ export default {
     showNewsDeleteConfirm: function () {
       let url = this.$route.path
       let router = this.$router
+      let isTeacher = this.hasTeacherRights()
       window.swal({
         title: 'Are you sure?',
         text: 'This news will be deleted forever.',
@@ -238,7 +239,7 @@ export default {
                 text: 'The news has been deleted.',
                 type: 'success'
               }, function () {
-                let redirectUrl = helper.isTeacher(helper.elsyserToken) ? '/news/teachers' : '/news/students'
+                let redirectUrl = isTeacher ? '/news/teachers' : '/news/students'
                 router.push(redirectUrl)
               })
             })
