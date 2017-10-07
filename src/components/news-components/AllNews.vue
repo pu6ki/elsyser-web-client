@@ -84,7 +84,8 @@ export default {
     return {
       news: [],
       search: '',
-      nextPage: null
+      nextPage: null,
+      defaultClassLetter: 'A'
     }
   },
   beforeCreate: function () {
@@ -121,11 +122,7 @@ export default {
     getNewsUrl: function (item) {
       let url = '/news'
       if (this.hasTeacherRights()) {
-        url += `/teachers/${item.class_number}`
-        if (!item.class_letter) {
-          item.class_letter = 'A'
-        }
-        url += `/${item.class_letter}/${item.id}`
+        url += item.class_letter === '' ? `/teachers/${item.class_number}/${this.defaultClassLetter}/${item.id}` : `/teachers/${item.class_number}/${item.class_letter}/${item.id}`
       } else {
         url += `/students/${item.id}`
       }

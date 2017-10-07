@@ -64,10 +64,6 @@ export default {
         let url = '/news'
         if (helper.isTeacher(this.localStorage.elsyserToken)) {
           url += `/teachers/${this.classNumber}`
-          if (this.classLetter) {
-            this.classLetter = this.classLetter !== 'All' ? `/${this.classLetter}` : ''
-            url += this.classLetter
-          }
         } else {
           url += '/students'
         }
