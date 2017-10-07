@@ -17,6 +17,7 @@ import EditExam from '../components/exams-components/EditExam'
 
 import Profile from '../components/profile-components/Profile'
 import EditProfile from '../components/profile-components/EditProfile'
+import ChangePassword from '../components/profile-components/ChangePassword.vue'
 
 import AllMaterials from '../components/materials-components/AllMaterials'
 import Material from '../components/materials-components/Material'
@@ -126,6 +127,11 @@ const router = new Router({
           path: ':id/edit',
           name: 'EditProfile',
           component: EditProfile
+        },
+        {
+          path: ':id/password-change',
+          name: 'ChangePassword',
+          component: ChangePassword
         }
       ],
       meta: { requiresAuth: true }
