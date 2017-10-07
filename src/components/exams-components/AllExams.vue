@@ -60,10 +60,8 @@
     </div>
   
     <div v-if="isTeacher()">
-      <button type="button" v-on:click="$router.push('/exams/add')" class="btn btn-primary btn-circle btn-lg" id="add-exam">
-        <router-link to="/exams/add">
-          <i class="glyphicon glyphicon-pencil"></i>
-        </router-link>
+      <button class="btn btn-circle btn-lg btn-bottom" id="add-exam" v-on:click="$router.push('/exams/add')">
+        <i class="glyphicon glyphicon-pencil"></i>
       </button>
     </div>
   </div>
