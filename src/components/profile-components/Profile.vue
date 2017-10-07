@@ -3,7 +3,7 @@
     <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
       <div class="panel panel-primary">
         <div class="panel-heading text-center">
-          <strong v-if="clazz">Student profile</strong>
+          <strong v-if="clazz.number">Student profile</strong>
           <strong v-else>Teacher profile</strong>
         </div>
         <div class="row" id="profile-block">
@@ -34,7 +34,7 @@
               </strong>
             </div>
   
-            <div v-if="clazz">
+            <div v-if="clazz.number">
               <i>Class: </i>
               <strong>
                 <span>
