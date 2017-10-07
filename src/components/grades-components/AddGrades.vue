@@ -45,12 +45,8 @@ export default {
     }
   },
   beforeCreate: function () {
-    requester.get('/students', {
-      params: {
-        class_number: this.$route.params.classNumber,
-        class_letter: this.$route.params.classLetter
-      }
-    }).then((res) => {
+    requester.get(`/students?class_number=${this.$route.params.classNumber}&class_letter=${this.$route.params.classLetter}`)
+    .then((res) => {
       res.data.results.forEach(function (element) {
         let student = {
           fullName: '',
