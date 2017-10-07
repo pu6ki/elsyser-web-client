@@ -18,7 +18,7 @@
           </div>
           <div class="panel-body">
             <div id="deadline">
-              <i>Deadline </i>
+              <i>Deadline ends in</i>
               <strong>
                 <span>{{relativeDate(homework.deadline)}}</span>
               </strong>
