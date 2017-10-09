@@ -1,7 +1,7 @@
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 [![forthebadge](http://forthebadge.com/images/badges/made-with-vue.svg)](http://forthebadge.com)
 
-![Logo](https://raw.githubusercontent.com/pu6ki/elsyser-web-client/master/static/logos/tues_building_with_logo.jpg)
+![Logo](https://raw.githubusercontent.com/pu6ki/elsyser/master/static/tues_building_with_logo.jpg)
 
 # [elsyser-web-client](https://elsyser.aerobatic.io/)
 
