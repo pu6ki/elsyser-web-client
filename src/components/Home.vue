@@ -1,75 +1,77 @@
 <template>
   <div id="home">
     <div v-if="localStorage.elsyserToken">
-      <div class="col-lg-5 col-lg-offset-1 col-md-6 col-sm-12" id="news-panel">
-        <div class="panel panel-primary info-panel">
-          <div class="panel-heading text-center">
-            <strong v-if="hasTeacherRights()">
-              <router-link to="/news/teachers">Latest news</router-link>
-            </strong>
-            <strong v-else>
-              <router-link to="/news/students">Latest news</router-link>
-            </strong>
-          </div>
-          <div class="panel-body info-body">
-            <div class="info-container text-center" v-for="item in news" :key="item.id">
-              <div v-if="hasTeacherRights()">
-                <router-link :to="'/news/teachers/' + item.class_number + '/' + (item.class_letter ? item.class_letter : 'A') + '/' + item.id">{{item.title}}</router-link>
+      <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-6 col-sm-12" id="news-panel">
+          <div class="panel panel-primary info-panel">
+            <div class="panel-heading text-center">
+              <strong v-if="hasTeacherRights()">
+                <router-link to="/news/teachers">Latest news</router-link>
+              </strong>
+              <strong v-else>
+                <router-link to="/news/students">Latest news</router-link>
+              </strong>
+            </div>
+            <div class="panel-body info-body">
+              <div class="info-container text-center" v-for="item in news" :key="item.id">
+                <div v-if="hasTeacherRights()">
+                  <router-link :to="'/news/teachers/' + item.class_number + '/' + (item.class_letter ? item.class_letter : 'A') + '/' + item.id">{{item.title}}</router-link>
+                </div>
+                <div v-else>
+                  <router-link :to="'/news/students/' + item.id">{{item.title}}</router-link>
+                </div>
               </div>
-              <div v-else>
-                <router-link :to="'/news/students/' + item.id">{{item.title}}</router-link>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12" id="homeworks-panel">
+          <div class="panel panel-primary info-panel">
+            <div class="panel-heading text-center">
+              <strong>
+                <router-link to="/homeworks/all">Homeworks</router-link>
+              </strong>
+            </div>
+            <div class="panel-body info-body">
+              <div class="info-container text-center" v-for="homework in homeworks" :key="homework.id">
+                <router-link :to="'/homeworks/' + homework.id">
+                  <b>{{homework.subject.title}}</b> - ({{homework.deadline}})
+                </router-link>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="col-lg-5 pull-left col-md-6 col-sm-12" id="homeworks-panel">
-        <div class="panel panel-primary info-panel">
-          <div class="panel-heading text-center">
-            <strong>
-              <router-link to="/homeworks/all">Homeworks</router-link>
-            </strong>
-          </div>
-          <div class="panel-body info-body">
-            <div class="info-container text-center" v-for="homework in homeworks" :key="homework.id">
-              <router-link :to="'/homeworks/' + homework.id">
-                <b>{{homework.subject.title}}</b> - ({{homework.deadline}})
-              </router-link>
+        <div class="col-md-6 col-sm-12" id="homeworks-panel">
+          <div class="panel panel-primary info-panel">
+            <div class="panel-heading text-center">
+              <strong>
+                <router-link to="/exams/all">Upcoming exams</router-link>
+              </strong>
+            </div>
+            <div class="panel-body info-body">
+              <div class="info-container text-center" v-for="exam in exams" :key="exam.id">
+                <router-link :to="'/exams/' + exam.id">
+                  <b>{{exam.subject.title}}</b> ({{exam.date}})
+                </router-link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg-5 col-lg-offset-1 col-md-6 col-sm-12" id="homeworks-panel">
-        <div class="panel panel-primary info-panel">
-          <div class="panel-heading text-center">
-            <strong>
-              <router-link to="/exams/all">Upcoming exams</router-link>
-            </strong>
-          </div>
-          <div class="panel-body info-body">
-            <div class="info-container text-center" v-for="exam in exams" :key="exam.id">
-              <router-link :to="'/exams/' + exam.id">
-                <b>{{exam.subject.title}}</b> ({{exam.date}})
-              </router-link>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="col-lg-5 pull-left col-md-6 col-sm-12" id="materials-panel">
-        <div class="panel panel-primary info-panel">
-          <div class="panel-heading text-center">
-            <strong>
-              <router-link to="/materials/all">Latest materials</router-link>
-            </strong>
-          </div>
-          <div class="panel-body info-body">
-            <div class="info-container text-center" v-for="material in materials" :key="material.id">
-              <router-link :to="'/materials/' + material.subject.id + '/' + material.id">
-                <b>{{material.subject.title}}</b> - {{material.title}}
-              </router-link>
-              <br />
+        <div class="col-md-6 col-sm-12" id="materials-panel">
+          <div class="panel panel-primary info-panel">
+            <div class="panel-heading text-center">
+              <strong>
+                <router-link to="/materials/all">Latest materials</router-link>
+              </strong>
+            </div>
+            <div class="panel-body info-body">
+              <div class="info-container text-center" v-for="material in materials" :key="material.id">
+                <router-link :to="'/materials/' + material.subject.id + '/' + material.id">
+                  <b>{{material.subject.title}}</b> - {{material.title}}
+                </router-link>
+                <br />
+              </div>
             </div>
           </div>
         </div>
