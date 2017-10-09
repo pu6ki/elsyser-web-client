@@ -49,7 +49,7 @@ export default {
       if (!this.errors.any()) {
         let body = {
           email_or_username: this.$data.creds.email_or_username,
-          password: sha256.HmacSHA256(this.$data.creds.password, process.env.secret).toString()
+          password: sha256.HmacSHA256(this.$data.creds.password, process.env.SECRET).toString()
         }
         requester.post('/login', body)
           .then(res => {

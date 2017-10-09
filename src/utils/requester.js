@@ -8,7 +8,7 @@ if (token !== 'null' && token) {
   config.headers = { 'Authorization': `Token ${token}` }
 }
 
-let apiUrl = 'https://elsyser.herokuapp.com/api'
+let apiUrl = process.env.API_URL
 
 let requester = {
   get: (url) => {

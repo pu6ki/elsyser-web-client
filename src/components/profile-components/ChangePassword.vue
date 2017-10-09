@@ -136,8 +136,8 @@ export default {
       this.$validator.validateAll()
       if (!this.errors.any()) {
         let body = {
-          current_password: sha256.HmacSHA256(this.$data.currentPassword, process.env.secret).toString(),
-          new_password: sha256.HmacSHA256(this.$data.newPassword, process.env.secret).toString(),
+          current_password: sha256.HmacSHA256(this.$data.currentPassword, process.env.SECRET).toString(),
+          new_password: sha256.HmacSHA256(this.$data.newPassword, process.env.SECRET).toString(),
           uid: this.$route.params.uid,
           token: this.$route.params.token
         }
