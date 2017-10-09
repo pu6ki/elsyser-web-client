@@ -103,7 +103,7 @@ export default {
             first_name: this.$data.user.first_name,
             last_name: this.$data.user.last_name,
             email: this.$data.user.email,
-            password: sha256.HmacSHA256(this.$data.user.password, process.env.secret).toString()
+            password: sha256.HmacSHA256(this.$data.user.password, process.env.SECRET).toString()
           },
           clazz: {
             number: this.$data.clazz.number,
