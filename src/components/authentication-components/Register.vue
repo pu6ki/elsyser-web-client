@@ -31,7 +31,8 @@
             </p>
             <p :class="{'control': true}">
               <span v-show="errors.has('studentClassNumber')" class="help is-danger error"> Please select your class number </span>
-              <select class="form-control" v-model="clazz.number" name="studentClassNumber" id="studentClassNumber" v-validate="'required'">
+              <select class="form-control" v-model="clazz.number" name="studentClassNumber" id="studentClassNumber" v-validate="'required|numeric'" autocomplete="off">
+                <option selected disabled hidden>Class number</option>
                 <option value="8">8</option>
                 <option value="9">9</option>
                 <option value="10">10</option>
@@ -41,7 +42,8 @@
             </p>
             <p :class="{'control': true}">
               <span v-show="errors.has('studentClassLetter')" class="help is-danger error"> Please select your class letter </span>
-              <select class="form-control" v-model="clazz.letter" v-validate="'required'" name="studentClassLetter" id="studentClassLetter">
+              <select class="form-control" v-model="clazz.letter" v-validate="'required|alpha'" name="studentClassLetter" id="studentClassLetter">
+                <option selected disabled hidden>Class letter</option>
                 <option value="A">A</option>
                 <option value="B">B</option>
                 <option value="V">V</option>
@@ -81,8 +83,8 @@ export default {
         password: ''
       },
       clazz: {
-        number: null,
-        letter: ''
+        number: 'Class number',
+        letter: 'Class letter'
       }
     }
   },
@@ -91,11 +93,11 @@ export default {
       this.$refs.invisibleRecaptcha.execute()
     },
     onVerify: function (response) {
-      console.log('Verify: ' + response)
       this.$validator.validateAll()
 
       if (this.errors.any()) {
         this.$toastr('error', 'Invalid input data.', 'Error')
+        this.$refs.invisibleRecaptcha.reset()
       } else {
         let body = {
           user: {
@@ -106,7 +108,7 @@ export default {
             password: sha256.HmacSHA256(this.$data.user.password, process.env.SECRET).toString()
           },
           clazz: {
-            number: this.$data.clazz.number,
+            number: parseInt(this.$data.clazz.number),
             letter: this.$data.clazz.letter
           }
         }
@@ -118,11 +120,12 @@ export default {
           .catch((err) => {
             console.log(err)
             this.$toastr('error', 'Could not register you with the provided data. Username and email must be uniqe.')
+            this.$refs.invisibleRecaptcha.reset()
           })
       }
     },
     onExpired: function () {
-      console.log('Expired')
+      this.$refs.invisibleRecaptcha.reset()
     }
   },
   components: {
@@ -135,6 +138,10 @@ export default {
 input,
 select {
   margin-bottom: 10px;
+}
+
+select {
+  opacity: 0.7;
 }
 
 span.error {
@@ -162,13 +169,13 @@ a {
   -webkit-background-size: cover;
 
   text-align: center;
+  overflow-y: auto;
 }
 
 .auth-intro-header.overlay:after {
   top: 0;
   left: 0;
   position: fixed;
-  overflow: hidden;
 }
 
 .overlay {
@@ -208,6 +215,5 @@ a {
   position: fixed;
   top: 0;
   left: 0;
-  overflow: hidden;
 }
 </style>
