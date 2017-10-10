@@ -23,7 +23,7 @@
             </p>
             <p :class="{'control': true}">
               <span v-show="errors.has('password')" class="help is-danger error">{{ errors.first('password') }}</span>
-              <input type="password" v-model="user.password" v-validate="'required|min:6|max:16'" id="password" class="form-control" name="password" placeholder="Password" />
+              <input type="password" v-model="user.password" v-validate="'required|min:6|max:32'" id="password" class="form-control" name="password" placeholder="Password" />
             </p>
             <p :class="{'control': true}">
               <span v-show="errors.has('password-confirmation')" class="help is-danger error">{{ errors.first('password-confirmation') }}</span>
@@ -191,6 +191,7 @@ a {
   width: 100%;
   height: 100vh;
   background-color: indigo;
+  overflow: auto;
 }
 
 .text-formatted {
