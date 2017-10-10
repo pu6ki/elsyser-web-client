@@ -72,7 +72,7 @@
                 <label for="newPassword">New password:</label>
                 <p :class="{'control': true}">
                   <span v-show="errors.has('new-password')" class="help is-danger error">{{ errors.first('new-password') }}</span>
-                  <input type="password" v-model="newPassword" v-validate="'required|min:6|max:16'" class="form-control" id="new-password" name="new-password" placehcurrenter="New Password" />
+                  <input type="password" v-model="newPassword" v-validate="'required|min:6|max:32'" class="form-control" id="new-password" name="new-password" placehcurrenter="New Password" />
                 </p>
                 <label for="password-confirmation">Confirm password:</label>
                 <p :class="{'control': true}">
@@ -147,7 +147,7 @@ export default {
             this.$router.push(`/profile/${this.$route.params.id}`)
           })
           .catch((err) => {
-            this.$toastr('error', 'There was error trying to change your password. Please try again later', 'Error.')
+            this.$toastr('error', 'There was error trying to change your password. Have you entered it correctly?', 'Error.')
             console.log(err)
           })
       }

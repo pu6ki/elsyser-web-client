@@ -250,7 +250,7 @@ export default {
       let vm = this
       window.swal({
         title: 'Are you sure?',
-        text: 'This news will be deleted forever.',
+        text: 'This comment will be deleted forever.',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',

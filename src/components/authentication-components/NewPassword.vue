@@ -7,7 +7,7 @@
           <section id="reset-password-form" class="is-12">
             <p :class="{'control': true}">
               <span v-show="errors.has('new-password')" class="help is-danger error">{{ errors.first('new-password') }}</span>
-              <input type="password" v-model="newPassword" v-validate="'required|min:6|max:16'" class="form-control" id="new-password" name="new-password" placeholder="New Password" />
+              <input type="password" v-model="newPassword" v-validate="'required|min:6|max:32'" class="form-control" id="new-password" name="new-password" placeholder="New Password" />
             </p>
             <p :class="{'control': true}">
               <span v-show="errors.has('password-confirmation')" class="help is-danger error">{{ errors.first('password-confirmation') }}</span>
