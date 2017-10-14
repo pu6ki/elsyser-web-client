@@ -82,6 +82,7 @@ export default {
       requester.put(`/profile/${this.$route.params.id}`, this.$data)
         .then((res) => {
           this.$toastr('success', 'Profile edited successfully.', 'Success.')
+          this.localStorage.elsyserUsername = res.data.user.username
           this.$router.push(`/profile/${this.$route.params.id}`)
         })
         .catch((err) => {
