@@ -275,7 +275,7 @@ export default {
     loadMore: function () {
       if (this.nextPage) {
         requester.get(this.$route.path + `/comments,`, {
-          page: `${this.nextPage}`
+          page: this.nextPage
         }).then((res) => {
           this.$set(this.news, 'comments', this.news.comments.concat(res.data.results))
           if (res.data.next) {
