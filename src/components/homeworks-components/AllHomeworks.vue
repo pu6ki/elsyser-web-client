@@ -106,18 +106,19 @@ export default {
     },
     onInfinite: function () {
       if (this.nextPage) {
-        requester.get(this.$route.path + `?page=${this.nextPage}`)
-          .then((res) => {
-            this.$set(this.$data, 'homeworks', this.news.concat(res.data.results))
-            this.filteredHomeworks.concat(res.data.results)
-            this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
-            if (res.data.nextPage) {
-              let index = res.data.next.indexOf('=') + 1
-              this.nextPage = res.data.next.substr(index)
-            } else {
-              this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
-            }
-          })
+        requester.get(this.$route.path, {
+          page: this.nextPage
+        }).then((res) => {
+          this.$set(this.$data, 'homeworks', this.news.concat(res.data.results))
+          this.filteredHomeworks.concat(res.data.results)
+          this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
+          if (res.data.nextPage) {
+            let index = res.data.next.indexOf('=') + 1
+            this.nextPage = res.data.next.substr(index)
+          } else {
+            this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+          }
+        })
       } else {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
       }
