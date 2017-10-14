@@ -38,18 +38,18 @@
                   <span v-show="news.class_letter">{{news.class_letter}}</span> class</b>
               </span>
               <span> {{relativeDate(news.posted_on)}}</span>
-  
+
               <span v-show="news.edited">(last edited {{relativeDate(news.last_edited_on)}})</span>
             </div>
           </div>
         </div>
-  
+
         <div id="comments" v-if="computedComments">
           <div class="row comment" v-for="comment in computedComments" :key="comment.id">
             <div class="col-xs-3 col-sm-1 col-md-1 col-lg-1 img-container">
               <img class="user-photo" :src="comment.author_image">
             </div>
-  
+
             <div class="col-xs-9 col-sm-11 col-sm-11 col-md-11 col-lg-11">
               <div class="comment-panel panel panel-default">
                 <div class="panel-heading">
@@ -77,11 +77,11 @@
               </div>
             </div>
           </div>
-          <button class="center-block" @click="loadMore" id="loadMore">Load More</button>
+          <button class="center-block btn btn-primary" @click="loadMore" id="loadMore">Load More</button>
         </div>
       </div>
     </div>
-  
+
     <form class="row form-wrapper" @submit.prevent="onSubmit()">
       <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
         <input type="text" v-model="comment.content" id="comment-content" class="form-control" placeholder="Add Comment">
@@ -274,16 +274,17 @@ export default {
     },
     loadMore: function () {
       if (this.nextPage) {
-        requester.get(this.$route.path + `/comments?page=${this.nextPage}`)
-          .then((res) => {
-            this.$set(this.news, 'comments', this.news.comments.concat(res.data.results))
-            if (res.data.next) {
-              let index = res.data.next.indexOf('=') + 1
-              this.nextPage = res.data.next.substr(index)
-            } else {
-              this.nextPage = null
-            }
-          })
+        requester.get(this.$route.path + `/comments,`, {
+          page: `${this.nextPage}`
+        }).then((res) => {
+          this.$set(this.news, 'comments', this.news.comments.concat(res.data.results))
+          if (res.data.next) {
+            let index = res.data.next.indexOf('=') + 1
+            this.nextPage = res.data.next.substr(index)
+          } else {
+            this.nextPage = null
+          }
+        })
       }
     }
   }

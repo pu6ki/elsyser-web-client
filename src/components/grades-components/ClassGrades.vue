@@ -94,10 +94,12 @@ export default {
     }
   },
   beforeCreate: function () {
-    requester.get(`/grades/${window.localStorage.getItem('elsyserTeacherSubjectId')}?class_number=${this.$route.params.classNumber}&class_letter=${this.$route.params.classLetter}`)
-      .then((res) => {
-        this.grades = res.data
-      })
+    requester.get(`/grades/${window.localStorage.getItem('elsyserTeacherSubjectId')}`, {
+      class_number: this.$route.params.classNumber,
+      class_letter: this.$route.params.classLetter
+    }).then((res) => {
+      this.grades = res.data
+    })
   }
 }
 </script>

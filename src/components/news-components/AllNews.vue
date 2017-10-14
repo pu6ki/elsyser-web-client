@@ -36,7 +36,7 @@
                     <span v-show="item.class_letter">{{item.class_letter}}</span> class</b>
                 </span>
                 <span> {{relativeDate(item.posted_on)}}</span>
-  
+
                 <span v-show="item.edited">(last edited {{relativeDate(item.last_edited_on)}})</span>
               </div>
               <div class="text-center">
@@ -57,7 +57,7 @@
         </div>
         <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading">
           <span slot="no-more"></span>
-          <span slot="no-results"></span>  
+          <span slot="no-results"></span>
         </infinite-loading>
       </div>
     </div>
@@ -130,18 +130,19 @@ export default {
     },
     onInfinite: function () {
       if (this.nextPage) {
-        requester.get(this.$route.path + `?page=${this.nextPage}`)
-          .then((res) => {
-            this.$set(this.$data, 'news', this.news.concat(res.data.results))
-            this.filteredNews.concat(res.data.results)
-            this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
-            if (res.data.nextPage) {
-              let index = res.data.next.indexOf('=') + 1
-              this.nextPage = res.data.next.substr(index)
-            } else {
-              this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
-            }
-          })
+        requester.get(this.$route.path, {
+          page: this.nextPage
+        }).then((res) => {
+          this.$set(this.$data, 'news', this.news.concat(res.data.results))
+          this.filteredNews.concat(res.data.results)
+          this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
+          if (res.data.nextPage) {
+            let index = res.data.next.indexOf('=') + 1
+            this.nextPage = res.data.next.substr(index)
+          } else {
+            this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+          }
+        })
       } else {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
       }
