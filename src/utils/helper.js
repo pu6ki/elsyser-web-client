@@ -20,8 +20,10 @@ export default {
       return `Good ${mark}`
     } else if (mark < 3.50 && mark >= 3.00) {
       return `Average ${mark}`
-    } else {
+    } else if (mark >= 2.00) {
       return `Poor ${mark}`
+    } else {
+      return 'No grades added yet'
     }
   },
   setNewsUrl: () => {
