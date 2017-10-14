@@ -99,8 +99,10 @@ export default {
   beforeCreate: function () {
     requester.get(`/homeworks/${this.$route.params.homeworkId}/submissions`)
       .then((res) => {
-        this.$data.submission = res.data[0]
-        this.$data.submission.content = helper.insertLineBreaks(this.$data.submission.content)
+        if (res.data[0]) {
+          this.$data.submission = res.data[0]
+          this.$data.submission.content = helper.insertLineBreaks(this.$data.submission.content)
+        }
       })
       .catch(console.log)
   },
