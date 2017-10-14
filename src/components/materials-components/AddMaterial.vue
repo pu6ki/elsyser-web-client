@@ -55,7 +55,7 @@ export default {
       if (this.errors.any()) {
         this.$toastr('error', 'Invalid input data.', 'Error')
       } else {
-        requester.post(`/materials/${this.localStorage.elsyserTeacherSubjectId}`, this.$data)
+        requester.post(`/materials/${window.localStorage.getItem('elsyserTeacherSubjectId')}`, this.$data)
           .then(() => {
             this.$toastr('success', 'Material added successfully.', 'Success.')
             this.$router.push('/materials/all')

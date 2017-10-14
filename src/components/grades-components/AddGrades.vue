@@ -45,24 +45,27 @@ export default {
     }
   },
   beforeCreate: function () {
-    requester.get(`/students?class_number=${this.$route.params.classNumber}&class_letter=${this.$route.params.classLetter}`)
-    .then((res) => {
-      res.data.results.forEach(function (element) {
-        let student = {
-          fullName: '',
-          id: null
-        }
-        student.fullName = element.user.first_name + ' ' + element.user.last_name
-        student.id = element.user.id
-        this.students.push(student)
-      }, this)
-
-      this.students.sort((a, b) => {
-        if (a.fullName.toUpperCase() < b.fullName.toUpperCase()) return -1
-        else if (a.fullName.toUpperCase() > b.fullName.toUpperCase()) return 1
-        else return 0
-      })
+    requester.get(`/students`, {
+      class_number: `${this.$route.params.classNumber}`,
+      class_letter: `${this.$route.params.classLetter}`
     })
+      .then((res) => {
+        res.data.results.forEach(function (element) {
+          let student = {
+            fullName: '',
+            id: null
+          }
+          student.fullName = element.user.first_name + ' ' + element.user.last_name
+          student.id = element.user.id
+          this.students.push(student)
+        }, this)
+
+        this.students.sort((a, b) => {
+          if (a.fullName.toUpperCase() < b.fullName.toUpperCase()) return -1
+          else if (a.fullName.toUpperCase() > b.fullName.toUpperCase()) return 1
+          else return 0
+        })
+      })
   },
   methods: {
     onSubmit: function () {

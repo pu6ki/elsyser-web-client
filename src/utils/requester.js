@@ -11,16 +11,20 @@ if (token !== 'null' && token) {
 let apiUrl = process.env.API_URL
 
 let requester = {
-  get: (url) => {
+  get: (url, params) => {
+    config.params = params
     return axios.get(apiUrl + url + '/', config)
   },
-  post: (url, data) => {
+  post: (url, data, params) => {
+    config.params = params
     return axios.post(apiUrl + url + '/', data, config)
   },
-  put: (url, data) => {
+  put: (url, data, params) => {
+    config.params = params
     return axios.put(apiUrl + url + '/', data, config)
   },
-  delete: (url) => {
+  delete: (url, params) => {
+    config.params = params
     return axios.delete(apiUrl + url + '/', config)
   }
 }
