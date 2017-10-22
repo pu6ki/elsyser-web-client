@@ -47,5 +47,3 @@ aerobatic.yml
 # Auth config
 config/dev.env.js
 config/prod.env.js
-
-dist/
