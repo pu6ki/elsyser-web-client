@@ -7,37 +7,39 @@
           <strong v-else>Teacher profile</strong>
         </div>
         <div class="row">
-          <img :src="profile_image_url" alt="Profile Image" class="col-xs-6 col-md-4" id="profile-image">
-          <form class="col-xs-6 col-md-4 form-wrapper" id="profile-info" @submit.prevent="onSubmit">
+          <div class="col-md-6 col-md-offset-3 text-center">
+            <img :src="profile_image_url" alt="Profile Image" id="profile-image">
+          </div>
+          <form class="col-md-6 col-md-offset-3 text-center form-wrapper" id="profile-info" @submit.prevent="onSubmit">
             <div>
               <strong>
                 <i>Username:</i>
               </strong>
-              <input class="form-control" id="new-username" type="text" v-model="user.username">
+              <input class="form-control text-center" id="new-username" type="text" v-model="user.username">
             </div>
             <div>
               <strong>
                 <i>First name:</i>
               </strong>
-              <input class="form-control" id="new-first-name" type="text" v-model="user.first_name">
+              <input class="form-control text-center" id="new-first-name" type="text" v-model="user.first_name">
             </div>
             <div>
               <strong>
                 <i>Last name:</i>
               </strong>
-              <input class="form-control" id="new-last-name" type="text" v-model="user.last_name">
+              <input class="form-control text-center" id="new-last-name" type="text" v-model="user.last_name">
             </div>
             <div>
               <strong>
                 <i>About:</i>
               </strong>
-              <input class="form-control" id="new-info" type="text" v-model="info">
+              <input class="form-control text-center" id="new-info" type="text" v-model="info">
             </div>
             <div>
               <strong>
                 <i>Profile image url:</i>
               </strong>
-              <input class="form-control" id="new-profile-image-url" type="text" v-model="profile_image_url">
+              <input class="form-control text-center" id="new-profile-image-url" type="text" v-model="profile_image_url">
             </div>
             <button id="save-button" class="btn btn-primary">Save</button>
           </form>
@@ -102,7 +104,8 @@ export default {
     max-width: 300px;
 }
 
-#profile-info {
-    margin: 10px;
+#save-button {
+  margin: 10px;
 }
+
 </style>
