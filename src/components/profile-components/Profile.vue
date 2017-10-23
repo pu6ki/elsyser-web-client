@@ -7,8 +7,10 @@
           <strong v-else>Teacher profile</strong>
         </div>
         <div class="row" id="profile-block">
-          <img :src="profile_image_url" alt="Profile Image" class="col-xs-6 col-md-4" id="profile-image">
-          <div class="col-xs-6 col-md-4" id="profile-info">
+          <div class="col-md-6 col-md-offset-3 text-center">
+            <img :src="profile_image_url" alt="Profile Image" id="profile-image">
+          </div>
+          <div class="col-md-6 col-md-offset-3 text-center" id="profile-info">
             <div>
               <i>Username: </i>
               <strong>
@@ -119,14 +121,15 @@ export default {
 </script>
 
 <style scoped>
+#profile-block {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 #profile-image {
-    margin: 10px;
     border-radius: 10%;
     max-height: 300px;
     max-width: 300px;
-}
-
-#profile-info {
-    margin: 10px;
+    margin-bottom: 20px;
 }
 </style>
