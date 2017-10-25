@@ -43,6 +43,8 @@ import SelectClass from '../components/grades-components/SelectClass'
 import ClassGrades from '../components/grades-components/ClassGrades'
 import AddGrades from '../components/grades-components/AddGrades'
 
+import NotFound from '../components/NotFound'
+
 Vue.use(Router)
 
 const router = new Router({
@@ -283,6 +285,11 @@ const router = new Router({
         }
       ],
       meta: { requiresAuth: true }
+    },
+    {
+      path: '*',
+      name: 'NotFound',
+      component: NotFound
     }
   ]
 })

@@ -5,83 +5,25 @@
         <div class="panel-heading text-center">
           <strong>Change password</strong>
         </div>
-        <div class="row">
-          <img :src="profile_image_url" alt="Profile Image" class="col-xs-6 col-md-4" id="profile-image">
-          <div class="col-xs-6 col-md-4">
-            <div>
-              <i>Username: </i>
-              <strong>
-                <span>
-                  {{user.username}}
-                </span>
-              </strong>
-            </div>
-            <div>
-              <i>Name: </i>
-              <strong>
-                <span>
-                  {{user.first_name}} {{user.last_name}}
-                </span>
-              </strong>
-            </div>
-            <div>
-              <i>Email: </i>
-              <strong>
-                <span>
-                  {{user.email}}
-                </span>
-              </strong>
-            </div>
-
-            <div v-if="clazz">
-              <i>Class: </i>
-              <strong>
-                <span>
-                  {{clazz.number}}{{clazz.letter}}
-                </span>
-              </strong>
-            </div>
-            <div v-else>
-              <i>Subject: </i>
-              <strong>
-                <span>
-                  {{subject.title}}
-                </span>
-              </strong>
-            </div>
-
-            <div v-if="info">
-              <i>About: </i>
-              <strong>
-                <span>{{info}}</span>
-              </strong>
-            </div>
-            <div v-else>
-              <strong>
-                <span>
-                  <i>No details provided.</i>
-                </span>
-              </strong>
-            </div>
-            <form @submit.prevent="onSubmit">
-                <label for="currentPassword">Current password:</label>
-                <p :class="{'control': true}">
-                  <span v-show="errors.has('current-password')" class="help is-danger error">{{ errors.first('current-password') }}</span>
-                  <input type="password" v-model="currentPassword" v-validate="'required'" class="form-control" id="current-password" name="current-password" placehcurrenter="Current Password" />
-                </p>
-                <label for="newPassword">New password:</label>
-                <p :class="{'control': true}">
-                  <span v-show="errors.has('new-password')" class="help is-danger error">{{ errors.first('new-password') }}</span>
-                  <input type="password" v-model="newPassword" v-validate="'required|min:6|max:32'" class="form-control" id="new-password" name="new-password" placehcurrenter="New Password" />
-                </p>
-                <label for="password-confirmation">Confirm password:</label>
-                <p :class="{'control': true}">
-                  <span v-show="errors.has('password-confirmation')" class="help is-danger error">{{ errors.first('password-confirmation') }}</span>
-                  <input type="password" v-validate="'required|confirmed:new-password'" class="form-control" id="password-confirmation" name="password-confirmation" placehcurrenter="Confirm Password" />
-                </p>
-                <button class="btn btn-lg btn-primary btn-block" id="change-password-button">Change</button>
-            </form>
-          </div>
+        <div class="col-md-8 col-md-offset-2 text-center">
+          <form @submit.prevent="onSubmit">
+              <label for="currentPassword">Current password:</label>
+              <p :class="{'control': true}">
+                <span v-show="errors.has('current-password')" class="help is-danger error">{{ errors.first('current-password') }}</span>
+                <input type="password" v-model="currentPassword" v-validate="'required'" class="form-control" id="current-password" name="current-password" placehcurrenter="Current Password" />
+              </p>
+              <label for="newPassword">New password:</label>
+              <p :class="{'control': true}">
+                <span v-show="errors.has('new-password')" class="help is-danger error">{{ errors.first('new-password') }}</span>
+                <input type="password" v-model="newPassword" v-validate="'required|min:6|max:32'" class="form-control" id="new-password" name="new-password" placehcurrenter="New Password" />
+              </p>
+              <label for="password-confirmation">Confirm password:</label>
+              <p :class="{'control': true}">
+                <span v-show="errors.has('password-confirmation')" class="help is-danger error">{{ errors.first('password-confirmation') }}</span>
+                <input type="password" v-validate="'required|confirmed:new-password'" class="form-control" id="password-confirmation" name="password-confirmation" placehcurrenter="Confirm Password" />
+              </p>
+              <button class="btn btn-lg btn-primary btn-block" id="change-password-button">Change</button>
+          </form>
         </div>
       </div>
     </div>
@@ -157,6 +99,9 @@ export default {
 </script>
 
 <style scoped>
+form {
+  margin-top: 10px;
+}
 label {
   font-size: 16px;
 }

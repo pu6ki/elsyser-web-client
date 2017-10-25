@@ -10,12 +10,12 @@
               <input type="text" v-model="user.username" v-validate="'required|min:3|max:30'" id="username" class="form-control" name="username" placeholder="Username" autofocus/>
             </p>
             <p :class="{'control': true}">
-              <span v-show="errors.has('firstName')" class="help is-danger error">First name must be between 3 and 30 characters long.</span>
-              <input type="text" v-model="user.first_name" v-validate="'required|min:3|max:30'" id="firstName" class="form-control" name="firstName" placeholder="First name" />
+              <span v-show="errors.has('firstName')" class="help is-danger error">First name must be between 3 and 30 characters long and should contain only letters.</span>
+              <input type="text" v-model="user.first_name" v-validate="'required|min:3|max:30|alpha'" id="firstName" class="form-control" name="firstName" placeholder="First name" />
             </p>
             <p :class="{'control': true}">
-              <span v-show="errors.has('lastName')" class="help is-danger error"> Last name must be between 3 and 30 characters long. </span>
-              <input type="text" v-model="user.last_name" v-validate="'required|min:3|max:30'" id="lastName" class="form-control" name="lastName" placeholder="Last name" />
+              <span v-show="errors.has('lastName')" class="help is-danger error"> Last name must be between 3 and 30 characters long and should contain only letters. </span>
+              <input type="text" v-model="user.last_name" v-validate="'required|min:3|max:30|alpha'" id="lastName" class="form-control" name="lastName" placeholder="Last name" />
             </p>
             <p :class="{'control': true}">
               <span v-show="errors.has('email')" class="help is-danger error">{{ errors.first('email') }}</span>
