@@ -30,9 +30,9 @@
               <input type="password" id="password-confirmation" v-validate="'required|confirmed:password'" data-vv-as="password" class="form-control" name="password-confirmation" placeholder="Enter password again" />
             </p>
             <p :class="{'control': true}">
-              <span v-show="errors.has('studentClassNumber')" class="help is-danger error"> Please select your class number </span>
+              <span v-show="errors.has('studentClassNumber')" class="help is-danger error"> Please select your class </span>
               <select class="form-control" v-model="clazz.number" name="studentClassNumber" id="studentClassNumber" v-validate="'required|numeric'" autocomplete="off">
-                <option selected disabled hidden>Class number</option>
+                <option selected disabled hidden>Class</option>
                 <option value="8">8</option>
                 <option value="9">9</option>
                 <option value="10">10</option>
@@ -83,7 +83,7 @@ export default {
         password: ''
       },
       clazz: {
-        number: 'Class number',
+        number: 'Class',
         letter: 'Class letter'
       }
     }
