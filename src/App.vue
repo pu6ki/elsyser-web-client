@@ -395,4 +395,8 @@ span.error {
 #go-home-button a {
   color: white;
 }
+
+.CodeMirror div *{
+  text-align: left;
+}
 </style>

@@ -55,9 +55,6 @@ export default {
       }
     }
   },
-  mounted: function () {
-    // this.simplemde.togglePreview()
-  },
   computed: {
     simplemde () {
       return this.$refs.markdownEditor.simplemde
@@ -101,6 +98,6 @@ export default {
 </script>
 
 <style>
-  @import '~simplemde/dist/simplemde.min.css';
-  @import '~github-markdown-css';
+@import '~simplemde/dist/simplemde.min.css';
+@import '~github-markdown-css';
 </style>
