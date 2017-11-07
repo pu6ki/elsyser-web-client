@@ -20,6 +20,7 @@
     "bootstrap": "^3.3.7",
     "bootstrap-sweetalert": "^1.0.1",
     "crypto-js": "^3.1.9-1",
+    "github-markdown-css": "^2.9.0",
     "moment": "^2.19.1",
     "vee-validate": "^2.0.0-rc.8",
     "vue": "^2.3.3",
@@ -28,6 +29,7 @@
     "vue-recaptcha": "^0.4.0",
     "vue-router": "^2.6.0",
     "vue-select": "^2.3.0",
+    "vue-simplemde": "^0.4.6",
     "vuex": "^2.4.0"
   },
   "devDependencies": {
