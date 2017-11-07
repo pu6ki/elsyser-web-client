@@ -14,7 +14,7 @@
       <label for="content">Content: </label>
       <p :class="{'control': true}">
         <span v-show="errors.has('content')" class="help is-danger error">{{errors.first('content')}}</span>
-        <textarea class="form-control" name="content" id="content" rows="4" v-model="material.content" v-validate="'required'"></textarea>
+        <markdown-editor name="content" id="content" v-model="material.content" ref="markdownEditor" :configs="configs" v-validate="'required|min:5'"></markdown-editor>        
       </p>
       <label for="class-number">Class: </label>
       <p :class="{'control': true}">
@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import markdownEditor from 'vue-simplemde/src/markdown-editor'
+import toMarkdown from 'to-markdown'
 import requester from '../../utils/requester'
 
 export default {
@@ -47,13 +49,22 @@ export default {
         content: '',
         class_number: null,
         video_url: ''
+      },
+      configs: {
+        hideIcons: ['fullscreen', 'side-by-side']
       }
+    }
+  },
+  computed: {
+    simplemde () {
+      return this.$refs.markdownEditor.simplemde
     }
   },
   beforeCreate: function () {
     requester.get(`/materials/${this.$route.params.subjectId}/${this.$route.params.id}`)
       .then((res) => {
         this.$data.material = res.data
+        this.material.content = toMarkdown(this.material.content)
       })
       .catch(console.log)
   },
@@ -64,7 +75,9 @@ export default {
       if (this.errors.any()) {
         this.$toastr('error', 'Invalid input data.', 'Error')
       } else {
-        requester.put(`/materials/${this.localStorage.elsyserTeacherSubjectId}/${this.$route.params.id}`, this.$data.material)
+        this.$data.material.content = this.simplemde.markdown(this.$data.material.content)
+
+        requester.put(`/materials/${window.localStorage.getItem('elsyserTeacherSubjectId')}/${this.$route.params.id}`, this.$data.material)
           .then(() => {
             this.$toastr('success', 'Material added successfully.', 'Success.')
             this.$router.push(`/materials/${this.localStorage.elsyserTeacherSubjectId}/${this.$route.params.id}`)
@@ -75,11 +88,17 @@ export default {
           })
       }
     }
+  },
+  components: {
+    markdownEditor
   }
 }
 </script>
 
 <style>
+@import '~simplemde/dist/simplemde.min.css';
+@import '~github-markdown-css';
+
 #edit-material {
   margin-top: 15px;
 }

@@ -14,7 +14,7 @@
       <label for="content">Content: </label>
       <p :class="{'control': true}">
         <span v-show="errors.has('content')" class="help is-danger error">{{errors.first('content')}}</span>
-        <textarea class="form-control" name="content" id="content" rows="4" v-model="content" v-validate="'required'"></textarea>
+        <markdown-editor name="content" id="content" v-model="content" ref="markdownEditor" :configs="configs" v-validate="'required|min:5'"></markdown-editor>      
       </p>
       <label for="class-number">Class: </label>
       <p :class="{'control': true}">
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import markdownEditor from 'vue-simplemde/src/markdown-editor'
 import requester from '../../utils/requester'
 
 export default {
@@ -45,7 +46,15 @@ export default {
       section: '',
       content: '',
       class_number: null,
-      video_url: ''
+      video_url: '',
+      configs: {
+        hideIcons: ['fullscreen', 'side-by-side']
+      }
+    }
+  },
+  computed: {
+    simplemde () {
+      return this.$refs.markdownEditor.simplemde
     }
   },
   methods: {
@@ -55,6 +64,8 @@ export default {
       if (this.errors.any()) {
         this.$toastr('error', 'Invalid input data.', 'Error')
       } else {
+        this.$data.content = this.simplemde.markdown(this.$data.content)
+
         requester.post(`/materials/${window.localStorage.getItem('elsyserTeacherSubjectId')}`, this.$data)
           .then(() => {
             this.$toastr('success', 'Material added successfully.', 'Success.')
@@ -66,11 +77,17 @@ export default {
           })
       }
     }
+  },
+  components: {
+    markdownEditor
   }
 }
 </script>
 
 <style>
+@import '~simplemde/dist/simplemde.min.css';
+@import '~github-markdown-css';
+
 #add-material {
   margin-top: 15px;
 }
