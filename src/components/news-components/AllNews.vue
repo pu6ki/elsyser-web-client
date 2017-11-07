@@ -103,6 +103,7 @@ export default {
     filteredNews: function () {
       let self = this
       let filtered = this.news.filter((el) => {
+        el.content = helper.extractContent(el.content)
         return el.content.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 ||
           el.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0
       })
