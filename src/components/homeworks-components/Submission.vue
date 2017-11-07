@@ -26,13 +26,7 @@
           </div>
           <div class="panel-body">
             <div>
-              <strong>
-                Content:
-              </strong>
-              <br />
-              <i>
-                <span id="submission-content" v-html="submission.content"></span>
-              </i>
+              <span id="submission-content" v-html="submission.content"></span>
               <br />
               <div v-show="submission.solution_url">
                 <strong>Solution URL:</strong>

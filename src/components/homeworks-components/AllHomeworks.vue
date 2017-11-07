@@ -41,7 +41,7 @@
           </div>
         </div>
       </div>
-      <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading">
+      <infinite-loading @infinite="onInfinite" ref="infiniteLoading">
           <span slot="no-more"></span>
           <span slot="no-results"></span>  
         </infinite-loading>
@@ -76,6 +76,7 @@ export default {
     filteredHomeworks: function () {
       let self = this
       let filtered = this.homeworks.filter((homework) => {
+        homework.details = helper.extractContent(homework.details)
         return homework.details.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 ||
           homework.subject.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0
       })
