@@ -40,7 +40,7 @@
             <label for="details">Details: </label>
             <p :class="{'control': true}">
               <span v-show="errors.has('details')" class="help is-danger error">{{ errors.first('details') }}</span>              
-              <textarea v-model="details" v-validate="'max:10000'" name="details" class="form-control" id="details" rows="4"></textarea>
+              <markdown-editor name="content" id="content" v-model="details" ref="markdownEditor" :configs="configs" v-validate="'required|min:5|max:10000'"></markdown-editor>
             </p>
           </div>
           <button class="btn btn-lg btn-primary btn-block submit" id="add-exam">Add Exam</button>
@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import markdownEditor from 'vue-simplemde/src/markdown-editor'
 import requester from '../../utils/requester'
 
 export default {
@@ -63,7 +64,15 @@ export default {
         number: null,
         letter: ''
       },
-      details: ''
+      details: '',
+      configs: {
+        hideIcons: ['fullscreen', 'side-by-side']
+      }
+    }
+  },
+  computed: {
+    simplemde () {
+      return this.$refs.markdownEditor.simplemde
     }
   },
   methods: {
@@ -73,6 +82,8 @@ export default {
       if (this.errors.any()) {
         this.$toastr('error', 'Invalid input data.', 'Error')
       } else {
+        this.$data.details = this.simplemde.markdown(this.$data.details)
+
         requester.post('/exams', this.$data)
           .then(() => {
             this.$toastr('success', 'Exam added successfully.', 'Success.')
@@ -84,10 +95,14 @@ export default {
           })
       }
     }
+  },
+  components: {
+    markdownEditor
   }
 }
 </script>
 
 <style>
-
+@import '~simplemde/dist/simplemde.min.css';
+@import '~github-markdown-css';
 </style>

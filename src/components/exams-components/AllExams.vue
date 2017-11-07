@@ -29,7 +29,7 @@
               <i v-if="exam.details">
                 Details:
                 <strong>
-                  <div id="details">{{exam.details}}</div>
+                  <div id="details" v-html="exam.details"></div>
                 </strong>
               </i>
               <i v-else>No details provided.</i>
@@ -48,7 +48,7 @@
           </button>
         </div>
       </div>
-      <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading">
+      <infinite-loading @infinite="onInfinite" ref="infiniteLoading">
         <span slot="no-more"></span>
         <span slot="no-results"></span>
       </infinite-loading>
@@ -86,6 +86,7 @@ export default {
     filteredExams: function () {
       let self = this
       let filtered = this.exams.filter((exam) => {
+        exam.details = helper.extractContent(exam.details)
         return exam.details.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 ||
           exam.subject.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 ||
           exam.topic.toLowerCase().indexOf(self.search.toLowerCase()) >= 0
