@@ -55,7 +55,7 @@
             </div>
           </div>
         </div>
-        <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading">
+        <infinite-loading @infinite="onInfinite" ref="infiniteLoading">
           <span slot="no-more"></span>
           <span slot="no-results"></span>
         </infinite-loading>
