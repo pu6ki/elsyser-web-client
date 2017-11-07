@@ -2,10 +2,10 @@
   <div id="wrapper">
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
-        <div class="panel panel-primary text-center">
-          <div class="panel-heading">
+        <div class="panel panel-primary">
+          <div class="panel-heading text-center">
             <strong>
-              <span>{{news.title}}</span>
+              <span id="news-title">{{news.title}}</span>
             </strong>
             <div v-show="isEditable(news)" class="pull-right edit">
               <span class="edit" v-on:click="$router.push(`${$route.path}/edit`)">
@@ -20,7 +20,7 @@
             <div>
               <span>
                 <strong>
-                  <i>{{news.content}}</i>
+                  <i v-html="news.content"></i>
                 </strong>
               </span>
             </div>
@@ -138,6 +138,7 @@ export default {
     requester.get(this.$route.path)
       .then((res) => {
         this.news = res.data
+        this.news.content = helper.insertLineBreaks(res.data.content)
         return requester.get(this.$route.path + '/comments')
       })
       .then((res) => {
@@ -347,5 +348,9 @@ export default {
 
 #add-comment-button {
   display: inline;
+}
+
+#news-title {
+  margin-left: 35px;
 }
 </style>
