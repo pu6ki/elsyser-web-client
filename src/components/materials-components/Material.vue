@@ -18,8 +18,7 @@
           </div>
           <div class="panel-body center-text">
             <h4>{{material.title}}</h4>
-            <article v-html="material.content">
-            </article>
+            <article v-html="material.content"></article>
             <br />
             <div class="embed-responsive embed-responsive-16by9" v-if="material.video_url">
               <iframe class="embed-responsive-item" :src="makeYouTubeVideoEmbeddable(material.video_url)" allowfullscreen></iframe>
@@ -70,7 +69,6 @@ export default {
     requester.get(`/materials/${this.$route.params.subjectId}/${this.$route.params.id}`)
       .then((res) => {
         this.$data.material = res.data
-        this.$data.material.content = helper.insertLineBreaks(res.data.content)
       })
       .catch((err) => {
         console.log(err)

@@ -9,7 +9,7 @@
       <label class="label-center" for="news-content">Content</label>
       <p :class="{'control': true}">
         <span v-show="errors.has('content')" class="help is-danger error">{{errors.first('content')}}</span>
-        <textarea class="form-control" name="content" id="content" rows="4" v-model="content" v-validate="'required|min:5'"></textarea>
+        <markdown-editor name="content" id="content" v-model="content" ref="markdownEditor" :configs="configs" v-validate="'required|min:5'"></markdown-editor>
       </p>
       <div v-if="hasTeacherRights()">
         <label for="class-number">Class: </label>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import markdownEditor from 'vue-simplemde/src/markdown-editor'
 import requester from '../../utils/requester'
 import helper from '../../utils/helper'
 
@@ -48,7 +49,15 @@ export default {
       title: '',
       content: '',
       classNumber: null,
-      classLetter: ''
+      classLetter: '',
+      configs: {
+        hideIcons: ['fullscreen', 'side-by-side']
+      }
+    }
+  },
+  computed: {
+    simplemde () {
+      return this.$refs.markdownEditor.simplemde
     }
   },
   methods: {
@@ -68,6 +77,8 @@ export default {
           url += '/students'
         }
 
+        this.$data.content = this.simplemde.markdown(this.$data.content)
+
         requester.post(url, this.$data)
           .then(() => {
             this.$toastr('success', 'News added successfully.', 'Success.')
@@ -79,10 +90,14 @@ export default {
           })
       }
     }
+  },
+  components: {
+    markdownEditor
   }
 }
 </script>
 
 <style>
-
+@import '~simplemde/dist/simplemde.min.css';
+@import '~github-markdown-css';
 </style>

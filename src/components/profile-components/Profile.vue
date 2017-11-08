@@ -128,8 +128,8 @@ export default {
 
 #profile-image {
     border-radius: 10%;
-    max-height: 300px;
-    max-width: 300px;
+    max-height: 40vh;
+    max-width: 40vw;
     margin-bottom: 20px;
 }
 </style>

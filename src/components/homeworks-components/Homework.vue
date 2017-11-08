@@ -2,8 +2,8 @@
   <div id="wrapper">
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
-        <div class="panel panel-primary text-center">
-          <div class="panel-heading">
+        <div class="panel panel-primary">
+          <div class="panel-heading text-center">
             <strong>
               {{homework.subject.title}}
             </strong>
@@ -17,15 +17,14 @@
             </div>
           </div>
           <div class="panel-body">
-            <div id="deadline">
+            <div id="deadline" class="text-center">
               <i>Deadline ends in</i>
               <strong>
                 <span>{{relativeDate(homework.deadline)}}</span>
               </strong>
             </div>
             <div v-if="homework.details">
-              <i>Details: </i>
-                <div>{{homework.details}}</div>
+              <div v-html="homework.details"></div>
             </div>
             <div v-else>
               <i>No details provided.</i>

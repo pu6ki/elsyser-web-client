@@ -36,7 +36,7 @@
           </p>
         </div>
         <label for="details">Details: </label>
-        <textarea v-model="details" name="details" class="form-control" id="details" rows="4"></textarea>
+        <markdown-editor name="content" id="content" v-model="details" ref="markdownEditor" :configs="configs"></markdown-editor>
         <button class="btn btn-lg btn-primary btn-block submit" id="add-exam">Add Homework</button>
       </section>
     </form>
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import markdownEditor from 'vue-simplemde/src/markdown-editor'
 import requester from '../../utils/requester'
 
 export default {
@@ -56,7 +57,15 @@ export default {
         number: null,
         letter: ''
       },
-      details: ''
+      details: '',
+      configs: {
+        hideIcons: ['fullscreen', 'side-by-side']
+      }
+    }
+  },
+  computed: {
+    simplemde () {
+      return this.$refs.markdownEditor.simplemde
     }
   },
   methods: {
@@ -66,6 +75,8 @@ export default {
       if (this.errors.any()) {
         this.$toastr('error', 'Invalid input data.', 'Error')
       } else {
+        this.$data.details = this.simplemde.markdown(this.$data.details)
+
         requester.post('/homeworks', this.$data)
           .then(() => {
             this.$toastr('success', 'Exam added successfully.', 'Success.')
@@ -77,10 +88,14 @@ export default {
           })
       }
     }
+  },
+  components: {
+    markdownEditor
   }
 }
 </script>
 
 <style>
-
+@import '~simplemde/dist/simplemde.min.css';
+@import '~github-markdown-css';
 </style>

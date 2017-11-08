@@ -9,10 +9,7 @@
         </div>
         <div class="panel-body text-center">
           <div class="submission-content">
-            <span>
-              <strong>
-                <i>{{submission.content}}</i>
-              </strong>
+            <span v-html="submission.content">
             </span>
           </div>
           <hr />

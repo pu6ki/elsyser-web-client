@@ -3,6 +3,7 @@ import VeeValidate from 'vee-validate'
 import VueToastr from '@deveodk/vue-toastr'
 import '@deveodk/vue-toastr/dist/@deveodk/vue-toastr.css'
 import reactiveStorage from 'vue-reactivestorage'
+import VueSimplemde from 'vue-simplemde'
 
 Vue.use(VeeValidate)
 
@@ -18,3 +19,5 @@ Vue.use(reactiveStorage, [
   'elsyserUsername',
   'elsyserTeacherSubjectId'
 ])
+
+Vue.use(VueSimplemde)

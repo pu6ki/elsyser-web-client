@@ -16,7 +16,7 @@
             </p>
           </div>
           <label for="details">Details: </label>
-          <textarea v-model="details" name="details" class="form-control" id="details" rows="4" :v-text="details"></textarea>
+          <markdown-editor name="content" id="content" v-model="details" ref="markdownEditor" :configs="configs"></markdown-editor>
           <button class="btn btn-lg btn-primary btn-block submit" id="add-exam">Edit Exam</button>
         </section>
       </form>
@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import markdownEditor from 'vue-simplemde/src/markdown-editor'
+import toMarkdown from 'to-markdown'
 import requester from '../../utils/requester'
 
 export default {
@@ -34,7 +36,15 @@ export default {
       date: '',
       topic: '',
       details: '',
-      id: null
+      id: null,
+      configs: {
+        hideIcons: ['fullscreen', 'side-by-side']
+      }
+    }
+  },
+  computed: {
+    simplemde () {
+      return this.$refs.markdownEditor.simplemde
     }
   },
   beforeCreate: function () {
@@ -42,7 +52,7 @@ export default {
       .then(res => {
         this.$data.date = res.data.date
         this.$data.topic = res.data.topic
-        this.$data.details = res.data.details
+        this.$data.details = toMarkdown(res.data.details)
         this.$data.id = res.data.id
       })
   },
@@ -53,6 +63,8 @@ export default {
       if (this.errors.any()) {
         this.$toastr('error', 'Invalid input data.', 'Error')
       } else {
+        this.$data.details = this.simplemde.markdown(this.$data.details)
+
         requester.put(`/exams/${this.id}`, this.$data)
           .then((res) => {
             this.$toastr('success', 'Exam edited successfully.', 'Success.')
@@ -64,10 +76,14 @@ export default {
           })
       }
     }
+  },
+  components: {
+    markdownEditor
   }
 }
 </script>
 
-<<style scoped>
-
+<style scoped>
+@import '~simplemde/dist/simplemde.min.css';
+@import '~github-markdown-css';
 </style>

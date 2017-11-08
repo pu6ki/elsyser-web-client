@@ -9,7 +9,7 @@
       <label class="label-center" for="news-content">Content</label>
       <p :class="{'control': true}">
         <span v-show="errors.has('content')" class="help is-danger error">{{errors.first('content')}}</span>
-        <textarea class="form-control" name="content" id="content" rows="4" v-model="news.content" v-validate="'required'"></textarea>
+        <markdown-editor name="content" id="content" v-model="news.content" ref="markdownEditor" :configs="configs" v-validate="'required|min:5'"></markdown-editor>        
       </p>
       <button class="btn btn-lg btn-primary btn-block submit" id="add-news">Edit News</button>
     </form>
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import markdownEditor from 'vue-simplemde/src/markdown-editor'
+import toMarkdown from 'to-markdown'
 import requester from '../../utils/requester'
 import helper from '../../utils/helper'
 
@@ -27,6 +29,9 @@ export default {
       news: {
         title: '',
         content: ''
+      },
+      configs: {
+        hideIcons: ['fullscreen', 'side-by-side']
       }
     }
   },
@@ -34,7 +39,13 @@ export default {
     requester.get(this.$route.path.replace('/edit', ''))
       .then((res) => {
         this.news = res.data
+        this.news.content = toMarkdown(this.news.content)
       })
+  },
+  computed: {
+    simplemde () {
+      return this.$refs.markdownEditor.simplemde
+    }
   },
   methods: {
     hasTeacherRights: function () {
@@ -46,6 +57,8 @@ export default {
       if (this.errors.any()) {
         this.$toastr('error', 'Invalid input data.', 'Error')
       } else {
+        this.$data.news.content = this.simplemde.markdown(this.$data.news.content)
+
         requester.put(this.$route.path.replace('/edit', ''), this.news)
           .then(() => {
             this.$toastr('success', 'News updated successfully.', 'Success.')
@@ -57,10 +70,14 @@ export default {
           })
       }
     }
+  },
+  components: {
+    markdownEditor
   }
 }
 </script>
 
 <style>
-
+@import '~simplemde/dist/simplemde.min.css';
+@import '~github-markdown-css';
 </style>

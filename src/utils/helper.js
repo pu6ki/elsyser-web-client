@@ -37,5 +37,10 @@ export default {
     let result = videoUrl.slice(0, index) + 'embed/' + videoUrl.slice(index)
 
     return result.replace('watch?v=', '')
+  },
+  extractContent: (html) => {
+    let el = document.createElement('div')
+    el.innerHTML = html
+    return el.textContent || el.innerText
   }
 }
