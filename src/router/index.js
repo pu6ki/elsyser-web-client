@@ -43,6 +43,10 @@ import SelectClass from '../components/grades-components/SelectClass'
 import ClassGrades from '../components/grades-components/ClassGrades'
 import AddGrades from '../components/grades-components/AddGrades'
 
+import AllTalks from '../components/talks-components/AllTalks'
+import AddTalk from '../components/talks-components/AddTalk'
+import EditTalk from '../components/talks-components/EditTalk'
+
 import NotFound from '../components/NotFound'
 
 Vue.use(Router)
@@ -282,6 +286,28 @@ const router = new Router({
           path: ':classNumber/:classLetter/add',
           name: 'AddGrades',
           component: AddGrades
+        }
+      ],
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/talks',
+      component: RouterTemplate,
+      children: [
+        {
+          path: 'all',
+          name: 'AllTalks',
+          component: AllTalks
+        },
+        {
+          path: 'add',
+          name: 'AddTalk',
+          component: AddTalk
+        },
+        {
+          path: 'edit/:id',
+          name: 'EditTalk',
+          component: EditTalk
         }
       ],
       meta: { requiresAuth: true }
