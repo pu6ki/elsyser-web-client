@@ -4,7 +4,7 @@
       <div v-for="(concreteClasses, wholeClass) in classes" :key="concreteClasses.id">
         <h3 class="text-center class-heading">{{concreteClasses[0].number}}th classes</h3>
         <div v-for="concreteClass in concreteClasses" :key="concreteClass.id">
-          <div class="col-lg-3 col-md-3 col-sm-12" :id="concreteClass.number + concreteClass.letter" v-on:click="$router.push(`/grades/${concreteClass.number}/${concreteClass.letter}`)">
+          <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-sm-12 concrete-class" :id="concreteClass.number + concreteClass.letter" v-on:click="$router.push(`/grades/${concreteClass.number}/${concreteClass.letter}`)">
             <div class="panel panel-default info-panel select-class text-center">
               <router-link :to="`/grades/${concreteClass.number}/${concreteClass.letter}`">
                 {{concreteClass.number}}{{concreteClass.letter}}
@@ -42,13 +42,21 @@ export default {
 </script>
 
 <style scoped>
+.concrete-class {
+  padding: 0;
+}
+
+.panel {
+  margin: 0;
+}
+
 .select-class a {
   font-size: 25px;
   color: white;
   line-height: 90px;
 }
 
-.select-class a:hover {
+.select-class:hover a {
   color: gold;
 }
 
