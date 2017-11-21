@@ -78,6 +78,7 @@ export default {
       requester.put(`/meetups/${this.$route.params.meetupId}/talks/${this.$route.params.talkId}/upvote`)
         .then(res => {
           this.$data.has_voted = true
+          this.$data.votes_count++
           this.$toastr('success', 'You voted for this talk successfully.', 'Success.')
         })
     },
@@ -85,6 +86,7 @@ export default {
       requester.put(`/meetups/${this.$route.params.meetupId}/talks/${this.$route.params.talkId}/downvote`)
         .then(res => {
           this.$data.has_voted = false
+          this.$data.votes_count--
           this.$toastr('success', 'You downvoted for this talk successfully.', 'Success.')
         })
     }
