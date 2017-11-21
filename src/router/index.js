@@ -43,7 +43,8 @@ import SelectClass from '../components/grades-components/SelectClass'
 import ClassGrades from '../components/grades-components/ClassGrades'
 import AddGrades from '../components/grades-components/AddGrades'
 
-import AllTalks from '../components/talks-components/AllTalks'
+import AllMeetups from '../components/talks-components/AllMeetups'
+import Talk from '../components/talks-components/Talk'
 import AddTalk from '../components/talks-components/AddTalk'
 import EditTalk from '../components/talks-components/EditTalk'
 
@@ -291,21 +292,26 @@ const router = new Router({
       meta: { requiresAuth: true }
     },
     {
-      path: '/talks',
+      path: '/meetups',
       component: RouterTemplate,
       children: [
         {
           path: 'all',
-          name: 'AllTalks',
-          component: AllTalks
+          name: 'AllMeetups',
+          component: AllMeetups
         },
         {
-          path: 'add',
+          path: 'addTalk',
           name: 'AddTalk',
           component: AddTalk
         },
         {
-          path: 'edit/:id',
+          path: ':meetupId/talks/:talkId',
+          name: 'Talk',
+          component: Talk
+        },
+        {
+          path: ':meetupId/talks/:talkId/edit',
           name: 'EditTalk',
           component: EditTalk
         }

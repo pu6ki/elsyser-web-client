@@ -78,7 +78,7 @@ export default {
         requester.post(`/meetups/${this.selectedMeetupId}/talks`, body)
           .then(() => {
             this.$toastr('success', 'Talk added successfully.', 'Success.')
-            this.$router.push('/talks/all')
+            this.$router.push('/meetups/all')
           })
           .catch((err) => {
             console.log(err)

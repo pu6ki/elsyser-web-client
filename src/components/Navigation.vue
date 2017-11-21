@@ -51,7 +51,7 @@
                   <span class="glyphicon glyphicon-list-alt"></span>
                 </router-link>
               </li><li id="talks-button">
-                <router-link to="/talks/all" data-toggle="collapse" data-target=".navbar-collapse.in">Talks
+                <router-link to="/meetups/all" data-toggle="collapse" data-target=".navbar-collapse.in">Talks
                   <span class="glyphicon glyphicon-education"></span>
                 </router-link>
               </li>
