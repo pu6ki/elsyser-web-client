@@ -29,7 +29,11 @@
               </span>
             </router-link>
           </div>
-          <button class="btn btn-lg btn-primary center-block" id="vote" :click="upvote()">Vote</button>
+          <div class="text-center" id="votes-count">
+            <span>Votes: {{votes_count}}</span>
+          </div>
+          <button class="btn btn-lg btn-primary center-block" id="vote" v-on:click="upvote()" v-if="!has_voted">Vote</button>
+          <button class="btn btn-lg btn-primary center-block" id="vote" v-on:click="downvote()" v-else>Downvote</button>          
         </div>
       </div>
     </div>
@@ -48,6 +52,7 @@ export default {
       description: '',
       video_url: '',
       author: {},
+      votes_count: 0,
       has_voted: false
     }
   },
@@ -58,6 +63,8 @@ export default {
         this.$data.description = res.data.description
         this.$data.video_url = res.data.video_url
         this.$data.author = res.data.author
+        this.$data.votes_count = res.data.votes_count
+        this.$data.has_voted = res.data.has_voted
       })
   },
   methods: {
@@ -68,7 +75,18 @@ export default {
       return helper.makeYouTubeVideoEmbeddable(videoUrl)
     },
     upvote: function () {
-      return true
+      requester.put(`/meetups/${this.$route.params.meetupId}/talks/${this.$route.params.talkId}/upvote`)
+        .then(res => {
+          this.$data.has_voted = true
+          this.$toastr('success', 'You voted for this talk successfully.', 'Success.')
+        })
+    },
+    downvote: function () {
+      requester.put(`/meetups/${this.$route.params.meetupId}/talks/${this.$route.params.talkId}/downvote`)
+        .then(res => {
+          this.$data.has_voted = false
+          this.$toastr('success', 'You downvoted for this talk successfully.', 'Success.')
+        })
     }
   }
 }
@@ -80,5 +98,12 @@ export default {
 }
 #vote:hover {
   color: gold;
+}
+#vote {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+#votes-count {
+  font-size: 16px;
 }
 </style>
