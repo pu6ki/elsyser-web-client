@@ -66,7 +66,15 @@ export default {
       } else {
         this.$data.content = this.simplemde.markdown(this.$data.content)
 
-        requester.post(`/materials/${window.localStorage.getItem('elsyserTeacherSubjectId')}`, this.$data)
+        let body = {
+          title: this.$data.title,
+          section: this.$data.section,
+          content: this.$data.content,
+          class_number: this.$data.class_number,
+          video_url: this.$data.video_url
+        }
+
+        requester.post(`/materials/${window.localStorage.getItem('elsyserTeacherSubjectId')}`, body)
           .then(() => {
             this.$toastr('success', 'Material added successfully.', 'Success.')
             this.$router.push('/materials/all')

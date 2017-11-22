@@ -81,7 +81,14 @@ export default {
   },
   methods: {
     onSubmit: function () {
-      requester.put(`/profile/${this.$route.params.id}`, this.$data)
+      let body = {
+        user: this.$data.user,
+        info: this.$data.info,
+        profile_image_url: this.$data.profile_image_url,
+        clazz: this.$data.clazz
+      }
+
+      requester.put(`/profile/${this.$route.params.id}`, body)
         .then((res) => {
           this.$toastr('success', 'Profile edited successfully.', 'Success.')
           this.localStorage.elsyserUsername = res.data.user.username

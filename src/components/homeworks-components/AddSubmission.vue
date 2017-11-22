@@ -54,7 +54,12 @@ export default {
       } else {
         this.$data.content = this.simplemde.markdown(this.$data.content)
 
-        requester.post(`/homeworks/${this.$route.params.id}/submissions`, this.$data)
+        let body = {
+          content: this.$data.content,
+          solution_url: this.$data.solution_url
+        }
+
+        requester.post(`/homeworks/${this.$route.params.id}/submissions`, body)
           .then(() => {
             this.$toastr('success', 'Homework has been sent.', 'Success')
             this.$router.push(`/homeworks/${this.$route.params.id}`)

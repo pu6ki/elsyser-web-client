@@ -31,8 +31,13 @@ export default {
   methods: {
     onSubmit: function () {
       this.$validator.validateAll()
+
+      let body = {
+        'email': this.$data.email
+      }
+
       if (!this.errors.any()) {
-        requester.post('/password/reset', this.$data)
+        requester.post('/password/reset', body)
           .then((res) => {
             this.$toastr('success', `Email sent to ${this.$data.email}. Please check your inbox and follow the instructions.`, 'Success.')
             this.$data.email = ''
