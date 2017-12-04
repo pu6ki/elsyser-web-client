@@ -32,8 +32,8 @@
           <div class="text-center" id="votes-count">
             <span>Votes: {{votes_count}}</span>
           </div>
-          <button class="btn btn-lg btn-primary center-block" id="vote" v-on:click="upvote()" v-if="!has_voted">Vote</button>
-          <button class="btn btn-lg btn-primary center-block" id="vote" v-on:click="downvote()" v-else>Downvote</button>          
+          <button class="btn btn-lg btn-success center-block" id="vote" v-on:click="upvote()" v-if="!has_voted">Vote</button>
+          <button class="btn btn-lg btn-danger center-block" id="vote" v-on:click="downvote()" v-else>Downvote</button>
         </div>
       </div>
     </div>
@@ -97,9 +97,6 @@ export default {
 <style>
 #description {
   font-size: 16px;
-}
-#vote:hover {
-  color: gold;
 }
 #vote {
   margin-bottom: 10px;
