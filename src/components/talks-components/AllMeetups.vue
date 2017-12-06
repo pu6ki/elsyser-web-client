@@ -68,7 +68,7 @@
             <div class="panel-heading center-text">
               {{formatDate(meetup.date)}}
             </div>
-            <div class="panel-group" id="accordion">
+            <div class="panel-group" v-if="meetup.talks.length > 0" id="accordion">
               <div class="panel talks panel-default text-center" v-for="talk in meetup.talks" :key="talk.id">
                 <div class="panel-heading">
                   <h4 class="panel-title text-center">
@@ -95,10 +95,19 @@
                 </div>
               </div>
             </div>
+            <div class="panel" v-else>
+              <div class="panel-body">
+                <h4 class="text-center">There are no available talks for this meetup.</h4>
+              </div>
+            </div>
           </div>
         </div>
-        </div>
+        <infinite-loading @infinite="onInfinite" ref="infiniteLoading">
+          <span slot="no-more"></span>
+          <span slot="no-results"></span>
+        </infinite-loading>
       </div>
+    </div>
     <button class="btn btn-circle btn-lg btn-bottom" id="add-talk" v-on:click="$router.push('/meetups/addTalk')">
       <i class="glyphicon glyphicon-pencil"></i>
     </button>
@@ -108,31 +117,48 @@
 <script>
 import requester from '../../utils/requester'
 import moment from 'moment'
+import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
   name: 'all-talks',
   data: function () {
     return {
       upcomingMeetups: [],
-      pastMeetups: []
-      // search: '',
-      // nextPage: null
+      pastMeetups: [],
+      nextPage: null
     }
   },
+  // computed: {
+  //   filteredTalks: function () {
+  //     let self = this
+  //     let filtered = this.pastMeetups.filter((el) => {
+  //       console.log(el)
+  //       return el.topic.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 ||
+  //         el.title.toLowerCase().indexOf(self.search.toLowerCase()) >= 0
+  //     })
+  //     if (filtered.length === 0) {
+  //       this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+  //     }
+  //     return filtered
+  //   }
+  // },
   beforeCreate: function () {
-    requester
-      .get(`/meetups`, {
-        only: 'upcoming'
+    requester.get(`/meetups`, {
+      only: 'upcoming'
+    }).then(res => {
+      this.$data.upcomingMeetups = res.data.results
+      return requester.get(`/meetups`, {
+        only: 'past'
       })
-      .then(res => {
-        this.$data.upcomingMeetups = res.data.results
-        return requester.get(`/meetups`, {
-          only: 'past'
-        })
-      })
-      .then(res => {
-        this.$data.pastMeetups = res.data.results
-      })
+    })
+    .then(res => {
+      this.$data.pastMeetups = res.data.results
+      this.$data.nextPage = res.data.next
+      if (res.data.next) {
+        let index = res.data.next.indexOf('page=') + 5
+        this.nextPage = res.data.next.substr(index)
+      }
+    })
   },
   methods: {
     upvote: function (meetupId, talkId) {
@@ -167,7 +193,30 @@ export default {
     },
     formatDate: function (dateString) {
       return moment(dateString).format('Do MMM YYYY')
+    },
+    onInfinite: function () {
+      if (this.nextPage) {
+        requester.get('/meetups', {
+          only: 'past',
+          page: this.nextPage
+        }).then((res) => {
+          this.$set(this.$data, 'pastMeetups', this.pastMeetups.concat(res.data.results))
+          // this.filteredTalks.concat(res.data.results)
+          this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
+          if (res.data.nextPage) {
+            let index = res.data.next.indexOf('=') + 1
+            this.nextPage = res.data.next.substr(index)
+          } else {
+            this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+          }
+        })
+      } else {
+        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+      }
     }
+  },
+  components: {
+    InfiniteLoading
   }
 }
 </script>
