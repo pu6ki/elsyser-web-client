@@ -17,7 +17,7 @@
             <div class="panel-heading center-text">
               {{formatDate(meetup.date)}}
             </div>
-            <div class="panel-group" id="accordion">
+            <div class="panel-group" id="accordion" v-if="meetup.talks.length > 0">
               <div class="panel talks panel-default text-center" v-for="talk in meetup.talks" :key="talk.id">
                 <div class="panel-heading">
                   <h4 class="panel-title text-center">
@@ -46,6 +46,13 @@
                     <button class="btn btn-lg btn-danger center-block" id="vote" v-on:click="downvote(meetup.id, talk.id)" v-else>Downvote</button>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="panel" v-else>
+              <div class="panel-body">
+                <h4 class="text-center">There are no available talks for this meetup yet. 
+                  <router-link :to="'/meetups/addTalk'">Add one</router-link>
+                </h4>
               </div>
             </div>
           </div>
