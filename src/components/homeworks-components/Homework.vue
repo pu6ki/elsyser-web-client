@@ -29,15 +29,16 @@
             <div v-else>
               <i>No details provided.</i>
             </div>
-            <hr /> Posted by
-            <router-link :to="'/profile/' + homework.author.user.id">
-              <span>
-                <strong>
-                  <i>{{homework.author.user.username}}</i>
-                </strong>
-              </span>
-            </router-link>
-            <div>
+            <hr /> 
+            <div class="text-center">
+               Posted by
+              <router-link :to="'/profile/' + homework.author.user.id">
+                <span>
+                  <strong>
+                    <i>{{homework.author.user.username}}</i>
+                  </strong>
+                </span>
+              </router-link>
             </div>
           </div>
           <button v-if="isEditable()" type="button" class="btn btn-primary center-block" id="submissions-button" v-on:click="$router.push('/homeworks/' + homework.id + '/submissions')">

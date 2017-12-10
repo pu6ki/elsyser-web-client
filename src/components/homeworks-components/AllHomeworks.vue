@@ -25,14 +25,17 @@
               </i>
               <i v-else>No details provided.</i>
             </div>
-            <hr /> Posted by
-            <router-link :to="'/profile/' + homework.author.user.id">
-              <span>
-                <strong>
-                  <i>{{homework.author.user.username}}</i>
-                </strong>
-              </span>
-            </router-link>
+            <hr /> 
+            <div class="text-center">
+              Posted by
+              <router-link :to="'/profile/' + homework.author.user.id">
+                <span>
+                  <strong>
+                    <i>{{homework.author.user.username}}</i>
+                  </strong>
+                </span>
+              </router-link>
+            </div>
             <div>
               <button id="info-button" class="btn btn-primary" v-on:click="$router.push(`/homeworks/${homework.id}`)">
                 <router-link class="heading-anchor" :to="'/homeworks/' + homework.id">Info</router-link>
