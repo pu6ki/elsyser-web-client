@@ -84,7 +84,17 @@ export default {
       } else {
         this.$data.details = this.simplemde.markdown(this.$data.details)
 
-        requester.post('/exams', this.$data)
+        let body = {
+          date: this.$data.date,
+          topic: this.$data.topic,
+          clazz: {
+            number: this.$data.clazz.number,
+            letter: this.$data.clazz.letter
+          },
+          details: this.$data.details
+        }
+
+        requester.post('/exams', body)
           .then(() => {
             this.$toastr('success', 'Exam added successfully.', 'Success.')
             this.$router.push('/exams/all')

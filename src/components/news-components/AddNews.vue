@@ -79,7 +79,14 @@ export default {
 
         this.$data.content = this.simplemde.markdown(this.$data.content)
 
-        requester.post(url, this.$data)
+        let body = {
+          title: this.$data.title,
+          content: this.$data.content,
+          classNumber: this.$data.classNumber,
+          classLetter: this.$data.classLetter
+        }
+
+        requester.post(url, body)
           .then(() => {
             this.$toastr('success', 'News added successfully.', 'Success.')
             this.$router.push(url)

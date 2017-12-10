@@ -6,7 +6,7 @@
         <br />
         <span>Error 404</span>
         <br />
-        <button type="button" class="btn btn-primary" id="go-home-button" @click="$router.push('home')"><router-link :to="'home'">Go home</router-link></button>
+        <button type="button" class="btn btn-primary" id="go-home-button" @click="$router.push('/home')"><router-link :to="'/home'">Go home</router-link></button>
     </div>
     <div class="col-sm-2 col-md-2 col-lg-2"></div>
 </div>

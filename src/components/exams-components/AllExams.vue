@@ -20,7 +20,6 @@
               </strong>
             </div>
             <div>
-              <i>Topic: </i>
               <strong>
                 <span>{{exam.topic}}</span>
               </strong>

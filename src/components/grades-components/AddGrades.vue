@@ -69,7 +69,12 @@ export default {
   },
   methods: {
     onSubmit: function () {
-      requester.post(`/grades/${this.localStorage.elsyserTeacherSubjectId}/${this.$children[0].mutableValue.id}`, this.$data)
+      let body = {
+        value: this.$data.value,
+        students: this.$data.students
+      }
+
+      requester.post(`/grades/${this.localStorage.elsyserTeacherSubjectId}/${this.$children[0].mutableValue.id}`, body)
         .then((res) => {
           this.$toastr('success', 'Grade added successfully.', 'Success.')
           this.$router.push(`/grades/${this.$route.params.classNumber}/${this.$route.params.classLetter}`)
